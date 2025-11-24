@@ -1,0 +1,32 @@
+nndeploy.image.canny
+====================
+
+.. automodule:: nndeploy.image.canny
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CannyNumpy
+      CannyNumpyCreator
+      CannyPIL
+      CannyPILCreator
+   
+   
+
+   
+   
+   
+
+
+

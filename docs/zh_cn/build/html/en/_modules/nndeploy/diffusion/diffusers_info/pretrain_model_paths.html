@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.diffusion.diffusers_info.pretrain_model_paths &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.diffusion.diffusers_info.pretrain_model_paths</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.diffusion.diffusers_info.pretrain_model_paths</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">.pipelines_dict</span> <span class="kn">import</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span>
+
+<div class="viewcode-block" id="get_text2image_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_text2image_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_text2image_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“文本生成图像（text2image）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于根据文本描述生成对应的图像，适用于AI绘画、文生图等场景。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 先用set去重，并移除以&quot;example/&quot;开头的路径，最后转为list返回</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;text2image&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_image2image_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_image2image_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_image2image_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“图像到图像（image2image）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于对输入图像进行风格迁移、重绘、修复等处理，输入输出均为图像。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 用set去重，并移除以&quot;example/&quot;开头的路径，最后转为list返回</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;image2image&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_inpainting_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_inpainting_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_inpainting_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“图像修复（inpainting）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于对图像中指定区域进行智能修复、补全、去除等操作。</span>
+<span class="sd">    - 适合图片内容填充、去水印等场景。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;inpainting&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_multi_modal_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_multi_modal_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_multi_modal_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“多模态（multi_modal）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于处理多种输入模态（如文本、图像、音频等）的生成或理解任务。</span>
+<span class="sd">    - 适合跨模态检索、生成等复杂场景。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;multi_modal&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_text2video_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_text2video_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_text2video_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“文本生成视频（text2video）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于根据文本描述生成对应的视频内容，适合AI视频生成、文生视频等场景。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;text2video&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_video2video_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_video2video_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_video2video_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“视频到视频（video2video）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于对输入视频进行风格迁移、内容增强、视频修复等处理，输入输出均为视频。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;video2video&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_image2video_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_image2video_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_image2video_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“图像生成视频（image2video）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于将静态图像扩展为动态视频，适合动画生成、图片动化等场景。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;image2video&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_unconditional_image_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_unconditional_image_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_unconditional_image_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“无条件图像生成（unconditional_image）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于不依赖任何输入条件（如文本、图像等）直接生成图像，适合纯噪声生成、艺术创作等场景。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;unconditional_image&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_unconditional_text_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_unconditional_text_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_unconditional_text_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“无条件文本生成（unconditional_text）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于不依赖任何输入条件直接生成文本内容，适合文本生成、语言建模等场景。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;unconditional_text&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+
+<div class="viewcode-block" id="get_unconditional_audio_pipelines_pretrained_model_paths"><a class="viewcode-back" href="../../../../python_api/generated/nndeploy.diffusion.diffusers_info.pretrain_model_paths.html#nndeploy.diffusion.diffusers_info.pretrain_model_paths.get_unconditional_audio_pipelines_pretrained_model_paths">[docs]</a><span class="k">def</span> <span class="nf">get_unconditional_audio_pipelines_pretrained_model_paths</span><span class="p">(</span><span class="n">supports_auto_pipeline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取所有支持“无条件音频生成（unconditional_audio）”功能的pipeline的预训练模型路径。</span>
+
+<span class="sd">    主要用途：</span>
+<span class="sd">    - 用于不依赖任何输入条件直接生成音频内容，适合音乐生成、音效合成等场景。</span>
+<span class="sd">    - 可筛选是否支持AutoPipeline机制。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        supports_auto_pipeline (bool): 是否只返回支持AutoPipeline的pipeline。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        List[str]: 所有pipeline的预训练模型路径的单列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">({</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">DIFFUSERS_PIPELINES_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;unconditional_audio&quot;</span> <span class="ow">and</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;supports_auto_pipeline&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">supports_auto_pipeline</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pipeline</span><span class="p">[</span><span class="s2">&quot;pretrained_model_paths&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;example/&quot;</span><span class="p">)</span>
+    <span class="p">})</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

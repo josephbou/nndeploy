@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy - 一款模型端到端部署框架 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="常见问题" href="../faq/faq.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">nndeploy - 一款模型端到端部署框架</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1 需求分析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1 多端部署实际案例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2 <code class="docutils literal notranslate"><span class="pre">模型多端部署</span></code>以及<code class="docutils literal notranslate"><span class="pre">模型部署</span></code>痛点</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.2.1 推理框架的碎片化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.2.2 多个推理框架的学习成本、开发成本、维护成本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">1.2.3 模型的多样性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">1.2.4 模型高性能的前后处理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">1.2.5 多模型的复杂场景</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">2 概述</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">2.1 特点</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id11">2.1.1 开箱即用的算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">2.1.2 支持跨平台和多推理框架</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">2.1.3 简单易用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">2.1.4 高性能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">2.1.5 并行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">3 架构简介</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">3.1 多端推理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#inference">3.1.1 模型推理类Inference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inferenceparam">3.1.2 InferenceParam 推理超参数配置类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">3.1.3 推理相关数据结构的转换工具类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tensor-buffer">3.2 数据容器 Tensor &amp;&amp; Buffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">3.3 设备管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">3.4 基于有向无环图的模型部署</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">3.5 流水线并行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">3.6 多模型的复杂场景</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">4 下一步规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">5 参考</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">6 加入我们</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">nndeploy - 一款模型端到端部署框架</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nndeploy">
+<h1>nndeploy - 一款模型端到端部署框架<a class="headerlink" href="#nndeploy" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1 需求分析<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>首先是需求分析，也就是为什么要做nndeploy，模型多端部署有什么实际场景，目前<code class="docutils literal notranslate"><span class="pre">模型多端部署</span></code>以及<code class="docutils literal notranslate"><span class="pre">模型部署</span></code>有哪些痛点。</p>
+<section id="id2">
+<h3>1.1 多端部署实际案例<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>这是一个<code class="docutils literal notranslate"><span class="pre">AI智能抠图</span></code>多端部署的实际案例，通过人像分割模型，把蒙娜丽批从图片中抠出来，使用的是国内的某p图软件，该软件有ios、android、网页、电脑（win mac 麒麟）等众多版本，这个例子说明了模型有多端部署的实际的需求。</p>
+<p><img alt="multi_end_deploy_case" src="../_images/multi_end_deploy_case.jpg" /></p>
+</section>
+<section id="id3">
+<h3>1.2 <code class="docutils literal notranslate"><span class="pre">模型多端部署</span></code>以及<code class="docutils literal notranslate"><span class="pre">模型部署</span></code>痛点<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<section id="id4">
+<h4>1.2.1 推理框架的碎片化<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<p>模型多端部署第一个痛点 - 推理框架的碎片化。现在业界尚不存在各方面都远超其同类产品的推理框架，不同推理框架在不同平台、硬件下分别具有各自的优势。例如，在<code class="docutils literal notranslate"><span class="pre">NVidia</span></code> 显卡机器推理，<code class="docutils literal notranslate"><span class="pre">TensorRT</span></code> 是性能最好的推理框架；在<code class="docutils literal notranslate"><span class="pre">x86</span> <span class="pre">CPU</span></code> 机器推理，<code class="docutils literal notranslate"><span class="pre">OpenVINO</span></code> 是性能最好的推理框架；在苹果生态下，<code class="docutils literal notranslate"><span class="pre">coreml</span></code>是性能最好的推理框架；在<code class="docutils literal notranslate"><span class="pre">ARM</span> <span class="pre">Android</span></code> 下，有 <code class="docutils literal notranslate"><span class="pre">ncnn</span></code>、<code class="docutils literal notranslate"><span class="pre">MNN</span></code>、<code class="docutils literal notranslate"><span class="pre">TFLite</span></code>、<code class="docutils literal notranslate"><span class="pre">TNN</span></code>等一系列选择；在<code class="docutils literal notranslate"><span class="pre">瑞芯微</span></code>下，<code class="docutils literal notranslate"><span class="pre">RKNN</span></code>是性能最好的推理框架。总结而言：在具体硬件下，通常就采用硬件公司推出的推理框架。</p>
+<p><img alt="fragmentation_in_inference_frameworks" src="../_images/fragmentation_in_inference_frameworks.png" /></p>
+</section>
+<section id="id5">
+<h4>1.2.2 多个推理框架的学习成本、开发成本、维护成本<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<p>模型多端部署第二个痛点 - 多个推理框架 的 学习成本、开发成本、维护成本。不同的推理框架有不一样的推理接口、超参数配置、Tensor等等，假如一个模型需要多端部署，针对不同推理框架都需要写一套代码，这对模型部署工程师而言，将带来较大学习成本、开发成本、维护成本。</p>
+<p><img alt="inference_difference" src="../_images/inference_difference.jpg" /></p>
+</section>
+<section id="id6">
+<h4>1.2.3 模型的多样性<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
+<p>上述两个痛点都是针对模型多端部署的痛点，第三个痛点是模型部署本身的痛点 - 模型的多样性。从模型部署的角度出发，可以分为<strong>单输入、多输入、单输出、多输出、静态形状输入、动态形状输入、静态形状输出、动态形状输出</strong>一系列不同，当上述的差异点与内存零拷贝优化结合的时候（直接操作推理框架内部分配输入输出），通常只有具备丰富模型部署经验的工程师才能快速找到最优解</p>
+<p>以下是结合了模型特性、描述、TensorRT手动构图以及实际算法例子的表格：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>模型特性</th>
+<th>描述</th>
+<th>TensorRT手动构图</th>
+<th>实际算法例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单输入</td>
+<td>模型只有一个输入张量。</td>
+<td>确保<code>NetworkDefinition</code>中只有一个输入节点。</td>
+<td>图像分类模型ResNet，它接收单张图像作为输入，并输出图像的分类结果。</td>
+</tr>
+<tr>
+<td>多输入</td>
+<td>模型有多个输入张量。</td>
+<td>在<code>NetworkDefinition</code>中定义多个输入节点，并在推理后处理时获取所有输入。</td>
+<td>划痕修复模型，它接收原始图像以及划痕检测mask作为输入</td>
+</tr>
+<tr>
+<td>单输出</td>
+<td>模型只有一个输出张量。</td>
+<td>确保<code>NetworkDefinition</code>中只有一个输出节点。</td>
+<td>图像检测模型YOLOv5，将后处理融合到模型内部</td>
+</tr>
+<tr>
+<td>多输出</td>
+<td>模型有多个输出张量。</td>
+<td>在<code>NetworkDefinition</code>中定义多个输出节点，并在推理后处理时获取所有输出。</td>
+<td>图像检测模型YOLOv5，将后处理不融合到模型内部</td>
+</tr>
+<tr>
+<td>静态形状输入</td>
+<td>输入张量的形状在推理前已知且不变。</td>
+<td>在<code>BuilderConfig</code>中设置固定的输入形状。</td>
+<td>上述模型基本都为静态输入模型</td>
+</tr>
+<tr>
+<td>动态形状输入</td>
+<td>输入张量的形状在推理时可能变化。</td>
+<td>使用<code>IOptimizationProfile</code>定义输入张量的动态形状，并在<code>ExecutionContext</code>中动态设置输入形状。</td>
+<td>自适应的图像超分辨率模型，它能够接收不同尺寸的低分辨率图像作为输入，并输出高分辨率的图像。</td>
+</tr>
+<tr>
+<td>静态形状输出</td>
+<td>输出张量的形状在推理前已知且不变。</td>
+<td>不需要在推理时动态调整。</td>
+<td>除动态形状输入模型外，上述模型基本都为静态输出模型</td>
+</tr>
+<tr>
+<td>动态形状输出</td>
+<td>输出张量的形状在推理时可能变化。</td>
+<td>需要在推理后处理时动态获取输出形状，并据此处理输出数据。</td>
+<td>机器翻译模型，如Transformer，它接收任意长度的文本作为输入，并输出相应长度的目标语言翻译文本。</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id7">
+<h4>1.2.4 模型高性能的前后处理<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+<p>第四个痛点也是模型部署本身的痛点 - 模型的前后处理。模型部署不仅仅只有模型推理，还有前处理、后处理，推理框架往往只提供模型推理的功能。通常需要部署工程师基于对原始算法的理解，通过c++开发该算法前后处理，就cv类算法而言，前处理通常由如下算子（cvtcolor、resize、padding、 warp_affine、crop、normalize、transpose）组合而成，对于大部分cv类模型而言，前处理有较多共性，对于某一个类别的算法而言，后处理算法又特别相似，故前后处理可以被复用，当某个前后处理被大量复用时，可以考虑重点优化，从而获得进一步加速</p>
+<p><img alt="model_pre_post" src="../_images/model_pre_post.jpg" /></p>
+</section>
+<section id="id8">
+<h4>1.2.5 多模型的复杂场景<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
+<p>第五个也是模型部署的痛点 - 多模型组合复杂的场景。目前很多场景是需要由多个模型组合解决该业务问题，例如老照片修复，该算法有6个模型 + 1个传统算法（老照片-&gt;划痕检测-&gt;划痕修复-&gt;超分辨率-&gt;condition(loop(人脸检测-&gt;人脸矫正-&gt;人脸修复-&gt;人脸贴回))-&gt;修复后的照片）组合，没有部署框架的支持，会有大量业务代码、模型耦合度高、灵活性差、代码不适合并行等等问题（出bug、可维护性）。</p>
+<p><img alt="old_photo" src="../_images/old_photo.jpg" /></p>
+<p>基于上述分析，nndeploy框架旨在解决以下模型部署痛点：</p>
+<ol class="simple">
+<li><p><strong>推理框架碎片化</strong>：针对不同硬件平台需要使用不同推理框架的问题，nndeploy提供统一接口，降低学习、开发和维护成本</p></li>
+<li><p><strong>多推理框架的学习与维护成本</strong>：通过抽象统一的接口层，使开发者只需编写一套代码即可适配多种推理框架</p></li>
+<li><p><strong>模型多样性带来的挑战</strong>：提供灵活的接口设计，轻松处理单/多输入输出、静态/动态形状等多种模型特性，无需深厚经验也能找到最优解决方案</p></li>
+<li><p><strong>前后处理代码复用</strong>：设计可复用的前后处理组件，避免重复开发相似功能，提高开发效率</p></li>
+<li><p><strong>多模型组合场景的复杂性</strong>：通过基于图的设计，降低多模型组合场景下的代码耦合度，提高灵活性和可维护性，支持并行处理</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="id9">
+<h2>2 概述<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">nndeploy</span></code>是一款模型端到端部署框架。下图为nndeploy的整体架构，以<code class="docutils literal notranslate"><span class="pre">多端推理</span></code>以及<code class="docutils literal notranslate"><span class="pre">基于有向无环图模型部署</span></code>为基础，致力为用户提供跨平台、简单易用、高性能的模型部署体验。</p>
+<p><img alt="Architecture" src="../_images/architecture.jpg" /></p>
+<section id="id10">
+<h3>2.1 特点<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<section id="id11">
+<h4>2.1.1 开箱即用的算法<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h4>
+<p>目前已完成 <a class="reference external" href="https://github.com/ultralytics/yolov5">YOLOV5</a>、<a class="reference external" href="https://github.com/meituan/YOLOv6">YOLOV6</a>、<a class="reference external" href="https://github.com/ultralytics">YOLOV8</a> 、<a class="reference external" href="https://github.com/facebookresearch/segment-anything">SAM</a>模型的部署，可供您直接使用，后续我们持续不断去部署其它开源模型，让您开箱即用</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">model</th>
+<th style="text-align: left;">Inference</th>
+<th style="text-align: left;">developer</th>
+<th style="text-align: center;">remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/ultralytics/yolov5">YOLOV5</a></td>
+<td style="text-align: left;">TensorRt/OpenVINO/ONNXRuntime/MNN</td>
+<td style="text-align: left;"><a href="https://github.com/02200059Z">02200059Z</a>、<a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/meituan/YOLOv6">YOLOV6</a></td>
+<td style="text-align: left;">TensorRt/OpenVINO/ONNXRuntime</td>
+<td style="text-align: left;"><a href="https://github.com/02200059Z">02200059Z</a>、<a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/ultralytics">YOLOV8</a></td>
+<td style="text-align: left;">TensorRt/OpenVINO/ONNXRuntime/MNN</td>
+<td style="text-align: left;"><a href="https://github.com/02200059Z">02200059Z</a>、<a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/facebookresearch/segment-anything">SAM</a></td>
+<td style="text-align: left;">ONNXRuntime</td>
+<td style="text-align: left;"><a href="https://github.com/youxiudeshouyeren">youxiudeshouyeren</a>、<a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></section>
+<section id="id12">
+<h4>2.1.2 支持跨平台和多推理框架<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h4>
+<p><strong>一套代码多端部署</strong>：通过切换推理配置，一套代码即可完成模型<code class="docutils literal notranslate"><span class="pre">跨多个平台以及多个推理框架</span></code>部署。主要是针对痛点一（推理框架的碎片化）和痛点二（多个推理框架的学习成本、开发成本、维护成本）</p>
+<p>当前支持的推理框架如下：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">Inference/OS</th>
+<th style="text-align: center;">Linux</th>
+<th style="text-align: center;">Windows</th>
+<th style="text-align: center;">Android</th>
+<th style="text-align: center;">MacOS</th>
+<th style="text-align: center;">IOS</th>
+<th style="text-align: left;">developer</th>
+<th style="text-align: center;">remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/NVIDIA/TensorRT">TensorRT</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/openvinotoolkit/openvino">OpenVINO</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/microsoft/onnxruntime">ONNXRuntime</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/alibaba/MNN">MNN</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/Tencent/TNN">TNN</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/02200059Z">02200059Z</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/Tencent/ncnn">ncnn</a></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/apple/coremltools">coreML</a></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/JoDio-zd">JoDio-zd</a>、<a href="https://github.com/jaywlinux">jaywlinux</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/PaddlePaddle/Paddle-Lite">paddle-lite</a></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/qixuxiang">qixuxiang</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.hiascend.com/zh/">AscendCL</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/CYYAI">CYYAI</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.rock-chips.com/a/cn/downloadcenter/BriefDatasheet/index.html">RKNN</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/100312dog">100312dog</a></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></section>
+<section id="id13">
+<h4>2.1.3 简单易用<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>基于有向无环图部署模型</strong>： 将 AI 算法端到端（前处理-&gt;推理-&gt;后处理）的部署抽象为有向无环图 <code class="docutils literal notranslate"><span class="pre">Graph</span></code>，前处理为一个 <code class="docutils literal notranslate"><span class="pre">Node</span></code>，推理也为一个 <code class="docutils literal notranslate"><span class="pre">Node</span></code>，后处理也为一个 <code class="docutils literal notranslate"><span class="pre">Node</span></code>。主要是针对痛点四（复用模型的前后处理）</p></li>
+<li><p><strong>推理模板Infer</strong>： 基于<code class="docutils literal notranslate"><span class="pre">多端推理模块Inference</span></code> + <code class="docutils literal notranslate"><span class="pre">有向无环图节点Node</span></code>再设计功能强大的<code class="docutils literal notranslate"><span class="pre">推理模板Infer</span></code>，Infer推理模板可以帮您在内部处理不同的模型带来差异，例如<strong>单输入、多输入、单输出、多输出、静态形状输入、动态形状输入、静态形状输出、动态形状输出</strong>一系列不同。主要是针对痛点三（模型的多样性）</p></li>
+<li><p><strong>高效解决多模型的复杂场景</strong>：在多模型组合共同完成一个任务的复杂场景下（例如老照片修复），每个模型都可以是独立的Graph，nndeploy的有向无环图支持<code class="docutils literal notranslate"><span class="pre">图中嵌入图</span></code>灵活且强大的功能，将大问题拆分为小问题，通过组合的方式快速解决多模型的复杂场景问题</p></li>
+<li><p><strong>快速构建demo</strong>：对于已部署好的模型，需要编写demo展示效果，而demo需要处理多种格式的输入，例如图片输入输出、文件夹中多张图片的输入输出、视频的输入输出等，通过将上述编解码节点化，可以更通用以及更高效的完成demo的编写，达到快速展示效果的目的（目前主要实现了基于OpneCV的编解码节点化）</p></li>
+</ul>
+</section>
+<section id="id14">
+<h4>2.1.4 高性能<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>推理框架的高性能抽象</strong>：每个推理框架也都有其各自的特性，需要足够尊重以及理解这些推理框架，才能在抽象中不丢失推理框架的特性，并做到统一的使用的体验。<code class="docutils literal notranslate"><span class="pre">nndeploy</span></code> 可配置第三方推理框架绝大部分参数，保证了推理性能。可直接操作推理框架内部分配的输入输出，实现前后处理的零拷贝，提升模型部署端到端的性能。</p></li>
+<li><p><strong>线程池</strong>：提高模型部署的并发性能和资源利用率（thread pool）。此外，还支持CPU端算子自动并行，可提升CPU算子执行性能（parallel_for）。</p></li>
+<li><p><strong>内存池</strong>：完成后可实现高效的内存分配与释放(TODO)</p></li>
+<li><p><strong>一组高性能的算子</strong>：完成后将加速您模型前后处理速度(TODO)</p></li>
+</ul>
+</section>
+<section id="id15">
+<h4>2.1.5 并行<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>串行</strong>：按照模型部署的有向无环图的拓扑排序，依次执行每个节点。</p></li>
+<li><p><strong>流水线并行</strong>：在处理多帧的场景下，基于有向无环图的模型部署方式，可将前处理 <code class="docutils literal notranslate"><span class="pre">Node</span></code>、推理 <code class="docutils literal notranslate"><span class="pre">Node</span></code>、后处理 <code class="docutils literal notranslate"><span class="pre">Node</span></code>绑定三个不同的线程，每个线程又可绑定不同的硬件设备下，从而三个<code class="docutils literal notranslate"><span class="pre">Node</span></code>可流水线并行处理。在多模型以及多硬件设备的的复杂场景下，更加可以发挥流水线并行的优势，从而可显著提高整体吞吐量。</p></li>
+<li><p><strong>任务并行</strong>：在多模型以及多硬件设备的的复杂场景下，基于有向无环图的模型部署方式，可充分挖掘模型部署中的并行性，缩短单次算法全流程运行耗时</p></li>
+<li><p><strong>上述模式的组合并行</strong>：在多模型、多硬件设备以及处理多帧的复杂场景下，nndeploy的有向无环图支持图中嵌入图的功能，每个图都可以有独立的并行模式，故用户可以任意组合模型部署任务的并行模式，具备强大的表达能力且可充分发挥硬件性能。</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id16">
+<h2>3 架构简介<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">nndeploy</span></code>是以<code class="docutils literal notranslate"><span class="pre">多端推理</span></code>以及<code class="docutils literal notranslate"><span class="pre">基于有向无环图模型部署</span></code>为基础的模型端到端部署框架。故架构简介从<code class="docutils literal notranslate"><span class="pre">多端推理</span></code>以及<code class="docutils literal notranslate"><span class="pre">基于有向无环图模型部署</span></code>两个为引子去介绍整体架构。</p>
+<p>与<code class="docutils literal notranslate"><span class="pre">多端推理</span></code>有关的三个模块</p>
+<section id="id17">
+<h3>3.1 多端推理<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
+<p>多端推理子模块（Inference）。提供统一的模型推理的方法去操作不同的推理后端。下图梳理<code class="docutils literal notranslate"><span class="pre">nndeploy</span></code>接入一个新推理框架的整体流程，这里以MNN为例。1. 首先是理解MNN；2. 理解Inference子模块（推理超参数配置类InferenceParam，推理基类Inference）；3. 在理解MNN与Inference基类之上，编写推理适配器（继承基类Inference，编写MnnInference；继承基类InferenceParam，编写MnnInferenceParam；编写推理相关数据结构的转换工具类MnnConvert）；4. 基于MNN后端跑通YOLOV5s</p>
+<p><img alt="how_to_support_new_inference" src="../_images/how_to_support_new_inference.jpg" /></p>
+<section id="inference">
+<h4>3.1.1 模型推理类Inference<a class="headerlink" href="#inference" title="Permalink to this heading">¶</a></h4>
+<p>对应文件为<code class="docutils literal notranslate"><span class="pre">&lt;path&gt;\include\nndeploy\inference.h</span></code>和<code class="docutils literal notranslate"><span class="pre">&lt;path&gt;\source\nndeploy\inference.cc</span></code>，文件中有较为详细的注释说明，主要功能如图所示</p>
+<p><img alt="inference" src="../_images/inference.png" /></p>
+</section>
+<section id="inferenceparam">
+<h4>3.1.2 InferenceParam 推理超参数配置类<a class="headerlink" href="#inferenceparam" title="Permalink to this heading">¶</a></h4>
+<p>对应文件为<code class="docutils literal notranslate"><span class="pre">&lt;path&gt;\include\nndeploy\inference_param.h</span></code>和<code class="docutils literal notranslate"><span class="pre">&lt;path&gt;\source\nndeploy\inference_param.cc</span></code>，每个推理实例都需要超参数配置，例如模型推理时精度、是否为动态形状等等，详细功能如图所示</p>
+<p><img alt="inference_param" src="../_images/inference_param.png" /></p>
+</section>
+<section id="id18">
+<h4>3.1.3 推理相关数据结构的转换工具类<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h4>
+<p>nndeploy提供了统一的Tensor以及推理所需的超参数数据结构，每个推理框架都有自定义Tensor以及超参数数据结构，为了保证统一的接口调用的体验，需编写转化器模块。由于每个推理框架定义都不相同，故该工具类无法定义基类，该工具类的主要也是服务推理框架适配器内部使用，也不需要基类。可参考<code class="docutils literal notranslate"><span class="pre">&lt;path&gt;\include/nndeploy/inference/mnn/mnn_converter.h</span></code>和<code class="docutils literal notranslate"><span class="pre">&lt;path&gt;\source/nndeploy/inference/mnn/mnn_converter.c</span></code>。具体实现如下图所示</p>
+<p><img alt="mnn_converter" src="../_images/mnn_converter.png" /></p>
+</section>
+</section>
+<section id="tensor-buffer">
+<h3>3.2 数据容器 Tensor &amp;&amp; Buffer<a class="headerlink" href="#tensor-buffer" title="Permalink to this heading">¶</a></h3>
+<p>每个推理框架都有不一样的数据交互方式，例如TensorRT为io_binding的方式、OpenVINO为ov::Tensor、TNN的TNN::Blob。不仅需要提供统一推理类以及推理超参数配置类，还需要设计一个通用的Tensor，Tensor的成员变量以及TensorDesc的成员变量如图所示。</p>
+<p><img alt="tensor" src="../_images/tensor.jpg" /></p>
+<p>模型推理的输入输出可以是异构设备上的数据，例如TensorRT的输入为CUDA内存。引入Buffer，将Tensor与异构设备解绑。Buffer的成员变量以及BufferDesc的成员变量如图所示。</p>
+<p><img alt="buffer" src="../_images/buffer.jpg" /></p>
+</section>
+<section id="id19">
+<h3>3.3 设备管理<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
+<p>设备是nndeploy对硬件设备的抽象，通过对硬件设备的抽象，从而屏蔽不同硬件设备编程模型带来的差异性，nndeploy当前已经支持CPU、X86、ARM、CUDA、AscendCL等设备。主要功能如下</p>
+<ul class="simple">
+<li><p><strong>统一的内存分配</strong>：为不同设备提供统一的内存分配接口，从而可简化数据容器<code class="docutils literal notranslate"><span class="pre">Buffer</span></code>、<code class="docutils literal notranslate"><span class="pre">Mat</span></code>、<code class="docutils literal notranslate"><span class="pre">Tensor</span></code>的内存分配</p></li>
+<li><p><strong>统一的内存拷贝</strong>：为不同设备提供统一的内存拷贝接口（设备间拷贝、主从设备间上传/下载），从而可简化数据容器<code class="docutils literal notranslate"><span class="pre">Buffer</span></code>、<code class="docutils literal notranslate"><span class="pre">Mat</span></code>、<code class="docutils literal notranslate"><span class="pre">Tensor</span></code>的内存拷贝</p></li>
+<li><p><strong>统一的同步操作</strong>：为不同设备提供统一的同步操作接口，可简化设备端模型推理、算子等同步操作</p></li>
+<li><p><strong>统一的硬件设备信息查询</strong>：为不同设备提供统一的硬件设备信息查询接口，帮助用户更好的选择模型全流程部署的运行设备</p></li>
+</ul>
+<p>与<code class="docutils literal notranslate"><span class="pre">基于有向无环图的模型部署</span></code>有关的三个模块</p>
+</section>
+<section id="id20">
+<h3>3.4 基于有向无环图的模型部署<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h3>
+<p>下图是YOLOv8n的实际例子。</p>
+<p><img alt="yolov8n" src="../_images/yolov8n.jpg" /></p>
+<p>这是一个非常典型的有向无环图，<strong>模型前处理-&gt;模型推理-&gt;模型推理</strong>构成<strong>NNDEPLOY_YOLOV8</strong> DAG(可供外部调用的库)，该DAG与编解码节点以及画框节点又可以共同构成一个新的DAG(可执行程序的demo)</p>
+<p><img alt="yolov8_dag" src="../_images/yolov8_dag.jpg" /></p>
+<p>注：对于已部署好的模型，需要编写demo展示效果，而demo需要处理多种格式的输入，例如<strong>图片输入输出、文件夹中多张图片的输入输出、视频的输入输出</strong>等，通过将上述编解码节点化，可以更通用以及更高效的完成demo的编写，达到快速展示效果的目的。</p>
+</section>
+<section id="id21">
+<h3>3.5 流水线并行<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
+<p>在处理多帧的场景下，基于有向无环图的模型部署方式，可将前处理 Node、推理 Node、后处理 Node绑定三个不同的线程，每个线程又可绑定不同的硬件设备下，从而三个Node可流水线并行处理。在多模型以及多硬件设备的的复杂场景下，更加可以发挥流水线并行的优势，从而可显著提高整体吞吐量。下图为有向无环图 + 流水线并行 优化 YOLOv8n实际例子</p>
+<p><img alt="pipeline_parallel" src="../_images/pipeline_parallel.jpg" /></p>
+</section>
+<section id="id22">
+<h3>3.6 多模型的复杂场景<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
+<p>下图是老照片修复算法的实际例子，该算法有6个模型 + 1个传统算法（老照片-&gt;划痕检测-&gt;划痕修复-&gt;超分辨率-&gt;condition(loop(人脸检测-&gt;人脸矫正-&gt;人脸修复-&gt;人脸贴回))-&gt;修复后的照片）组合，基于nndeploy通过dag来部署非常直接且开发的心智负担很小。假如不用dag来部署，实际的代码中每个模型都需要手动串联，会有大量业务代码、模型耦合度高、灵活性差、代码不适合并行等等一些问题</p>
+<p><img alt="complex" src="../_images/complex.jpg" /></p>
+</section>
+</section>
+<section id="id23">
+<h2>4 下一步规划<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>推理后端</p>
+<ul>
+<li><p>完善已接入的推理框架coreml</p></li>
+<li><p>完善已接入的推理框架paddle-lite</p></li>
+<li><p>接入新的推理框架TFLite</p></li>
+</ul>
+</li>
+<li><p>设备管理模块</p>
+<ul>
+<li><p>新增OpenCL的设备管理模块</p></li>
+<li><p>新增ROCM的设备管理模块</p></li>
+<li><p>新增OpenGL的设备管理模块</p></li>
+</ul>
+</li>
+<li><p>内存优化</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">主从内存拷贝优化</span></code>：针对统一内存的架构，通过主从内存映射、主从内存地址共享等方式替代主从内存拷贝</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">内存池</span></code>：针对nndeploy的内部的数据容器Buffer、Mat、Tensor，建立异构设备的内存池，实现高性能的内存分配与释放</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">多节点共享内存机制</span></code>：针对多模型串联场景下，基于模型部署的有向无环图，在串行执行的模式下，支持多推理节点共享内存机制</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">边的环形队列内存复用机制</span></code>：基于模型部署的有向无环图，在流水线并行执行的模式下，支持边的环形队列共享内存机制</p></li>
+</ul>
+</li>
+<li><p>stable diffusion model</p>
+<ul>
+<li><p>部署stable diffusion model</p></li>
+<li><p>针对stable diffusion model搭建stable_diffusion.cpp（推理子模块，手动构建计算图的方式）</p></li>
+<li><p>高性能op</p></li>
+<li><p>分布式</p>
+<ul>
+<li><p>在多模型共同完成一个任务的场景里，将多个模型调度到多个机器上分布式执行</p></li>
+<li><p>在大模型的场景下，通过切割大模型为多个子模型的方式，将多个子模型调度到多个机器上分布式执行</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id24">
+<h2>5 参考<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Tencent/TNN">TNN</a></p></li>
+<li><p><a class="reference external" href="https://github.com/PaddlePaddle/FastDeploy">FastDeploy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/opencv/opencv">opencv</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ChunelFeng/CGraph">CGraph</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ChunelFeng/CThreadPool">CThreadPool</a></p></li>
+<li><p><a class="reference external" href="https://github.com/apache/tvm">tvm</a></p></li>
+<li><p><a class="reference external" href="https://github.com/open-mmlab/mmdeploy">mmdeploy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/PaddlePaddle/FlyCV">FlyCV</a></p></li>
+<li><p><a class="reference external" href="https://github.com/torchpipe/torchpipe">torchpipe</a></p></li>
+</ul>
+</section>
+<section id="id25">
+<h2>6 加入我们<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>nndeploy是由一群志同道合的网友共同开发以及维护，我们不定时讨论技术，分享行业见解。当前nndeploy正处于发展阶段，如果您热爱开源、喜欢折腾，不论是出于学习目的，抑或是有更好的想法，欢迎加入我们。</p></li>
+<li><p>微信：Always031856 (可加我微信进nndeploy交流群，备注：nndeploy+姓名)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../faq/faq.html" class="btn btn-neutral float-left" title="常见问题" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

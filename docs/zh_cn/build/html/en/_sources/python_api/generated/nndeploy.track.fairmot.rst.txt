@@ -1,0 +1,23 @@
+nndeploy.track.fairmot
+======================
+
+.. automodule:: nndeploy.track.fairmot
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

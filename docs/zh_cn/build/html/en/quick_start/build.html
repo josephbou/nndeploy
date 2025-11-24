@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compilation &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="model" href="model.html" />
+    <link rel="prev" title="最新动态" href="../introduction/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compilation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1. 拉取源代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2. 编译宏介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">编译宏编辑规则</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">3. 编译方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python包的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">提供的编译脚本</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">4. 主库编译</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">5. 第三方库官方编译文档以及下载链接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">6. 补充说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Compilation</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Compilation<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>1. 拉取源代码<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nndeploy/nndeploy.git
+<span class="nb">cd</span><span class="w"> </span>nndeploy
+<span class="c1"># 拉取子模块</span>
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+<span class="c1"># 如果拉取子模块失败，调用克隆子模块脚本</span>
+python3<span class="w"> </span>clone_submodule.py
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>2. 编译宏介绍<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>Refer to the detailed introduction of compilation macro documentation</p>
+<p>Includes the following types of configurations:</p>
+<ol class="simple">
+<li><p><strong>基础构建选项（建议采用默认配置）</strong>：如是否构建为共享库、使用的C++标准版本等等</p></li>
+<li><p><strong>核心模块选项（建议采用默认配置）</strong>：更细粒度控制需要编译的文件</p></li>
+<li><p>Device backend options (enable as needed, default all closed, does not depend on any device backend): such as CUDA, OpenCL, various NPU hardware acceleration supports</p></li>
+<li><p><strong>算子后端选项（按需打开，默认全部关闭，不依赖任何算子后端）</strong>：如cudnn、onednn、xnnpack、qnnpack</p></li>
+<li><p><strong>推理后端选项（按需打开，默认全部关闭，不依赖任何推理后端）</strong>：如TensorRT、OpenVINO、ONNX Runtime、MNN等推理框架支持</p></li>
+<li><p>Algorithm plugin options (recommended to use default configurations, traditional CV algorithms are enabled by default, language and biomedical image algorithms are closed by default): such as detection, segmentation, llm, biomedical image algorithm plugins</p>
+<ul class="simple">
+<li><p>Among them, traditional CV algorithms depend on OpenCV, such as detection, segmentation, classification, etc., need to enable ENABLE_NNDEPLOY_OPENCV</p></li>
+<li><p><strong>注意：其中<code class="docutils literal notranslate"><span class="pre">语言类和文生图类模型</span></code>依赖C++分词器<a class="reference external" href="https://github.com/mlc-ai/tokenizers-cpp">tokenizer-cpp</a>，所以需要打开<code class="docutils literal notranslate"><span class="pre">ENABLE_NNDEPLOY_PLUGIN_TOKENIZER_CPP</span></code>，由于该库依赖rust，打开前</strong>务必<strong>参考<a class="reference internal" href="precompile_tokenizer_cpp.html"><span class="doc">precompile_tokenizer_cpp.md</span></a></strong></p></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<div><p>注：所有后端均可选。三方库可使用自己的，也可使用nndeploy预编译版本：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://huggingface.co/alwaysssss/nndeploy/blob/main/third_party">huggingface</a>：https://huggingface.co/alwaysssss/nndeploy/blob/main/third_party</p></li>
+<li><p><a class="reference external" href="https://www.modelscope.cn/models/nndeploy/third_party">modelscope</a>：https://www.modelscope.cn/models/nndeploy/third_party</p></li>
+</ul>
+</div></blockquote>
+<section id="id4">
+<h3>编译宏编辑规则<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>对于绝大部分编译选项，只用ON/OFF即可。</p>
+<p>但对于外部依赖的三方库，有如下三种<code class="docutils literal notranslate"><span class="pre">使能并链接外部的第三方库的方法</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">方法一</span></code>：路径<code class="docutils literal notranslate"><span class="pre">path</span></code>，头文件以及库的根路径，其形式必须修改为</p>
+<ul>
+<li><p>头文件：<code class="docutils literal notranslate"><span class="pre">path/include</span></code></p></li>
+<li><p>库：<code class="docutils literal notranslate"><span class="pre">path/lib</span> </code></p></li>
+<li><p>windows dll: <code class="docutils literal notranslate"><span class="pre">path/bin</span></code></p></li>
+<li><p>相应的库：ONNXRuntime、OpenVINO、TNN、MNN、Window已经编译好的OpenCV的库</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">方法二</span></code>：开关<code class="docutils literal notranslate"><span class="pre">ON</span></code>，如果你安装了该库，并且可以通过find_package找到该库，可以采用该方式</p>
+<ul>
+<li><p>相应的库：Linux平台下的CUDA、CUDNN、TenosrRT、OpenCV</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">方法三</span></code>：源码<code class="docutils literal notranslate"><span class="pre">ON</span></code>，使用源码编译该库，对应third_party目录下的库，可以采用该方式</p>
+<ul>
+<li><p>相应的库：tokenizer-cpp、rapidjson、gflags、ONNX</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2>3. 编译方法<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>config.cmake is the compilation configuration file of nndeploy, used to control the project’s compilation options.</p>
+<blockquote>
+<div><p>Compared to native cmake -D options, user-configured compilation option files can be saved for multiple uses, and comments can be added to the file for easy future maintenance.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Compared to compilation scripts, there is no need to write multiple types of scripts for each platform, nor will script environment issues be encountered. Just create a build directory in the root directory, copy config.cmake to this directory, then modify the config.cmake file, and compilation can begin.</p>
+</div></blockquote>
+<p>Assuming you are in the root directory, the specific command line is as follows:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build<span class="w">                 </span><span class="c1"># 创建build目录</span>
+cp<span class="w"> </span>cmake/config.cmake<span class="w"> </span>build<span class="w"> </span><span class="c1"># 将编译配置模板复制到build目录</span>
+<span class="nb">cd</span><span class="w"> </span>build<span class="w">                    </span><span class="c1"># 进入build目录</span>
+vim<span class="w"> </span>config.cmake<span class="w">            </span><span class="c1"># 使用编辑器vscode等工具直接修改config.cmake文件</span>
+cmake<span class="w"> </span>..<span class="w">                    </span><span class="c1"># 生成构建文件</span>
+make<span class="w"> </span>-j<span class="w">                     </span><span class="c1"># 使用8个线程并行编译</span>
+make<span class="w"> </span>install<span class="w">                </span><span class="c1"># 在build目录下生成安装目录</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>注：不同平台编译方式</p>
+<ul>
+<li><p><strong>Linux</strong>：使用上述 make 命令编译</p></li>
+<li><p><strong>Windows</strong>：使用 Visual Studio 编译</p></li>
+<li><p><strong>Android</strong>：使用 android-ndk 交叉编译</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>&lt;NDK_PATH&gt;/build/cmake/android.toolchain.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>-DANDROID_ABI<span class="o">=</span>arm64-v8a<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>-DANDROID_STL<span class="o">=</span>c++_static<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>-DANDROID_NATIVE_API_LEVEL<span class="o">=</span>android-14
+</pre></div>
+</div>
+</li>
+<li><p><strong>macOS</strong>：使用上述 make 命令编译 or 使用 Xcode 编译</p></li>
+<li><p><strong>iOS</strong>：使用 Xcode 编译</p></li>
+</ul>
+</div></blockquote>
+<section id="python">
+<h3>Python包的安装<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h3>
+<p>nndeploy 提供了完整的 Python API，支持通过Python API快速部署各种深度学习模型。</p>
+<ul>
+<li><p>环境要求：Python 3.10+</p></li>
+<li><p>安装方式</p>
+<p>在完成上述的cmake、make、make install之后</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/nndeploy/python
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>安装验证</p>
+<p>运行以下命令确认安装成功：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import nndeploy; print(nndeploy.__version__)&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>可能的问题</p>
+<ul>
+<li><p><strong>conda环境冲突问题</strong></p>
+<p>当与conda环境产生冲突，无法正常运行时，可参考<a class="reference external" href="https://github.com/nndeploy/nndeploy/blob/main/tool/script/fixed_sys_conda.sh">解决方案脚本</a>进行修复。</p>
+</li>
+<li><p><strong>系统环境保护问题</strong></p>
+<p>在某些系统中，为了保护系统Python环境的完整性，不允许直接在全局Python环境中安装第三方包。此时建议使用虚拟环境进行安装：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建虚拟环境</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>nndeploy_env
+
+<span class="c1"># 激活虚拟环境</span>
+<span class="nb">source</span><span class="w"> </span>nndeploy_env/bin/activate
+
+<span class="c1"># 在虚拟环境中安装</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p><strong>动态库路径问题</strong></p>
+<p>如果运行时提示找不到相关动态库，需要将nndeploy的库路径添加到系统环境变量中：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>path/to/nndeploy/python/nndeploy:<span class="nv">$LD_LIBRARY_PATH</span>
+</pre></div>
+</div>
+<p>其中<code class="docutils literal notranslate"><span class="pre">path/to/nndeploy</span></code>需要替换为实际的nndeploy安装路径。</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h3>提供的编译脚本<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>为了简化编译过程，nndeploy 提供了针对不同平台的编译脚本：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">build_linux.py</span></code>: Linux 平台编译脚本</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build_mac_arm64.py</span></code>: macOS ARM64 平台编译脚本</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build_win.py</span></code>: Windows x86_64 平台编译脚本</p></li>
+</ul>
+<blockquote>
+<div><p><strong>注意</strong>：使用编译脚本，需要稳定的网络访问 GitHub，如果无法正常访问 GitHub，建议采用上述手动编译方式进行构建。采用脚本编译时间很长，请耐心等待。</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>编译配置说明</strong>：</p>
+<ul class="simple">
+<li><p>对应的配置文件：<a class="reference external" href="../../../cmake/config_opencv_ort_mnn_tokenizer.cmake">cmake/config_opencv_ort_mnn_tokenizer.cmake</a></p></li>
+<li><p>这些脚本使用与 Python 包相同的编译选项配置</p></li>
+<li><p>默认启用的推理后端：ONNXRuntime、MNN</p></li>
+<li><p>默认启用的依赖库：OpenCV、tokenizer-cpp</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="id7">
+<h2>4. 主库编译<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>默认编译产物：libnndeploy_framework.so(Windows下为nndeploy_framework.dll)</p></li>
+<li><p>算法插件编译产物：libnndeploy_plugin_xxx.so(Windows下为nndeploy_plugin_xxx.dll)</p></li>
+<li><p>可执行程序编译产物：nndeploy_demo_xxx(Windows下为nndeploy_demo_xxx.exe)</p></li>
+<li><p>cpp导出python的编译产物：nndeploy_internal.cpython-xxx.so(Windows下为nndeploy_internal.cpython-xxx.pyd)</p></li>
+</ul>
+<blockquote>
+<div><p>Note: xxx represents specific algorithm plugins and specific executable programs, for example: nndeploy_plugin_detect.so, nndeploy_demo_detect, nndeploy_demo_dag</p>
+</div></blockquote>
+</section>
+<section id="id8">
+<h2>5. 第三方库官方编译文档以及下载链接<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: center;">第三方库</th>
+<th style="text-align: center;">主版本</th>
+<th style="text-align: center;">编译文档</th>
+<th style="text-align: center;">官方库下载链接</th>
+<th style="text-align: center;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><a href="https://github.com/opencv/opencv">opencv</a></td>
+<td style="text-align: center;">4.10.0</td>
+<td style="text-align: center;"><a href="https://opencv.org/get-started/">链接</a></td>
+<td style="text-align: center;"><a href="https://opencv.org/get-started/">链接</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="https://github.com/NVIDIA/TensorRT">TensorRT</a></td>
+<td style="text-align: center;">8.6.0.12</td>
+<td style="text-align: center;"><a href="https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing">链接</a></td>
+<td style="text-align: center;"><a href="https://developer.nvidia.com/zh-cn/tensorrt">链接</a></td>
+<td style="text-align: center;">支持jetson-orin-nano</td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="https://github.com/openvinotoolkit/openvino">OpenVINO</a></td>
+<td style="text-align: center;">2023.0.1</td>
+<td style="text-align: center;"><a href="https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/build.md">链接</a></td>
+<td style="text-align: center;"><a href="https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/download.html?ENVIRONMENT=RUNTIME&amp;OP_SYSTEM=MACOS&amp;VERSION=v_2023_0_1&amp;DISTRIBUTION=ARCHIVE">链接</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="https://github.com/microsoft/onnxruntime">ONNXRuntime</a></td>
+<td style="text-align: center;">v1.15.1</td>
+<td style="text-align: center;"><a href="https://github.com/DefTruth/lite.ai.toolkit/blob/main/docs/ort/ort_useful_api.zh.md">链接</a></td>
+<td style="text-align: center;"><a href="https://github.com/microsoft/onnxruntime/releases/tag/v1.15.1">链接</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="https://github.com/alibaba/MNN">MNN</a></td>
+<td style="text-align: center;">2.6.2</td>
+<td style="text-align: center;"><a href="https://mnn-docs.readthedocs.io/en/latest/compile/engine.html">链接</a></td>
+<td style="text-align: center;"><a href="https://github.com/alibaba/MNN/releases/tag/2.6.0">链接</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="https://github.com/Tencent/TNN">TNN</a></td>
+<td style="text-align: center;">v0.3.0</td>
+<td style="text-align: center;"><a href="https://github.com/Tencent/TNN/blob/master/doc/cn/user/compile.md">链接</a></td>
+<td style="text-align: center;"><a href="https://github.com/Tencent/TNN/releases/tag/v0.3.0">链接</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="https://github.com/Tencent/ncnn/">ncnn</a></td>
+<td style="text-align: center;">v0.3.0</td>
+<td style="text-align: center;"><a href="https://github.com/Tencent/ncnn/tree/master/docs/how-to-build">链接</a></td>
+<td style="text-align: center;"><a href="https://github.com/Tencent/ncnn/releases/tag/20230816">链接</a></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table><blockquote>
+<div><p>注: 我们使用第三方库的上述版本，通常使用其他版本的也没有问题</p>
+</div></blockquote>
+</section>
+<section id="id9">
+<h2>6. 补充说明<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>TensorRT</p>
+<ul>
+<li><p>Install TensorRT cpp sdk reference link, cudnn, cuda, GPU driver</p></li>
+<li><p>Windows link</p></li>
+<li><p>Before installation, please ensure the graphics card driver, cuda, cudnn are all installed and versions are consistent</p></li>
+</ul>
+</li>
+<li><p>Under the windows platform, the system directory comes with onnxruntime, so you might link to the system directory’s onnxruntime when running, leading to runtime errors. Solution</p>
+<ul>
+<li><p>Copy your own onnxruntime library to the build directory</p></li>
+</ul>
+</li>
+<li><p>Install opencv</p>
+<ul>
+<li><p>sudo apt install libopencv-dev reference link</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../introduction/README.html" class="btn btn-neutral float-left" title="最新动态" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model.html" class="btn btn-neutral float-right" title="model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

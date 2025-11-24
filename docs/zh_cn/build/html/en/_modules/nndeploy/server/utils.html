@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.server.utils &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.server.utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.server.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+<span class="kn">from</span> <span class="nn">modelscope.hub.file_download</span> <span class="kn">import</span> <span class="n">model_file_download</span>
+
+<div class="viewcode-block" id="extract_encode_output_paths"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.utils.html#nndeploy.server.utils.extract_encode_output_paths">[docs]</a><span class="k">def</span> <span class="nf">extract_encode_output_paths</span><span class="p">(</span><span class="n">task_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+    <span class="n">preview_target_keys</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;nndeploy::codec::OpenCvImageEncode&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;nndeploy::codec::OpenCvVideoEncode&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">text_target_keys</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;nndeploy::qwen::PrintNode&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">preview_path</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">preview_text</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">_search</span><span class="p">(</span><span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]):</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;key_&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">preview_target_keys</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+                    <span class="n">preview_path</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">})</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;key_&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">text_target_keys</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.tmp/output_&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">text</span><span class="p">:</span>
+                    <span class="n">preview_text</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span><span class="n">text</span><span class="p">})</span>
+
+            <span class="n">sub_nodes</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;node_repository_&quot;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="k">if</span> <span class="n">sub_nodes</span><span class="p">:</span>
+                <span class="n">_search</span><span class="p">(</span><span class="n">sub_nodes</span><span class="p">)</span>
+
+    <span class="n">_search</span><span class="p">(</span><span class="n">task_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;node_repository_&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+    <span class="k">return</span> <span class="n">preview_path</span><span class="p">,</span> <span class="n">preview_text</span></div>
+
+<span class="c1"># def _handle_urls(graph_json: Dict, work_dir: str) -&gt; Dict[str, str]:</span>
+
+<span class="c1">#     url_fields = {</span>
+<span class="c1">#         &quot;image_url_&quot;: &quot;images&quot;,</span>
+<span class="c1">#         &quot;video_url_&quot;: &quot;videos&quot;,</span>
+<span class="c1">#         &quot;audio_url_&quot;: &quot;audios&quot;,</span>
+<span class="c1">#         &quot;model_url_&quot;: &quot;models&quot;,</span>
+<span class="c1">#         &quot;other_url_&quot;: &quot;others&quot;</span>
+<span class="c1">#     }</span>
+
+<span class="c1">#     result_paths = {}</span>
+
+<span class="c1">#     def _safe_remove(path: Path):</span>
+<span class="c1">#         &quot;&quot;&quot;save delete target dir&quot;&quot;&quot;</span>
+<span class="c1">#         try:</span>
+<span class="c1">#             if not path.exists():</span>
+<span class="c1">#                 return</span>
+<span class="c1">#             if path.is_file() or path.is_symlink():</span>
+<span class="c1">#                 path.unlink(missing_ok=True)</span>
+<span class="c1">#             else:</span>
+<span class="c1">#                 shutil.rmtree(path, ignore_errors=True)</span>
+<span class="c1">#         except Exception as e:</span>
+<span class="c1">#             logging.warning(f&quot;Failed to cleanup path {path}: {e}&quot;)</span>
+
+<span class="c1">#     for field, subdir in url_fields.items():</span>
+<span class="c1">#         if field not in graph_json:</span>
+<span class="c1">#             continue</span>
+
+<span class="c1">#         url_list = graph_json[field]</span>
+<span class="c1">#         if not isinstance(url_list, list):</span>
+<span class="c1">#             logging.warning(f&quot;{field} is not a list&quot;)</span>
+<span class="c1">#             continue</span>
+<span class="c1">#         if not url_list:</span>
+<span class="c1">#             logging.info(f&quot;{field} is an empty list, skipping.&quot;)</span>
+<span class="c1">#             continue</span>
+
+<span class="c1">#         for idx, url in enumerate(url_list):</span>
+<span class="c1">#             if not isinstance(url, str):</span>
+<span class="c1">#                 logging.warning(f&quot;{field}.{idx} is not a string.&quot;)</span>
+<span class="c1">#                 continue</span>
+
+<span class="c1">#             try:</span>
+<span class="c1">#                 type_, uri = url.split(&quot;@&quot;, 1)</span>
+<span class="c1">#             except ValueError:</span>
+<span class="c1">#                 logging.warning(f&quot;Invalid URL format in {field}.{idx}: {url}&quot;)</span>
+<span class="c1">#                 continue</span>
+
+<span class="c1">#             save_dir = Path(work_dir) / subdir</span>
+<span class="c1">#             save_dir.mkdir(parents=True, exist_ok=True)</span>
+
+<span class="c1">#             local_path = None</span>
+
+<span class="c1">#             # === Handle modelscope ===</span>
+<span class="c1">#             if type_ == &quot;modelscope&quot;:</span>
+<span class="c1">#                 expected_dest: Path | None = None</span>
+<span class="c1">#                 try:</span>
+<span class="c1">#                     model_id, file_path = uri.split(&quot;:&quot;, 1)</span>
+<span class="c1">#                     expected_dest = (save_dir / file_path).resolve()</span>
+<span class="c1">#                     local_path = model_file_download(</span>
+<span class="c1">#                         model_id=model_id,</span>
+<span class="c1">#                         file_path=file_path,</span>
+<span class="c1">#                         local_dir=save_dir</span>
+<span class="c1">#                     )</span>
+<span class="c1">#                 except Exception as e:</span>
+<span class="c1">#                     logging.error(f&quot;Failed to download modelscope model for {field}.{idx}: {e}&quot;)</span>
+<span class="c1">#                     if field == &quot;model_url_&quot; and expected_dest is not None:</span>
+<span class="c1">#                         _safe_remove(expected_dest)</span>
+<span class="c1">#                     continue</span>
+
+<span class="c1">#             # === Handle http/https ===</span>
+<span class="c1">#             elif type_ in (&quot;http&quot;, &quot;https&quot;):</span>
+<span class="c1">#                 try:</span>
+<span class="c1">#                     parsed = urlparse(uri)</span>
+<span class="c1">#                     filename = os.path.basename(parsed.path) or &quot;downloaded_file&quot;</span>
+<span class="c1">#                     save_path = save_dir / filename</span>
+
+<span class="c1">#                     if not save_path.exists():</span>
+<span class="c1">#                         logging.info(f&quot;Downloading {uri} to {save_path}&quot;)</span>
+<span class="c1">#                         r = requests.get(uri, stream=True, timeout=10)</span>
+<span class="c1">#                         r.raise_for_status()</span>
+<span class="c1">#                         with open(save_path, &quot;wb&quot;) as f:</span>
+<span class="c1">#                             for chunk in r.iter_content(chunk_size=8192):</span>
+<span class="c1">#                                 f.write(chunk)</span>
+<span class="c1">#                         logging.info(f&quot;Saved to {save_path}&quot;)</span>
+<span class="c1">#                     else:</span>
+<span class="c1">#                         logging.info(f&quot;File already exists: {save_path}&quot;)</span>
+
+<span class="c1">#                     local_path = save_path</span>
+
+<span class="c1">#                 except Exception as e:</span>
+<span class="c1">#                     logging.error(f&quot;Failed to download http resource for {field}.{idx}: {e}&quot;)</span>
+<span class="c1">#                     if field == &quot;model_url_&quot; and save_path is not None:</span>
+<span class="c1">#                         _safe_remove(save_path)</span>
+<span class="c1">#                     continue</span>
+<span class="c1">#             elif type_.startswith(&quot;template&quot;):</span>
+<span class="c1">#                     logging.info(f&quot;Skip processing template resource for {field}.{idx}&quot;)</span>
+<span class="c1">#                     continue</span>
+<span class="c1">#             else:</span>
+<span class="c1">#                 logging.warning(f&quot;Unsupported or failed to download resource for {field}.{idx} with type &#39;{type_}&#39;&quot;)</span>
+
+<span class="c1">#             # === Store result ===</span>
+<span class="c1">#             if local_path:</span>
+<span class="c1">#                 result_paths[f&quot;{field}.{idx}&quot;] = str(local_path)</span>
+
+<span class="c1">#     return result_paths</span>
+
+<span class="k">def</span> <span class="nf">_sanitize_filename</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[&lt;&gt;:&quot;/</span><span class="se">\\</span><span class="s1">|?*]+&#39;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot; .&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_ensure_under</span><span class="p">(</span><span class="n">base</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">_safe_remove</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;safe deleter&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span> <span class="ow">or</span> <span class="n">path</span><span class="o">.</span><span class="n">is_symlink</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">missing_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                    <span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to cleanup path </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_atomic_write_from_stream</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span><span class="p">,</span> <span class="n">dst_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+    <span class="n">dst_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">dst_path</span><span class="o">.</span><span class="n">parent</span><span class="p">),</span> <span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">tf</span><span class="p">:</span>
+        <span class="n">tmp_name</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>  <span class="c1"># avoid keep-alive empty blank</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="c1"># atomic replace（Windows/Linux/macOS）</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tmp_name</span><span class="p">,</span> <span class="n">dst_path</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_download_with_retries</span><span class="p">(</span><span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">save_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">60</span><span class="p">)):</span>
+    <span class="n">last_err</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">Exception</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloading </span><span class="si">{</span><span class="n">uri</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2"> (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">retries</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="n">_atomic_write_from_stream</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">save_path</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved to </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">save_path</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">last_err</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Download failed (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">retries</span><span class="si">}</span><span class="s2">) for </span><span class="si">{</span><span class="n">uri</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">_safe_remove</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">retries</span><span class="p">:</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">attempt</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">last_err</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">raise</span> <span class="n">last_err</span>
+
+
+<span class="k">def</span> <span class="nf">_handle_urls</span><span class="p">(</span><span class="n">graph_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    process graph_json *_url_ attributes:</span>
+<span class="sd">    - modelscope/http/https download</span>
+<span class="sd">    - faild clean(仅对 model_url_)</span>
+<span class="sd">    - return { &quot;field.idx&quot;: &quot;file absolute path&quot; }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">url_fields</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;image_url_&quot;</span><span class="p">:</span> <span class="s2">&quot;images&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;video_url_&quot;</span><span class="p">:</span> <span class="s2">&quot;videos&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;audio_url_&quot;</span><span class="p">:</span> <span class="s2">&quot;audios&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;model_url_&quot;</span><span class="p">:</span> <span class="s2">&quot;models&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;other_url_&quot;</span><span class="p">:</span> <span class="s2">&quot;others&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">result_paths</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">subdir</span> <span class="ow">in</span> <span class="n">url_fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">graph_json</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">url_list</span> <span class="o">=</span> <span class="n">graph_json</span><span class="p">[</span><span class="n">field</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">url_list</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2"> is not a list&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">url_list</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2"> is an empty list, skipping.&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">url_list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2"> is not a string.&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">type_</span><span class="p">,</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid URL format in </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">save_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">work_dir</span><span class="p">)</span> <span class="o">/</span> <span class="n">subdir</span>
+            <span class="n">save_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">local_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># === Handle modelscope ===</span>
+            <span class="k">if</span> <span class="n">type_</span> <span class="o">==</span> <span class="s2">&quot;modelscope&quot;</span><span class="p">:</span>
+                <span class="n">expected_dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">model_id</span><span class="p">,</span> <span class="n">file_path</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="n">rel_path</span> <span class="o">=</span> <span class="n">file_path</span>
+                    <span class="n">expected_dest</span> <span class="o">=</span> <span class="p">(</span><span class="n">save_dir</span> <span class="o">/</span> <span class="n">rel_path</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">_ensure_under</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">expected_dest</span><span class="p">):</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path traversal detected for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">expected_dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">continue</span>
+
+                    <span class="n">local_path</span> <span class="o">=</span> <span class="n">model_file_download</span><span class="p">(</span>
+                        <span class="n">model_id</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span>
+                        <span class="n">file_path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">rel_path</span><span class="p">),</span>
+                        <span class="n">local_dir</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span>
+                    <span class="p">)</span>
+                    <span class="n">local_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">_ensure_under</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">local_path</span><span class="p">):</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloaded path escapes save_dir for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">local_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">_safe_remove</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+                        <span class="n">local_path</span> <span class="o">=</span> <span class="kc">None</span>
+                        <span class="k">continue</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download modelscope model for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="s2">&quot;model_url__&quot;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">expected_dest</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">_safe_remove</span><span class="p">(</span><span class="n">expected_dest</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">local_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">_safe_remove</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+            <span class="c1"># === Handle http/https ===</span>
+            <span class="k">elif</span> <span class="n">type_</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">_sanitize_filename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">parsed</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;downloaded_file&quot;</span><span class="p">)</span>
+                    <span class="n">save_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">save_dir</span> <span class="o">/</span> <span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">_ensure_under</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path traversal detected for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">continue</span>
+
+                    <span class="k">if</span> <span class="n">save_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists: </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">local_path</span> <span class="o">=</span> <span class="n">save_path</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">local_path</span> <span class="o">=</span> <span class="n">_download_with_retries</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">save_path</span><span class="p">)</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download http resource for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="s2">&quot;model_url_&quot;</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">_safe_remove</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>  <span class="c1"># type: ignore[name-defined]</span>
+                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                            <span class="k">pass</span>
+                    <span class="k">continue</span>
+
+            <span class="c1"># === Handle template:* ===</span>
+            <span class="k">elif</span> <span class="n">type_</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;template&quot;</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skip processing template resource for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported or failed to download resource for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2"> with type &#39;</span><span class="si">{</span><span class="n">type_</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># === Store result ===</span>
+            <span class="k">if</span> <span class="n">local_path</span><span class="p">:</span>
+                <span class="n">result_paths</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result_paths</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

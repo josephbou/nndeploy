@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preparation before installation &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Preparation before installation</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>Installing the Rust environment on Ubuntu mainly involves the following steps:</p>
+<section id="id1">
+<h1>Preparation before installation<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<ol>
+<li><p>Update the system software package list to ensure the system is up to date:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</pre></div>
+</div>
+</li>
+<li><p>Install necessary compilation tools and dependency libraries:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>build-essential<span class="w"> </span>gcc<span class="w"> </span>make
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="rust">
+<h1>Install Rust<a class="headerlink" href="#rust" title="Permalink to this heading">¶</a></h1>
+<ol>
+<li><p>Use the official script installation: Execute the following command to download and run the Rust installation script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39;=https&#39;</span><span class="w"> </span>--tlsv1.2<span class="w"> </span>-sSf<span class="w"> </span>https://sh.rustup.rs<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
+</div>
+<p>运行该命令后，安装脚本会提示你进行一些选择，通常选择默认选项1即可完成安装。</p>
+</li>
+<li><p><strong>使用镜像源安装</strong>：如果官方安装速度较慢，可以使用国内镜像源来加速安装。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">RUSTUP_DIST_SERVER</span><span class="o">=</span>https://mirrors.ustc.edu.cn/rust-static
+<span class="nb">export</span><span class="w"> </span><span class="nv">RUSTUP_UPDATE_ROOT</span><span class="o">=</span>https://mirrors.ustc.edu.cn/rust-static/rustup
+curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39;=https&#39;</span><span class="w"> </span>--tlsv1.2<span class="w"> </span>-sSf<span class="w"> </span>https://sh.rustup.rs<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id2">
+<h1>Configure environment variables<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h1>
+<p>After the installation is complete, you need to add Rust’s related paths to the environment variables so that the system can find Rust’s tools. You can use the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.cargo/env
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h1>Verify the installation<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h1>
+<p>You can check the versions of the Rust compiler (rustc) and package manager (cargo) to verify whether the installation was successful:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rustc<span class="w"> </span>--version
+cargo<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>If version information is displayed, it indicates that the installation was successful.</p>
+</section>
+<section id="id4">
+<h1>A closer look at the official compiler reference documentation<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="https://github.com/mlc-ai/tokenizers-cpp">tokenizer-cpp</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

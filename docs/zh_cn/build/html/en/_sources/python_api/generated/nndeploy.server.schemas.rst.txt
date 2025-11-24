@@ -1,0 +1,53 @@
+nndeploy.server.schemas
+=======================
+
+.. automodule:: nndeploy.server.schemas
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DeleteResponse
+      EnqueueRequest
+      EnqueueResponse
+      FileInfoResponse
+      FileListResponse
+      HistoryItem
+      HistoryResponse
+      NodeListResponse
+      ParamTypeResponse
+      PreviewPayload
+      ProgressPayload
+      QueueItem
+      QueueStateResponse
+      QueueStateResult
+      TemplateDirListResponse
+      TemplateDownloadRequest
+      TemplateDownloadResponse
+      TemplateJsonListResponse
+      TemplateLoadResponse
+      UploadResponse
+      WorkFlowDeleteResponse
+      WorkFlowListResponse
+      WorkFlowLoadResponse
+      WorkFlowSaveResponse
+      WsPreviewPayload
+   
+   
+
+   
+   
+   
+
+
+

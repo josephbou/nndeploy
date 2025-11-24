@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.device &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nndeploy.device.buffer" href="nndeploy.device.buffer.html" />
+    <link rel="prev" title="nndeploy.detect.yolo" href="nndeploy.detect.yolo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nndeploy.html">nndeploy</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_version"><code class="docutils literal notranslate"><span class="pre">get_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_init"><code class="docutils literal notranslate"><span class="pre">framework_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_deinit"><code class="docutils literal notranslate"><span class="pre">framework_deinit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_type_enum_json"><code class="docutils literal notranslate"><span class="pre">get_type_enum_json()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_aigc.html">nndeploy.api_aigc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_llm.html">nndeploy.api_llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.base.html">nndeploy.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.basic.html">nndeploy.basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.classification.html">nndeploy.classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.codec.html">nndeploy.codec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.dag.html">nndeploy.dag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.detect.html">nndeploy.detect</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">nndeploy.device</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.BufferDesc"><code class="docutils literal notranslate"><span class="pre">BufferDesc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.TensorDesc"><code class="docutils literal notranslate"><span class="pre">TensorDesc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.Architecture"><code class="docutils literal notranslate"><span class="pre">Architecture</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.Device"><code class="docutils literal notranslate"><span class="pre">Device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.Stream"><code class="docutils literal notranslate"><span class="pre">Stream</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.Event"><code class="docutils literal notranslate"><span class="pre">Event</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.MemoryPool"><code class="docutils literal notranslate"><span class="pre">MemoryPool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.Buffer"><code class="docutils literal notranslate"><span class="pre">Buffer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.Tensor"><code class="docutils literal notranslate"><span class="pre">Tensor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.create_tensor_from_numpy"><code class="docutils literal notranslate"><span class="pre">create_tensor_from_numpy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nndeploy.device.create_numpy_from_tensor"><code class="docutils literal notranslate"><span class="pre">create_numpy_from_tensor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.device.buffer.html">nndeploy.device.buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.device.device.html">nndeploy.device.device</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.device.memory_pool.html">nndeploy.device.memory_pool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.device.tensor.html">nndeploy.device.tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.device.type.html">nndeploy.device.type</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.diffusion.html">nndeploy.diffusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.face.html">nndeploy.face</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.gan.html">nndeploy.gan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.image.html">nndeploy.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.infer.html">nndeploy.infer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.inference.html">nndeploy.inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ir.html">nndeploy.ir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.llm.html">nndeploy.llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.matting.html">nndeploy.matting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.net.html">nndeploy.net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.nndeploy.html">nndeploy.nndeploy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ocr.html">nndeploy.ocr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.op.html">nndeploy.op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.preprocess.html">nndeploy.preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.segment.html">nndeploy.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.server.html">nndeploy.server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.tokenizer.html">nndeploy.tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.track.html">nndeploy.track</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Python API Reference</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.html">nndeploy</a></li>
+      <li class="breadcrumb-item active">nndeploy.device</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nndeploy.device">
+<span id="nndeploy-device"></span><h1>nndeploy.device<a class="headerlink" href="#module-nndeploy.device" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">BufferDesc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BufferDesc</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a BufferDesc object.</p>
+<p>The constructor can be called in the following ways:
+1. BufferDesc(): Constructs an empty BufferDesc.
+2. BufferDesc(size): Constructs a BufferDesc with size.
+3. BufferDesc(size_ptr, size): Constructs a BufferDesc from a size_t array of size.
+4. BufferDesc(size_vector): Constructs a BufferDesc from a base::SizeVector.
+5. BufferDesc(size, int_vector): Constructs a BufferDesc from a size and a base::IntVector.
+6. BufferDesc(size_vector, int_vector): Constructs a BufferDesc from a base::SizeVector and a base::IntVector.
+7. BufferDesc(size_ptr, size, int_vector): Constructs a BufferDesc from a size_t array of size and a base::IntVector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.get_size">
+<span class="sig-name descname"><span class="pre">get_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.get_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.get_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.get_size_vector">
+<span class="sig-name descname"><span class="pre">get_size_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.get_size_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.get_size_vector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.get_real_size">
+<span class="sig-name descname"><span class="pre">get_real_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.get_real_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.get_real_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.get_real_size_vector">
+<span class="sig-name descname"><span class="pre">get_real_size_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.get_real_size_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.get_real_size_vector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.get_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.get_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.is_same_config">
+<span class="sig-name descname"><span class="pre">is_same_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.is_same_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.is_same_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.is_same_dim">
+<span class="sig-name descname"><span class="pre">is_same_dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.is_same_dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.is_same_dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.is_1d">
+<span class="sig-name descname"><span class="pre">is_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.is_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.is_1d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0:</span> <span class="pre">std::ostream</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.just_modify">
+<span class="sig-name descname"><span class="pre">just_modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.just_modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.just_modify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>just_modify(self: nndeploy._nndeploy_internal.device.BufferDesc, arg0: int) -&gt; bool</p></li>
+<li><p>just_modify(self: nndeploy._nndeploy_internal.device.BufferDesc, arg0: list[int]) -&gt; bool</p></li>
+<li><p>just_modify(self: nndeploy._nndeploy_internal.device.BufferDesc, arg0: nndeploy._nndeploy_internal.device.BufferDesc) -&gt; bool</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.BufferDesc.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.BufferDesc</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#BufferDesc.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.BufferDesc.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">TensorDesc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#TensorDesc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.TensorDesc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TensorDesc</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#TensorDesc.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.TensorDesc.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a TensorDesc object.</p>
+<p>The constructor can be called in the following ways:
+1. TensorDesc(): Constructs an empty TensorDesc object.
+2. TensorDesc(data_type, format, shape): Constructs a TensorDesc object from data type, data format and shape.
+3. TensorDesc(data_type, format, shape, stride): Constructs a TensorDesc object from data type, data format, shape and stride.
+4. TensorDesc(desc): Constructs a new TensorDesc object from another TensorDesc object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.device.TensorDesc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream:</span> <span class="pre">std::ostream</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nndeploy/device/type.html#TensorDesc.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.TensorDesc.print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.data_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_type</span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.data_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.data_format">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_format</span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.data_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.data_format_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_format_</span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.data_format_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.data_type_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_type_</span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.data_type_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.TensorDesc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.TensorDesc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.shape_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape_</span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.shape_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.stride_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stride_</span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.stride_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.TensorDesc.stride">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stride</span></span><a class="headerlink" href="#nndeploy.device.TensorDesc.stride" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">Architecture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an Architecture object.</p>
+<p>The constructor can be called in the following ways:
+1. str: Constructs an Architecture from a string. eg: “cpu”, “ascendcl”, etc.
+2. DeviceTypeCode: Constructs an Architecture from a DeviceTypeCode enum value.
+3. _C.base.DeviceTypeCode: Constructs an Architecture from a DeviceTypeCode enum value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture.check_device">
+<span class="sig-name descname"><span class="pre">check_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">library_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture.check_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture.check_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture.enable_device">
+<span class="sig-name descname"><span class="pre">enable_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">library_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture.enable_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture.enable_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture.disable_device">
+<span class="sig-name descname"><span class="pre">disable_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture.disable_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture.disable_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture.get_device">
+<span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture.get_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture.get_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture.get_device_info">
+<span class="sig-name descname"><span class="pre">get_device_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">library_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture.get_device_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture.get_device_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture.get_device_type_code">
+<span class="sig-name descname"><span class="pre">get_device_type_code</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture.get_device_type_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture.get_device_type_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Architecture.insert_device">
+<span class="sig-name descname"><span class="pre">insert_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Architecture.insert_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Architecture.insert_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.Device">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a Device object.</p>
+<p>The constructor can be called in the following ways:
+1. Device(device_name_and_id): Constructs a Device from a string in the format “device_name:device_id” (e.g., “cuda:0”).
+2. Device(device_name, device_id): Constructs a Device from a string device name and an integer device ID.
+3. Device(device_type_code): Constructs a Device from a DeviceTypeCode enum value. The device ID defaults to 0.
+4. Device(device_type_code, device_id): Constructs a Device from a DeviceTypeCode enum value and an integer device ID.
+5. Device(): Constructs a default Device with DeviceTypeCode.cpu and device ID 0.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.get_data_format_by_shape">
+<span class="sig-name descname"><span class="pre">get_data_format_by_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.get_data_format_by_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.get_data_format_by_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.to_buffer_desc">
+<span class="sig-name descname"><span class="pre">to_buffer_desc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.to_buffer_desc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.to_buffer_desc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.allocate">
+<span class="sig-name descname"><span class="pre">allocate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size_or_desc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.allocate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.allocate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allocate memory that must be freed using deallocate()
+:param size_or_desc: int for allocation size, or BufferDesc for buffer descriptor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Memory pointer that must be freed using deallocate()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.deallocate">
+<span class="sig-name descname"><span class="pre">deallocate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ptr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.deallocate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.deallocate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.allocate_pinned">
+<span class="sig-name descname"><span class="pre">allocate_pinned</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size_or_desc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.allocate_pinned"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.allocate_pinned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allocate pinned memory that must be freed using deallocate_pinned()
+:param size_or_desc: int for allocation size, or BufferDesc for buffer descriptor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Memory pointer that must be freed using deallocate_pinned()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.deallocate_pinned">
+<span class="sig-name descname"><span class="pre">deallocate_pinned</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ptr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.deallocate_pinned"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.deallocate_pinned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.download"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.download" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.upload">
+<span class="sig-name descname"><span class="pre">upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.upload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.upload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.copy_buffer">
+<span class="sig-name descname"><span class="pre">copy_buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.copy_buffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.copy_buffer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.download_buffer">
+<span class="sig-name descname"><span class="pre">download_buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.download_buffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.download_buffer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.upload_buffer">
+<span class="sig-name descname"><span class="pre">upload_buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.upload_buffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.upload_buffer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.get_context">
+<span class="sig-name descname"><span class="pre">get_context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.get_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.get_context" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.create_stream">
+<span class="sig-name descname"><span class="pre">create_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.create_stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.create_stream" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.create_event">
+<span class="sig-name descname"><span class="pre">create_event</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.create_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.create_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.create_events">
+<span class="sig-name descname"><span class="pre">create_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">events</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.create_events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.create_events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.get_device_type">
+<span class="sig-name descname"><span class="pre">get_device_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.get_device_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.get_device_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Device.deinit">
+<span class="sig-name descname"><span class="pre">deinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Device.deinit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Device.deinit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.Stream">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">Stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.get_device_type">
+<span class="sig-name descname"><span class="pre">get_device_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.get_device_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.get_device_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.get_device">
+<span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.get_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.get_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.synchronize">
+<span class="sig-name descname"><span class="pre">synchronize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.synchronize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.synchronize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.record_event">
+<span class="sig-name descname"><span class="pre">record_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.record_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.record_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.wait_event">
+<span class="sig-name descname"><span class="pre">wait_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.wait_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.wait_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.on_execution_context_setup">
+<span class="sig-name descname"><span class="pre">on_execution_context_setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.on_execution_context_setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.on_execution_context_setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.on_execution_context_teardown">
+<span class="sig-name descname"><span class="pre">on_execution_context_teardown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.on_execution_context_teardown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.on_execution_context_teardown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Stream.get_native_stream">
+<span class="sig-name descname"><span class="pre">get_native_stream</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Stream.get_native_stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Stream.get_native_stream" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.Event">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">Event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_or_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Event.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_or_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Event.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Event.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Event.get_device_type">
+<span class="sig-name descname"><span class="pre">get_device_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Event.get_device_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Event.get_device_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Event.get_device">
+<span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Event.get_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Event.get_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Event.query_done">
+<span class="sig-name descname"><span class="pre">query_done</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Event.query_done"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Event.query_done" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Event.synchronize">
+<span class="sig-name descname"><span class="pre">synchronize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Event.synchronize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Event.synchronize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Event.get_native_event">
+<span class="sig-name descname"><span class="pre">get_native_event</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/device.html#Event.get_native_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Event.get_native_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">MemoryPool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>MemoryPool构造函数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<a class="reference internal" href="#nndeploy.device.Device" title="nndeploy.device.Device"><em>Device</em></a>) – 设备对象。</p></li>
+<li><p><strong>memory_pool_type</strong> (<a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.MemoryPoolType" title="nndeploy.base.common.MemoryPoolType"><em>MemoryPoolType</em></a>) – 内存池类型。</p></li>
+<li><p><strong>memory_pool</strong> (<em>_C.device.MemoryPool</em>) – 内部内存池对象。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.deinit">
+<span class="sig-name descname"><span class="pre">deinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.deinit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.deinit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.allocate">
+<span class="sig-name descname"><span class="pre">allocate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.device.type.html#nndeploy.device.type.BufferDesc" title="nndeploy.device.type.BufferDesc"><span class="pre">BufferDesc</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.allocate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.allocate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.deallocate">
+<span class="sig-name descname"><span class="pre">deallocate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ptr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.deallocate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.deallocate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.allocate_pinned">
+<span class="sig-name descname"><span class="pre">allocate_pinned</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.device.type.html#nndeploy.device.type.BufferDesc" title="nndeploy.device.type.BufferDesc"><span class="pre">BufferDesc</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.allocate_pinned"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.allocate_pinned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.deallocate_pinned">
+<span class="sig-name descname"><span class="pre">deallocate_pinned</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ptr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.deallocate_pinned"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.deallocate_pinned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.get_device">
+<span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.get_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.get_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.MemoryPool.get_memory_pool_type">
+<span class="sig-name descname"><span class="pre">get_memory_pool_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/memory_pool.html#MemoryPool.get_memory_pool_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.MemoryPool.get_memory_pool_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">Buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Buffer</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, device: nndeploy._nndeploy_internal.device.Device, size: int) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, device: nndeploy._nndeploy_internal.device.Device, desc: nndeploy._nndeploy_internal.device.BufferDesc) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, device: nndeploy._nndeploy_internal.device.Device, size: int, ptr: capsule) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, device: nndeploy._nndeploy_internal.device.Device, desc: nndeploy._nndeploy_internal.device.BufferDesc, ptr: capsule) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, device: nndeploy._nndeploy_internal.device.Device, size: int, ptr: capsule, memory_type: nndeploy._nndeploy_internal.base.MemoryType) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, device: nndeploy._nndeploy_internal.device.Device, desc: nndeploy._nndeploy_internal.device.BufferDesc, ptr: capsule, memory_type: nndeploy._nndeploy_internal.base.MemoryType) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, memory_pool: nndeploy._nndeploy_internal.device.MemoryPool, size: int) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, memory_pool: nndeploy._nndeploy_internal.device.MemoryPool, desc: nndeploy._nndeploy_internal.device.BufferDesc) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, memory_pool: nndeploy._nndeploy_internal.device.MemoryPool, size: int, ptr: capsule, memory_type: nndeploy._nndeploy_internal.base.MemoryType) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, memory_pool: nndeploy._nndeploy_internal.device.MemoryPool, desc: nndeploy._nndeploy_internal.device.BufferDesc, ptr: capsule, memory_type: nndeploy._nndeploy_internal.base.MemoryType) -&gt; None</p></li>
+<li><p>__init__(self: nndeploy._nndeploy_internal.device.Buffer, buffer: nndeploy._nndeploy_internal.device.Buffer) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clone the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.copy_to">
+<span class="sig-name descname"><span class="pre">copy_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.copy_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.copy_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the buffer to the destination buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bin_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize the buffer to a binary string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bin_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.deserialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize the buffer from a binary string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print buffer information</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.just_modify">
+<span class="sig-name descname"><span class="pre">just_modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.just_modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.just_modify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the buffer size</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.empty">
+<span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the buffer is empty</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_device_type">
+<span class="sig-name descname"><span class="pre">get_device_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_device_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_device_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the device type of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_device">
+<span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the device of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_memory_pool">
+<span class="sig-name descname"><span class="pre">get_memory_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_memory_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_memory_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the memory pool of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.is_memory_pool">
+<span class="sig-name descname"><span class="pre">is_memory_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.is_memory_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.is_memory_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the buffer is from a memory pool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_desc">
+<span class="sig-name descname"><span class="pre">get_desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_desc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the buffer descriptor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_size">
+<span class="sig-name descname"><span class="pre">get_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the size of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_size_vector">
+<span class="sig-name descname"><span class="pre">get_size_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_size_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_size_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the size vector of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_real_size">
+<span class="sig-name descname"><span class="pre">get_real_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_real_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_real_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the real size of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_real_size_vector">
+<span class="sig-name descname"><span class="pre">get_real_size_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_real_size_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_real_size_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the real size vector of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the configuration of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the data pointer of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.get_memory_type">
+<span class="sig-name descname"><span class="pre">get_memory_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.get_memory_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.get_memory_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the memory type of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.add_ref">
+<span class="sig-name descname"><span class="pre">add_ref</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.add_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.add_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increase the reference count of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.sub_ref">
+<span class="sig-name descname"><span class="pre">sub_ref</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.sub_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.sub_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decrease the reference count of the buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.to_numpy">
+<span class="sig-name descname"><span class="pre">to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.to_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.to_numpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the buffer to numpy array
+支持两种调用方式：
+1. to_numpy(dtype) - 直接传入dtype对象
+2. to_numpy(dtype_obj) - 传入可转换为dtype的对象</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.from_numpy">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/buffer.html#Buffer.from_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Buffer.from_numpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert numpy array to buffer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.to_numpy_v0">
+<span class="sig-name descname"><span class="pre">to_numpy_v0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.Buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.dtype</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#nndeploy.device.Buffer.to_numpy_v0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert buffer to numpy array with specified dtype</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Buffer.to_numpy_v1">
+<span class="sig-name descname"><span class="pre">to_numpy_v1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.device.Buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#nndeploy.device.Buffer.to_numpy_v1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert buffer to numpy array with dtype object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">Tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tensor构造函数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Tensor的名称。</p></li>
+<li><p><strong>desc</strong> (<a class="reference internal" href="#nndeploy.device.TensorDesc" title="nndeploy.device.TensorDesc"><em>TensorDesc</em></a><em>, </em><em>optional</em>) – Tensor的描述信息，包含数据类型、形状等。</p></li>
+<li><p><strong>buffer</strong> (<a class="reference internal" href="#nndeploy.device.Buffer" title="nndeploy.device.Buffer"><em>Buffer</em></a><em>, </em><em>optional</em>) – 已存在的Buffer对象，用于直接构造Tensor。</p></li>
+<li><p><strong>device</strong> (<a class="reference internal" href="#nndeploy.device.Device" title="nndeploy.device.Device"><em>Device</em></a><em>, </em><em>optional</em>) – 设备对象，指定Tensor所在的设备。</p></li>
+<li><p><strong>data_ptr</strong> (<em>void*</em><em>, </em><em>optional</em>) – 外部数据指针，用于直接使用已有内存构造Tensor。</p></li>
+<li><p><strong>memory_pool</strong> (<a class="reference internal" href="#nndeploy.device.MemoryPool" title="nndeploy.device.MemoryPool"><em>MemoryPool</em></a><em>, </em><em>optional</em>) – 内存池对象，用于从内存池中分配内存。</p></li>
+<li><p><strong>config</strong> (<em>List</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – 配置参数，用于指定内存对齐等配置。</p></li>
+<li><p><strong>*args</strong> – 其他位置参数。</p></li>
+<li><p><strong>**kwargs</strong> – 其他关键字参数。</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>构造函数有以下几种形式:
+1. Tensor(name) - 仅指定名称创建空Tensor
+2. Tensor(desc, name=””) - 使用TensorDesc创建Tensor
+3. Tensor(desc, buffer, name=””) - 使用已有Buffer创建Tensor
+4. Tensor(device, desc, name=””, config=[]) - 在指定设备上创建Tensor
+5. Tensor(device, desc, data_ptr, name=””, config=[]) - 使用已有内存在设备上创建Tensor
+6. Tensor(memory_pool, desc, name=””, config=[]) - 从内存池创建Tensor
+7. Tensor(memory_pool, desc, data_ptr, name=””, config=[]) - 使用已有内存从内存池创建Tensor</p>
+</div>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>如果第一个参数是Device对象，它将被转换为_C.device.Device对象。</p></li>
+<li><p>如果第一个参数是MemoryPool对象，它将被转换为_C.device.MemoryPool对象。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>创建Tensor。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – 传递给父类create函数的位置参数。</p></li>
+<li><p><strong>**kwargs</strong> – 传递给父类create函数的关键字参数。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>清空Tensor。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.allocate">
+<span class="sig-name descname"><span class="pre">allocate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.allocate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.allocate" title="Permalink to this definition">¶</a></dt>
+<dd><p>分配Tensor内存。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – 传递给父类allocate函数的位置参数。</p></li>
+<li><p><strong>**kwargs</strong> – 传递给父类allocate函数的关键字参数。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.deallocate">
+<span class="sig-name descname"><span class="pre">deallocate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.deallocate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.deallocate" title="Permalink to this definition">¶</a></dt>
+<dd><p>释放Tensor内存。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>设置Tensor的值。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 要设置的值。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.reshape">
+<span class="sig-name descname"><span class="pre">reshape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.reshape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>重塑Tensor的形状。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shape</strong> (<em>tuple</em>) – 新的Tensor形状。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.just_modify">
+<span class="sig-name descname"><span class="pre">just_modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_external</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.just_modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.just_modify" title="Permalink to this definition">¶</a></dt>
+<dd><p>修改Tensor描述符或缓冲区。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>desc</strong> (<a class="reference internal" href="#nndeploy.device.TensorDesc" title="nndeploy.device.TensorDesc"><em>TensorDesc</em></a><em>, </em><em>optional</em>) – 新的Tensor描述符。默认为None。</p></li>
+<li><p><strong>buffer</strong> (<a class="reference internal" href="#nndeploy.device.Buffer" title="nndeploy.device.Buffer"><em>Buffer</em></a><em>, </em><em>optional</em>) – 新的缓冲区。默认为None。</p></li>
+<li><p><strong>is_external</strong> (<em>bool</em><em>, </em><em>optional</em>) – 缓冲区是否为外部的。默认为True。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – 如果desc和buffer都没有提供。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>克隆Tensor。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>克隆的Tensor。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nndeploy.device.Tensor" title="nndeploy.device.Tensor">Tensor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.copy_to">
+<span class="sig-name descname"><span class="pre">copy_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.copy_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.copy_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>将Tensor复制到目标Tensor。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dst</strong> (<a class="reference internal" href="#nndeploy.device.Tensor" title="nndeploy.device.Tensor"><em>Tensor</em></a>) – 目标Tensor。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bin_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>序列化Tensor到流。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stream</strong> – 输出流。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bin_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.deserialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>从流反序列化Tensor。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stream</strong> – 输入流。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.print" title="Permalink to this definition">¶</a></dt>
+<dd><p>打印Tensor信息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stream</strong> – 输出流。默认为None。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.is_same_device">
+<span class="sig-name descname"><span class="pre">is_same_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.is_same_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.is_same_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>检查Tensor是否在同一设备上。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tensor</strong> (<a class="reference internal" href="#nndeploy.device.Tensor" title="nndeploy.device.Tensor"><em>Tensor</em></a>) – 要比较的Tensor。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果Tensor在同一设备上，则为True，否则为False。</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.is_same_memory_pool">
+<span class="sig-name descname"><span class="pre">is_same_memory_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.is_same_memory_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.is_same_memory_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>检查Tensor是否在同一内存池中。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tensor</strong> (<a class="reference internal" href="#nndeploy.device.Tensor" title="nndeploy.device.Tensor"><em>Tensor</em></a>) – 要比较的Tensor。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果Tensor在同一内存池中，则为True，否则为False。</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.is_same_desc">
+<span class="sig-name descname"><span class="pre">is_same_desc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.is_same_desc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.is_same_desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>检查Tensor是否具有相同的描述符。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tensor</strong> (<a class="reference internal" href="#nndeploy.device.Tensor" title="nndeploy.device.Tensor"><em>Tensor</em></a>) – 要比较的Tensor。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果Tensor具有相同的描述符，则为True，否则为False。</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.empty">
+<span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>检查Tensor是否为空。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>如果Tensor为空，则为True，否则为False。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.is_continue">
+<span class="sig-name descname"><span class="pre">is_continue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.is_continue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.is_continue" title="Permalink to this definition">¶</a></dt>
+<dd><p>检查Tensor数据是否连续。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>如果Tensor数据连续，则为True，否则为False。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.is_external_buffer">
+<span class="sig-name descname"><span class="pre">is_external_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.is_external_buffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.is_external_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>检查Tensor缓冲区是否为外部的。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>如果Tensor缓冲区为外部的，则为True，否则为False。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor名称。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor名称。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.set_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>设置Tensor名称。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – 新的Tensor名称。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_desc">
+<span class="sig-name descname"><span class="pre">get_desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_desc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor描述符。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor描述符。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nndeploy.device.TensorDesc" title="nndeploy.device.TensorDesc">TensorDesc</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_data_type">
+<span class="sig-name descname"><span class="pre">get_data_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_data_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_data_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor数据类型。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor数据类型。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DataType" title="nndeploy.base.common.DataType">DataType</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.set_data_type">
+<span class="sig-name descname"><span class="pre">set_data_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.set_data_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.set_data_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>设置Tensor数据类型。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_type</strong> (<a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DataType" title="nndeploy.base.common.DataType"><em>DataType</em></a>) – 新的Tensor数据类型。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_data_format">
+<span class="sig-name descname"><span class="pre">get_data_format</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_data_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_data_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor数据格式。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor数据格式。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DataFormat" title="nndeploy.base.common.DataFormat">DataFormat</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.set_data_format">
+<span class="sig-name descname"><span class="pre">set_data_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_format</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.set_data_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.set_data_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>设置Tensor数据格式。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_format</strong> (<a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DataFormat" title="nndeploy.base.common.DataFormat"><em>DataFormat</em></a>) – 新的Tensor数据格式。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_shape">
+<span class="sig-name descname"><span class="pre">get_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor形状。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor形状。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_shape_index">
+<span class="sig-name descname"><span class="pre">get_shape_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_shape_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_shape_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取指定索引处的形状值。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>int</em>) – 索引。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>指定索引处的形状值。</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_batch">
+<span class="sig-name descname"><span class="pre">get_batch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor批次大小。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor批次大小。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_channel">
+<span class="sig-name descname"><span class="pre">get_channel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor通道数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor通道数。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_depth">
+<span class="sig-name descname"><span class="pre">get_depth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor深度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor深度。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_height">
+<span class="sig-name descname"><span class="pre">get_height</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_height" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor高度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor高度。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_width">
+<span class="sig-name descname"><span class="pre">get_width</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_width"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor宽度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor宽度。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_stride">
+<span class="sig-name descname"><span class="pre">get_stride</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_stride"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_stride" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor步长。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor步长。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_stride_index">
+<span class="sig-name descname"><span class="pre">get_stride_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_stride_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_stride_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取指定索引处的步长值。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>int</em>) – 索引。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>指定索引处的步长值。</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_buffer">
+<span class="sig-name descname"><span class="pre">get_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_buffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor缓冲区。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor缓冲区。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nndeploy.device.Buffer" title="nndeploy.device.Buffer">Buffer</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_device_type">
+<span class="sig-name descname"><span class="pre">get_device_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_device_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_device_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor设备类型。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor设备类型。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DeviceType" title="nndeploy.base.common.DeviceType">DeviceType</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_device">
+<span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor设备。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor设备。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nndeploy.device.Device" title="nndeploy.device.Device">Device</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_memory_pool">
+<span class="sig-name descname"><span class="pre">get_memory_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_memory_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_memory_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor内存池。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor内存池。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nndeploy.device.MemoryPool" title="nndeploy.device.MemoryPool">MemoryPool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.is_memory_pool">
+<span class="sig-name descname"><span class="pre">is_memory_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.is_memory_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.is_memory_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>检查Tensor是否来自内存池。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>如果Tensor来自内存池，则为True，否则为False。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_buffer_desc">
+<span class="sig-name descname"><span class="pre">get_buffer_desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_buffer_desc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_buffer_desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor缓冲区描述符。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor缓冲区描述符。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nndeploy.device.BufferDesc" title="nndeploy.device.BufferDesc">BufferDesc</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_size">
+<span class="sig-name descname"><span class="pre">get_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor大小。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor大小。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_size_vector">
+<span class="sig-name descname"><span class="pre">get_size_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_size_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_size_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor大小向量。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor大小向量。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_real_size">
+<span class="sig-name descname"><span class="pre">get_real_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_real_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_real_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor实际大小。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor实际大小。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_real_size_vector">
+<span class="sig-name descname"><span class="pre">get_real_size_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_real_size_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_real_size_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor实际大小向量。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor实际大小向量。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor配置。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor配置。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor数据指针。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor数据指针。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.get_memory_type">
+<span class="sig-name descname"><span class="pre">get_memory_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.get_memory_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.get_memory_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取Tensor内存类型。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor内存类型。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.MemoryType" title="nndeploy.base.common.MemoryType">MemoryType</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.add_ref">
+<span class="sig-name descname"><span class="pre">add_ref</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.add_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.add_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>增加Tensor引用计数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.sub_ref">
+<span class="sig-name descname"><span class="pre">sub_ref</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.sub_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.sub_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>减少Tensor引用计数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.to_numpy">
+<span class="sig-name descname"><span class="pre">to_numpy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.to_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.to_numpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>将Tensor转换为numpy数组。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy数组。</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.to" title="Permalink to this definition">¶</a></dt>
+<dd><p>将Tensor移动到指定设备。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>device_type</strong> (<a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DeviceType" title="nndeploy.base.common.DeviceType"><em>DeviceType</em></a>) – 目标设备类型。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>移动后的Tensor。</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nndeploy.device.Tensor" title="nndeploy.device.Tensor">Tensor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.from_numpy">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_type=&lt;nndeploy.base.common.DeviceType</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#Tensor.from_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.Tensor.from_numpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>从numpy数组创建Tensor。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – numpy数组。</p></li>
+<li><p><strong>device_type</strong> (<a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DeviceType" title="nndeploy.base.common.DeviceType"><em>DeviceType</em></a>) – 目标设备类型。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的Tensor。</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nndeploy.device.Tensor" title="nndeploy.device.Tensor">Tensor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.device.Tensor.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#nndeploy.device.Tensor.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.device.create_tensor_from_numpy">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">create_tensor_from_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#create_tensor_from_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.create_tensor_from_numpy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.device.create_numpy_from_tensor">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.device.</span></span><span class="sig-name descname"><span class="pre">create_numpy_from_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/device/tensor.html#create_numpy_from_tensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.device.create_numpy_from_tensor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Modules</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="nndeploy.device.buffer.html#module-nndeploy.device.buffer" title="nndeploy.device.buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nndeploy.device.buffer</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nndeploy.device.device.html#module-nndeploy.device.device" title="nndeploy.device.device"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nndeploy.device.device</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="nndeploy.device.memory_pool.html#module-nndeploy.device.memory_pool" title="nndeploy.device.memory_pool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nndeploy.device.memory_pool</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="nndeploy.device.tensor.html#module-nndeploy.device.tensor" title="nndeploy.device.tensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nndeploy.device.tensor</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="nndeploy.device.type.html#module-nndeploy.device.type" title="nndeploy.device.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nndeploy.device.type</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nndeploy.detect.yolo.html" class="btn btn-neutral float-left" title="nndeploy.detect.yolo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nndeploy.device.buffer.html" class="btn btn-neutral float-right" title="nndeploy.device.buffer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

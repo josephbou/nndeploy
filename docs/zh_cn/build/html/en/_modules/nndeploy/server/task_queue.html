@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.server.task_queue &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.server.task_queue</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.server.task_queue</h1><div class="highlight"><pre>
+<span></span><span class="c1"># queue.py</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">heapq</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">queue</span> <span class="k">as</span> <span class="nn">_queue</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">auto</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="n">_MAX_HISTORY</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<div class="viewcode-block" id="ExecutionStatus"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.ExecutionStatus">[docs]</a><span class="k">class</span> <span class="nc">ExecutionStatus</span><span class="p">:</span>
+<div class="viewcode-block" id="ExecutionStatus.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.ExecutionStatus.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ok</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str</span> <span class="o">=</span> <span class="n">label</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;success&quot;</span> <span class="k">if</span> <span class="n">ok</span> <span class="k">else</span> <span class="s2">&quot;failed&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">completed</span> <span class="o">=</span> <span class="n">ok</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="p">]</span> <span class="k">if</span> <span class="n">msg</span> <span class="k">else</span> <span class="p">[]</span></div></div>
+
+<div class="viewcode-block" id="TaskState"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskState">[docs]</a><span class="k">class</span> <span class="nc">TaskState</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">PENDING</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>         <span class="c1"># in pq_</span>
+    <span class="n">DISPATCHED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>      <span class="c1"># in job_mp_queue, not running</span>
+    <span class="n">RUNNING</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>         <span class="c1"># running</span>
+    <span class="n">SUCCEEDED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">FAILED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">CANCELLED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TaskRecord"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskRecord">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">TaskRecord</span><span class="p">:</span>
+    <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">payload</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">TaskState</span> <span class="o">=</span> <span class="n">TaskState</span><span class="o">.</span><span class="n">PENDING</span>
+    <span class="n">ts_submit</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">ts_dispatch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ts_start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ts_finish</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">worker_pid</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="TaskQueue"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue">[docs]</a><span class="k">class</span> <span class="nc">TaskQueue</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;thread safe queue&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TaskQueue.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server</span><span class="p">:</span> <span class="s2">&quot;NnDeployServer&quot;</span><span class="p">,</span> <span class="n">job_mp_q</span><span class="p">:</span> <span class="s2">&quot;mp.Queue&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">RLock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_not_empty</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Condition</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pq</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">TaskRecord</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_job_q</span>  <span class="o">=</span> <span class="n">job_mp_q</span></div>
+    
+<div class="viewcode-block" id="TaskQueue.put"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">prio</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+            <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pq</span><span class="p">,</span> <span class="p">(</span><span class="n">prio</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span> <span class="n">payload</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_not_empty</span><span class="o">.</span><span class="n">notify</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="TaskQueue.get"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_not_empty</span><span class="p">:</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pq</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_not_empty</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="kc">None</span>
+            <span class="n">prio</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pq</span><span class="p">)</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">TaskRecord</span><span class="p">(</span><span class="n">idx</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">state</span><span class="o">=</span><span class="n">TaskState</span><span class="o">.</span><span class="n">PENDING</span><span class="p">,</span> <span class="n">ts_submit</span><span class="o">=</span><span class="n">ts</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">rec</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">return</span> <span class="n">idx</span><span class="p">,</span> <span class="n">payload</span></div>
+
+<div class="viewcode-block" id="TaskQueue.mark_dispatched"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.mark_dispatched">[docs]</a>    <span class="k">def</span> <span class="nf">mark_dispatched</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">rec</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">TaskState</span><span class="o">.</span><span class="n">DISPATCHED</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">ts_dispatch</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TaskQueue.mark_started"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.mark_started">[docs]</a>    <span class="k">def</span> <span class="nf">mark_started</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">worker_pid</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+            <span class="n">target</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TaskRecord</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">rec</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">task_id</span><span class="p">:</span>
+                    <span class="n">target</span> <span class="o">=</span> <span class="n">rec</span>
+                    <span class="k">break</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">target</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">target</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">TaskState</span><span class="o">.</span><span class="n">RUNNING</span>
+            <span class="n">target</span><span class="o">.</span><span class="n">ts_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">worker_pid</span><span class="p">:</span>
+                <span class="n">target</span><span class="o">.</span><span class="n">worker_pid</span> <span class="o">=</span> <span class="n">worker_pid</span></div>
+
+<div class="viewcode-block" id="TaskQueue.task_done"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.task_done">[docs]</a>    <span class="k">def</span> <span class="nf">task_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="n">ExecutionStatus</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">time_profile_map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">rec</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">ts_finish</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">final_state</span> <span class="o">=</span> <span class="n">TaskState</span><span class="o">.</span><span class="n">SUCCEEDED</span> <span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">completed</span> <span class="k">else</span> <span class="p">(</span>
+                <span class="n">TaskState</span><span class="o">.</span><span class="n">CANCELLED</span> <span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">str</span> <span class="o">==</span> <span class="s2">&quot;cancelled&quot;</span> <span class="k">else</span> <span class="n">TaskState</span><span class="o">.</span><span class="n">FAILED</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">_MAX_HISTORY</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="p">)))</span>
+            <span class="n">task_id</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="p">[</span><span class="n">task_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="n">status</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span>
+                <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">final_state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;ts_submit&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_submit</span><span class="p">,</span>
+                <span class="s2">&quot;ts_dispatch&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_dispatch</span><span class="p">,</span>
+                <span class="s2">&quot;ts_start&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_start</span><span class="p">,</span>
+                <span class="s2">&quot;ts_finish&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_finish</span><span class="p">,</span>
+                <span class="s2">&quot;worker_pid&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">worker_pid</span><span class="p">,</span>
+                <span class="s2">&quot;time_profile&quot;</span><span class="p">:</span> <span class="n">time_profile_map</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">notify_task_done</span><span class="p">(</span><span class="n">task_id</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">time_profile_map</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TaskQueue.get_current_queue"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.get_current_queue">[docs]</a>    <span class="k">def</span> <span class="nf">get_current_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+            <span class="n">running</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">dispatched</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">pending</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;idx&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">idx</span><span class="p">,</span>
+                    <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">payload</span><span class="p">),</span>
+                    <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="s2">&quot;ts_submit&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_submit</span><span class="p">,</span>
+                    <span class="s2">&quot;ts_dispatch&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_dispatch</span><span class="p">,</span>
+                    <span class="s2">&quot;ts_start&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_start</span><span class="p">,</span>
+                    <span class="s2">&quot;worker_pid&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">worker_pid</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="n">rec</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">TaskState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">:</span>
+                    <span class="n">running</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">rec</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">TaskState</span><span class="o">.</span><span class="n">DISPATCHED</span><span class="p">:</span>
+                    <span class="n">dispatched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pending</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">pq_snapshot</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">pl</span><span class="p">))</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">pl</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pq</span> <span class="p">]</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;RUNNING&quot;</span><span class="p">:</span> <span class="n">running</span><span class="p">,</span>
+                <span class="s2">&quot;DISPATCHED&quot;</span><span class="p">:</span> <span class="n">dispatched</span><span class="p">,</span>
+                <span class="s2">&quot;PENDING&quot;</span><span class="p">:</span> <span class="n">pq_snapshot</span>
+            <span class="p">}</span></div>
+
+<div class="viewcode-block" id="TaskQueue.get_history"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.get_history">[docs]</a>    <span class="k">def</span> <span class="nf">get_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_items</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+            <span class="n">items</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="o">.</span><span class="n">items</span><span class="p">())[</span><span class="o">-</span><span class="n">max_items</span><span class="p">:]</span> <span class="k">if</span> <span class="n">max_items</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">items</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TaskQueue.get_task_by_id"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.get_task_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_task_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">rec</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">task_id</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">{</span>
+                        <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">payload</span><span class="p">),</span>
+                        <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                        <span class="s2">&quot;ts_submit&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_submit</span><span class="p">,</span>
+                        <span class="s2">&quot;ts_dispatch&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_dispatch</span><span class="p">,</span>
+                        <span class="s2">&quot;ts_start&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_start</span><span class="p">,</span>
+                        <span class="s2">&quot;worker_pid&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">worker_pid</span><span class="p">,</span>
+                    <span class="p">}</span>
+            <span class="n">record</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="k">if</span> <span class="n">record</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">_push_hist_cancelled_unlocked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">payload</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">reason</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">_MAX_HISTORY</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="p">)))</span>
+        <span class="n">tid</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="n">ExecutionStatus</span><span class="p">(</span><span class="n">ok</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;cancelled&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hist</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="n">payload</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="n">status</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span>
+            <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">TaskState</span><span class="o">.</span><span class="n">CANCELLED</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;ts_submit&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_submit</span> <span class="k">if</span> <span class="n">rec</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;ts_dispatch&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_dispatch</span> <span class="k">if</span> <span class="n">rec</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;ts_start&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">ts_start</span> <span class="k">if</span> <span class="n">rec</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;ts_finish&quot;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+            <span class="s2">&quot;worker_pid&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">worker_pid</span> <span class="k">if</span> <span class="n">rec</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">}</span>
+
+<div class="viewcode-block" id="TaskQueue.clear_pending"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.clear_pending">[docs]</a>    <span class="k">def</span> <span class="nf">clear_pending</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pq</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pq</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">n</span></div>
+
+<div class="viewcode-block" id="TaskQueue.drain_job_q"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.drain_job_q">[docs]</a>    <span class="k">def</span> <span class="nf">drain_job_q</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">drained</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">idx</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_job_q</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">_queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span><span class="p">:</span>
+                    <span class="n">drained</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_push_hist_cancelled_unlocked</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;flushed from job_q&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">drained</span></div>
+
+<div class="viewcode-block" id="TaskQueue.flush"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.server.task_queue.html#nndeploy.server.task_queue.TaskQueue.flush">[docs]</a>    <span class="k">def</span> <span class="nf">flush</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">cleared_pending</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_pending</span><span class="p">()</span>
+        <span class="n">drained_jobq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drain_job_q</span><span class="p">()</span>
+
+        <span class="kn">import</span> <span class="nn">time</span> <span class="k">as</span> <span class="nn">_t</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">_t</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
+            <span class="n">drained_jobq</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drain_job_q</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;cleared_pending&quot;</span><span class="p">:</span> <span class="n">cleared_pending</span><span class="p">,</span> <span class="s2">&quot;drained_job_q&quot;</span><span class="p">:</span> <span class="n">drained_jobq</span><span class="p">}</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

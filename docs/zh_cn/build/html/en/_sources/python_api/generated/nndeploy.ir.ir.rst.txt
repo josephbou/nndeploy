@@ -1,0 +1,31 @@
+nndeploy.ir.ir
+==============
+
+.. automodule:: nndeploy.ir.ir
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ModelDesc
+      OpDesc
+      ValueDesc
+   
+   
+
+   
+   
+   
+
+
+

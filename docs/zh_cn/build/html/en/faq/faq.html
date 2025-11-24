@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>常见问题 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="nndeploy - 一款模型端到端部署框架" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html" />
+    <link rel="prev" title="最新动态" href="../inference/README_INFERENCE.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">常见问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nndeploy">问题一 来自 nndeploy交流群</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#q-onnx-runtimeexecution-provider-https-onnxruntime-ai-docs-execution-providers-nndeploy">Q: 我想了解一下：onnx runtime也可以选择不同的execution provider: https://onnxruntime.ai/docs/execution-providers/ nndeploy与其思路的差别主要在哪里呢？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-onnxruntimenndeploy-onnxruntime-nndeploy">A: ONNXRuntime与nndeploy最大的区别是：ONNXRuntime首先是一个的推理框架，然后可以接入其他推理框架，nndeploy明确定位就是一个多端部署框架。这个会带来的差异主要是如下两点</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">问题二 来自 nndeploy交流群</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#q-nndeployopenmmlabmmdeploypaddlefastdeploy">Q: nndeploy相对于openmmlab的mmdeploy以及paddle的fastdeploy会有什么优势？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-openmmlabmmdeploypaddlefastdeploy-openmmlabmmdeploypaddlefastdeploy-nndeploy">A: 非常开心可以和openmmlab的mmdeploy以及paddle的fastdeploy放在一起比较，毫无疑问，openmmlab的mmdeploy以及paddle的fastdeploy都是行业巨擘，有非常大影响力，据我所知都有非常多公司在使用这两个库。因为我们是nndeploy的开发者，所以我们这里主要谈谈我们的优势。</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">问题三 来自 nndeploy交流群</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#q-nndeploytriton">Q: nndeploy与triton的区别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a">A: 主要有以下四点</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">问题四 来自内部讨论</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#q">Q: 当前模型部署有哪些痛点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">A: 主要有以下四点</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hellogithub">Discussion and exchange with HelloGithub egg yolk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1 Framework Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2 Framework Comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">About Me</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">The Purpose of Open Source</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">常见问题</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>常见问题<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="nndeploy">
+<h2>问题一 来自 nndeploy交流群<a class="headerlink" href="#nndeploy" title="Permalink to this heading">¶</a></h2>
+<section id="q-onnx-runtimeexecution-provider-https-onnxruntime-ai-docs-execution-providers-nndeploy">
+<h3>Q: 我想了解一下：onnx runtime也可以选择不同的execution provider: https://onnxruntime.ai/docs/execution-providers/ nndeploy与其思路的差别主要在哪里呢？<a class="headerlink" href="#q-onnx-runtimeexecution-provider-https-onnxruntime-ai-docs-execution-providers-nndeploy" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="a-onnxruntimenndeploy-onnxruntime-nndeploy">
+<h3>A: ONNXRuntime与nndeploy最大的区别是：ONNXRuntime首先是一个的推理框架，然后可以接入其他推理框架，nndeploy明确定位就是一个多端部署框架。这个会带来的差异主要是如下两点<a class="headerlink" href="#a-onnxruntimenndeploy-onnxruntime-nndeploy" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>ONNXRuntime为了保证其他推理框架兼容其自身，在功能上会对其他推理框架有一定程度的阉割（比如TNN、mnn操作推理框架内部分配的输入输出、OpenVINO CPU-GPU异构模式、模型量化等等），导致模型通过EP只是能跑起来，性能应该不好。nndeploy希望类似：你搞了很久的trt，然后你就trt搭建了自己的一个小型框架，可以完全操纵trt;</p></li>
+<li><p>ONNXRuntime强绑定ONNX以及protobuf，会导致包体积变大，尤其是对于移动端不友好，对于不能直接读取onnx模型文件的框架应该也不太友好，还有就是现在很多框架都是pt-&gt;自定义模型文件（比如ncnnn\mnn），以达到极致的性能</p></li>
+</ul>
+<p>总结而言，都是调用第三方推理框架，使用nndeploy功能更全面、性能更好、体验更丝滑。</p>
+</section>
+</section>
+<section id="id2">
+<h2>问题二 来自 nndeploy交流群<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="q-nndeployopenmmlabmmdeploypaddlefastdeploy">
+<h3>Q: nndeploy相对于openmmlab的mmdeploy以及paddle的fastdeploy会有什么优势？<a class="headerlink" href="#q-nndeployopenmmlabmmdeploypaddlefastdeploy" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="a-openmmlabmmdeploypaddlefastdeploy-openmmlabmmdeploypaddlefastdeploy-nndeploy">
+<h3>A: 非常开心可以和openmmlab的mmdeploy以及paddle的fastdeploy放在一起比较，毫无疑问，openmmlab的mmdeploy以及paddle的fastdeploy都是行业巨擘，有非常大影响力，据我所知都有非常多公司在使用这两个库。因为我们是nndeploy的开发者，所以我们这里主要谈谈我们的优势。<a class="headerlink" href="#a-openmmlabmmdeploypaddlefastdeploy-openmmlabmmdeploypaddlefastdeploy-nndeploy" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>更加开放。目前fd家重点是paddle的模型仓库以及主推自家推理框架，mmdp家主要是openmmlab的模型仓库以及主推自家推理框架，而nndeploy积极集成各家的推理框架，不设限的部署热门的开源模型。nndeploy想跳出这个“特定优先支持”，做一个更加通用普适的部署框架</p></li>
+<li><p>更加易用，在多端推理的基础功能的基础上nndeploy还做了设备管理，让你可以有统一的方式操作内存以及执行流等；还通过有向无环图来管理模型部署的前处理、推理、后处理</p></li>
+<li><p>更加适合部署多模型，nndeploy以有向无环图的形式来实现多个模型的部署，通过这种方式来部署多模型算法，可以少写大量的业务代码，模块性以及鲁棒性都会更好。</p></li>
+<li><p>推理框架的高性能抽象：每个推理框架也都有其各自的特性，需要足够尊重以及理解这些推理框架，才能在抽象中不丢失推理框架的特性，并做到统一的使用体验。nndeploy可配置第三方推理框架绝大部分参数，保证了推理性能。可直接操作理框架内部分配的输入输出，实现前后处理的零拷贝，提升模型部署端到端的性能。我们正在实现更多性能方面的优化，比如在图的基础上加上线程池、内存池、高性能算子库等，未来性能方面的功能会逐渐更加完善</p></li>
+<li><p>nndeploy更加专注模型c++部署，更轻量化一些</p></li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h2>问题三 来自 nndeploy交流群<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<section id="q-nndeploytriton">
+<h3>Q: nndeploy与triton的区别<a class="headerlink" href="#q-nndeploytriton" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="a">
+<h3>A: 主要有以下四点<a class="headerlink" href="#a" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>triton侧重于对模型推理阶段的统一管理；nndeploy关注模型的端到端（包括前后处理）部署的统一管理；</p></li>
+<li><p>triton屏蔽了内部推理框架接口，注重于对用户的推理框架黑盒，假定受众为不了解推理框架使用的普通用户；nndeploy注重于屏蔽不同推理框架的使用差异，但为开发人员保留对推理框架的控制能力，可以服务于高级用户，只是侧重于减少代码开发工作量，关注代码在不同推理框架的兼容性；</p></li>
+<li><p>triton的优化主要是推理阶段的资源/任务调度，nndeploy的优化来自于全流程，包括资源/任务调度、前后处理与模型推理中的全流程内存优化、模型优化等；</p></li>
+<li><p>目前triton将所关注的功能封装为server，nndeploy当前版本暂未实现（未来将会有）</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>问题四 来自内部讨论<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<section id="q">
+<h3>Q: 当前模型部署有哪些痛点<a class="headerlink" href="#q" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="id5">
+<h3>A: 主要有以下四点<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>现在业界尚不存在各方面都远超其同类产品的推理框架，不同推理框架在不同平台、硬件下分别具有各自的优势。例如，在 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> + <code class="docutils literal notranslate"><span class="pre">NVidia</span></code> 显卡机器推理，<code class="docutils literal notranslate"><span class="pre">TensorRT</span></code> 是性能最好的推理框架；在 <code class="docutils literal notranslate"><span class="pre">Windows</span></code> + <code class="docutils literal notranslate"><span class="pre">x86</span> <span class="pre">CPU</span></code> 机器推理，<code class="docutils literal notranslate"><span class="pre">OpenVINO</span></code> 是性能最好的推理框架；在 <code class="docutils literal notranslate"><span class="pre">ARM</span> <span class="pre">Android</span></code> 下，有 <code class="docutils literal notranslate"><span class="pre">ncnn</span></code>、<code class="docutils literal notranslate"><span class="pre">MNN</span></code>、<code class="docutils literal notranslate"><span class="pre">TFLite</span></code>、TNN等一系列选择。</p></li>
+<li><p>Different inference frameworks have varying inference interfaces and configuration APIs, requiring a separate set of code for each framework, which imposes significant learning, development, and maintenance costs on model deployment engineers.</p></li>
+<li><p>Model deployment is not just about model inference; it also includes pre-processing and post-processing. Inference frameworks often only provide the functionality for model inference.</p></li>
+<li><p>Currently, many scenarios require the combination of multiple models to solve business problems (such as stable diffusion, old photo restoration, face recognition, etc.). Directly using the native interfaces of inference frameworks can lead to a large amount of inefficient business code writing.</p></li>
+</ul>
+</section>
+</section>
+<section id="hellogithub">
+<h2>Discussion and exchange with HelloGithub egg yolk<a class="headerlink" href="#hellogithub" title="Permalink to this heading">¶</a></h2>
+<section id="id6">
+<h3>1 Framework Introduction<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>Below are introductions to three open-source frameworks on their GitHub homepage.</p>
+<p>1.1 nndeploy: nndeploy is an end-to-end model deployment framework. Based on multi-end inference and directed acyclic graph model deployment, it aims to provide users with a cross-platform, easy-to-use, high-performance model deployment experience.</p>
+<p>1.2 fastdeploy: FastDeploy is an all-scenario, easy-to-use, extremely efficient AI inference deployment tool, supporting cloud-edge-end deployment. It offers out-of-the-box deployment experiences for over 160+ models in Text, Vision, Speech, and cross-modal categories, achieving end-to-end inference performance optimization. Including object detection, character recognition (OCR), face, image matting, multi-target tracking system, NLP, Stable Diffusion text-to-image generation, TTS, and dozens of other task scenarios, meeting developers’ needs for multi-scenario, multi-hardware, multi-platform industrial deployment.</p>
+<p>1.2 mmdeploy: MMDeploy is OpenMMLab’s model deployment toolbox, providing a unified deployment experience for various algorithm libraries. Based on MMDeploy, developers can easily generate the required SDK for specific hardware from the training repo, saving a significant amount of adaptation time.</p>
+</section>
+<section id="id7">
+<h3>2 Framework Comparison<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>名称</th>
+<th>易用性</th>
+<th>性能</th>
+<th>并行</th>
+<th>开放性</th>
+<th>模型支持</th>
+<th>扩展性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nndeploy</td>
+<td>高</td>
+<td>高</td>
+<td>支持</td>
+<td>高</td>
+<td>低</td>
+<td>低</td>
+</tr>
+<tr>
+<td>fastdeploy</td>
+<td>中</td>
+<td>中</td>
+<td>不支持</td>
+<td>中</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>mmdeploy</td>
+<td>中</td>
+<td>中</td>
+<td>不支持</td>
+<td>中</td>
+<td>高</td>
+<td>高</td>
+</tr>
+</tbody>
+</table><p>2.1 Ease of Use: Based on directed acyclic graph model deployment, the entire model deployment process (pre-processing -&gt; inference -&gt; post-processing) is straightforward; building inference templates Infer can shield the complexity of models; efficiently solving complex scenarios with multiple models by supporting graph embedding with flexible and powerful features, breaking down big problems into small ones, quickly solving complex multi-model scenario problems through combination; can quickly build demo</p>
+<p>2.2 Performance: Abstracting the high performance of the inference framework; efficient thread pool</p>
+<p>2.3 Parallelism: Based on directed acyclic graph model deployment, supporting various parallel modes, further enhancing the performance of model deployment</p>
+<p>2.4 Openness: Currently, fastdeploy focuses on paddle’s model repository and mainly promotes its own inference framework, mmdeploy mainly on openmmlab’s model repository and its own inference framework, while nndeploy actively integrates various inference frameworks, not limiting the deployment of hot open-source models. nndeploy aims to jump out of this ‘specific priority support’, to become a more universal and widely applicable deployment framework</p>
+<p>2.5 Model Support: Currently, nndeploy supports fewer models; fastdeploy supports the vast majority of models in paddle’s model repository; mmdeploy supports the vast majority of models in openmmlab’s model repository</p>
+<p>2.6 Extensibility: nndeploy has a better architecture, can be extended into an inference framework, and also supports distributed inference deployment</p>
+</section>
+</section>
+<section id="id8">
+<h2>About Me<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<p>Inference Framework: On Android Tee (Trusted Execution Environment), developed a pure C inference framework</p>
+<p>Deployment Framework: From scratch, developed a deployment framework, currently serving hundreds of models online</p>
+<p>Model Deployment: Completed the deployment of dozens of CV models on multiple ends</p>
+<p>Detection Tracking: Have practical experience with traditional detection tracking algorithms</p>
+<p>Open Source Framework:</p>
+<ul class="simple">
+<li><p>Have read in detail four well-known inference frameworks: tnn, mnn, tengine, nnlib</p></li>
+<li><p>Used inference frameworks like openvin, tensorrt, onnxruntime</p></li>
+<li><p>ONNX model optimizers: onnxoptimizer, onnxsim</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2>The Purpose of Open Source<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<p>Attempt to solve deployment pain points: Have been engaged in model deployment, inference, and high-performance computing related fields, discovered some pain points in model deployment, and want to try to solve these problems</p>
+<p>Technical pursuit: Based on nndeploy, can realize some ideas on AI Infra, keeping pace with the rhythm of AI development</p>
+<p>Broaden knowledge boundaries: Meet some friends, broaden knowledge boundaries through exchange</p>
+<p>Influence: Maybe can provide some help to the industry, and also gain some influence</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../inference/README_INFERENCE.html" class="btn btn-neutral float-left" title="最新动态" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html" class="btn btn-neutral float-right" title="nndeploy - 一款模型端到端部署框架" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

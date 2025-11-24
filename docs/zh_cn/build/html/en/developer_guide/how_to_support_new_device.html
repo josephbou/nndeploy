@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add a new device &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Architecture" href="../architecture_guide/architecture.html" />
+    <link rel="prev" title="Add a new inference framework" href="how_to_support_new_inference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Add a new device</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Step</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Step one: Add new device type hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#architecturedevice">Step two: Inherit base class Architecture, implement XxxArchitecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">2.1 Add new files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#architecture-xxxarchitecture">2.2 Inherit base class Architecture, implement XxxArchitecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#device-xxxdevice">2.3 Inherit base class Device, implement XxxDevice</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake">Step three: Modify cmake</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Add a new device</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Add a new device<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>Introduction<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>Device is an abstraction of nndeploy hardware devices, which abstracts the differences between various hardware device program models, nndeploy currently supports devices such as CPU, X86, ARM, CUDA, AscendCL, etc. The main functions are as follows</p>
+<ul class="simple">
+<li><p>Unified memory allocation: Provides a unified memory allocation interface for different devices, thereby simplifying the memory allocation of data containers Buffer, Mat, Tensor</p></li>
+<li><p>Unified memory copy: Provides a unified memory copy interface for different devices (device-to-device copy, host-to-device copy), thereby simplifying the memory copy of data containers Buffer, Mat, Tensor</p></li>
+<li><p>Unified synchronization operations: Provides a unified synchronization operation interface for different devices, which can simplify device end model promotion, calculation, and other synchronization operations</p></li>
+<li><p>Unified hardware device information query: Provides a unified hardware device information query interface for different devices, helping users better select model full flow deployment execution devices</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>Step<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>Adding a new device is mainly divided into the following three steps:</p>
+<ul class="simple">
+<li><p>(1) Add new device type hierarchy</p></li>
+<li><p>(2) Inherit base class Architecture, inherit base class Device</p></li>
+<li><p>(3) Modify cmake</p></li>
+</ul>
+<section id="id4">
+<h3>Step one: Add new device type hierarchy<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>(1) Modify the file <path>\include\nndeploy\base\common.h, add the new device hierarchy in DeviceTypeCode, format kDeviceTypeCodeXxx</p></li>
+<li><p>(2) Modify the file <path>\source\nndeploy\base\common.cc, add the string conversion to the new device hierarchy in the stringToDeviceTypeCode(const std::string &amp;src) function</p></li>
+<li><p>(3) Modify the file <path>\include\nndeploy\base\status.h, add the new error hierarchy in StatusCode, format kStatusCodeErrorDeviceXxx</p></li>
+</ul>
+</section>
+<section id="architecturedevice">
+<h3>Step two: Inherit base class Architecture, implement XxxArchitecture<a class="headerlink" href="#architecturedevice" title="Permalink to this heading">¶</a></h3>
+<section id="id5">
+<h4>2.1 Add new files<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>(1) Create a new xxx_device.h file under <path>\include\nndeploy\device\xxx</p></li>
+<li><p>(2) Create a new xxx_device.cc file under <path>\source\nndeploy\device\xxx</p></li>
+<li><p>(3) [Optional] Create a new xxx_include.h file under <path>\source\nndeploy\device\xxx, used to include the device’s necessary header files</p></li>
+</ul>
+</section>
+<section id="architecture-xxxarchitecture">
+<h4>2.2 Inherit base class Architecture, implement XxxArchitecture<a class="headerlink" href="#architecture-xxxarchitecture" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>(1) Declare the XxxArchitecture class under <path>\include\nndeploy\device\xxx\xxx_device.h, similar to <path>\include\nndeploy\device\cuda\cuda_device.h\CudaArchitecture</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CudaArchitecture</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Architecture</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Construct a new Cuda Architecture object</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param device_type_code</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">CudaArchitecture</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">DeviceTypeCode</span><span class="w"> </span><span class="n">device_type_code</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Destroy the Cuda Architecture object</span>
+<span class="cm">   *</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">CudaArchitecture</span><span class="p">();</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Check whether the device corresponding to the current device id</span>
+<span class="cm">   * exists, mainly serving GPU devices</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param device_id - device id</span>
+<span class="cm">   * @param library_path - Mainly serving OpenCL, using the OpenCL dynamic</span>
+<span class="cm">   * library provided by the user</span>
+<span class="cm">   * @return base::Status</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">checkDevice</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">library_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Enable the device corresponding to the current device id，mainly</span>
+<span class="cm">   * serving GPU devices</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param device_id - device id</span>
+<span class="cm">   * @param library_path - Mainly serving OpenCL, using the OpenCL dynamic</span>
+<span class="cm">   * library provided by the user</span>
+<span class="cm">   * @return base::Status</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">enableDevice</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">library_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Get the Device object</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param device_id</span>
+<span class="cm">   * @return Device*</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="o">*</span><span class="nf">getDevice</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">device_id</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Get the Device Info object</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param library_path</span>
+<span class="cm">   * @return std::vector&lt;DeviceInfo&gt;</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DeviceInfo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getDeviceInfo</span><span class="p">(</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">library_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="p">};</span><span class="w">  </span>
+</pre></div>
+</div>
+</li>
+<li><p>(2) Register the new ArchitectureTypeArchitectureRegister<XxxArchitecture> xxx_architecture_register(base::kDeviceTypeCodeXxx); in <path>\source\nndeploy\device\xxx\xxx_device.cc, similar to TypeArchitectureRegister<CudaArchitecture> cuda_architecture_register(base::kDeviceTypeCodeCuda); in</p></li>
+<li><p>(3) Implement XxxArchitecture under <path>\source\nndeploy\device\xxx\xxx_device.cc, similar to the implementation in <path>\source\nndeploy\device\cuda\cuda_device.cc\CudaArchitecture</p></li>
+</ul>
+</section>
+<section id="device-xxxdevice">
+<h4>2.3 Inherit base class Device, implement XxxDevice<a class="headerlink" href="#device-xxxdevice" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>(1) Declare the XxxDevice class under <path>\include\nndeploy\device\xxx\xxx_device.h, similar to <path>\include\nndeploy\device\cuda\cuda_device.h\CudaDevice</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">NNDEPLOY_CC_API</span><span class="w"> </span><span class="n">CudaDevice</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief friend class</span>
+<span class="cm">   *</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CudaArchitecture</span><span class="p">;</span><span class="w">  </span>
+
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Convert MatDesc to BufferDesc.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param desc</span>
+<span class="cm">   * @param config</span>
+<span class="cm">   * @return BufferDesc</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">BufferDesc</span><span class="w"> </span><span class="n">toBufferDesc</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MatDesc</span><span class="w"> </span><span class="o">&amp;</span><span class="n">desc</span><span class="p">,</span>
+<span class="w">                                  </span><span class="k">const</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">IntVector</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span><span class="w"> </span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Convert TensorDesc to BufferDesc.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param desc</span>
+<span class="cm">   * @param config</span>
+<span class="cm">   * @return BufferDesc</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">BufferDesc</span><span class="w"> </span><span class="nf">toBufferDesc</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">TensorDesc</span><span class="w"> </span><span class="o">&amp;</span><span class="n">desc</span><span class="p">,</span>
+<span class="w">                                  </span><span class="k">const</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">IntVector</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Allocate Buffer</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param size</span>
+<span class="cm">   * @return Buffer*</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="nf">allocate</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Allocate Buffer</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param desc</span>
+<span class="cm">   * @return Buffer*</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="nf">allocate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">BufferDesc</span><span class="w"> </span><span class="o">&amp;</span><span class="n">desc</span><span class="p">);</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Deallocate buffer</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param buffer</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deallocate</span><span class="p">(</span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="p">);</span><span class="w">  </span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Copy buffer</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param src - Device&#39;s buffer.</span>
+<span class="cm">   * @param dst - Device&#39;s buffer.</span>
+<span class="cm">   * @return base::Status</span>
+<span class="cm">   * @note Ensure that the memory space of dst is greater than or equal to src.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">dst</span><span class="p">,</span>
+<span class="w">                          </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Download memory from the device to the host.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param src - Device&#39;s buffer.</span>
+<span class="cm">   * @param dst - Host&#39;s buffer.</span>
+<span class="cm">   * @return base::Status</span>
+<span class="cm">   * @note Ensure that the memory space of dst is greater than or equal to src.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">download</span><span class="p">(</span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">dst</span><span class="p">,</span>
+<span class="w">                          </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Upload memory from the host to the device.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param src - Host&#39;s buffer.</span>
+<span class="cm">   * @param dst - Device&#39;s buffer.</span>
+<span class="cm">   * @return base::Status</span>
+<span class="cm">   * @note Ensure that the memory space of dst is greater than or equal to src.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">upload</span><span class="p">(</span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="w"> </span><span class="o">*</span><span class="n">dst</span><span class="p">,</span>
+<span class="w">                          </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief synchronize</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return base::Status</span>
+<span class="cm">   */</span><span class="n">brancg</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">synchronize</span><span class="p">();</span><span class="w"> </span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Get the Command Queue object</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return void*</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">getNativeStream</span><span class="p">();</span><span class="w">  </span>
+
+<span class="w"> </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Construct a new Cuda Device object</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param device_type</span>
+<span class="cm">   * @param command_queue</span>
+<span class="cm">   * @param library_path</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">CudaDevice</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">DeviceType</span><span class="w"> </span><span class="n">device_type</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">command_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span>
+<span class="w">             </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">library_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">Device</span><span class="p">(</span><span class="n">device_type</span><span class="p">),</span><span class="w"> </span><span class="n">external_command_queue_</span><span class="p">(</span><span class="n">command_queue</span><span class="p">){};</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Destroy the Cuda Device object</span>
+<span class="cm">   *</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">CudaDevice</span><span class="p">(){};</span><span class="w">  </span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief init</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return base::Status</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">init</span><span class="p">();</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief deinit</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return base::Status</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">deinit</span><span class="p">();</span><span class="w">  </span>
+
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">external_command_queue_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cudaStream_t</span><span class="w"> </span><span class="n">stream_</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>(2) Implement XxxDevice under <path>\source\nndeploy\device\xxx\xxx_device.cc, similar to the implementation in <path>\source\nndeploy\device\cuda\cuda_device.cc\CudaDevice</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="cmake">
+<h3>Step three: Modify cmake<a class="headerlink" href="#cmake" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>(1) Modify the CMakeLists.txt file under <path>\CMakeLists.txt,</p>
+<ul>
+<li><p>Add device compilation option nndeploy_option(ENABLE_NNDEPLOY_DEVICE_XXX “ENABLE_NNDEPLOY_DEVICE_XXX” OFF)</p></li>
+<li><p>Due to the addition of new devices, source files and header files have been added, it is necessary to incorporate the source files and header files into the translation files, and it is necessary to add the code block if(ENABLE_NNDEPLOY_DEVICE) endif() such as CMake source code.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">(</span>ENABLE_NNDEPLOY_DEVICE_XXX<span class="o">)</span>
+<span class="w">  </span>file<span class="o">(</span>GLOB_RECURSE<span class="w"> </span>DEVICE_XXX_SOURCE
+<span class="w">    </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ROOT_PATH</span><span class="si">}</span><span class="s2">/include/nndeploy/device/xxx/*.h&quot;</span>
+<span class="w">    </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ROOT_PATH</span><span class="si">}</span><span class="s2">/source/nndeploy/device/xxx/*.cc&quot;</span>
+<span class="w">  </span><span class="o">)</span>
+<span class="w">  </span>set<span class="o">(</span>DEVICE_SOURCE<span class="w"> </span><span class="si">${</span><span class="nv">DEVICE_SOURCE</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DEVICE_XXX_SOURCE</span><span class="si">}</span><span class="o">)</span>
+endif<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>(2) [Optional] If there is a need to link the device-related three-party libraries</p>
+<ul class="simple">
+<li><p>It is necessary to create a new xxx.cmake under the <path>\cmake directory, similar to <path>\cmake\ascend_cl.cmake or <path>\cmake\cuda.cmake</p></li>
+<li><p>Modify <path>\cmake\nndeploy.cmake, add include(”${ROOT_PATH}/cmake/xxx.cmake”)</p></li>
+</ul>
+</li>
+<li><p>(3) Modify <path>\build\config.cmake, add device compilation option set(ENABLE_NNDEPLOY_DEVICE_XXX ON)</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="how_to_support_new_inference.html" class="btn btn-neutral float-left" title="Add a new inference framework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../architecture_guide/architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

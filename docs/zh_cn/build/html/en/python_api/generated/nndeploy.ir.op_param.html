@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.ir.op_param &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nndeploy.llm" href="nndeploy.llm.html" />
+    <link rel="prev" title="nndeploy.ir.ir" href="nndeploy.ir.ir.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nndeploy.html">nndeploy</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_version"><code class="docutils literal notranslate"><span class="pre">get_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_init"><code class="docutils literal notranslate"><span class="pre">framework_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_deinit"><code class="docutils literal notranslate"><span class="pre">framework_deinit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_type_enum_json"><code class="docutils literal notranslate"><span class="pre">get_type_enum_json()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_aigc.html">nndeploy.api_aigc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_llm.html">nndeploy.api_llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.base.html">nndeploy.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.basic.html">nndeploy.basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.classification.html">nndeploy.classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.codec.html">nndeploy.codec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.dag.html">nndeploy.dag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.detect.html">nndeploy.detect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.device.html">nndeploy.device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.diffusion.html">nndeploy.diffusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.face.html">nndeploy.face</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.gan.html">nndeploy.gan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.image.html">nndeploy.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.infer.html">nndeploy.infer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.inference.html">nndeploy.inference</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nndeploy.ir.html">nndeploy.ir</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.ir.converter.html">nndeploy.ir.converter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.ir.interpret.html">nndeploy.ir.interpret</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.ir.ir.html">nndeploy.ir.ir</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nndeploy.ir.op_param</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.llm.html">nndeploy.llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.matting.html">nndeploy.matting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.net.html">nndeploy.net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.nndeploy.html">nndeploy.nndeploy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ocr.html">nndeploy.ocr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.op.html">nndeploy.op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.preprocess.html">nndeploy.preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.segment.html">nndeploy.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.server.html">nndeploy.server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.tokenizer.html">nndeploy.tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.track.html">nndeploy.track</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Python API Reference</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.html">nndeploy</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.ir.html">nndeploy.ir</a></li>
+      <li class="breadcrumb-item active">nndeploy.ir.op_param</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nndeploy.ir.op_param">
+<span id="nndeploy-ir-op-param"></span><h1>nndeploy.ir.op_param<a class="headerlink" href="#module-nndeploy.ir.op_param" title="Permalink to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.ir.op_param.create_op_param" title="nndeploy.ir.op_param.create_op_param"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_op_param</span></code></a>(op_type)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.ir.op_param.op_type_to_string" title="nndeploy.ir.op_param.op_type_to_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">op_type_to_string</span></code></a>(op_type)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.ir.op_param.register_op_param_creator" title="nndeploy.ir.op_param.register_op_param_creator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_op_param_creator</span></code></a>(op_type, creator)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.ir.op_param.string_to_op_type" title="nndeploy.ir.op_param.string_to_op_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">string_to_op_type</span></code></a>(op_type_name)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.ir.op_param.OpParam" title="nndeploy.ir.op_param.OpParam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpParam</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.ir.op_param.OpParamCreator" title="nndeploy.ir.op_param.OpParamCreator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpParamCreator</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.ir.op_param.OpType" title="nndeploy.ir.op_param.OpType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.op_type_to_string">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.ir.op_param.</span></span><span class="sig-name descname"><span class="pre">op_type_to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#op_type_to_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.op_type_to_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.string_to_op_type">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.ir.op_param.</span></span><span class="sig-name descname"><span class="pre">string_to_op_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_type_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#string_to_op_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.string_to_op_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.ir.op_param.</span></span><span class="sig-name descname"><span class="pre">OpType</span></span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#OpType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.OpType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OpType</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Net">
+<span class="sig-name descname"><span class="pre">Net</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Net:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Net" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Abs">
+<span class="sig-name descname"><span class="pre">Abs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Abs:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Abs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Add">
+<span class="sig-name descname"><span class="pre">Add</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Add:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Acos">
+<span class="sig-name descname"><span class="pre">Acos</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Acos:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Acos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Adam">
+<span class="sig-name descname"><span class="pre">Adam</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Adam:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Adam" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.And">
+<span class="sig-name descname"><span class="pre">And</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.And:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.And" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ArgMax">
+<span class="sig-name descname"><span class="pre">ArgMax</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ArgMax:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ArgMax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ArgMin">
+<span class="sig-name descname"><span class="pre">ArgMin</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ArgMin:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ArgMin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Asin">
+<span class="sig-name descname"><span class="pre">Asin</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Asin:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Asin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Atan">
+<span class="sig-name descname"><span class="pre">Atan</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Atan:</span> <span class="pre">9&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Atan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.AveragePool">
+<span class="sig-name descname"><span class="pre">AveragePool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.AveragePool:</span> <span class="pre">10&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.AveragePool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.BatchNormalization">
+<span class="sig-name descname"><span class="pre">BatchNormalization</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.BatchNormalization:</span> <span class="pre">11&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.BatchNormalization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Cast">
+<span class="sig-name descname"><span class="pre">Cast</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Cast:</span> <span class="pre">12&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Cast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Ceil">
+<span class="sig-name descname"><span class="pre">Ceil</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Ceil:</span> <span class="pre">13&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Ceil" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Clip">
+<span class="sig-name descname"><span class="pre">Clip</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Clip:</span> <span class="pre">14&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Clip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Concat">
+<span class="sig-name descname"><span class="pre">Concat</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Concat:</span> <span class="pre">15&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Concat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Constant">
+<span class="sig-name descname"><span class="pre">Constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Constant:</span> <span class="pre">16&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Constant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Conv">
+<span class="sig-name descname"><span class="pre">Conv</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Conv:</span> <span class="pre">17&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Conv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Cos">
+<span class="sig-name descname"><span class="pre">Cos</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Cos:</span> <span class="pre">18&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Cos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Cosh">
+<span class="sig-name descname"><span class="pre">Cosh</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Cosh:</span> <span class="pre">19&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Cosh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.DepthToSpace">
+<span class="sig-name descname"><span class="pre">DepthToSpace</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.DepthToSpace:</span> <span class="pre">21&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.DepthToSpace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.DequantizeLinear">
+<span class="sig-name descname"><span class="pre">DequantizeLinear</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.DequantizeLinear:</span> <span class="pre">22&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.DequantizeLinear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Det">
+<span class="sig-name descname"><span class="pre">Det</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Det:</span> <span class="pre">23&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Det" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Div">
+<span class="sig-name descname"><span class="pre">Div</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Div:</span> <span class="pre">24&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Div" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Dropout">
+<span class="sig-name descname"><span class="pre">Dropout</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Dropout:</span> <span class="pre">25&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Dropout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Einsum">
+<span class="sig-name descname"><span class="pre">Einsum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Einsum:</span> <span class="pre">26&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Einsum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Elu">
+<span class="sig-name descname"><span class="pre">Elu</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Elu:</span> <span class="pre">27&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Elu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Equal">
+<span class="sig-name descname"><span class="pre">Equal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Equal:</span> <span class="pre">28&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Equal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Erf">
+<span class="sig-name descname"><span class="pre">Erf</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Erf:</span> <span class="pre">29&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Erf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Exp">
+<span class="sig-name descname"><span class="pre">Exp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Exp:</span> <span class="pre">30&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Exp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Flatten">
+<span class="sig-name descname"><span class="pre">Flatten</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Flatten:</span> <span class="pre">32&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Flatten" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Floor">
+<span class="sig-name descname"><span class="pre">Floor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Floor:</span> <span class="pre">33&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Floor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Gather">
+<span class="sig-name descname"><span class="pre">Gather</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Gather:</span> <span class="pre">34&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Gather" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Gemm">
+<span class="sig-name descname"><span class="pre">Gemm</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Gemm:</span> <span class="pre">36&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Gemm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.GlobalAveragePool">
+<span class="sig-name descname"><span class="pre">GlobalAveragePool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.GlobalAveragePool:</span> <span class="pre">37&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.GlobalAveragePool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.GlobalLpPool">
+<span class="sig-name descname"><span class="pre">GlobalLpPool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.GlobalLpPool:</span> <span class="pre">38&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.GlobalLpPool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.GlobalMaxPool">
+<span class="sig-name descname"><span class="pre">GlobalMaxPool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.GlobalMaxPool:</span> <span class="pre">39&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.GlobalMaxPool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Greater">
+<span class="sig-name descname"><span class="pre">Greater</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Greater:</span> <span class="pre">40&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Greater" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.HardSigmoid">
+<span class="sig-name descname"><span class="pre">HardSigmoid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.HardSigmoid:</span> <span class="pre">41&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.HardSigmoid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Identity">
+<span class="sig-name descname"><span class="pre">Identity</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Identity:</span> <span class="pre">42&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Identity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.If">
+<span class="sig-name descname"><span class="pre">If</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.If:</span> <span class="pre">43&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.If" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ImageScaler">
+<span class="sig-name descname"><span class="pre">ImageScaler</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ImageScaler:</span> <span class="pre">44&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ImageScaler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.InstanceNormalization">
+<span class="sig-name descname"><span class="pre">InstanceNormalization</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.InstanceNormalization:</span> <span class="pre">45&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.InstanceNormalization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.IsInf">
+<span class="sig-name descname"><span class="pre">IsInf</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.IsInf:</span> <span class="pre">46&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.IsInf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.IsNaN">
+<span class="sig-name descname"><span class="pre">IsNaN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.IsNaN:</span> <span class="pre">47&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.IsNaN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.LRN">
+<span class="sig-name descname"><span class="pre">LRN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.LRN:</span> <span class="pre">48&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.LRN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.LSTM">
+<span class="sig-name descname"><span class="pre">LSTM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.LSTM:</span> <span class="pre">49&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.LSTM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.LeakyRelu">
+<span class="sig-name descname"><span class="pre">LeakyRelu</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.LeakyRelu:</span> <span class="pre">50&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.LeakyRelu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Less">
+<span class="sig-name descname"><span class="pre">Less</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Less:</span> <span class="pre">51&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Less" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Log">
+<span class="sig-name descname"><span class="pre">Log</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Log:</span> <span class="pre">52&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.LogSoftmax">
+<span class="sig-name descname"><span class="pre">LogSoftmax</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.LogSoftmax:</span> <span class="pre">53&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.LogSoftmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Loop">
+<span class="sig-name descname"><span class="pre">Loop</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Loop:</span> <span class="pre">54&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Loop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.LpNormalization">
+<span class="sig-name descname"><span class="pre">LpNormalization</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.LpNormalization:</span> <span class="pre">55&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.LpNormalization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.LpPool">
+<span class="sig-name descname"><span class="pre">LpPool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.LpPool:</span> <span class="pre">56&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.LpPool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.MatMul">
+<span class="sig-name descname"><span class="pre">MatMul</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.MatMul:</span> <span class="pre">57&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.MatMul" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.MatMulInteger">
+<span class="sig-name descname"><span class="pre">MatMulInteger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.MatMulInteger:</span> <span class="pre">58&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.MatMulInteger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Max">
+<span class="sig-name descname"><span class="pre">Max</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Max:</span> <span class="pre">59&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.MaxPool">
+<span class="sig-name descname"><span class="pre">MaxPool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.MaxPool:</span> <span class="pre">60&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.MaxPool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.MaxRoiPool">
+<span class="sig-name descname"><span class="pre">MaxRoiPool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.MaxRoiPool:</span> <span class="pre">61&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.MaxRoiPool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.MaxUnpool">
+<span class="sig-name descname"><span class="pre">MaxUnpool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.MaxUnpool:</span> <span class="pre">62&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.MaxUnpool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Mean">
+<span class="sig-name descname"><span class="pre">Mean</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Mean:</span> <span class="pre">63&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Min">
+<span class="sig-name descname"><span class="pre">Min</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Min:</span> <span class="pre">64&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Mod">
+<span class="sig-name descname"><span class="pre">Mod</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Mod:</span> <span class="pre">65&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Mod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Momentum">
+<span class="sig-name descname"><span class="pre">Momentum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Momentum:</span> <span class="pre">66&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Momentum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Mul">
+<span class="sig-name descname"><span class="pre">Mul</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Mul:</span> <span class="pre">67&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Mul" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Multinomial">
+<span class="sig-name descname"><span class="pre">Multinomial</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Multinomial:</span> <span class="pre">69&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Multinomial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Neg">
+<span class="sig-name descname"><span class="pre">Neg</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Neg:</span> <span class="pre">70&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Neg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.NegLogSoftmax">
+<span class="sig-name descname"><span class="pre">NegLogSoftmax</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.NegLogSoftmax:</span> <span class="pre">71&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.NegLogSoftmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.NonMaxSuppression">
+<span class="sig-name descname"><span class="pre">NonMaxSuppression</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.NonMaxSuppression:</span> <span class="pre">72&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.NonMaxSuppression" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.NonZero">
+<span class="sig-name descname"><span class="pre">NonZero</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.NonZero:</span> <span class="pre">73&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.NonZero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Not">
+<span class="sig-name descname"><span class="pre">Not</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Not:</span> <span class="pre">74&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Not" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.OneHot">
+<span class="sig-name descname"><span class="pre">OneHot</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.OneHot:</span> <span class="pre">75&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.OneHot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.OnesLike">
+<span class="sig-name descname"><span class="pre">OnesLike</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.OnesLike:</span> <span class="pre">76&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.OnesLike" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Or">
+<span class="sig-name descname"><span class="pre">Or</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Or:</span> <span class="pre">77&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Or" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Pad">
+<span class="sig-name descname"><span class="pre">Pad</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Pad:</span> <span class="pre">78&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Pad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Pow">
+<span class="sig-name descname"><span class="pre">Pow</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Pow:</span> <span class="pre">79&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Pow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.PRelu">
+<span class="sig-name descname"><span class="pre">PRelu</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.PRelu:</span> <span class="pre">80&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.PRelu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.QLinearConv">
+<span class="sig-name descname"><span class="pre">QLinearConv</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.QLinearConv:</span> <span class="pre">81&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.QLinearConv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.QLinearMatMul">
+<span class="sig-name descname"><span class="pre">QLinearMatMul</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.QLinearMatMul:</span> <span class="pre">82&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.QLinearMatMul" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.QuantizeLinear">
+<span class="sig-name descname"><span class="pre">QuantizeLinear</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.QuantizeLinear:</span> <span class="pre">83&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.QuantizeLinear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.RNN">
+<span class="sig-name descname"><span class="pre">RNN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.RNN:</span> <span class="pre">84&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.RNN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.RandomNormal">
+<span class="sig-name descname"><span class="pre">RandomNormal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.RandomNormal:</span> <span class="pre">85&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.RandomNormal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.RandomNormalLike">
+<span class="sig-name descname"><span class="pre">RandomNormalLike</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.RandomNormalLike:</span> <span class="pre">86&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.RandomNormalLike" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.RandomUniform">
+<span class="sig-name descname"><span class="pre">RandomUniform</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.RandomUniform:</span> <span class="pre">87&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.RandomUniform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.RandomUniformLike">
+<span class="sig-name descname"><span class="pre">RandomUniformLike</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.RandomUniformLike:</span> <span class="pre">88&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.RandomUniformLike" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Range">
+<span class="sig-name descname"><span class="pre">Range</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Range:</span> <span class="pre">89&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Reciprocal">
+<span class="sig-name descname"><span class="pre">Reciprocal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Reciprocal:</span> <span class="pre">90&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Reciprocal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceL1">
+<span class="sig-name descname"><span class="pre">ReduceL1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceL1:</span> <span class="pre">91&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceL1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceL2">
+<span class="sig-name descname"><span class="pre">ReduceL2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceL2:</span> <span class="pre">92&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceL2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceLogSum">
+<span class="sig-name descname"><span class="pre">ReduceLogSum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceLogSum:</span> <span class="pre">93&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceLogSum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceLogSumExp">
+<span class="sig-name descname"><span class="pre">ReduceLogSumExp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceLogSumExp:</span> <span class="pre">94&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceLogSumExp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceMax">
+<span class="sig-name descname"><span class="pre">ReduceMax</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceMax:</span> <span class="pre">95&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceMax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceMean">
+<span class="sig-name descname"><span class="pre">ReduceMean</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceMean:</span> <span class="pre">96&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceMean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceMin">
+<span class="sig-name descname"><span class="pre">ReduceMin</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceMin:</span> <span class="pre">97&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceMin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceProd">
+<span class="sig-name descname"><span class="pre">ReduceProd</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceProd:</span> <span class="pre">98&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceProd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceSum">
+<span class="sig-name descname"><span class="pre">ReduceSum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceSum:</span> <span class="pre">99&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceSum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReduceSumSquare">
+<span class="sig-name descname"><span class="pre">ReduceSumSquare</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReduceSumSquare:</span> <span class="pre">100&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReduceSumSquare" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Relu">
+<span class="sig-name descname"><span class="pre">Relu</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Relu:</span> <span class="pre">101&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Relu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Reshape">
+<span class="sig-name descname"><span class="pre">Reshape</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Reshape:</span> <span class="pre">102&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Reshape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Resize">
+<span class="sig-name descname"><span class="pre">Resize</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Resize:</span> <span class="pre">103&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Resize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ReverseSequence">
+<span class="sig-name descname"><span class="pre">ReverseSequence</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ReverseSequence:</span> <span class="pre">104&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ReverseSequence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.RoiAlign">
+<span class="sig-name descname"><span class="pre">RoiAlign</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.RoiAlign:</span> <span class="pre">105&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.RoiAlign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Round">
+<span class="sig-name descname"><span class="pre">Round</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Round:</span> <span class="pre">106&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Round" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Scale">
+<span class="sig-name descname"><span class="pre">Scale</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Scale:</span> <span class="pre">107&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Scale" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Scan">
+<span class="sig-name descname"><span class="pre">Scan</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Scan:</span> <span class="pre">108&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Scan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Scatter">
+<span class="sig-name descname"><span class="pre">Scatter</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Scatter:</span> <span class="pre">109&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Scatter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Selu">
+<span class="sig-name descname"><span class="pre">Selu</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Selu:</span> <span class="pre">110&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Selu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.SequenceAt">
+<span class="sig-name descname"><span class="pre">SequenceAt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.SequenceAt:</span> <span class="pre">111&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.SequenceAt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.SequenceConstruct">
+<span class="sig-name descname"><span class="pre">SequenceConstruct</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.SequenceConstruct:</span> <span class="pre">112&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.SequenceConstruct" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.SequenceEmpty">
+<span class="sig-name descname"><span class="pre">SequenceEmpty</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.SequenceEmpty:</span> <span class="pre">113&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.SequenceEmpty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.SequenceErase">
+<span class="sig-name descname"><span class="pre">SequenceErase</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.SequenceErase:</span> <span class="pre">114&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.SequenceErase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.SequenceInsert">
+<span class="sig-name descname"><span class="pre">SequenceInsert</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.SequenceInsert:</span> <span class="pre">115&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.SequenceInsert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.SequenceLength">
+<span class="sig-name descname"><span class="pre">SequenceLength</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.SequenceLength:</span> <span class="pre">116&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.SequenceLength" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Shape">
+<span class="sig-name descname"><span class="pre">Shape</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Shape:</span> <span class="pre">117&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Shrink">
+<span class="sig-name descname"><span class="pre">Shrink</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Shrink:</span> <span class="pre">118&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Shrink" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Sigmoid">
+<span class="sig-name descname"><span class="pre">Sigmoid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Sigmoid:</span> <span class="pre">119&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Sigmoid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Sign">
+<span class="sig-name descname"><span class="pre">Sign</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Sign:</span> <span class="pre">120&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Sign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Sin">
+<span class="sig-name descname"><span class="pre">Sin</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Sin:</span> <span class="pre">121&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Sin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Sinh">
+<span class="sig-name descname"><span class="pre">Sinh</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Sinh:</span> <span class="pre">122&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Sinh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Size">
+<span class="sig-name descname"><span class="pre">Size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Size:</span> <span class="pre">123&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Slice">
+<span class="sig-name descname"><span class="pre">Slice</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Slice:</span> <span class="pre">124&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Slice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Softmax">
+<span class="sig-name descname"><span class="pre">Softmax</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Softmax:</span> <span class="pre">125&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Softmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Softplus">
+<span class="sig-name descname"><span class="pre">Softplus</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Softplus:</span> <span class="pre">126&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Softplus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Softsign">
+<span class="sig-name descname"><span class="pre">Softsign</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Softsign:</span> <span class="pre">127&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Softsign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.SpaceToDepth">
+<span class="sig-name descname"><span class="pre">SpaceToDepth</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.SpaceToDepth:</span> <span class="pre">128&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.SpaceToDepth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Split">
+<span class="sig-name descname"><span class="pre">Split</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Split:</span> <span class="pre">129&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Split" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Sqrt">
+<span class="sig-name descname"><span class="pre">Sqrt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Sqrt:</span> <span class="pre">130&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Sqrt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Squeeze">
+<span class="sig-name descname"><span class="pre">Squeeze</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Squeeze:</span> <span class="pre">131&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Squeeze" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Sub">
+<span class="sig-name descname"><span class="pre">Sub</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Sub:</span> <span class="pre">132&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Sub" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Sum">
+<span class="sig-name descname"><span class="pre">Sum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Sum:</span> <span class="pre">133&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Tan">
+<span class="sig-name descname"><span class="pre">Tan</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Tan:</span> <span class="pre">134&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Tan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Tanh">
+<span class="sig-name descname"><span class="pre">Tanh</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Tanh:</span> <span class="pre">135&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Tanh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.TfIdf">
+<span class="sig-name descname"><span class="pre">TfIdf</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.TfIdf:</span> <span class="pre">136&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.TfIdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.ThresholdedRelu">
+<span class="sig-name descname"><span class="pre">ThresholdedRelu</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.ThresholdedRelu:</span> <span class="pre">137&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.ThresholdedRelu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Tile">
+<span class="sig-name descname"><span class="pre">Tile</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Tile:</span> <span class="pre">138&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Tile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.TopK">
+<span class="sig-name descname"><span class="pre">TopK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.TopK:</span> <span class="pre">139&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.TopK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Transpose">
+<span class="sig-name descname"><span class="pre">Transpose</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Transpose:</span> <span class="pre">140&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Transpose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Unsqueeze">
+<span class="sig-name descname"><span class="pre">Unsqueeze</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Unsqueeze:</span> <span class="pre">141&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Unsqueeze" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Upsample">
+<span class="sig-name descname"><span class="pre">Upsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Upsample:</span> <span class="pre">142&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Upsample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Where">
+<span class="sig-name descname"><span class="pre">Where</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Where:</span> <span class="pre">143&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Where" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Xor">
+<span class="sig-name descname"><span class="pre">Xor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Xor:</span> <span class="pre">144&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Xor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.RMSNorm">
+<span class="sig-name descname"><span class="pre">RMSNorm</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.RMSNorm:</span> <span class="pre">145&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.RMSNorm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.Embedding">
+<span class="sig-name descname"><span class="pre">Embedding</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.Embedding:</span> <span class="pre">146&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.Embedding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.kOpTypeNone">
+<span class="sig-name descname"><span class="pre">kOpTypeNone</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;OpType.kOpTypeNone:</span> <span class="pre">147&gt;</span></em><a class="headerlink" href="#nndeploy.ir.op_param.OpType.kOpTypeNone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.from_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_type_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#OpType.from_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.OpType.from_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.ir.OpType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpType.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpType.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpType.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpType.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParamCreator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.ir.op_param.</span></span><span class="sig-name descname"><span class="pre">OpParamCreator</span></span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#OpParamCreator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.OpParamCreator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OpParamCreator</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParamCreator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.ir.OpParamCreator</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#OpParamCreator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.OpParamCreator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParamCreator.create_op_param">
+<span class="sig-name descname"><span class="pre">create_op_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.ir.OpParamCreator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.ir.OpType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#OpParamCreator.create_op_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.OpParamCreator.create_op_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.register_op_param_creator">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.ir.op_param.</span></span><span class="sig-name descname"><span class="pre">register_op_param_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nndeploy.ir.op_param.OpType" title="nndeploy.ir.op_param.OpType"><span class="pre">OpType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">creator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nndeploy.ir.op_param.OpParamCreator" title="nndeploy.ir.op_param.OpParamCreator"><span class="pre">OpParamCreator</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#register_op_param_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.register_op_param_creator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.create_op_param">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.ir.op_param.</span></span><span class="sig-name descname"><span class="pre">create_op_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nndeploy.ir.op_param.OpType" title="nndeploy.ir.op_param.OpType"><span class="pre">OpType</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#create_op_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.create_op_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.ir.op_param.</span></span><span class="sig-name descname"><span class="pre">OpParam</span></span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#OpParam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.OpParam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OpParam</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.ir.OpParam</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nndeploy/ir/op_param.html#OpParam.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.add_dropdown_param">
+<span class="sig-name descname"><span class="pre">add_dropdown_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.add_dropdown_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.add_io_param">
+<span class="sig-name descname"><span class="pre">add_io_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.add_io_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.add_required_param">
+<span class="sig-name descname"><span class="pre">add_required_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.add_required_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.add_ui_param">
+<span class="sig-name descname"><span class="pre">add_ui_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.add_ui_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.clear_dropdown_params">
+<span class="sig-name descname"><span class="pre">clear_dropdown_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.clear_dropdown_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.clear_io_params">
+<span class="sig-name descname"><span class="pre">clear_io_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.clear_io_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.clear_required_params">
+<span class="sig-name descname"><span class="pre">clear_required_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.clear_required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.clear_ui_params">
+<span class="sig-name descname"><span class="pre">clear_ui_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.clear_ui_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.copy_to">
+<span class="sig-name descname"><span class="pre">copy_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.copy_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>deserialize(self: nndeploy._nndeploy_internal.base.Param, arg0: rapidjson::GenericValue&lt;rapidjson::UTF8&lt;char&gt;, rapidjson::MemoryPoolAllocator&lt;rapidjson::CrtAllocator&gt; &gt;) -&gt; nndeploy._nndeploy_internal.base.Status</p></li>
+<li><p>deserialize(self: nndeploy._nndeploy_internal.base.Param, arg0: str) -&gt; nndeploy._nndeploy_internal.base.Status</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg1:</span> <span class="pre">nndeploy::base::Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.get_dropdown_params">
+<span class="sig-name descname"><span class="pre">get_dropdown_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.get_dropdown_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.get_io_params">
+<span class="sig-name descname"><span class="pre">get_io_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.get_io_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.get_required_params">
+<span class="sig-name descname"><span class="pre">get_required_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.get_required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.get_ui_params">
+<span class="sig-name descname"><span class="pre">get_ui_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.get_ui_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.load_file">
+<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.load_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.remove_dropdown_param">
+<span class="sig-name descname"><span class="pre">remove_dropdown_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.remove_dropdown_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.remove_io_param">
+<span class="sig-name descname"><span class="pre">remove_io_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.remove_io_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.remove_required_param">
+<span class="sig-name descname"><span class="pre">remove_required_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.remove_required_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.remove_ui_param">
+<span class="sig-name descname"><span class="pre">remove_ui_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.remove_ui_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.save_file">
+<span class="sig-name descname"><span class="pre">save_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.save_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>serialize(self: nndeploy._nndeploy_internal.base.Param, arg0: rapidjson::GenericValue&lt;rapidjson::UTF8&lt;char&gt;, rapidjson::MemoryPoolAllocator&lt;rapidjson::CrtAllocator&gt; &gt;, arg1: rapidjson::MemoryPoolAllocator&lt;rapidjson::CrtAllocator&gt;) -&gt; nndeploy._nndeploy_internal.base.Status</p></li>
+<li><p>serialize(self: nndeploy._nndeploy_internal.base.Param) -&gt; str</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg1:</span> <span class="pre">nndeploy::base::Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.set_io_params">
+<span class="sig-name descname"><span class="pre">set_io_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.set_io_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.set_required_params">
+<span class="sig-name descname"><span class="pre">set_required_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.set_required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.ir.op_param.OpParam.set_ui_params">
+<span class="sig-name descname"><span class="pre">set_ui_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.base.Param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.ir.op_param.OpParam.set_ui_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nndeploy.ir.ir.html" class="btn btn-neutral float-left" title="nndeploy.ir.ir" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nndeploy.llm.html" class="btn btn-neutral float-right" title="nndeploy.llm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

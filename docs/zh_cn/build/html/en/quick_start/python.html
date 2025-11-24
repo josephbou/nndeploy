@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python 快速入门 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Visual Workflow Quick Start" href="workflow.html" />
+    <link rel="prev" title="已部署模型列表" href="model_list.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python 快速入门</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">环境要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">安装方式</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pypi">方式一：PyPI 安装（推荐）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">方式二：源码编译安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">安装验证</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">快速上手</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">启动可视化界面</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">启动参数说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">常见问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Python 快速入门</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<h1>Python 快速入门<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h1>
+<p>nndeploy 提供了完整的 Python API，支持快速部署和推理各种深度学习模型。</p>
+<section id="id1">
+<h2>环境要求<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Python 3.10+</p></li>
+<li><p>支持的操作系统：Linux(&lt; Python3.13 &amp;&amp; x86)、Windows、macOS(OS &gt;=14 &amp;&amp; ARM)，其他平台建议采用开发者模式</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>安装方式<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="pypi">
+<h3>方式一：PyPI 安装（推荐）<a class="headerlink" href="#pypi" title="Permalink to this heading">¶</a></h3>
+<p>适用于大多数用户的快速安装：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>nndeploy
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>方式二：源码编译安装<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>适用于开发者用户：</p>
+<p>首先参照<a class="reference internal" href="build.html"><span class="doc">build文档</span></a>，完成编译安装</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../python
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>安装验证<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>运行以下命令确认安装成功：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import nndeploy; print(nndeploy.__version__)&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>快速上手<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<section id="id6">
+<h3>启动可视化界面<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>nndeploy 提供了直观的 Web 界面用于模型部署：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 启动 Workflow 的 Web 服务</span>
+<span class="nb">cd</span><span class="w"> </span>/path/nndeploy
+python<span class="w"> </span>app.py<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+
+<span class="c1"># 或 使用简化命令 启动 Workflow 的 Web 服务</span>
+nndeploy-app<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>注：Windows下命令行启动：nndeploy-app.exe –port 8000</p>
+</div></blockquote>
+<p>在浏览器中访问 <code class="docutils literal notranslate"><span class="pre">http://localhost:8000</span></code> 开始使用。</p>
+<!-- <p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="../../image/workflow.png">
+    <img alt="nndeploy" src="../../image/workflow.png" width=100%>
+  </picture>
+</p> --><p><img alt="../../image/quick_start.gif" src="../_images/quick_start.gif" /></p>
+</section>
+<section id="id7">
+<h3>启动参数说明<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">app.py</span></code>启动脚本支持以下参数用于自定义Web服务行为：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>参数名</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--host</code></td>
+<td><code>0.0.0.0</code></td>
+<td>指定监听地址</td>
+</tr>
+<tr>
+<td><code>--port</code></td>
+<td><code>8888</code></td>
+<td>指定监听端口</td>
+</tr>
+<tr>
+<td><code>--resources</code></td>
+<td><code>./resources</code></td>
+<td>指定资源文件目录路径</td>
+</tr>
+<tr>
+<td><code>--log</code></td>
+<td><code>./logs/nndeploy_server.log</code></td>
+<td>指定日志输出文件路径</td>
+</tr>
+<tr>
+<td><code>--json_file</code></td>
+<td><code>detect.json,track.json</code></td>
+<td>将指定工作流拷贝到工作区</td>
+</tr>
+<tr>
+<td><code>--front-end-version</code></td>
+<td><code>!</code></td>
+<td>指定前端版本，格式为 <code>owner/repo@tag</code>，如 <code>nndeploy/nndeploy-ui@v1.0.0</code></td>
+</tr>
+<tr>
+<td><code>--plugin</code></td>
+<td><code>[]</code></td>
+<td>支持传入多个python文件路径或者动态库路径，用于加载用户写好的自定义插件，默认为空</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id8">
+<h3>常见问题<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>Q1: 浏览器打开 http://localhost:8000 显示404？</p>
+<p>A1: 请确认你是否已经下载前端资源。</p>
+<p>Q2: 启动时download前端资源文件一直失败怎么办？</p>
+<p>A2: 从<code class="docutils literal notranslate"><span class="pre">https://github.com/nndeploy/nndeploy_frontend/releases/</span></code>下载对应的dist.zip，将zip解压到<code class="docutils literal notranslate"><span class="pre">frontend/owner_repo/tag/</span></code>目录下（通常下载失败后会自动建立该目录），重新启动服务。</p>
+<p>Q3: 如何切换使用不同版本的前端?</p>
+<p>A3: 使用 –front-end-version 参数指定版本，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">app</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">front</span><span class="o">-</span><span class="n">end</span><span class="o">-</span><span class="n">version</span> <span class="n">nndeploy</span><span class="o">/</span><span class="n">nndeploy</span><span class="o">-</span><span class="n">ui</span><span class="nd">@v1</span><span class="mf">.1.0</span>
+</pre></div>
+</div>
+<p>Q4: 前端资源下载完成了，还是无法打开前端界面？</p>
+<p>A4: 检查服务端IP以及端口是否正确，如果<code class="docutils literal notranslate"><span class="pre">localhost</span></code>以及<code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>都无法访问，替换成局域网IP（如<code class="docutils literal notranslate"><span class="pre">192.168.x.x</span></code>）重试。</p>
+<p>Q5: 前端、模板、log、数据资源过期</p>
+<p>A5: 执行 nndeploy-clean / python clean.py，清理过期的资源</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model_list.html" class="btn btn-neutral float-left" title="已部署模型列表" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflow.html" class="btn btn-neutral float-right" title="Visual Workflow Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

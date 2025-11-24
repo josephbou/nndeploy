@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ONEDNN调研 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ONEDNN调研</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="onednn">
+<h1>ONEDNN调研<a class="headerlink" href="#onednn" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>支持架构：<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>英特尔架构处理器、英特尔处理器显卡和 Xe 架构显卡，实验性支持Arm* 64 （位架构 （AArch64）、OpenPOWER* Power ISA （PPC64）</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/X86-64">Intel 64 或 AMD64</a>，</p></li>
+<li><p><a class="reference external" href="https://developer.arm.com/architectures/cpu-architecture/a-profile">Arm 64 位架构（AArch64）</a>。</p></li>
+<li><p><a class="reference external" href="https://openpowerfoundation.org/">OpenPOWER</a> / <a class="reference external" href="https://en.wikipedia.org/wiki/Power_ISA">IBM Power 指令集</a>。</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Z/Architecture">IBMz z/架构（s390x）</a>。</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/RISC-V">RISC-V 64 位（RV64）</a>。</p></li>
+</ul>
+<section id="cpu">
+<h3>CPU:<a class="headerlink" href="#cpu" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Intel 64/AMD64 架构</p>
+<ul>
+<li><p>Intel Atom(R) 处理器（至少需要 Intel SSE4.1 支持）</p></li>
+<li><p>Intel Core(TM) 处理器（至少需要 Intel SSE4.1 支持）</p></li>
+<li><p>英特尔酷睿 Ultra 处理器（原名 Meteor Lake）</p></li>
+<li><p>Intel Xeon(R) 处理器 E3、E5 和 E7 系列（以前称为 Sandy Bridge、Ivy Bridge、Haswell 和 Broadwell）</p></li>
+<li><p>Intel Xeon 可扩展处理器（以前称为 Skylake、Cascade Lake、Cooper Lake、Ice Lake、Sapphire Rapids 和 Emerald Rapids）</p></li>
+<li><p>Intel Xeon CPU Max 系列（以前称为 Sapphire Rapids HBM）</p></li>
+<li><p>未来的英特尔至强可扩展处理器（代号 Sierra Forest 和 Granite Rapids）</p></li>
+</ul>
+</li>
+<li><p>AArch64 架构</p>
+<ul>
+<li><p>Arm Neoverse(TM) N1 和 V1 处理器</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="gpu">
+<h3>GPU：<a class="headerlink" href="#gpu" title="Permalink to this heading">¶</a></h3>
+<p>该库针对以下 GPU 进行了优化：</p>
+<ul class="simple">
+<li><p>适用于第 11 至第 14 代英特尔酷睿处理器的英特尔显卡</p></li>
+<li><p>适用于英特尔酷睿超处理器（原名 Meteor Lake）的英特尔显卡</p></li>
+<li><p>英特尔 Iris Xe MAX 显卡（原 DG1）</p></li>
+<li><p>英特尔 Arc(TM) 显卡（原 Alchemist）</p></li>
+<li><p>英特尔数据中心 GPU Flex 系列（原为 Arctic Sound）</p></li>
+<li><p>英特尔数据中心 GPU Max 系列（原 Ponte Vecchio）
+其中：对Nvidia的支持是通过SYCL CUDA后端实现的，需要：</p></li>
+<li><p><a class="reference external" href="https://github.com/intel/llvm/blob/sycl/sycl/doc/GetStartedGuide.md#build-dpc-toolchain-with-support-for-nvidia-cuda">支持 CUDA</a>或<a class="reference external" href="https://developer.codeplay.com/products/oneapi/nvidia/home">NVIDIA GPU 的 oneAPI 的oneAPI DPC++ 编译器</a></p></li>
+<li><p>NVIDIA CUDA* 驱动程序</p></li>
+<li><p>cuBLAS 10.1 或更高版本</p></li>
+<li><p>cuDNN 7.6 或更高版本</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>计算支持：<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>| CNN 基元（卷积、内积、池化等）                |
+| ——————————– |
+| RNN 原语 （LSTM， Vanilla， RNN， GRU） |
+| 规范化（LRN、批处理、图层）                  |
+| 元素操作（ReLU，Tanh，ELU，Abs等）         |
+| Softmax， Sum， Concat， Shuffle    |
+| 从优化的数据布局重新排序                     |
+| 8 位整数、16 位、32 位和 bfloat16 浮点数据类型 |
+|                                  |</p>
+</section>
+<section id="id3">
+<h2>核心概念<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>oneDNN的主要概念是原语，引擎，流和内存对象。
+<img alt="../_images/ondDNN_architecture.png" src="../_images/ondDNN_architecture.png" />
+<strong>原语：
+基元（dnnl::primitive</strong>）是一个封装了特定计算诸如前向卷积，向后LSTM计算，或数据变换操作的算符对象。单个原语有时可以表示更复杂的<strong>融合计算</strong>，例如一个前向卷积操作然后紧跟着一个ReLU操作。除其他事项外，融合是通过原语的属性机制来控制的。（原语和纯函数之间最重要的区别是原语可以<strong>存储状态</strong>。）
+1、基元状态的一部分是不可变的。例如，卷积基元存储参数（如张量形状），并可以预先计算其他相关参数（如缓存阻塞）。这种方法允许 oneDNN 基元预先生成专门针对要执行的操作而定制的代码。oneDNN 编程模型假设执行预计算所需的时间可以通过重复使用同一基元多次执行计算来分摊。
+2、在此基础上可以进行微内核扩展（低级抽象，实现顺序块级操作，允许用户通过组合这些块级计算来实现自定义操作）和图拓展（高级抽象，它允许您使用计算图而不是单个基元）</p>
+<p><strong>引擎（dnnl::engine）</strong> 是计算设备的抽象：CPU，系统中的特定GPU卡等。创建大多数原语是为了在一个特定引擎上执行计算。唯一的例外是可在两个不同引擎之间传输数据的重排序原语。</p>
+<p><strong>流（dnnl::stream）</strong> 封装了绑定到特定引擎的执行上下文。例如，它们可以对应于DPC ++命令队列。</p>
+<p><strong>内存对象（dnnl::memory）</strong> 封装了分配给特定引擎的内存的句柄，张量维，数据类型和内存格式-张量索引映射到线性内存空间中的偏移量的方式。内存对象在执行期间被传递给原语。</p>
+</section>
+<section id="id4">
+<h2>数据排布支持<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>CUDA SYCL：<a class="reference external" href="https://github.com/oneapi-src/oneDNN/tree/main/src/gpu/nvidia"><code class="docutils literal notranslate"><span class="pre">NCDHW</span></code>, <code class="docutils literal notranslate"><span class="pre">NDHWC</span></code>, <code class="docutils literal notranslate"><span class="pre">NCHW</span></code>, <code class="docutils literal notranslate"><span class="pre">NHWC</span></code>, <code class="docutils literal notranslate"><span class="pre">NCW</span></code>, <code class="docutils literal notranslate"><span class="pre">NWC</span></code>, <code class="docutils literal notranslate"><span class="pre">NC</span></code></a></p>
+</section>
+<section id="id5">
+<h2>数据格式<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p><strong>块状布局</strong>:
+为了实现更好的矢量化和缓存重用，oneDNN 引入了分块布局，将一个或多个维度拆分为固定大小的块。最流行的 oneDNN 数据格式是 AVX512+ 系统上的 nChw16c 和 SSE4.1+ 系统上的 nChw8c。从名称中可以猜出，唯一被分块的维度是通道，前者块大小为 16，后者块大小为 8。</p>
+<p>确切的说，nChw8c 的偏移函数是：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">offset_nChw8c</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">CHW</span>
+                          <span class="o">+</span> <span class="p">(</span><span class="n">c</span> <span class="o">/</span> <span class="mi">8</span><span class="p">)</span> <span class="o">*</span> <span class="n">HW</span><span class="o">*</span><span class="mi">8</span>
+                          <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">W</span><span class="o">*</span><span class="mi">8</span>
+                          <span class="o">+</span> <span class="n">w</span> <span class="o">*</span> <span class="mi">8</span>
+                          <span class="o">+</span> <span class="p">(</span><span class="n">c</span> <span class="o">%</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="../_images/oneDNN_Dataformat.png" src="../_images/oneDNN_Dataformat.png" /></p>
+</section>
+<section id="id6">
+<h2>一个简单的例子<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/example_getting_started.cpp.html#doxid-getting-started-8cpp-example">Example code：</a></p>
+<p>此 C++ API 示例演示了 oneDNN 编程模型的基础知识：</p>
+<p>· 如何创建一个DNN记忆对象。</p>
+<p>o  如何将数据从用户缓冲区放入 oneDNN 内存对象中。</p>
+<p>o  张量的逻辑维度和内存对象格式如何关联。</p>
+<p>· 如何创建一个DNN原语。</p>
+<p>· 如何执行原语。</p>
+<p>该示例使用ReLU操作，包括以下步骤：</p>
+<p>1.     创建<a class="reference external" href="https://oneapi-src.github.io/oneDNN/page_getting_started_cpp.html#doxid-getting-started-cpp-1getting-started-cpp-sub1">引擎和流</a>来执行原语。</p>
+<p>2.     执行<a class="reference external" href="https://oneapi-src.github.io/oneDNN/page_getting_started_cpp.html#doxid-getting-started-cpp-1getting-started-cpp-sub2">数据准备（oneDNN 之外的代码）</a>。</p>
+<p>3.     <a class="reference external" href="https://oneapi-src.github.io/oneDNN/page_getting_started_cpp.html#doxid-getting-started-cpp-1getting-started-cpp-sub3">将数据包装到 oneDNN 内存对象中</a></p>
+<p>创建 dnln::memory 包括两个步骤：</p>
+<p>1.     初始化 dnnl::memory::desc 结构体（也称为内存描述符），该结构体仅描述张量数据，不包含数据本身。内存描述符用于创建 dnnl::memory 对象并初始化基元描述符（稍后在示例中显示）。</p>
+<p>2.     基于步骤 1 中初始化的内存描述符、引擎以及可选的数据句柄创建 dnnl::memory 对象本身（也称为内存对象）。执行原语时会使用内存对象。</p>
+<p><strong>内存描述符</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">src_md</span> <span class="o">=</span> <span class="n">memory</span><span class="p">::</span><span class="n">desc</span><span class="p">(</span>
+        <span class="p">{</span><span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">},</span> <span class="o">//</span> <span class="n">logical</span> <span class="n">dims</span><span class="p">,</span> <span class="n">the</span> <span class="n">order</span> <span class="ow">is</span> <span class="n">defined</span> <span class="n">by</span> <span class="n">a</span> <span class="n">primitive</span>
+        <span class="n">memory</span><span class="p">::</span><span class="n">data_type</span><span class="p">::</span><span class="n">f32</span><span class="p">,</span> <span class="o">//</span> <span class="n">tensor</span><span class="s1">&#39;s data type</span>
+        <span class="n">memory</span><span class="p">::</span><span class="n">format_tag</span><span class="p">::</span><span class="n">nhwc</span> <span class="o">//</span> <span class="n">memory</span> <span class="nb">format</span><span class="p">,</span> <span class="n">NHWC</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">case</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>创建内存对象</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">src_mem</span> <span class="n">contains</span> <span class="n">a</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">image</span> <span class="n">after</span> <span class="n">write_to_dnnl_memory</span> <span class="n">function</span>
+<span class="n">auto</span> <span class="n">src_mem</span> <span class="o">=</span> <span class="n">memory</span><span class="p">(</span><span class="n">src_md</span><span class="p">,</span> <span class="n">eng</span><span class="p">);</span>
+<span class="n">write_to_dnnl_memory</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">src_mem</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">For</span> <span class="n">dst_mem</span> <span class="n">the</span> <span class="n">library</span> <span class="n">allocates</span> <span class="n">buffer</span>
+<span class="n">auto</span> <span class="n">dst_mem</span> <span class="o">=</span> <span class="n">memory</span><span class="p">(</span><span class="n">src_md</span><span class="p">,</span> <span class="n">eng</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>4.     <a class="reference external" href="https://oneapi-src.github.io/oneDNN/page_getting_started_cpp.html#doxid-getting-started-cpp-1getting-started-cpp-sub4">创建 ReLU 原语</a>。</p>
+<p>1、创建一个操作原语描述符（此处为 dnnl::eltwise_forward::primitive_desc），它定义操作参数，并且是实现给定操作的实际算法的轻量级描述符。用户可以查询所选实现的不同特征，例如内存消耗以及下一个主题（内存格式传播）中将介绍的其他一些特征。</p>
+<p>2、创建一个可以在内存对象上执行以计算操作的原语（此处为 dnnl::eltwise_forward）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// ReLU primitive descriptor, which corresponds to a particular
+// implementation in the library
+auto relu_pd = eltwise_forward::primitive_desc(
+        eng, // an engine the primitive will be created for
+        prop_kind::forward_inference, algorithm::eltwise_relu,
+        src_md, // source memory descriptor for an operation to work on
+        src_md, // destination memory descriptor for an operation to work on
+        0.f, // alpha parameter means negative slope in case of ReLU
+        0.f // beta parameter is ignored in case of ReLU
+);
+// ReLU primitive
+auto relu = eltwise_forward(relu_pd); // !!! this can take quite some time
+</pre></div>
+</div>
+<p>5.     <a class="reference external" href="https://oneapi-src.github.io/oneDNN/page_getting_started_cpp.html#doxid-getting-started-cpp-1getting-started-cpp-sub5">执行 ReLU 原语</a>。</p>
+<p>6.     <a class="reference external" href="https://oneapi-src.github.io/oneDNN/page_getting_started_cpp.html#doxid-getting-started-cpp-1getting-started-cpp-sub6">获取结果并验证</a>（检查生成的图像不包含负值）。</p>
+<p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/page_memory_format_propagation_cpp.html"><strong>内存格式传播</strong></a></p>
+<p>该示例围绕由卷积和池化组成的 CNN 构建，并包含以下步骤：</p>
+<ol class="simple">
+<li><p>根据卷积原语选择的内存格式创建池化原语描述符。</p></li>
+<li><p>为 NCHW 内存格式的输入和输出数据创建内存描述符。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Tensor</span> <span class="ow">and</span> <span class="n">kernel</span> <span class="n">dimensions</span><span class="o">.</span> <span class="n">We</span> <span class="n">use</span> <span class="n">the</span> <span class="n">same</span> <span class="mi">3</span><span class="n">x3</span> <span class="n">kernel</span> <span class="k">with</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="k">for</span> <span class="n">both</span> <span class="n">convolution</span> <span class="ow">and</span> <span class="n">pooling</span> <span class="n">primitives</span><span class="p">,</span> <span class="n">which</span> <span class="n">means</span> <span class="n">that</span> <span class="n">the</span>
+<span class="o">//</span> <span class="n">activation</span> <span class="n">tensor</span> <span class="n">shapes</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">change</span><span class="o">.</span>
+<span class="n">const</span> <span class="nb">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="n">IC</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span> <span class="n">OC</span> <span class="o">=</span> <span class="mi">256</span><span class="p">,</span> <span class="n">KH</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">KW</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">auto</span> <span class="n">conv_src_md</span> <span class="o">=</span> <span class="n">memory</span><span class="p">::</span><span class="n">desc</span><span class="p">({</span><span class="n">N</span><span class="p">,</span> <span class="n">IC</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">},</span> <span class="n">memory</span><span class="p">::</span><span class="n">data_type</span><span class="p">::</span><span class="n">f32</span><span class="p">,</span>
+        <span class="n">memory</span><span class="p">::</span><span class="n">format_tag</span><span class="p">::</span><span class="nb">any</span> <span class="o">//</span> <span class="n">let</span> <span class="n">convolution</span> <span class="n">choose</span> <span class="n">memory</span> <span class="nb">format</span>
+<span class="p">);</span>
+<span class="n">auto</span> <span class="n">conv_weights_md</span> <span class="o">=</span> <span class="n">memory</span><span class="p">::</span><span class="n">desc</span><span class="p">(</span>
+        <span class="p">{</span><span class="n">OC</span><span class="p">,</span> <span class="n">IC</span><span class="p">,</span> <span class="n">KH</span><span class="p">,</span> <span class="n">KW</span><span class="p">},</span> <span class="n">memory</span><span class="p">::</span><span class="n">data_type</span><span class="p">::</span><span class="n">f32</span><span class="p">,</span>
+        <span class="n">memory</span><span class="p">::</span><span class="n">format_tag</span><span class="p">::</span><span class="nb">any</span> <span class="o">//</span> <span class="n">let</span> <span class="n">convolution</span> <span class="n">choose</span> <span class="n">memory</span> <span class="nb">format</span>
+<span class="p">);</span>
+<span class="n">auto</span> <span class="n">conv_dst_md</span> <span class="o">=</span> <span class="n">memory</span><span class="p">::</span><span class="n">desc</span><span class="p">({</span><span class="n">N</span><span class="p">,</span> <span class="n">OC</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">},</span> <span class="n">memory</span><span class="p">::</span><span class="n">data_type</span><span class="p">::</span><span class="n">f32</span><span class="p">,</span>
+        <span class="n">memory</span><span class="p">::</span><span class="n">format_tag</span><span class="p">::</span><span class="nb">any</span> <span class="o">//</span> <span class="n">let</span> <span class="n">convolution</span> <span class="n">choose</span> <span class="n">memory</span> <span class="nb">format</span>
+<span class="p">);</span>
+<span class="n">const</span> <span class="n">auto</span> <span class="o">&amp;</span><span class="n">pool_dst_md</span> <span class="o">=</span> <span class="n">conv_dst_md</span><span class="p">;</span> <span class="o">//</span> <span class="n">shape</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">change</span>
+<span class="n">auto</span> <span class="n">conv_pd</span> <span class="o">=</span> <span class="n">convolution_forward</span><span class="p">::</span><span class="n">primitive_desc</span><span class="p">(</span>
+        <span class="n">eng</span><span class="p">,</span> <span class="n">prop_kind</span><span class="p">::</span><span class="n">forward_inference</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">::</span><span class="n">convolution_auto</span><span class="p">,</span>
+        <span class="n">conv_src_md</span><span class="p">,</span> <span class="n">conv_weights_md</span><span class="p">,</span>
+        <span class="n">conv_dst_md</span><span class="p">,</span> <span class="o">//</span> <span class="n">shape</span> <span class="n">information</span>
+        <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="o">//</span> <span class="n">strides</span>
+        <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span> <span class="o">//</span> <span class="n">left</span> <span class="ow">and</span> <span class="n">right</span> <span class="n">padding</span>
+<span class="p">);</span>
+<span class="n">auto</span> <span class="n">pool_pd</span>
+        <span class="o">=</span> <span class="n">pooling_forward</span><span class="p">::</span><span class="n">primitive_desc</span><span class="p">(</span><span class="n">eng</span><span class="p">,</span> <span class="n">prop_kind</span><span class="p">::</span><span class="n">forward_inference</span><span class="p">,</span>
+                <span class="n">algorithm</span><span class="p">::</span><span class="n">pooling_max</span><span class="p">,</span> <span class="n">conv_pd</span><span class="o">.</span><span class="n">dst_desc</span><span class="p">(),</span>
+                <span class="n">pool_dst_md</span><span class="p">,</span> <span class="o">//</span> <span class="n">shape</span> <span class="n">information</span>
+                <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="n">KH</span><span class="p">,</span> <span class="n">KW</span><span class="p">},</span> <span class="o">//</span> <span class="n">strides</span> <span class="ow">and</span> <span class="n">kernel</span>
+                <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="o">//</span> <span class="n">dilation</span>
+                <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span> <span class="o">//</span> <span class="n">left</span> <span class="ow">and</span> <span class="n">right</span> <span class="n">padding</span>
+        <span class="p">);</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>确定输入和输出数据是否需要从优化的内存格式重新排序。</p></li>
+<li><p>创建内存对象；以及必要的原语并执行它们。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">conv_scratchpad_mem</span> <span class="o">=</span> <span class="n">memory</span><span class="p">(</span><span class="n">conv_pd</span><span class="o">.</span><span class="n">scratchpad_desc</span><span class="p">(),</span> <span class="n">eng</span><span class="p">);</span>
+
+<span class="n">auto</span> <span class="n">conv</span> <span class="o">=</span> <span class="n">convolution_forward</span><span class="p">(</span><span class="n">conv_pd</span><span class="p">);</span>
+
+<span class="n">conv</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">s</span><span class="p">,</span>
+
+        <span class="p">{{</span><span class="n">DNNL_ARG_SRC</span><span class="p">,</span> <span class="n">conv_src_mem</span><span class="p">},</span> <span class="p">{</span><span class="n">DNNL_ARG_WEIGHTS</span><span class="p">,</span> <span class="n">conv_weights_mem</span><span class="p">},</span>
+
+                <span class="p">{</span><span class="n">DNNL_ARG_DST</span><span class="p">,</span> <span class="n">conv_dst_mem</span><span class="p">}});</span>
+
+<span class="n">auto</span> <span class="n">pool_scratchpad_mem</span> <span class="o">=</span> <span class="n">memory</span><span class="p">(</span><span class="n">pool_pd</span><span class="o">.</span><span class="n">scratchpad_desc</span><span class="p">(),</span> <span class="n">eng</span><span class="p">);</span>
+
+<span class="n">auto</span> <span class="n">pool</span> <span class="o">=</span> <span class="n">pooling_forward</span><span class="p">(</span><span class="n">pool_pd</span><span class="p">);</span>
+
+<span class="n">pool</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+
+        <span class="n">s</span><span class="p">,</span> <span class="p">{{</span><span class="n">DNNL_ARG_SRC</span><span class="p">,</span> <span class="n">conv_dst_mem</span><span class="p">},</span> <span class="p">{</span><span class="n">DNNL_ARG_DST</span><span class="p">,</span> <span class="n">pool_dst_mem</span><span class="p">}});</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">wait</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>支持的原语API：<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_convolution.html">Convolution</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_inner_product.html">Inner Product</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_matmul.html">Matrix Multiplication</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_rnn.html">RNN</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_batch_normalization.html">Batch Normalization</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_binary.html">Binary</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_concat.html">Concat</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_eltwise.html">Eltwise</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_group_normalization.html">Group Normalization</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_layer_normalization.html">Layer Normalization</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_lrn.html">Local Response Normalization (LRN)</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_pooling.html">Pooling</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_prelu.html">PReLU</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_resampling.html">Resampling</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_shuffle.html">Shuffle</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_softmax.html">Softmax</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_sum.html">Sum</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_reorder.html">Reorder</a></p></li>
+<li><p><a class="reference external" href="https://oneapi-src.github.io/oneDNN/dev_guide_reduction.html">Reduction</a></p></li>
+</ul>
+</section>
+<section id="demo-ocl">
+<h2>多算子模式<a class="reference external" href="https://github.com/oneapi-src/oneDNN/tree/main/examples/graph">Demo(ocl)</a><a class="headerlink" href="#demo-ocl" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

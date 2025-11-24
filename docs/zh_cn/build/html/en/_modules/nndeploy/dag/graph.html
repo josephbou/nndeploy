@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.dag.graph &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.dag.graph</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.dag.graph</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">nndeploy._nndeploy_internal</span> <span class="k">as</span> <span class="nn">_C</span>
+<span class="kn">import</span> <span class="nn">nndeploy.base</span>
+<span class="kn">import</span> <span class="nn">nndeploy.device</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">EdgeTypeInfo</span>
+<span class="kn">from</span> <span class="nn">.edge</span> <span class="kn">import</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">get_accepted_edge_type_json</span><span class="p">,</span> <span class="n">get_accepted_edge_type_map</span>
+<span class="kn">from</span> <span class="nn">.node</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeDesc</span><span class="p">,</span> <span class="n">NodeCreator</span><span class="p">,</span> <span class="n">register_node</span><span class="p">,</span> <span class="n">get_all_node_json</span>
+
+
+<div class="viewcode-block" id="Graph"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph">[docs]</a><span class="k">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
+<div class="viewcode-block" id="Graph.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Edge</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outputs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Edge</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize Graph object</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Graph name</span>
+<span class="sd">            inputs: Input edge or list of input edges</span>
+<span class="sd">            outputs: Output edge or list of output edges</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">inputs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">outputs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid input or output type&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;nndeploy.dag.Graph&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_desc</span><span class="p">(</span><span class="s2">&quot;Graph: Graph for nndeploy in python&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span></div>
+        
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Destructor to clean up graph resources&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_initialized</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">deinit</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_initialized_flag</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># super().__del__()</span>
+        
+<div class="viewcode-block" id="Graph.add_image_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.add_image_url">[docs]</a>    <span class="k">def</span> <span class="nf">add_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add image URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_image_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.remove_image_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.remove_image_url">[docs]</a>    <span class="k">def</span> <span class="nf">remove_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove image URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_image_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.add_video_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.add_video_url">[docs]</a>    <span class="k">def</span> <span class="nf">add_video_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add video URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_video_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.remove_video_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.remove_video_url">[docs]</a>    <span class="k">def</span> <span class="nf">remove_video_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove video URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_video_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.add_audio_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.add_audio_url">[docs]</a>    <span class="k">def</span> <span class="nf">add_audio_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add audio URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_audio_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.remove_audio_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.remove_audio_url">[docs]</a>    <span class="k">def</span> <span class="nf">remove_audio_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove audio URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_audio_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.add_model_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.add_model_url">[docs]</a>    <span class="k">def</span> <span class="nf">add_model_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add model URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_model_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.remove_model_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.remove_model_url">[docs]</a>    <span class="k">def</span> <span class="nf">remove_model_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove model URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_model_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.add_other_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.add_other_url">[docs]</a>    <span class="k">def</span> <span class="nf">add_other_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add other URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_other_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.remove_other_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.remove_other_url">[docs]</a>    <span class="k">def</span> <span class="nf">remove_other_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove other URL</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            url: URL address</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_other_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.get_image_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_image_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get image URL list</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            URL address list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_image_url</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="Graph.get_video_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_video_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_video_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get video URL list</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            URL address list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_video_url</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="Graph.get_audio_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_audio_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_audio_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get audio URL list</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            URL address list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_audio_url</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="Graph.get_model_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_model_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_model_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get model URL list</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            URL address list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_model_url</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="Graph.get_other_url"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_other_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_other_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get other URL list</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            URL address list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_other_url</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="Graph.set_input_type"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_input_type">[docs]</a>    <span class="k">def</span> <span class="nf">set_input_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set input type</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            input_type: Input type</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">edge_type_info</span> <span class="o">=</span> <span class="n">EdgeTypeInfo</span><span class="p">()</span>
+        <span class="n">edge_type_info</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">input_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_input_type_info</span><span class="p">(</span><span class="n">edge_type_info</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.set_output_type"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_output_type">[docs]</a>    <span class="k">def</span> <span class="nf">set_output_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set output type</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            output_type: Output type</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">edge_type_info</span> <span class="o">=</span> <span class="n">EdgeTypeInfo</span><span class="p">()</span>
+        <span class="n">edge_type_info</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">output_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_output_type_info</span><span class="p">(</span><span class="n">edge_type_info</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.set_edge_queue_max_size"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_edge_queue_max_size">[docs]</a>    <span class="k">def</span> <span class="nf">set_edge_queue_max_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue_max_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set edge queue maximum size</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            queue_max_size: Maximum queue size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_edge_queue_max_size</span><span class="p">(</span><span class="n">queue_max_size</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.get_edge_queue_max_size"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_edge_queue_max_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_edge_queue_max_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get edge queue maximum size</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Maximum queue size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_edge_queue_max_size</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="Graph.set_input"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_input">[docs]</a>    <span class="k">def</span> <span class="nf">set_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set input edge</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            input: Input edge</span>
+<span class="sd">            index: Input edge index, default is -1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_input</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.set_output"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_output">[docs]</a>    <span class="k">def</span> <span class="nf">set_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set output edge</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            output: Output edge</span>
+<span class="sd">            index: Output edge index, default is -1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.set_inputs"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_inputs">[docs]</a>    <span class="k">def</span> <span class="nf">set_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set input edge list</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            inputs: List of input edges</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_inputs</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.set_outputs"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_outputs">[docs]</a>    <span class="k">def</span> <span class="nf">set_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set output edge list</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            outputs: List of output edges</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.create_edge"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.create_edge">[docs]</a>    <span class="k">def</span> <span class="nf">create_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Edge</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an edge</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Edge name</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Edge object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create_edge</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.add_edge"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.add_edge">[docs]</a>    <span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add an edge</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            edge: Edge object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.delete_edge"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.delete_edge">[docs]</a>    <span class="k">def</span> <span class="nf">delete_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete an edge</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            edge: Edge object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.update_edge"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.update_edge">[docs]</a>    <span class="k">def</span> <span class="nf">update_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_wrapper</span><span class="p">:</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">is_external</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update edge</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            edge_wrapper: Edge wrapper</span>
+<span class="sd">            edge: Edge object</span>
+<span class="sd">            is_external: Whether it&#39;s an external edge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update_edge</span><span class="p">(</span><span class="n">edge_wrapper</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">is_external</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.get_edge"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_edge">[docs]</a>    <span class="k">def</span> <span class="nf">get_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Edge</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get edge by name</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Edge name</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Edge object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_edge</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.create_node"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.create_node">[docs]</a>    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_or_desc</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NodeDesc</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create node</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            key_or_desc: Node key or node description object</span>
+<span class="sd">            name: Node name, only valid when key_or_desc is str, default is empty string</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Node object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_desc</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="n">key_or_desc</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_desc</span><span class="p">,</span> <span class="n">NodeDesc</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="n">key_or_desc</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid node description object&quot;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.set_node_desc"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_node_desc">[docs]</a>    <span class="k">def</span> <span class="nf">set_node_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="n">NodeDesc</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set node description</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node: Node object</span>
+<span class="sd">            desc: Node description object</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_node_desc</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span>      </div>
+        
+<div class="viewcode-block" id="Graph.add_node"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.add_node">[docs]</a>    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add node</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node: Node object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.delete_node"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.delete_node">[docs]</a>    <span class="k">def</span> <span class="nf">delete_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete node</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node: Node object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.get_node"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_node">[docs]</a>    <span class="k">def</span> <span class="nf">get_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_or_index</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get node by name or index</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name_or_index: Node name or index</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Node object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">name_or_index</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.get_node_by_key"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_node_by_key">[docs]</a>    <span class="k">def</span> <span class="nf">get_node_by_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get node by key</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            key: Node key</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Node object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_node_by_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.get_nodes_by_key"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_nodes_by_key">[docs]</a>    <span class="k">def</span> <span class="nf">get_nodes_by_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all matching nodes by key</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            key: Node key</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            List of Node objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_nodes_by_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.get_node_count"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_node_count">[docs]</a>    <span class="k">def</span> <span class="nf">get_node_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get node count in the graph</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Number of nodes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_node_count</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="Graph.get_nodes"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">get_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all nodes in the graph</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            List of all nodes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_nodes</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Graph.set_node_param"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_node_param">[docs]</a>    <span class="k">def</span> <span class="nf">set_node_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">param</span><span class="p">:</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set node parameter</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node_name: Node name</span>
+<span class="sd">            param: Parameter object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_node_param</span><span class="p">(</span><span class="n">node_name</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.get_node_param"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_node_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_node_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Param</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get node parameter</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node_name: Node name</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Parameter object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_node_param</span><span class="p">(</span><span class="n">node_name</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.set_external_param"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_external_param">[docs]</a>    <span class="k">def</span> <span class="nf">set_external_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">param</span><span class="p">:</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set external parameter</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            key: Parameter key</span>
+<span class="sd">            param: Parameter object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_external_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.get_external_param"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_external_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_external_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Param</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get external parameter</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            key: Parameter key</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Parameter object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_external_param</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.set_node_parallel_type"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_node_parallel_type">[docs]</a>    <span class="k">def</span> <span class="nf">set_node_parallel_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parallel_type</span><span class="p">:</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">ParallelType</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set node parallel type</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node_name: Node name</span>
+<span class="sd">            parallel_type: Parallel type</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_node_parallel_type</span><span class="p">(</span><span class="n">node_name</span><span class="p">,</span> <span class="n">parallel_type</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.set_graph_node_share_stream"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_graph_node_share_stream">[docs]</a>    <span class="k">def</span> <span class="nf">set_graph_node_share_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flag</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set graph node stream sharing flag</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flag: Flag value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_graph_node_share_stream</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Graph.get_graph_node_share_stream"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_graph_node_share_stream">[docs]</a>    <span class="k">def</span> <span class="nf">get_graph_node_share_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get graph node stream sharing flag</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Stream sharing flag</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_graph_node_share_stream</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Graph.update_node_io"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.update_node_io">[docs]</a>    <span class="k">def</span> <span class="nf">update_node_io</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">],</span> <span class="n">outputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update node inputs and outputs</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node: Node object</span>
+<span class="sd">            inputs: List of input edges</span>
+<span class="sd">            outputs: List of output edge names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update_node_io</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.mark_input_edge"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.mark_input_edge">[docs]</a>    <span class="k">def</span> <span class="nf">mark_input_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark edges as input edges</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            inputs: List of input edges</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">mark_input_edge</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.mark_output_edge"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.mark_output_edge">[docs]</a>    <span class="k">def</span> <span class="nf">mark_output_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark edges as output edges</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            outputs: List of output edges</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">mark_output_edge</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.default_param"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.default_param">[docs]</a>    <span class="k">def</span> <span class="nf">default_param</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize graph with default parameters</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Status code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">default_param</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Graph.init"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize graph&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">init</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Graph.deinit"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.deinit">[docs]</a>    <span class="k">def</span> <span class="nf">deinit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deinitialize graph&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deinit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Graph.run"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run graph execution&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Graph.synchronize"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.synchronize">[docs]</a>    <span class="k">def</span> <span class="nf">synchronize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Synchronize graph execution&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="Graph.interrupt"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.interrupt">[docs]</a>    <span class="k">def</span> <span class="nf">interrupt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Interrupt graph execution&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">interrupt</span><span class="p">()</span></div>
+
+    <span class="c1"># def __call__(self, inputs):</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     Call graph</span>
+        
+    <span class="c1">#     Args:</span>
+    <span class="c1">#         inputs: Input data</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     return super().__call__(inputs)</span>
+
+<div class="viewcode-block" id="Graph.dump"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.dump">[docs]</a>    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Dump graph information to standard output&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dump</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="Graph.set_trace_flag"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_trace_flag">[docs]</a>    <span class="k">def</span> <span class="nf">set_trace_flag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flag</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set trace flag</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flag: Trace flag</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_trace_flag</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.trace"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.trace">[docs]</a>    <span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">],</span> <span class="n">Edge</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trace graph execution flow</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            inputs: List of input edges, single edge or None. If None, use default inputs</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            List of traced edges</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">inputs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">Edge</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;inputs must be List[Edge], Edge or None&quot;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.to_static_graph"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.to_static_graph">[docs]</a>    <span class="k">def</span> <span class="nf">to_static_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert to static graph representation</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Static graph object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_static_graph</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="Graph.get_edge_wrapper"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_edge_wrapper">[docs]</a>    <span class="k">def</span> <span class="nf">get_edge_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Edge</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">EdgeWrapper</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get edge wrapper</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            edge: Edge object or edge name</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Edge wrapper object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_edge_wrapper</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.get_node_wrapper"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_node_wrapper">[docs]</a>    <span class="k">def</span> <span class="nf">get_node_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NodeWrapper</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get node wrapper</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node: Node object or node name</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Node wrapper object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_node_wrapper</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.serialize"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Serialize graph to JSON string</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            JSON string representation of the graph</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="Graph.save_file"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.save_file">[docs]</a>    <span class="k">def</span> <span class="nf">save_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save graph to file</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            path: File path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">save_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Graph.deserialize"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.deserialize">[docs]</a>    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deserialize graph from JSON string</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            json_str: JSON string to deserialize</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+        <span class="n">node_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node_count</span><span class="p">()</span>
+        <span class="c1"># Parse node_repository array</span>
+        <span class="k">if</span> <span class="s2">&quot;node_repository_&quot;</span> <span class="ow">in</span> <span class="n">json_obj</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node_json</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;node_repository_&quot;</span><span class="p">]):</span>
+                <span class="c1"># Create node description object</span>
+                <span class="c1"># node_desc = NodeDesc()</span>
+                <span class="c1"># node_desc.deserialize(json.dumps(node_json))</span>
+                <span class="c1"># print(f&quot;node_desc: {node_desc.get_name()}, {node_desc.get_key()}&quot;)</span>
+                <span class="n">node_key</span> <span class="o">=</span> <span class="n">node_json</span><span class="p">[</span><span class="s2">&quot;key_&quot;</span><span class="p">]</span>
+                
+                <span class="n">node</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="c1"># Update description if node already exists</span>
+                <span class="k">if</span> <span class="n">node_count</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">node_json</span><span class="p">[</span><span class="s2">&quot;name_&quot;</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+                        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="c1"># self.set_node_desc(node, node_desc)</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="c1"># self.set_node_desc(node, node_desc)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Otherwise create new node</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="n">node_key</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;create node: </span><span class="si">{</span><span class="n">node_key</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;node_count: </span><span class="si">{</span><span class="n">node_count</span><span class="si">}</span><span class="s2">, i: </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Failed to create node&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+                        <span class="c1"># print(f&quot;add node: {node_key}, {node}&quot;)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.load_file"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.load_file">[docs]</a>    <span class="k">def</span> <span class="nf">load_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load graph from file</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            path: File path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json_str</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span></div>
+            
+<div class="viewcode-block" id="Graph.set_node_value"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_node_value">[docs]</a>    <span class="k">def</span> <span class="nf">set_node_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set node value</span>
+<span class="sd">        </span>
+<span class="sd">        Supports multiple calling methods:</span>
+<span class="sd">        1. set_node_value(node_value_str) - Set through JSON string</span>
+<span class="sd">        2. set_node_value(node_name, key, value) - Set single node key-value pair</span>
+<span class="sd">        3. set_node_value(node_value_map) - Set multiple node values through dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_node_value</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.get_node_value"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_node_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_node_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all node values</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Nested dictionary of node values, format: {node_name: {key: value}}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_node_value</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="Graph.set_unused_node_names"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.set_unused_node_names">[docs]</a>    <span class="k">def</span> <span class="nf">set_unused_node_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set unused node names</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node_name: Node name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_unused_node_names</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.remove_unused_node_names"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.remove_unused_node_names">[docs]</a>    <span class="k">def</span> <span class="nf">remove_unused_node_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove unused node names</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node_name: Node name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_unused_node_names</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Graph.get_unused_node_names"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.Graph.get_unused_node_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_unused_node_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get unused node names</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of unused node names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_unused_node_names</span><span class="p">()</span></div>
+    
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override __setattr__ method to implement automatic node addition</span>
+<span class="sd">        </span>
+<span class="sd">        When assigning a Node type value to a Graph object attribute,</span>
+<span class="sd">        automatically add that node to the graph</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Attribute name</span>
+<span class="sd">            value: Attribute value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># First call parent class&#39;s __setattr__ to set the attribute</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        
+        <span class="c1"># Check if automatic node/edge addition should be enabled</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_auto_add_node</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_auto_add_node</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_auto_add_edge</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_auto_add_edge</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">_should_auto_add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if a node should be automatically added</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Attribute name</span>
+<span class="sd">            value: Attribute value</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the node should be automatically added</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Skip private and special attributes</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+            
+        <span class="c1"># Check if it&#39;s a Node type</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_node_type</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Check if it has a node name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;get_name&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;get_name&#39;</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+            
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="k">def</span> <span class="nf">_is_node_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if an object is of Node type</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            value: Object to check</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether it&#39;s a Node type</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Check if it&#39;s an instance of Node or its subclasses</span>
+            <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">Node</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="c1"># Return False if any exception occurs during check</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="nf">_auto_add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_C</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">Node</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Automatically add a node to the graph</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            node: Node to add</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">node_name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+            
+            <span class="c1"># Check if node already exists in graph to avoid duplicates</span>
+            <span class="n">existing_node</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">existing_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node_wrapper</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+            
+            <span class="k">if</span> <span class="n">existing_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Add node to graph</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                <span class="c1"># print(f&quot;Automatically added node &#39;{node_name}&#39; to graph &#39;{self.get_name()}&#39;&quot;)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># print(f&quot;Node &#39;{node_name}&#39; already exists in graph, skipping addition&quot;)</span>
+                <span class="k">pass</span>
+                
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Print warning if error occurs during addition but continue execution</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception during automatic node addition: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">_should_auto_add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if an edge should be automatically added</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Attribute name</span>
+<span class="sd">            value: Attribute value</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the edge should be automatically added</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Skip private and special attributes</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+            
+        <span class="c1"># Check if it&#39;s an Edge type</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_edge_type</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Check if it has an edge name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;get_name&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;get_name&#39;</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+            
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="k">def</span> <span class="nf">_is_edge_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if an object is of Edge type</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            value: Object to check</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether it&#39;s an Edge type</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Check if it&#39;s an instance of Edge or its subclasses</span>
+            <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">,</span> <span class="n">Edge</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="c1"># Return False if any exception occurs during check</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="nf">_auto_add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_C</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">,</span> <span class="n">Edge</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Automatically add an edge to the graph</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            edge: Edge to add</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">edge_name</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+            
+            <span class="c1"># Check if edge already exists in graph to avoid duplicates</span>
+            <span class="n">existing_edge</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">existing_edge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_edge_wrapper</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+            
+            <span class="k">if</span> <span class="n">existing_edge</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Add edge to graph</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+                <span class="c1"># print(f&quot;Automatically added edge &#39;{edge_name}&#39; to graph &#39;{self.get_name()}&#39;&quot;)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># print(f&quot;Edge &#39;{edge_name}&#39; already exists in graph, skipping addition&quot;)</span>
+                <span class="k">pass</span>
+                
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Print warning if error occurs during addition but continue execution</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception during automatic edge addition: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="serialize"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.serialize">[docs]</a><span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Serialize graph to JSON string</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        graph: Graph object to serialize</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        JSON string representation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="save_file"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.save_file">[docs]</a><span class="k">def</span> <span class="nf">save_file</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save graph to file</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        graph: Graph object to save</span>
+<span class="sd">        path: File path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">save_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="deserialize"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.deserialize">[docs]</a><span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="n">json_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Deserialize graph from JSON string</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        json_str: JSON string to deserialize</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Graph object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">graph</span></div>
+   
+<div class="viewcode-block" id="load_file"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.load_file">[docs]</a><span class="k">def</span> <span class="nf">load_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load graph from file</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        path: File path</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Graph object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">graph</span></div>
+
+<div class="viewcode-block" id="GraphCreator"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.GraphCreator">[docs]</a><span class="k">class</span> <span class="nc">GraphCreator</span><span class="p">(</span><span class="n">NodeCreator</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Graph creator for creating graph nodes&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="GraphCreator.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.GraphCreator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="GraphCreator.create_node"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.GraphCreator.create_node">[docs]</a>    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">],</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a graph node</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Node name</span>
+<span class="sd">            inputs: Input edges</span>
+<span class="sd">            outputs: Output edges</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Graph node</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span></div></div>
+      
+<span class="c1"># Register graph creator</span>
+<span class="n">graph_node_creator</span> <span class="o">=</span> <span class="n">GraphCreator</span><span class="p">()</span>
+<span class="n">register_node</span><span class="p">(</span><span class="s2">&quot;nndeploy.dag.Graph&quot;</span><span class="p">,</span> <span class="n">graph_node_creator</span><span class="p">)</span>   
+
+
+<div class="viewcode-block" id="get_graph_json"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.get_graph_json">[docs]</a><span class="k">def</span> <span class="nf">get_graph_json</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get graph JSON representation</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        JSON string containing graph information</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="s2">&quot;Graph&quot;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">default_param</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;graph default_param failed: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">set_inner_flag</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">json_str</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+    <span class="n">graph_json</span> <span class="o">=</span> <span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">graph</span><span class="se">\&quot;</span><span class="s2">:&quot;</span> <span class="o">+</span> <span class="n">json_str</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
+    <span class="c1"># Beautify JSON</span>
+    <span class="n">graph_json</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">pretty_json_str</span><span class="p">(</span><span class="n">graph_json</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">graph_json</span></div>
+
+
+<div class="viewcode-block" id="get_dag_json"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph.html#nndeploy.dag.graph.get_dag_json">[docs]</a><span class="k">def</span> <span class="nf">get_dag_json</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get DAG JSON representation containing graph, nodes and edge types</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        JSON string containing complete DAG information</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">graph_json</span> <span class="o">=</span> <span class="n">get_graph_json</span><span class="p">()</span>
+    <span class="n">node_json</span> <span class="o">=</span> <span class="n">get_all_node_json</span><span class="p">()</span>
+    <span class="c1"># edge_json = get_accepted_edge_type_json()</span>
+    
+    <span class="c1"># Parse JSON strings and extract content</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="n">graph_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">graph_json</span><span class="p">)</span>
+    <span class="n">node_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">node_json</span><span class="p">)</span>
+    <span class="c1"># edge_data = json.loads(edge_json)</span>
+    
+    <span class="c1"># Merge into specified JSON format</span>
+    <span class="n">dag_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;graph&quot;</span><span class="p">:</span> <span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;graph&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="n">node_data</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;accepted_edge_types&quot;</span><span class="p">:</span> <span class="n">get_accepted_edge_type_map</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="n">dag_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dag_data</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">dag_json</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

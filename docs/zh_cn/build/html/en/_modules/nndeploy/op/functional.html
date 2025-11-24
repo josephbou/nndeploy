@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.op.functional &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.op.functional</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.op.functional</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">函数形式Op</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">nndeploy._nndeploy_internal</span> <span class="k">as</span> <span class="nn">_C</span>
+<span class="kn">from</span> <span class="nn">nndeploy.device.tensor</span> <span class="kn">import</span> <span class="n">Tensor</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">nndeploy.device.tensor</span> <span class="kn">import</span> <span class="n">create_tensor_from_numpy</span><span class="p">,</span> <span class="n">create_numpy_from_tensor</span>
+
+
+<div class="viewcode-block" id="conv"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.conv">[docs]</a><span class="k">def</span> <span class="nf">conv</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>  <span class="c1"># 当前仅支持OIHW格式的权重</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">ConvParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">dilations_</span> <span class="o">=</span> <span class="p">[</span><span class="n">dilation</span><span class="p">,</span> <span class="n">dilation</span><span class="p">]</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">group_</span> <span class="o">=</span> <span class="n">groups</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">kernel_shape_</span> <span class="o">=</span> <span class="p">[</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">strides_</span> <span class="o">=</span> <span class="p">[</span><span class="n">stride</span><span class="p">,</span> <span class="n">stride</span><span class="p">]</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">pads_</span> <span class="o">=</span> <span class="p">[</span><span class="n">padding</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">padding</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="concat"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.concat">[docs]</a><span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">ConcatParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">],</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="batch_norm"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.batch_norm">[docs]</a><span class="k">def</span> <span class="nf">batch_norm</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">BatchNormalizationParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">epsilon_</span> <span class="o">=</span> <span class="n">epsilon</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">batch_norm</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="relu"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.relu">[docs]</a><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="hardsigmoid"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.hardsigmoid">[docs]</a><span class="k">def</span> <span class="nf">hardsigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">hardsigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="selu"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.selu">[docs]</a><span class="k">def</span> <span class="nf">selu</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">selu</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="tanh"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.tanh">[docs]</a><span class="k">def</span> <span class="nf">tanh</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="abs"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.abs">[docs]</a><span class="k">def</span> <span class="nf">abs</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="acos"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.acos">[docs]</a><span class="k">def</span> <span class="nf">acos</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="asin"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.asin">[docs]</a><span class="k">def</span> <span class="nf">asin</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="atan"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.atan">[docs]</a><span class="k">def</span> <span class="nf">atan</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="ceil"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.ceil">[docs]</a><span class="k">def</span> <span class="nf">ceil</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="cos"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.cos">[docs]</a><span class="k">def</span> <span class="nf">cos</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="cosh"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.cosh">[docs]</a><span class="k">def</span> <span class="nf">cosh</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="erf"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.erf">[docs]</a><span class="k">def</span> <span class="nf">erf</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">erf</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="exp"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.exp">[docs]</a><span class="k">def</span> <span class="nf">exp</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="floor"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.floor">[docs]</a><span class="k">def</span> <span class="nf">floor</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="log"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.log">[docs]</a><span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="reciprocal"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.reciprocal">[docs]</a><span class="k">def</span> <span class="nf">reciprocal</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">reciprocal</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="round"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.round">[docs]</a><span class="k">def</span> <span class="nf">round</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="sign"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.sign">[docs]</a><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="sin"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.sin">[docs]</a><span class="k">def</span> <span class="nf">sin</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="sinh"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.sinh">[docs]</a><span class="k">def</span> <span class="nf">sinh</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="sqrt"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.sqrt">[docs]</a><span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="tan"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.tan">[docs]</a><span class="k">def</span> <span class="nf">tan</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="add"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.add">[docs]</a><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.flatten">[docs]</a><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">FlattenParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="gather"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.gather">[docs]</a><span class="k">def</span> <span class="nf">gather</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">GatherParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="gemm"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.gemm">[docs]</a><span class="k">def</span> <span class="nf">gemm</span><span class="p">(</span><span class="n">input_a</span><span class="p">,</span> <span class="n">input_b</span><span class="p">,</span> <span class="n">input_c</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">trans_a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">trans_b</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">GemmParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">alpha_</span> <span class="o">=</span> <span class="n">alpha</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">beta_</span> <span class="o">=</span> <span class="n">beta</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">trans_a_</span> <span class="o">=</span> <span class="n">trans_a</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">trans_b_</span> <span class="o">=</span> <span class="n">trans_b</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">gemm</span><span class="p">(</span><span class="n">input_a</span><span class="p">,</span> <span class="n">input_b</span><span class="p">,</span> <span class="n">input_c</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="global_averagepool"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.global_averagepool">[docs]</a><span class="k">def</span> <span class="nf">global_averagepool</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">global_averagepool</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="maxpool"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.maxpool">[docs]</a><span class="k">def</span> <span class="nf">maxpool</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">MaxPoolParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">kernel_shape_</span> <span class="o">=</span> <span class="p">[</span><span class="n">kernel_size</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">strides_</span> <span class="o">=</span> <span class="p">[</span><span class="n">stride</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">pads_</span> <span class="o">=</span> <span class="p">[</span><span class="n">padding</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">dilations_</span> <span class="o">=</span> <span class="p">[</span><span class="n">dilation</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">ceil_mode_</span> <span class="o">=</span> <span class="n">ceil_mode</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="mat_mul"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.mat_mul">[docs]</a><span class="k">def</span> <span class="nf">mat_mul</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transposeA</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transposeB</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">MatMulParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">transposeA_</span> <span class="o">=</span> <span class="n">transposeA</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">transposeB_</span> <span class="o">=</span> <span class="n">transposeB</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">mat_mul</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">bias</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="mul"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.mul">[docs]</a><span class="k">def</span> <span class="nf">mul</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="rms_norm"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.rms_norm">[docs]</a><span class="k">def</span> <span class="nf">rms_norm</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">RMSNormParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">epsilon_</span> <span class="o">=</span> <span class="n">epsilon</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">rms_norm</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="reshape"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.reshape">[docs]</a><span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">allowzero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">ReshapeParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">allowzero_</span> <span class="o">=</span> <span class="n">allowzero</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="softmax"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.softmax">[docs]</a><span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">SoftmaxParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="slice"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.slice">[docs]</a><span class="k">def</span> <span class="nf">slice</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">steps</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="sigmoid"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.sigmoid">[docs]</a><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="quantize_linear"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.quantize_linear">[docs]</a><span class="k">def</span> <span class="nf">quantize_linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">zero_point</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">saturate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">QuantizeLinearParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">saturate_</span> <span class="o">=</span> <span class="n">saturate</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">quantize_linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">zero_point</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="dequantize_linear"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.dequantize_linear">[docs]</a><span class="k">def</span> <span class="nf">dequantize_linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">zero_point</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">DequantizeLinearParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">dequantize_linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">zero_point</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="qlinear_conv"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.qlinear_conv">[docs]</a><span class="k">def</span> <span class="nf">qlinear_conv</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">x_scale</span><span class="p">,</span>
+    <span class="n">x_zero_point</span><span class="p">,</span>
+    <span class="n">w</span><span class="p">,</span>
+    <span class="n">w_scale</span><span class="p">,</span>
+    <span class="n">w_zero_point</span><span class="p">,</span>
+    <span class="n">y_scale</span><span class="p">,</span>
+    <span class="n">y_zero_point</span><span class="p">,</span>
+    <span class="n">bias</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">groups</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">QLinearConvParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">kernel_shape_</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">stride_</span> <span class="o">=</span> <span class="p">[</span><span class="n">stride</span><span class="p">,</span> <span class="n">stride</span><span class="p">]</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">padding_</span> <span class="o">=</span> <span class="p">[</span><span class="n">padding</span><span class="p">,</span> <span class="n">padding</span><span class="p">]</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">dilation_</span> <span class="o">=</span> <span class="p">[</span><span class="n">dilation</span><span class="p">,</span> <span class="n">dilation</span><span class="p">]</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">groups_</span> <span class="o">=</span> <span class="n">groups</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span>
+        <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">qlinear_conv</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span>
+            <span class="n">x_scale</span><span class="p">,</span>
+            <span class="n">x_zero_point</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">w_scale</span><span class="p">,</span>
+            <span class="n">w_zero_point</span><span class="p">,</span>
+            <span class="n">y_scale</span><span class="p">,</span>
+            <span class="n">y_zero_point</span><span class="p">,</span>
+            <span class="n">bias</span><span class="p">,</span>
+            <span class="n">param</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="where"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.where">[docs]</a><span class="k">def</span> <span class="nf">where</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">,</span> <span class="n">condition</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">,</span> <span class="n">condition</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="transpose"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.transpose">[docs]</a><span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">perm_axis</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">TransposeParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">perm_</span> <span class="o">=</span> <span class="n">perm_axis</span>
+    <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="split"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.functional.html#nndeploy.op.functional.split">[docs]</a><span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Python 封装的 Split 接口</span>
+<span class="sd">    支持两种互斥模式：</span>
+<span class="sd">      1) num_outputs：等分或最后一块变小</span>
+<span class="sd">      2) section：list/tuple/int 指定每段长度（自动转为 1-D int64 Tensor） ;具有更高优先级</span>
+
+<span class="sd">    返回值：tuple[Tensor, ...]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">SplitParam</span><span class="p">()</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span>
+
+    <span class="c1"># 根据输入决定使用哪种模式</span>
+    <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># 统一转成 1-D int64 Tensor</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">np_sec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">np_sec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="n">sec_tensor</span> <span class="o">=</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">create_tensor_from_numpy</span><span class="p">(</span><span class="n">np_sec</span><span class="p">))</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">num_outputs_</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 标记为使用 section</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num_outputs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either num_outputs or section must be provided&quot;</span><span class="p">)</span>
+        <span class="n">sec_tensor</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">num_outputs_</span> <span class="o">=</span> <span class="n">num_outputs</span>
+
+    <span class="c1"># 调 C++ splitFunc，返回 std::vector&lt;device::Tensor*&gt;</span>
+    <span class="n">cpp_vec</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">sec_tensor</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+
+    <span class="c1"># 逐个包装成 Python Tensor 并转为 tuple</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">Tensor</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">cpp_vec</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

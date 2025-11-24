@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Discussion &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Discussion</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Developer Discussion<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="mac">
+<h2>mac<a class="headerlink" href="#mac" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Compilation without enabling any inference framework</p></li>
+<li><p>Improve CoreML</p>
+<ul>
+<li><p>Code</p></li>
+<li><p>Compile</p></li>
+<li><p>Invoke YOLOv5</p></li>
+</ul>
+</li>
+<li><p>Invoke MNN</p>
+<ul>
+<li><p>Compile</p></li>
+<li><p>Invoke YOLOv5</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="nndeploy-github-actions">
+<h2>Nndeploy’s GitHub Actions<a class="headerlink" href="#nndeploy-github-actions" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Nndeploy uses GitHub’s official Actions for compilation CI testing, encountering the following issues</p>
+<ul>
+<li><p>Compilation fails on Mac, possibly due to Mac compilation issues</p></li>
+<li><p>Unable to perform compilation testing with every push</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mdc">
+<h2>MDC<a class="headerlink" href="#mdc" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Huawei’s chips can use device MDC and inference MDC</p></li>
+<li><p>Device MDC</p>
+<ul>
+<li><p>Is calling MDC reasonable? Should it be called its own programming model Ascend or ACL? (Similar to programming models CUDA, OpenCL) (This host-side API is very similar to CUDA, is this a kind of CUDA compatibility? Does its device-side code resemble CUDA?)</p></li>
+<li><p>Can it be used on other chips? (For example, chips from the Kunpeng series)</p></li>
+</ul>
+</li>
+<li><p>Inference Framework MDC</p>
+<ul>
+<li><p>Is calling MDC reasonable? What is its relationship with CANN?</p></li>
+<li><p>Can it be used on other chips? (For example, chips from the Kunpeng series)</p></li>
+</ul>
+</li>
+<li><p>What is the relationship between this and MindSpore-Lite?</p></li>
+<li><p>Variable names are all lowercase?</p></li>
+<li><p>Is OrtValueInfo better to be changed?</p></li>
+<li><p>The README needs to note the following, mainly which operating systems it can run on, which chips it can run on, and whether it should be added to the main page’s README</p></li>
+<li><p>aclrt -&gt; CUDA runtime API</p></li>
+<li><p>aclmdl -&gt; What does this mdl mean?</p></li>
+</ul>
+<section id="v2">
+<h3>V2 modifications<a class="headerlink" href="#v2" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Some header files use <em>MDC</em> and mdc</p></li>
+<li><p>Variable names are all lowercase</p></li>
+<li><p>Fields named ASCENDCL and AscendCL in the code are changed to -&gt; AscendCL, for the following reasons</p>
+<ul>
+<li><p>AscendCL is the official writing</p></li>
+<li><p>Internal writing tends towards AscendCL, for example, OpenCL in devices, TensorRT in inference frameworks</p></li>
+</ul>
+</li>
+<li><p>Device class adds void* getContext() interface</p>
+<ul>
+<li><p>For devices, there are usually concepts of context environment and execution queue</p></li>
+<li><p>There is a requirement to get context in inference/ascend_cl</p></li>
+</ul>
+</li>
+<li><p>In the run function, data sets are recreated each time without destruction, is there a problem here?</p></li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">AscendCLInference::run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Always: </span>
+<span class="w">  </span><span class="n">input_dataset_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aclmdlCreateDataset</span><span class="p">();</span>
+<span class="w">  </span><span class="n">output_dataset_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aclmdlCreateDataset</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id2">
+<h2>Pipeline Parallelism<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>Pipeline Parallelism Implementation Details Discussion</p>
+<section id="nndeploy">
+<h3>What is pipeline parallelism in nndeploy<a class="headerlink" href="#nndeploy" title="Permalink to this heading">¶</a></h3>
+<p>Example description. On a certain Linux server, there are N 4090 graphics cards.</p>
+<p>Photo album header clustering task: (Original image Edge) -&gt; Face detection Node -&gt; (Face Edge) -&gt; Face keypoints Node -&gt; (Face keypoints Edge) -&gt; Face comparison Node -&gt; (Face id Edge)</p>
+<p>Note: Assume there are 1000 images in the album</p>
+<p>Further explanation:</p>
+<ul class="simple">
+<li><ol class="simple">
+<li><p>Allocate three threads, each thread handles face detection (Node), face keypoints (Node), face comparison (Node) respectively</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>(Original image) There is a data warehouse (Edge), when the data warehouse has data, face detection can start processing</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>(Face) There is a data warehouse (Edge), when the data warehouse has data, face keypoints can start processing</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>(Face keypoints) There is a data warehouse (Edge), when the data warehouse has data, face comparison can start processing</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>(Face id) There is a data warehouse (Edge), when the data warehouse has data, the caller can get the data</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h3>Preliminary solution<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Open a thread pool with three threads</p></li>
+<li><p>Put all three nodes into the thread pool</p></li>
+<li><p>Each thread execution must wait for (Original image Edge) (Face Edge) (Face keypoints Edge) to have data and the data has been successfully written before it can execute</p></li>
+<li><p>Caller thread (Face id Edge) has data and the data has been successfully written</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Specific difficulties and questions<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>For users, pipeline parallelism and serial execution are the same execution mode</p></li>
+<li><p>When executing graph-&gt;run, just put the three nodes into the thread pool once</p></li>
+<li><p>How does the main thread know it’s the last image, and then where to wait</p></li>
+<li><p>The requirements for data between the start node and intermediate nodes are inconsistent, the start node input Edge has data to proceed, intermediate node input Edge has data and the data has been written (i.e., the previous node has completed writing to the output Edge). (Original image) There is a data warehouse (Edge) when the data warehouse has data, the first task can run</p></li>
+<li><p>How to achieve data destruction</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2>Document Structure Discussion<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<section id="id6">
+<h3>To achieve the following goals<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Suitable for ReadTheDocs layout</p></li>
+<li><p>Distinguish between Chinese and English documents</p></li>
+<li><p>Be able to share deployment-related articles (I prefer to write articles under this folder)</p></li>
+<li><p>TODO - API auto export</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Document structure<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>TVM format - This is not ReadTheDocs format</p></li>
+<li><p>MNN format</p></li>
+<li><p>MMDeploy format</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Based on the directory modification of Shouye Dazuo<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Start</p>
+<ul>
+<li><p>README (Want to write all these in the README, mainly to improve development efficiency, don’t want to repeatedly write the same articles)</p>
+<ul>
+<li><p>Development and Prospects (Do these count as README?)</p></li>
+<li><p>Currently supported hardware, inference frameworks (Do these count as README?)</p></li>
+<li><p>Currently run-through demo algorithms (Do these count as README?)</p></li>
+<li><p>Current existing features (Do these count as README?)</p></li>
+<li><p>Things to do in the near future (Roadmap) (Do these count as README?)</p></li>
+<li><p>Final vision (Do these count as README?)</p></li>
+</ul>
+</li>
+<li><p>Compile and install nndeploy</p></li>
+<li><p>How to run nndeploy</p></li>
+<li><p>Contribution Guide</p>
+<ul>
+<li><p>PR rules, code specifications, WeChat group, perspectives from which contributions can be made, etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>User Guide</p>
+<ul>
+<li><p>Deploy a new algorithm</p>
+<ul>
+<li><p>Export model</p></li>
+<li><p>Construct pipeline</p></li>
+<li><p>Pre-processing, post-processing</p></li>
+</ul>
+</li>
+<li><p>Add a new inference framework (Does this count as a user guide?)</p></li>
+<li><p>Add a new device (Does this count as a user guide?)</p></li>
+<li><p>Add a new op (Does this count as a user guide?)</p></li>
+</ul>
+</li>
+<li><p>Developer Guide</p>
+<ul>
+<li><p>Overall architecture</p></li>
+<li><p>The role and dependency relationships of major components corresponding to folders</p></li>
+<li><p>Data container</p>
+<ul>
+<li><p>Tensor, Mat, Buffer</p></li>
+</ul>
+</li>
+<li><p>Directed acyclic graph</p>
+<ul>
+<li><p>graph, node, edge</p></li>
+</ul>
+</li>
+<li><p>Resource pool</p>
+<ul>
+<li><p>Threadpool design</p></li>
+<li><p>Memorypool design</p></li>
+</ul>
+</li>
+<li><p>Parallel mode</p>
+<ul>
+<li><p>Pipeline Parallelism</p></li>
+<li><p>Task parallelism</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Knowledge sharing</p>
+<ul>
+<li><p>Model export</p></li>
+<li><p>Quantization</p></li>
+</ul>
+</li>
+<li><p>Problem discussion</p></li>
+</ul>
+</section>
+</section>
+<section id="dag-review">
+<h2>DAG code review<a class="headerlink" href="#dag-review" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Condition and loop are properties of Graph rather than Node</p>
+<ul>
+<li><p>Graph inherits from Node</p></li>
+<li><p>Compared to Node, the main differences of Graph are as follows</p>
+<ul>
+<li><p>Graph has the capability to manage Nodes</p></li>
+<li><p>Execution delegation of Graph to executor</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Move executor.h to the main directory</p></li>
+<li><p>And place the helper functions from executor.h into util</p></li>
+<li><p>Naming modifications</p>
+<ul>
+<li><p>condition_is_running -&gt; runnint_condition</p></li>
+<li><p>graph directory -&gt; executor directory</p></li>
+<li><p>condition_parallel_pipeline_executor -&gt; parallel_pipeline_condition_executor</p></li>
+</ul>
+</li>
+<li><p>Resolve the issue of sporadic errors caused by Graph embedding Graph</p></li>
+<li><p>Functionality verification</p>
+<ul>
+<li><p>Each sub-module in a graph has its own parallel mode (serial, task parallel, pipeline parallel)</p></li>
+<li><p>When an Edge is both the output of the entire graph and the input of some intermediate node, how to resolve this (main issue lies in pipeline parallel mode, to be reviewed and resolved)(yi)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="dag-pipeline-edge">
+<h2>DAG pipeline edge<a class="headerlink" href="#dag-pipeline-edge" title="Permalink to this heading">¶</a></h2>
+<section id="id9">
+<h3>Sub-graph within a graph<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="id10">
+<h3>Main graph<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Parameter Validation Phase</p></li>
+<li><p>Mark Predecessors And Successors Phase</p>
+<ul>
+<li><p>Modify the parallel attributes for each child node (node or graph)</p>
+<ul>
+<li><p>If the child node already has parallel attributes, do not modify; otherwise, modify</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Construct edge</p></li>
+</ul>
+</section>
+</section>
+<section id="id11">
+<h2>Pre-release tasks<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Code review</p>
+<ul>
+<li><p>base - completed</p></li>
+<li><p>device - completed</p></li>
+<li><p>thread_pool - completed</p></li>
+<li><p>inference - completed</p></li>
+<li><p>DAG</p>
+<ul>
+<li><p>Will embedding a graph within another graph cause errors during resource release?</p>
+<ul>
+<li><p>It should not, Node and Edge are wrapped with a layer that includes resource management fields</p></li>
+</ul>
+</li>
+<li><p>Whether to add a field within the edge</p>
+<ul>
+<li><p>Input edge - no producer</p></li>
+<li><p>Input edge of intermediate node - has consumer and is not the output of the entire graph</p></li>
+<li><p>Output edge - no consumer and is the output of the entire graph</p></li>
+<li><p>Output edge is also the input edge of an intermediate node - has consumer and is the output of the entire graph</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Model</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h2>Operator discussion (discussion with Night Owl)<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p>Implementation of Op classification, e.g., binary operators, nn class operators, mathematical class operators, activation function class operators, can share some functions like type checking</p></li>
+</ol>
+<ul class="simple">
+<li><ol class="simple">
+<li><p>Unary</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>Binary</p></li>
+</ol>
+</li>
+<li><p>Elementwise</p></li>
+<li><p>nn - compute</p></li>
+<li><p>shape - concat</p></li>
+</ul>
+<ol class="simple">
+<li><p>Registration mechanism: register Op based on device</p></li>
+</ol>
+<ul class="simple">
+<li><p>op_type + device (only keep this)</p></li>
+</ul>
+</section>
+<section id="op-if-else">
+<h2>Distinguish within Op (not compilation, nor multiple subclasses - the most traditional way of functions, if else)<a class="headerlink" href="#op-if-else" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>data_type + data_format (implement in one or two minutes)</p></li>
+<li><p>opencl - image2d_t buffer</p></li>
+</ul>
+<ol class="simple">
+<li><p>Attribute layer: define attrs (param) for each Op, for unified parameter passing, also convenient for type checking (TVM’s way)</p></li>
+<li><p>Type checking includes the legality of data types (whether supported on a certain device), infer the size and dimensions of the output  relay</p></li>
+</ol>
+<p>Called during init</p>
+<ol class="simple">
+<li><p>Calculation layer (I also think) assumes all inputs, attributes, memory are legal, only focus on calculation</p></li>
+<li><p>Calling method () how to provide a clear interface, can easily see the parameters and content, order needed to pass</p></li>
+</ol>
+<p>relay.nn.conv2d([inputs],kernel,stride)</p>
+</section>
+<section id="id13">
+<h2>Mapping relationship<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h2>
+<p>conv2d_attrs={</p>
+<p>}
+relay.call(”conv2d”,conv2d_attrs)</p>
+<ol class="simple">
+<li><p>Memory management: how Op and Edge collaborate  no net op tensor</p></li>
+</ol>
+<p>Modify: (this depends on your design) Does each operator need a header file?? Unify parameters as vector<tensor> inputs, vector<tensor> outputs, whether weights are passed as a member of inputs (unified interface layer)</p>
+<p>attrs as an attribute assignment of the specific calculation class</p>
+</section>
+<section id="id14">
+<h2>Future planning<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Inference submodule</p></li>
+<li><p>Framework improvement</p></li>
+<li><p>Python export</p></li>
+</ul>
+</section>
+<section id="id15">
+<h2>Model file<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>text -&gt; json (rapidjson)</p></li>
+<li><p>bin -&gt; safetensors ()</p></li>
+</ul>
+</section>
+<section id="llama">
+<h2>llama<a class="headerlink" href="#llama" title="Permalink to this heading">¶</a></h2>
+<section id="id16">
+<h3>Graph construction<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Model file - llama.safetensors</p></li>
+<li><p>Model structure</p>
+<ul>
+<li><p>llama.json</p></li>
+<li><p>Expr mechanism</p></li>
+</ul>
+</li>
+<li><p>Note: ONNX will split the model structure very scattered</p></li>
+</ul>
+</section>
+<section id="llama-ir-rmsnorm-attention-matmul">
+<h3>Add llama ir (rmsnorm\attention\matmul…)<a class="headerlink" href="#llama-ir-rmsnorm-attention-matmul" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>D:\github\nndeploy\framework\include\nndeploy\ir\op_param.h</p></li>
+<li><p>OpType</p></li>
+<li><p>NNDEPLOY_CC_API std::string opTypeToString(OpType op_type);</p></li>
+<li><p>NNDEPLOY_CC_API OpType stringToOpType(const std::string &amp;op_type_name);</p></li>
+<li><p>OpParam - onnx/pytorch/mindspore</p></li>
+<li><p>REGISTER_OP_PARAM_IMPLEMENTION</p></li>
+</ul>
+</section>
+<section id="op-data-type-fp32-fp16-int8-data-format-kdataformatauto">
+<h3>op - data_type[fp32(this takes precedence),fp16,int8]/data_format[kDataFormatAuto]<a class="headerlink" href="#op-data-type-fp32-fp16-int8-data-format-kdataformatauto" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>cpu op</p></li>
+<li><p>cuda op</p></li>
+<li><p>ascend op</p></li>
+</ul>
+</section>
+<section id="id17">
+<h3>Memory management<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>kv block</p></li>
+</ul>
+</section>
+</section>
+<section id="id18">
+<h2>llama discussion<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>onnx llama operators are very fragmented</p>
+<ul>
+<li><p>selfattention, more than a dozen operators?</p></li>
+<li><p>Graph optimization</p></li>
+</ul>
+</li>
+<li><p>Manual graph construction - constructing model structure through expr</p>
+<ul>
+<li><p>fp32</p></li>
+<li><p>fp16</p></li>
+<li><p>int8</p></li>
+<li><p>The weights are just safetensors</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

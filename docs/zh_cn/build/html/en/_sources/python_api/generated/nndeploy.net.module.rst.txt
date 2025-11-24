@@ -1,0 +1,35 @@
+nndeploy.net.module
+===================
+
+.. automodule:: nndeploy.net.module
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build_model
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Module
+   
+   
+
+   
+   
+   
+
+
+

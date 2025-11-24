@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>We are now switching to the IDE to explain the specific implementation of the IR part of the code. The location of the IR code is under the framework directory in the root directory. We first open the include directory to look at the header files, find ir.h under the ir directory, which is one of the files we are going to discuss, and op_param.h is another file, with the corresponding source files located in the source directory.</p>
+<p>First, let’s look at ir.h. For the IR module, we will first discuss the member variables, and then the member functions, because member functions assist the member variables in performing tasks. Once the member variables are clearly explained, you can roughly understand what the corresponding functions are about.</p>
+<p>The IR of our entire NNDeploy largely draws on ONNX.</p>
+<p>First, we look at the top-level data structure ModelDesc. Let’s first examine the member variables of ModelDesc.</p>
+<p>First, the model needs a name, so we have a string name. The model will have a lot of metadata, such as who produced it? On what training framework was it trained? So we have an unordered_map to store some metadata.</p>
+<p>The entire model will have inputs, possibly multiple inputs, so here it’s in the form of a vector. This input is a special structure, which we’ve designed as ValueDesc. Later, we will jump to ValueDesc to see what specific information it contains. Then the model will have outputs, which are the same data structure as the inputs.</p>
+<p>The model is composed of a series of operators, and this series of operators is stored by a vector. The specific information describing the operators is determined by OpDesc.</p>
+<p>Then there’s the description of the model’s weights. A single weight of the model is represented by a tensor. Weights need to be associated with operators, so we set the weights in the form of a map, a map of string and tensor. This makes the association between tensors and operators more direct, because OpDesc only needs to store the name of the weight, and the operator and weight are then associated.</p>
+<p>Alright, we have a basic understanding of the top-level data structure. Now let’s look at ValueDesc. It mainly serves the model’s inputs and outputs.</p>
+<p>Taking the model’s input as an example, it must have a name, just like when we open the model with netron, the inputs have names. The model’s inputs will also have other information, such as the input data type (fp32 or fp16), the shape of the input. Taking YOLOv11s as an example, its default input type is fp32, and the input shape is 1 × 3 × 600 × 600. The requirements for outputs are consistent with those for inputs.</p>
+<p>Now there are many models with dynamic shapes. You can determine their shape during online inference later, so the shape is optional. Shape inference can be performed, and type inference can also be performed, so its type is also optional.</p>
+<p>After discussing ValueDesc, we jump back to the top-level data structure ModelDesc. We then start discussing OpDesc. Similarly, we jump in to take a look. First, we’ll talk about the member variables. The operator will have a name, and the operator will have a type, such as whether it’s a convolution type or a ReLU type?</p>
+<p>With a name and op_type, the operator will have inputs and outputs. For some operators, they can have multiple inputs, and for some operators, they can have multiple outputs, so the inputs and outputs are in the form of a vector of strings.</p>
+<p>Here a question arises, why are the operator’s inputs represented by strings? With a name and op_type, the operator will have inputs and outputs. For some operators, they can have multiple inputs, and for some operators, they can have multiple outputs, so the inputs and outputs are in the form of a vector of strings. Here a question arises, why are the operator’s inputs represented by strings? Here we explain the specific reason in detail. At the IR stage, it does not involve execution, we do not need to allocate actual data for inputs and outputs. We only need a globally unique identifier. What is the most economical choice for a globally unique identifier? A string is the most economical, the most readable choice. Therefore, at the IR stage, the inputs and outputs of our operators are described by strings.</p>
+<p>How does this operator associate with the weights we mentioned earlier? Let’s take convolution as an example. Convolution has weights, we treat the convolution’s weights as an input to the operator. Then one of its inputs is the name of the weight. The name of the weight is associated with the member variable weights in ModelDesc, thus binding the operator and the weight.</p>
+<p>How to express the computation graph through these inputs and outputs? Here’s an example, we can see that for convolution, its inputs are input and weight, its output is output, then for the next operator ReLU, its input is the output of this convolution, thus associating convolution and ReLU.</p>
+<p>Sometimes we need to debug the input and output types and shapes of operators at the IR stage. At the IR stage, we can have data type information, that is, the information of the data type, and also the information of the shape. We can associate this input output with the member variable value of ModelDesc. This way, the operator will have richer information, more conducive to debugging your IR.</p>
+<p>The description of the operator also needs to describe parameters, here using op_param’s intelligence to represent. Once OpDesc is constructed, it will create a specific operator parameter based on op_type. Some operators do not have parameters, such as convolution, where this pointer is null. The implementation of specific operator parameters is in op_param, we quickly go through a convolution parameter, such as the size of the sliding window here, the size of padding, there is a noteworthy point here, convolution can actually fuse many activation functions, nndeploy provides the possibility of fusion at the ir layer level, here we also fuse the incoming operator types, the parameters of the fused operators.</p>
+<p>We have covered all the member variables related to ModelDesc. Let’s look at some member functions next. For IR, it needs to be serialized into a weight file, the weight file needs to be deserialized into IR,</p>
+<p>So the functions IR needs to support are serialization and deserialization. ModelDesc provides serialization and deserialization member functions, where the model structure is serialized into a json file, the model weights are serialized into safetensors files, later in the model interpretation chapter we will detail why we chose JSON and safetensors formats.</p>
+<p>Jumping to ValueDesc to look at its related interfaces, also serialization and deserialization member functions</p>
+<p>Jumping to OpDesc to look at related interfaces, still serialization and deserialization member functions</p>
+<p>The entire ir is already capable of expressing the model structure and model weights. The core data of ModelDesc is mainly based on standard libraries, with as few third-party dependencies as possible, and then as compact as possible, for example, our operator’s input and output are strings, through layered structure design, serialization and deserialization are also more convenient.</p>
+<p>Alright, our introduction to the IR code implementation part ends here.</p>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.api_llm.llm_chat &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.api_llm.llm_chat</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.api_llm.llm_chat</h1><div class="highlight"><pre>
+<span></span><span class="c1"># llm_chat_node.py</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">T</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>  <span class="c1"># Used for general HTTP requests (OpenAI-compatible /v1/chat/completions)</span>
+
+<span class="kn">import</span> <span class="nn">nndeploy.dag</span>
+<span class="kn">from</span> <span class="nn">nndeploy.base</span> <span class="kn">import</span> <span class="n">Status</span>
+
+
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+<span class="c1"># Parameter structure</span>
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="LLMParams"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMParams">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">LLMParams</span><span class="p">:</span>
+    <span class="n">api_base</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://api.openai.com&quot;</span>
+    <span class="n">api_key_env</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;OPENAI_API_KEY&quot;</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span>
+    <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span>
+    <span class="n">system_prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span>
+    <span class="n">timeout_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">60.0</span>
+    <span class="n">retry</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">retry_backoff_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span>
+    <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">response_json_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">json_schema</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+<span class="c1"># Utility functions</span>
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+
+<span class="k">def</span> <span class="nf">_read_api_key</span><span class="p">(</span><span class="n">env_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">env_name</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;[LLMChatNode] Missing API key. Please set environment variable: </span><span class="si">{</span><span class="n">env_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">key</span>
+
+
+<span class="k">def</span> <span class="nf">_normalize_messages</span><span class="p">(</span>
+    <span class="n">user_input</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">],</span>
+    <span class="n">system_prompt</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Normalize user input into an OpenAI-compatible messages array:</span>
+<span class="sd">      - str: treated as one user message</span>
+<span class="sd">      - list[dict]: if already in messages format (with role/content), use directly; otherwise convert to string</span>
+<span class="sd">      - dict: if contains &quot;messages&quot; list, use directly; otherwise convert whole dict to string</span>
+<span class="sd">    Ensure that there is always one system message (add if missing).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sys_msg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">sys_msg</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_input</span><span class="p">}]</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;role&quot;</span> <span class="ow">in</span> <span class="n">m</span> <span class="ow">and</span> <span class="s2">&quot;content&quot;</span> <span class="ow">in</span> <span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">user_input</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
+            <span class="n">has_system</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;role&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;system&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">user_input</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">([</span><span class="n">sys_msg</span><span class="p">]</span> <span class="o">+</span> <span class="n">user_input</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">has_system</span> <span class="k">else</span> <span class="n">user_input</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">sys_msg</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)}]</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;messages&quot;</span> <span class="ow">in</span> <span class="n">user_input</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">user_input</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">msgs</span> <span class="o">=</span> <span class="n">user_input</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span>
+            <span class="n">has_system</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;role&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;system&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">msgs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">([</span><span class="n">sys_msg</span><span class="p">]</span> <span class="o">+</span> <span class="n">msgs</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">has_system</span> <span class="k">else</span> <span class="n">msgs</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">sys_msg</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)}]</span>
+
+    <span class="c1"># Fallback for other types</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">sys_msg</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">user_input</span><span class="p">)}]</span>
+
+
+<span class="k">def</span> <span class="nf">_calc_backoff</span><span class="p">(</span><span class="n">attempt</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">base</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">,</span> <span class="n">jitter</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exponential backoff with jitter.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">base</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">jitter</span><span class="p">,</span> <span class="n">jitter</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_should_stop</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Respect NNDeploy interruption if available.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;checkInterruptStatus&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">checkInterruptStatus</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">_mask_key</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a masked preview like &#39;sk-****abcd&#39; (no real key leakage).&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">tail</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;sk-&quot;</span> <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sk-&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">****</span><span class="si">{</span><span class="n">tail</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+<span class="c1"># Core HTTP caller</span>
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="call_llm"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.call_llm">[docs]</a><span class="k">def</span> <span class="nf">call_llm</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">LLMParams</span><span class="p">,</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">api_key_override</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">node_for_interrupt</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">emit_usage_to_log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">stream_print</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>            <span class="c1"># print streaming pieces to stdout</span>
+    <span class="n">proxies</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>      <span class="c1"># e.g. {&quot;http&quot;: &quot;...&quot;, &quot;https&quot;: &quot;...&quot;}</span>
+    <span class="n">verify</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># True/False or CA bundle path</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Call an OpenAI-compatible Chat Completions endpoint.</span>
+<span class="sd">    - Supports non-stream and stream modes.</span>
+<span class="sd">    - Respects 429 Retry-After; uses exponential backoff with jitter.</span>
+<span class="sd">    - Logs usage if available.</span>
+<span class="sd">    Returns the final concatenated content as a string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="p">(</span><span class="n">api_key_override</span> <span class="ow">or</span> <span class="n">_read_api_key</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">api_key_env</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">api_base</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/v1/chat/completions&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">messages</span><span class="p">,</span>
+        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span>
+        <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">max_tokens</span><span class="p">,</span>
+        <span class="s2">&quot;stream&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">stream</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># JSON strict mode (if provider supports OpenAI response_format)</span>
+    <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">response_json_mode</span><span class="p">:</span>
+        <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;response_format&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json_object&quot;</span><span class="p">}</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">json_schema</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># Some providers may ignore &#39;json_schema&#39;; keep best-effort</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;response_format&quot;</span><span class="p">][</span><span class="s2">&quot;json_schema&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">json_schema</span>
+
+    <span class="c1"># Proxies &amp; TLS verification (when not provided by caller)</span>
+    <span class="k">if</span> <span class="n">proxies</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;HTTP_PROXY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;http_proxy&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;HTTPS_PROXY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;https_proxy&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+    <span class="k">if</span> <span class="n">verify</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">verify</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;REQUESTS_CA_BUNDLE&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># custom CA bundle path or bool</span>
+
+    <span class="c1"># Helper to check interrupt between retries/stream chunks</span>
+    <span class="k">def</span> <span class="nf">_interrupted</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_should_stop</span><span class="p">(</span><span class="n">node_for_interrupt</span><span class="p">)</span>
+
+    <span class="n">last_err</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">_interrupted</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># Return empty on interrupt</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;stream&quot;</span><span class="p">]:</span>
+                <span class="c1"># Non-streaming</span>
+                <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                    <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">timeout_s</span><span class="p">,</span>
+                    <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="n">verify</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">429</span><span class="p">:</span>
+                    <span class="n">retry_after</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Retry-After&quot;</span><span class="p">)</span>
+                    <span class="n">sleep_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">retry_after</span><span class="p">)</span> <span class="k">if</span> <span class="n">retry_after</span> <span class="k">else</span> <span class="n">_calc_backoff</span><span class="p">(</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">retry_backoff_s</span><span class="p">)</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] 429 Too Many Requests; sleeping </span><span class="si">{</span><span class="n">sleep_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_s</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&gt;=</span> <span class="mi">400</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] HTTP </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">800</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="c1"># optional usage logging</span>
+                <span class="n">usage</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;usage&quot;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="k">if</span> <span class="n">emit_usage_to_log</span> <span class="ow">and</span> <span class="n">usage</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] usage=</span><span class="si">{</span><span class="n">usage</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="n">choices</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;choices&quot;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">choices</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] Empty choices: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">content</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Streaming</span>
+                <span class="n">chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                    <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">timeout_s</span><span class="p">,</span>
+                    <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="n">verify</span>
+                <span class="p">)</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">429</span><span class="p">:</span>
+                        <span class="n">retry_after</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Retry-After&quot;</span><span class="p">)</span>
+                        <span class="n">sleep_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">retry_after</span><span class="p">)</span> <span class="k">if</span> <span class="n">retry_after</span> <span class="k">else</span> <span class="n">_calc_backoff</span><span class="p">(</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">retry_backoff_s</span><span class="p">)</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] 429 (stream); sleeping </span><span class="si">{</span><span class="n">sleep_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_s</span><span class="p">)</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&gt;=</span> <span class="mi">400</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] HTTP </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">800</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                    <span class="k">for</span> <span class="n">raw</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_lines</span><span class="p">(</span><span class="n">decode_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">_interrupted</span><span class="p">():</span>
+                            <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">raw</span><span class="p">:</span>
+                            <span class="k">continue</span>
+                        <span class="c1"># SSE line format: &quot;data: {...}&quot; or &quot;data: [DONE]&quot;</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">raw</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;data:&quot;</span><span class="p">):</span>
+                            <span class="k">continue</span>
+                        <span class="n">data_line</span> <span class="o">=</span> <span class="n">raw</span><span class="p">[</span><span class="mi">5</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">data_line</span> <span class="o">==</span> <span class="s2">&quot;[DONE]&quot;</span><span class="p">:</span>
+                            <span class="k">break</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">delta</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data_line</span><span class="p">)</span>
+                            <span class="n">choice0</span> <span class="o">=</span> <span class="p">(</span><span class="n">delta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;choices&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[{}])[</span><span class="mi">0</span><span class="p">]</span>
+                            <span class="n">piece</span> <span class="o">=</span> <span class="p">(</span><span class="n">choice0</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">)</span>
+                            <span class="c1"># Some providers may stream full &#39;message&#39; frames (rare)</span>
+                            <span class="k">if</span> <span class="n">piece</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="n">piece</span> <span class="o">=</span> <span class="p">(</span><span class="n">choice0</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">piece</span><span class="p">:</span>
+                                <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">piece</span><span class="p">)</span>
+                                <span class="k">if</span> <span class="n">stream_print</span><span class="p">:</span>
+                                    <span class="nb">print</span><span class="p">(</span><span class="n">piece</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                            <span class="c1"># Ignore malformed lines</span>
+                            <span class="k">continue</span>
+
+                <span class="c1"># No usage is guaranteed in streaming mode</span>
+                <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">last_err</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">params</span><span class="o">.</span><span class="n">retry</span><span class="p">:</span>
+                <span class="n">sleep_s</span> <span class="o">=</span> <span class="n">_calc_backoff</span><span class="p">(</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">retry_backoff_s</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] network issue; retry in </span><span class="si">{</span><span class="n">sleep_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_s</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="k">break</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">last_err</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">params</span><span class="o">.</span><span class="n">retry</span><span class="p">:</span>
+                <span class="n">sleep_s</span> <span class="o">=</span> <span class="n">_calc_backoff</span><span class="p">(</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">retry_backoff_s</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] call failed; retry in </span><span class="si">{</span><span class="n">sleep_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_s</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="k">break</span>
+
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] call failed after retries: </span><span class="si">{</span><span class="n">last_err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+<span class="c1"># Node implementation</span>
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="LLMChatNode"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMChatNode">[docs]</a><span class="k">class</span> <span class="nc">LLMChatNode</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    LLM chat node (OpenAI-compatible)</span>
+<span class="sd">    Input: str / list[messages] / dict({&quot;messages&quot;:[...]})</span>
+<span class="sd">    Output: str (model generated text)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="LLMChatNode.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMChatNode.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;nndeploy.api_llm.LLMChatNode&quot;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_desc</span><span class="p">(</span><span class="s2">&quot;LLM chat node (OpenAI-compatible)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_input_type</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_type</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_node_type</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">NodeType</span><span class="o">.</span><span class="n">Intermediate</span><span class="p">)</span>
+
+        <span class="c1"># Frontend editable parameters (exposed via serialize/deserialize)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;https://api.openai.com&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key_env</span> <span class="o">=</span> <span class="s2">&quot;OPENAI_API_KEY&quot;</span>  <span class="c1"># environment variable to read Key (optional)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                    <span class="c1"># allow frontend to provide Key inline (priority if allowed)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_inline_api_key</span> <span class="o">=</span> <span class="kc">True</span>     <span class="c1"># security switch for inline key usage</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_tokens</span> <span class="o">=</span> <span class="mi">512</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout_s</span> <span class="o">=</span> <span class="mf">60.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retry</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retry_backoff_s</span> <span class="o">=</span> <span class="mf">1.2</span>
+
+        <span class="c1"># New features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span> <span class="o">=</span> <span class="kc">False</span>                  <span class="c1"># streaming mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream_print</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># print streaming pieces to stdout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response_json_mode</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># enforce JSON object responses (if supported)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json_schema</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit_usage_to_log</span> <span class="o">=</span> <span class="kc">True</span>        <span class="c1"># log token usage if present</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verify_tls</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># True/False or CA bundle path</span>
+
+        <span class="c1"># NEW: Proxies as frontend parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">http_proxy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>            <span class="c1"># e.g. &quot;http://user:pass@host:port&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">https_proxy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>           <span class="c1"># e.g. &quot;https://user:pass@host:port&quot;</span>
+
+        <span class="c1"># Aggregate into a dict for frontend rendering/editing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frontend_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;api_base&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_base</span><span class="p">,</span>
+            <span class="s2">&quot;api_key_env&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key_env</span><span class="p">,</span>
+            <span class="s2">&quot;api_key&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">,</span>                     <span class="c1"># UI should render this field; value won&#39;t be persisted</span>
+            <span class="s2">&quot;allow_inline_api_key&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_inline_api_key</span><span class="p">,</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span>
+            <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_tokens</span><span class="p">,</span>
+            <span class="s2">&quot;system_prompt&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_prompt</span><span class="p">,</span>
+            <span class="s2">&quot;timeout_s&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout_s</span><span class="p">,</span>
+            <span class="s2">&quot;retry&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">retry</span><span class="p">,</span>
+            <span class="s2">&quot;retry_backoff_s&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">retry_backoff_s</span><span class="p">,</span>
+            <span class="s2">&quot;stream&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="p">,</span>
+            <span class="s2">&quot;stream_print&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_print</span><span class="p">,</span>
+            <span class="s2">&quot;response_json_mode&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_json_mode</span><span class="p">,</span>
+            <span class="s2">&quot;json_schema&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_schema</span><span class="p">,</span>
+            <span class="s2">&quot;emit_usage_to_log&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">emit_usage_to_log</span><span class="p">,</span>
+            <span class="s2">&quot;verify_tls&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify_tls</span><span class="p">,</span>
+            <span class="c1"># NEW: proxies exposed to UI</span>
+            <span class="s2">&quot;http_proxy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_proxy</span><span class="p">,</span>
+            <span class="s2">&quot;https_proxy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">https_proxy</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+    <span class="c1"># Sync frontend parameters back to instance variables</span>
+    <span class="k">def</span> <span class="nf">_sync_params_from_frontend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frontend_params</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;api_base&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_base</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key_env</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;api_key_env&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key_env</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;api_key&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">))</span>  <span class="c1"># UI can set it each time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_inline_api_key</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;allow_inline_api_key&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_inline_api_key</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_tokens</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_tokens&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_tokens</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_prompt</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_prompt</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timeout_s&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout_s</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retry</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;retry&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retry</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retry_backoff_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;retry_backoff_s&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retry_backoff_s</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stream&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream_print</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stream_print&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_print</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response_json_mode</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response_json_mode&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_json_mode</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json_schema</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;json_schema&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_schema</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit_usage_to_log</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;emit_usage_to_log&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">emit_usage_to_log</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verify_tls</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verify_tls&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify_tls</span><span class="p">)</span>
+
+        <span class="c1"># NEW: proxies</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">http_proxy</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http_proxy&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_proxy</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">https_proxy</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https_proxy&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">https_proxy</span><span class="p">))</span>
+
+<div class="viewcode-block" id="LLMChatNode.run"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMChatNode.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 0) Interrupt guard</span>
+        <span class="k">if</span> <span class="n">_should_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+
+        <span class="c1"># 1) Get input</span>
+        <span class="n">input_edge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="n">input_edge</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># May be str / list / dict</span>
+
+        <span class="c1"># 2) Sync parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sync_params_from_frontend</span><span class="p">()</span>
+
+        <span class="c1"># 3) API key selection (priority: inline key if allowed &gt; environment variable)</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_inline_api_key</span><span class="p">:</span>
+            <span class="n">api_key</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+            <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key_env</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] Missing API key. &quot;</span>
+                   <span class="sa">f</span><span class="s2">&quot;Please set &#39;frontend_params.api_key&#39; (if allowed) or environment variable &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key_env</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+            <span class="n">output_edge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">output_edge</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+
+        <span class="c1"># 4) Build params object and messages</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">LLMParams</span><span class="p">(</span>
+            <span class="n">api_base</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">api_base</span><span class="p">,</span>
+            <span class="n">api_key_env</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key_env</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span>
+            <span class="n">max_tokens</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_tokens</span><span class="p">,</span>
+            <span class="n">system_prompt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">system_prompt</span><span class="p">,</span>
+            <span class="n">timeout_s</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout_s</span><span class="p">,</span>
+            <span class="n">retry</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">retry</span><span class="p">,</span>
+            <span class="n">retry_backoff_s</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">retry_backoff_s</span><span class="p">,</span>
+            <span class="n">stream</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="p">,</span>
+            <span class="n">response_json_mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">response_json_mode</span><span class="p">,</span>
+            <span class="n">json_schema</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">json_schema</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">json_schema</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="n">_normalize_messages</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">system_prompt</span><span class="p">)</span>
+
+        <span class="c1"># 5) Log target (mask scheme)</span>
+        <span class="n">safe_base</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">api_base</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;https://&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;http://&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[LLMChatNode] base=</span><span class="si">{</span><span class="n">safe_base</span><span class="si">}</span><span class="s2"> model=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2"> stream=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 6) Build proxies from frontend or environment</span>
+        <span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_proxy</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;HTTP_PROXY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;http_proxy&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">https_proxy</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;HTTPS_PROXY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;https_proxy&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="c1"># 7) Call LLM</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">call_llm</span><span class="p">(</span>
+                <span class="n">params</span><span class="p">,</span>
+                <span class="n">messages</span><span class="p">,</span>
+                <span class="n">api_key_override</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+                <span class="n">node_for_interrupt</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">emit_usage_to_log</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">emit_usage_to_log</span><span class="p">,</span>
+                <span class="n">stream_print</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_print</span><span class="p">,</span>
+                <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span>
+                <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verify_tls</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;[LLMChatNode] LLM call failed&quot;</span><span class="p">)</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[LLMChatNode ERROR] </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="c1"># 8) Write output to edge 0</span>
+        <span class="n">output_edge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">output_edge</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span></div>
+
+    <span class="c1"># Serialization / Deserialization</span>
+<div class="viewcode-block" id="LLMChatNode.serialize"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMChatNode.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">())</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frontend_params</span><span class="p">)</span>
+
+        <span class="c1"># Always include the api_key field for UI rendering, but NEVER return the real value</span>
+        <span class="n">fp</span><span class="p">[</span><span class="s2">&quot;api_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># Provide status &amp; masked preview so UI can show &quot;configured&quot; state</span>
+        <span class="n">has_key</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">)</span>
+        <span class="n">fp</span><span class="p">[</span><span class="s2">&quot;has_inline_api_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">has_key</span>
+        <span class="k">if</span> <span class="n">has_key</span><span class="p">:</span>
+            <span class="n">fp</span><span class="p">[</span><span class="s2">&quot;api_key_preview&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_mask_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">)</span>
+
+        <span class="c1"># Proxies are returned as-is so UI can render &amp; persist them</span>
+        <span class="c1"># (If you don&#39;t want to persist proxies with credentials, mask or drop them here.)</span>
+
+        <span class="n">base</span><span class="p">[</span><span class="s2">&quot;frontend_params&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LLMChatNode.deserialize"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMChatNode.deserialize">[docs]</a>    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;frontend_params&quot;</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frontend_params</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s2">&quot;frontend_params&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">frontend_params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sync_params_from_frontend</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span></div></div>
+
+
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+<span class="c1"># Node creator &amp; registration</span>
+<span class="c1"># ──────────────────────────────────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="LLMChatNodeCreator"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMChatNodeCreator">[docs]</a><span class="k">class</span> <span class="nc">LLMChatNodeCreator</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">NodeCreator</span><span class="p">):</span>
+<div class="viewcode-block" id="LLMChatNodeCreator.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMChatNodeCreator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">LLMChatNode</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="LLMChatNodeCreator.create_node"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.api_llm.llm_chat.html#nndeploy.api_llm.llm_chat.LLMChatNodeCreator.create_node">[docs]</a>    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">],</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">LLMChatNode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span></div></div>
+
+
+<span class="c1"># Register into NNDeploy</span>
+<span class="n">llm_chat_node_creator</span> <span class="o">=</span> <span class="n">LLMChatNodeCreator</span><span class="p">()</span>
+<span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="s2">&quot;nndeploy.api_llm.LLMChatNode&quot;</span><span class="p">,</span> <span class="n">llm_chat_node_creator</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

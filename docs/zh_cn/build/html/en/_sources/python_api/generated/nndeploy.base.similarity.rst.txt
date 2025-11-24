@@ -1,0 +1,32 @@
+nndeploy.base.similarity
+========================
+
+.. automodule:: nndeploy.base.similarity
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      cosine_similarity
+      euclidean_similarity
+      histogram_data_distribution
+      mse_similarity
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discussion on Graph Structure &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Discussion on Graph Structure</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Discussion on Graph Structure<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>Conclusion<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>It is recommended to use inheritance, rather than the createGraph method</p></li>
+<li><p>Support for dynamic graphs is also needed</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>Code<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/classification/classification.h&quot;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/any.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/common.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/glic_stl_include.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/log.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/macro.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/object.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/opencv_include.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/status.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/base/string.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/classification/util.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/dag/edge.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/dag/node.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/device/buffer.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/device/device.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/device/memory_pool.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/device/tensor.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/infer/infer.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/op/op_softmax.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nndeploy/preprocess/cvt_resize_norm_trans.h&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">nndeploy</span><span class="w"> </span><span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">classification</span><span class="w"> </span><span class="p">{</span>
+
+<span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">ClassificationPostProcess::run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ClassificationPostParam</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ClassificationPostParam</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">param_</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
+
+<span class="w">  </span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="o">*</span><span class="n">tensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputs_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">getTensor</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// tensor-&gt;print();</span>
+<span class="w">  </span><span class="c1">// tensor-&gt;getDesc().print();</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ir</span><span class="o">::</span><span class="n">SoftmaxParam</span><span class="o">&gt;</span><span class="w"> </span><span class="n">op_param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ir</span><span class="o">::</span><span class="n">SoftmaxParam</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="n">op_param</span><span class="o">-&gt;</span><span class="n">axis_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">softmax_tensor</span><span class="p">(</span><span class="n">tensor</span><span class="o">-&gt;</span><span class="n">getDevice</span><span class="p">(),</span><span class="w"> </span><span class="n">tensor</span><span class="o">-&gt;</span><span class="n">getDesc</span><span class="p">());</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="o">::</span><span class="n">softmax</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span><span class="w"> </span><span class="n">op_param</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">softmax_tensor</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;op::softmax failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">softmax_tensor</span><span class="p">.</span><span class="n">getData</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">batch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">softmax_tensor</span><span class="p">.</span><span class="n">getShapeIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">softmax_tensor</span><span class="p">.</span><span class="n">getShapeIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">ClassificationResult</span><span class="w"> </span><span class="o">*</span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ClassificationResult</span><span class="p">();</span>
+<span class="w">  </span><span class="n">param</span><span class="o">-&gt;</span><span class="n">topk_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="o">-&gt;</span><span class="n">topk_</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">topk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">param</span><span class="o">-&gt;</span><span class="n">topk_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">results</span><span class="o">-&gt;</span><span class="n">labels_</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">topk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">batch</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 使用优先队列找出topk个最大值</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">batch</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">iter_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">num_classes</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">label_ids_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">topKIndices</span><span class="p">(</span><span class="n">iter_data</span><span class="p">,</span><span class="w"> </span><span class="n">num_classes</span><span class="p">,</span><span class="w"> </span><span class="n">topk</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">topk</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">results</span><span class="o">-&gt;</span><span class="n">labels_</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">topk</span><span class="p">].</span><span class="n">index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">      </span><span class="n">results</span><span class="o">-&gt;</span><span class="n">labels_</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">topk</span><span class="p">].</span><span class="n">label_ids_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label_ids_</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="n">results</span><span class="o">-&gt;</span><span class="n">labels_</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">topk</span><span class="p">].</span><span class="n">scores_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">iter_data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">label_ids_</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">outputs_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="w">  </span><span class="nb">false</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Not recommended to use createGraph method anymore</span>
+<span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="nf">createClassificationGraph</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">InferenceType</span><span class="w"> </span><span class="n">inference_type</span><span class="p">,</span>
+<span class="w">    </span><span class="n">base</span><span class="o">::</span><span class="n">DeviceType</span><span class="w"> </span><span class="n">device_type</span><span class="p">,</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">,</span>
+<span class="w">    </span><span class="n">base</span><span class="o">::</span><span class="n">ModelType</span><span class="w"> </span><span class="n">model_type</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_path</span><span class="p">,</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">model_value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">infer_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createEdge</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">infer_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createEdge</span><span class="p">(</span><span class="s">&quot;resnetv17_dense0_fwd&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">pre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTrans</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="s">&quot;preprocess&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">infer_input</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">infer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="s">&quot;infer&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inference_type</span><span class="p">,</span><span class="w"> </span><span class="n">infer_input</span><span class="p">,</span><span class="w"> </span><span class="n">infer_output</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">ClassificationPostProcess</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="s">&quot;postprocess&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">infer_output</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*</span><span class="n">pre_param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pre</span><span class="o">-&gt;</span><span class="n">getParam</span><span class="p">());</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">src_pixel_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kPixelTypeBGR</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">dst_pixel_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kPixelTypeRGB</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">interp_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kInterpTypeLinear</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">h_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">224</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">w_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">224</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">mean_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.485</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">mean_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.456</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">mean_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.406</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">std_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.229</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">std_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.224</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pre_param</span><span class="o">-&gt;</span><span class="n">std_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.225</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">inference</span><span class="o">::</span><span class="n">InferenceParam</span><span class="w"> </span><span class="o">*</span><span class="n">inference_param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="p">(</span><span class="n">inference</span><span class="o">::</span><span class="n">InferenceParam</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">infer</span><span class="o">-&gt;</span><span class="n">getParam</span><span class="p">());</span>
+<span class="w">  </span><span class="n">inference_param</span><span class="o">-&gt;</span><span class="n">is_path_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">is_path</span><span class="p">;</span>
+<span class="w">  </span><span class="n">inference_param</span><span class="o">-&gt;</span><span class="n">model_value_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_value</span><span class="p">;</span>
+<span class="w">  </span><span class="n">inference_param</span><span class="o">-&gt;</span><span class="n">device_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">device_type</span><span class="p">;</span>
+<span class="w">  </span><span class="n">inference_param</span><span class="o">-&gt;</span><span class="n">model_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_type</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// TODO: 很多信息可以从 preprocess 和 infer 中获取</span>
+<span class="w">  </span><span class="n">ClassificationPostParam</span><span class="w"> </span><span class="o">*</span><span class="n">post_param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">ClassificationPostParam</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">post</span><span class="o">-&gt;</span><span class="n">getParam</span><span class="p">());</span>
+<span class="w">  </span><span class="n">post_param</span><span class="o">-&gt;</span><span class="n">topk_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">graph</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Not recommended to use createGraph method anymore</span>
+<span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="nf">createClassificationGraphV0</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">,</span>
+<span class="w">    </span><span class="n">base</span><span class="o">::</span><span class="n">Param</span><span class="w"> </span><span class="o">*</span><span class="n">pre_param</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Param</span><span class="w"> </span><span class="o">*</span><span class="n">infer_param</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Param</span>
+<span class="w">    </span><span class="o">*</span><span class="n">post_param</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">pre</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTrans</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;preprocess&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">infer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;infer&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pre</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">post</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">ClassificationPostProcess</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;postprocess&quot;</span><span class="p">,</span>
+<span class="w">                                                                 </span><span class="n">infer</span><span class="p">,</span>
+<span class="w">                                                                 </span><span class="n">output</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pre</span><span class="o">-&gt;</span><span class="n">setParam</span><span class="p">(</span><span class="n">pre_param</span><span class="p">);</span>
+<span class="w">  </span><span class="n">infer</span><span class="o">-&gt;</span><span class="n">setParam</span><span class="p">(</span><span class="n">infer_param</span><span class="p">);</span>
+<span class="w">  </span><span class="n">post</span><span class="o">-&gt;</span><span class="n">setParam</span><span class="p">(</span><span class="n">post_param</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">graph</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Not recommended to use createGraph method anymore</span>
+<span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="nf">createClassificationGraphOptInterface</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pre_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">InferParam</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">infer_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">ClassificationPostParam</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">post_desc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">pre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTrans</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pre_desc</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">infer</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">ClassificationGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="n">infer_desc</span><span class="p">);</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">post</span>
+<span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">ClassificationPostProcess</span><span class="o">&gt;</span><span class="p">(</span><span class="n">post_desc</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">dump</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">graph</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief Static graph implementation for ResNet classification</span>
+<span class="cm"> *</span>
+<span class="cm"> * This class represents a fixed graph structure for image classification</span>
+<span class="cm"> using</span>
+<span class="cm"> * ResNet models. The graph consists of three main stages:</span>
+<span class="cm"> * 1. Preprocessing: Converts input image format and resizes to model input</span>
+<span class="cm"> size</span>
+<span class="cm"> * 2. Inference: Runs the ResNet model inference</span>
+<span class="cm"> * 3. Postprocessing: Processes model output to get classification results</span>
+<span class="cm"> *</span>
+<span class="cm"> * All node connections and data flow paths are determined at construction</span>
+<span class="cm"> time</span>
+<span class="cm"> * and cannot be modified during runtime. This provides better performance</span>
+<span class="cm"> but</span>
+<span class="cm"> * less flexibility compared to dynamic graphs.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Expected data flow:</span>
+<span class="cm"> * input image -&gt; color conversion &amp; resize -&gt; ResNet inference -&gt;</span>
+<span class="cm"> * classification results</span>
+<span class="cm"> */</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ClassificationGraph</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Constructor that builds the complete graph structure</span>
+<span class="cm">   * @param name Graph name for identification</span>
+<span class="cm">   * @param input Input edge that receives the raw image data</span>
+<span class="cm">   *        Must be named &quot;input&quot; to match graph expectations</span>
+<span class="cm">   * @param output Output edge that provides classification results</span>
+<span class="cm">   *        Must be named &quot;output&quot; to match graph expectations</span>
+<span class="cm">   * @param pre_desc Preprocess node descriptor defining color conversion and</span>
+<span class="cm">   * resize inputs_: Must contain &quot;input&quot; edge name outputs_: Must contain</span>
+<span class="cm">   * &quot;data&quot; edge name for model input Parameters control color space</span>
+<span class="cm">   conversion</span>
+<span class="cm">   * and resize operation</span>
+<span class="cm">   * @param infer_desc Inference node descriptor for ResNet model</span>
+<span class="cm">   *        inputs_: Must contain &quot;data&quot; edge name matching preprocess output</span>
+<span class="cm">   *        outputs_: Must contain &quot;resnetv17_dense0_fwd&quot; edge name</span>
+<span class="cm">   *        Parameters specify model configuration and runtime settings</span>
+<span class="cm">   * @param post_desc Postprocess node descriptor for classification</span>
+<span class="cm">   *        inputs_: Must contain &quot;resnetv17_dense0_fwd&quot; matching model</span>
+<span class="cm">   output</span>
+<span class="cm">   *        outputs_: Must contain &quot;output&quot; edge name</span>
+<span class="cm">   *        Parameters control classification post-processing like top-k</span>
+<span class="cm">   * @note The graph structure is fixed after construction</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">ClassificationGraph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*</span><span class="n">pre_param</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">infer</span><span class="o">::</span><span class="n">InferParam</span><span class="w"> </span><span class="o">*</span><span class="n">infer_param</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">ClassificationPostParam</span><span class="w"> </span><span class="o">*</span><span class="n">post_param</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">infer_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createEdge</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">infer_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createEdge</span><span class="p">(</span><span class="s">&quot;resnetv17_dense0_fwd&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">pre_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTrans</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;preprocess&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">infer_input</span><span class="p">,</span><span class="w"> </span><span class="n">pre_param</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">infer_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;infer&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inference_type</span><span class="p">,</span><span class="w"> </span><span class="n">infer_input</span><span class="p">,</span><span class="w"> </span><span class="n">infer_output</span><span class="p">,</span><span class="w"> </span><span class="n">infer_param</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">post_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">ClassificationPostProcess</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;postprocess&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">infer_output</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">post_param</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Print graph structure for debugging</span>
+<span class="w">    </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">dump</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Set preprocessing parameters</span>
+<span class="cm">   * @param pixel_type Input image pixel format (e.g. RGB, BGR, etc)</span>
+<span class="cm">   * @return kStatusCodeOk on success</span>
+<span class="cm">   * @note This allows runtime configuration of input format while</span>
+<span class="cm">   maintaining</span>
+<span class="cm">   * graph structure</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">setPreParam</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">PixelType</span><span class="w"> </span><span class="n">pixel_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pre_</span><span class="o">-&gt;</span><span class="n">getParam</span><span class="p">());</span>
+<span class="w">    </span><span class="n">param</span><span class="o">-&gt;</span><span class="n">src_pixel_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pixel_type</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Execute graph inference</span>
+<span class="cm">   * @return kStatusCodeOk on success</span>
+<span class="cm">   * @note Execution flow:</span>
+<span class="cm">   * 1. Pre-run hook for any setup/debug/timeprofile</span>
+<span class="cm">   * 2. Graph inference through all nodes</span>
+<span class="cm">   * 3. Post-run hook for cleanup/debug/timeprofile</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">hook_prerun</span><span class="p">();</span>
+<span class="w">    </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="o">::</span><span class="n">run</span><span class="p">();</span>
+<span class="w">    </span><span class="n">hook_postrun</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="c1">// Pointer to preprocess node for color conversion and resize</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">pre_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">infer_</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="k">nullptr</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pointer to inference node running ResNet model</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">post_</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="k">nullptr</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pointer to postprocess node for classification results</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief A static graph implementation for ResNet-based classification</span>
+<span class="cm"> *</span>
+<span class="cm"> * This class represents a fixed graph structure for image classification</span>
+<span class="cm"> using</span>
+<span class="cm"> * ResNet models. The graph consists of three main stages:</span>
+<span class="cm"> * 1. Preprocessing: Converts input image format and resizes to model input</span>
+<span class="cm"> size</span>
+<span class="cm"> * 2. Inference: Runs the ResNet model inference</span>
+<span class="cm"> * 3. Postprocessing: Processes model output to get classification results</span>
+<span class="cm"> *</span>
+<span class="cm"> * All node connections and data flow paths are determined at construction</span>
+<span class="cm"> time</span>
+<span class="cm"> * and cannot be modified during runtime. This provides better performance</span>
+<span class="cm"> but</span>
+<span class="cm"> * less flexibility compared to dynamic graphs.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Expected data flow:</span>
+<span class="cm"> * input image -&gt; color conversion &amp; resize -&gt; ResNet inference -&gt;</span>
+<span class="cm"> * classification results</span>
+<span class="cm"> */</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ClassificationGraph</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Constructor that builds the complete graph structure</span>
+<span class="cm">   * @param name Graph name for identification</span>
+<span class="cm">   * @param input Input edge that receives the raw image data</span>
+<span class="cm">   *        Must be named &quot;input&quot; to match graph expectations</span>
+<span class="cm">   * @param output Output edge that provides classification results</span>
+<span class="cm">   *        Must be named &quot;output&quot; to match graph expectations</span>
+<span class="cm">   * @param pre_desc Preprocess node descriptor defining color conversion and</span>
+<span class="cm">   * resize inputs_: Must contain &quot;input&quot; edge name outputs_: Must contain</span>
+<span class="cm">   * &quot;data&quot; edge name for model input Parameters control color space</span>
+<span class="cm">   conversion</span>
+<span class="cm">   * and resize operation</span>
+<span class="cm">   * @param infer_desc Inference node descriptor for ResNet model</span>
+<span class="cm">   *        inputs_: Must contain &quot;data&quot; edge name matching preprocess output</span>
+<span class="cm">   *        outputs_: Must contain &quot;resnetv17_dense0_fwd&quot; edge name</span>
+<span class="cm">   *        Parameters specify model configuration and runtime settings</span>
+<span class="cm">   * @param post_desc Postprocess node descriptor for classification</span>
+<span class="cm">   *        inputs_: Must contain &quot;resnetv17_dense0_fwd&quot; matching model</span>
+<span class="cm">   output</span>
+<span class="cm">   *        outputs_: Must contain &quot;output&quot; edge name</span>
+<span class="cm">   *        Parameters control classification post-processing like top-k</span>
+<span class="cm">   * @note The graph structure is fixed after construction</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">ClassificationGraph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="o">&gt;</span>
+<span class="w">                            </span><span class="o">*</span><span class="n">pre_desc</span><span class="p">,</span><span class="w"> </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">InferParam</span><span class="o">&gt;</span>
+<span class="w">                            </span><span class="o">*</span><span class="n">infer_desc</span><span class="p">,</span><span class="w"> </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">ClassificationPostParam</span><span class="o">&gt;</span>
+<span class="w">                            </span><span class="o">*</span><span class="n">post_desc</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pre_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTrans</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pre_desc</span><span class="p">);</span>
+<span class="w">    </span><span class="n">infer_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">infer_desc</span><span class="p">);</span>
+<span class="w">    </span><span class="n">post_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">ClassificationPostProcess</span><span class="o">&gt;</span><span class="p">(</span><span class="n">post_desc</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Set preprocessing parameters</span>
+<span class="cm">   * @param pixel_type Input image pixel format (e.g. RGB, BGR, etc)</span>
+<span class="cm">   * @return kStatusCodeOk on success</span>
+<span class="cm">   * @note This allows runtime configuration of input format while</span>
+<span class="cm">   maintaining</span>
+<span class="cm">   * graph structure</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">setPreParam</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">PixelType</span><span class="w"> </span><span class="n">pixel_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pre_</span><span class="o">-&gt;</span><span class="n">getParam</span><span class="p">());</span>
+<span class="w">    </span><span class="n">param</span><span class="o">-&gt;</span><span class="n">src_pixel_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pixel_type</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Execute graph inference</span>
+<span class="cm">   * @return kStatusCodeOk on success</span>
+<span class="cm">   * @note Execution flow:</span>
+<span class="cm">   * 1. Pre-run hook for any setup/debug/timeprofile</span>
+<span class="cm">   * 2. Graph inference through all nodes</span>
+<span class="cm">   * 3. Post-run hook for cleanup/debug/timeprofile</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">hook_prerun</span><span class="p">();</span>
+<span class="w">    </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="o">::</span><span class="n">run</span><span class="p">();</span>
+<span class="w">    </span><span class="n">hook_postrun</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="c1">// Pointer to preprocess node for color conversion and resize</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">pre_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">infer_</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="k">nullptr</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pointer to inference node running ResNet model</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">post_</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="k">nullptr</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pointer to postprocess node for classification results</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief Implementation of ResNet classification network graph structure</span>
+<span class="cm"> * @details This class sits between static and dynamic graphs, with each desc</span>
+<span class="cm"> * specifying outputs_ Contains three main nodes:</span>
+<span class="cm"> * 1. Preprocessing node (pre_): Performs image color conversion and resizing</span>
+<span class="cm"> * 2. Inference node (infer_): Executes ResNet model inference</span>
+<span class="cm"> * 3. Postprocessing node (post_): Processes classification results</span>
+<span class="cm"> */</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ClassificationGraph</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Constructor to create and initialize graph structure</span>
+<span class="cm">   * @param name Graph name</span>
+<span class="cm">   * @param pre_desc Preprocessing node descriptor containing output names</span>
+<span class="cm">   * @param infer_desc Inference node descriptor containing output names</span>
+<span class="cm">   * @param post_desc Postprocessing node descriptor containing output names</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">ClassificationGraph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="o">&gt;</span>
+<span class="w">                            </span><span class="o">*</span><span class="n">pre_desc</span><span class="p">,</span><span class="w"> </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">InferParam</span><span class="o">&gt;</span>
+<span class="w">                            </span><span class="o">*</span><span class="n">infer_desc</span><span class="p">,</span><span class="w"> </span><span class="n">NodeDesc</span><span class="o">&lt;</span><span class="n">ClassificationPostParam</span><span class="o">&gt;</span>
+<span class="w">                            </span><span class="o">*</span><span class="n">post_desc</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create preprocessing node for image preprocessing</span>
+<span class="w">    </span><span class="n">pre_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTrans</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pre_desc</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Create inference node for ResNet model execution</span>
+<span class="w">    </span><span class="n">infer_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">ClassificationGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="n">infer_desc</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Create postprocessing node for classification results</span>
+<span class="w">    </span><span class="n">post_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">ClassificationPostProcess</span><span class="o">&gt;</span><span class="p">(</span><span class="n">post_desc</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Set preprocessing parameters</span>
+<span class="cm">   * @param pixel_type Input image pixel format (e.g. RGB, BGR)</span>
+<span class="cm">   * @return kStatusCodeOk on success</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">setPreParam</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">PixelType</span><span class="w"> </span><span class="n">pixel_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pre_</span><span class="o">-&gt;</span><span class="n">getParam</span><span class="p">());</span>
+<span class="w">    </span><span class="n">param</span><span class="o">-&gt;</span><span class="n">src_pixel_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pixel_type</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Execute graph inference</span>
+<span class="cm">   * @return kStatusCodeOk on success</span>
+<span class="cm">   * @details Execution flow:</span>
+<span class="cm">   * 1. Call pre-run hook</span>
+<span class="cm">   * 2. Execute graph inference</span>
+<span class="cm">   * 3. Call post-run hook</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">hook_prerun</span><span class="p">();</span>
+<span class="w">    </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="o">::</span><span class="n">run</span><span class="p">();</span>
+<span class="w">    </span><span class="n">hook_postrun</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Forward propagation function</span>
+<span class="cm">   * @param inputs Input tensor list</span>
+<span class="cm">   * @param output_names List of specified output names</span>
+<span class="cm">   * @return Output tensor list</span>
+<span class="cm">   * @details Execution order:</span>
+<span class="cm">   * 1. Preprocessing</span>
+<span class="cm">   * 2. Model inference</span>
+<span class="cm">   * 3. Postprocessing</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">inputs</span><span class="p">,</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;&gt;</span><span class="w"> </span><span class="n">output_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">forward</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span><span class="w"> </span><span class="n">output_names</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">inputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pre_</span><span class="p">(</span><span class="n">inputs</span><span class="p">);</span><span class="w">    </span><span class="c1">// Output names determined by pre_desc</span>
+<span class="w">    </span><span class="n">inputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">infer_</span><span class="p">(</span><span class="n">inputs</span><span class="p">);</span><span class="w">  </span><span class="c1">// Output names determined by infer_desc</span>
+<span class="w">    </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">post_</span><span class="p">(</span><span class="n">inputs</span><span class="p">);</span><span class="w">  </span><span class="c1">// Output names determined by infer_desc</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">outputs</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">pre_</span><span class="p">;</span><span class="w">    </span><span class="c1">///&lt; Preprocessing node pointer</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">infer_</span><span class="p">;</span><span class="w">  </span><span class="c1">///&lt; Inference node pointer</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">post_</span><span class="p">;</span><span class="w">   </span><span class="c1">///&lt; Postprocessing node pointer</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief Dynamic graph implementation of ResNet classification network</span>
+<span class="cm"> * @details Dynamic graph containing three nodes: preprocessing, inference</span>
+<span class="cm"> and</span>
+<span class="cm"> * postprocessing Preprocessing node handles image format conversion and</span>
+<span class="cm"> * resizing Inference node executes ResNet model inference Postprocessing</span>
+<span class="cm"> node</span>
+<span class="cm"> * processes inference results, including softmax and top-k classification</span>
+<span class="cm"> */</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ClassificationGraph</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Constructor</span>
+<span class="cm">   * @param name Graph name</span>
+<span class="cm">   * @param pre_param Preprocessing parameters, including input/output image</span>
+<span class="cm">   * format, size etc.</span>
+<span class="cm">   * @param infer_param Inference parameters, including model path, device</span>
+<span class="cm">   type</span>
+<span class="cm">   * etc.</span>
+<span class="cm">   * @param post_param Postprocessing parameters, including number of</span>
+<span class="cm">   classes,</span>
+<span class="cm">   * thresholds etc.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">ClassificationGraph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*</span><span class="n">pre_param</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">infer</span><span class="o">::</span><span class="n">InferParam</span><span class="w"> </span><span class="o">*</span><span class="n">infer_param</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">ClassificationPostParam</span><span class="w"> </span><span class="o">*</span><span class="n">post_param</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pre_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTrans</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pre_param</span><span class="p">);</span>
+<span class="w">    </span><span class="n">infer_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">infer_param</span><span class="p">);</span>
+<span class="w">    </span><span class="n">post_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">ClassificationPostProcess</span><span class="o">&gt;</span><span class="p">(</span><span class="n">post_param</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Set preprocessing parameters</span>
+<span class="cm">   * @param pixel_type Input image pixel type, supports RGB, BGR, RGBA etc.</span>
+<span class="cm">   * @return kStatusCodeOk on success</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">setPreParam</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">PixelType</span><span class="w"> </span><span class="n">pixel_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">preprocess</span><span class="o">::</span><span class="n">CvtResizeNormTransParam</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pre_</span><span class="o">-&gt;</span><span class="n">getParam</span><span class="p">());</span>
+<span class="w">    </span><span class="n">param</span><span class="o">-&gt;</span><span class="n">src_pixel_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pixel_type</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Execute graph inference</span>
+<span class="cm">   * @return kStatusCodeOk on success</span>
+<span class="cm">   * @details Execution flow:</span>
+<span class="cm">   * 1. Call pre-run hook for setup</span>
+<span class="cm">   * 2. Execute graph inference in topological order</span>
+<span class="cm">   * 3. Call post-run hook for cleanup</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">hook_prerun</span><span class="p">();</span>
+<span class="w">    </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="o">::</span><span class="n">run</span><span class="p">();</span>
+<span class="w">    </span><span class="n">hook_postrun</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * @brief Forward propagation function</span>
+<span class="cm">   * @param inputs Input tensor list containing image data</span>
+<span class="cm">   * @param output_names List of specified output names for intermediate</span>
+<span class="cm">   results</span>
+<span class="cm">   * @return Output tensor list containing classification results</span>
+<span class="cm">   * @details Execution order:</span>
+<span class="cm">   * 1. Preprocessing: Convert input image to model required format</span>
+<span class="cm">   * 2. Model inference: Execute ResNet model computation</span>
+<span class="cm">   * 3. Postprocessing: Process model output to get final classification</span>
+<span class="cm">   results</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">inputs</span><span class="p">,</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;&gt;</span><span class="w"> </span><span class="n">output_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">forward</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span><span class="w"> </span><span class="n">output_names</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Preprocessing output &quot;data&quot; represents processed image</span>
+<span class="w">    </span><span class="n">inputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pre_</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;data&quot;</span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// Inference output &quot;resnetv17_dense0_fwd&quot;</span>
+<span class="w">    </span><span class="c1">// is the final FC layer output</span>
+<span class="w">    </span><span class="n">inputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">infer_</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;resnetv17_dense0_fwd&quot;</span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// Postprocessing outputs specified by output_names,</span>
+<span class="w">    </span><span class="c1">// typically class results and confidence</span>
+<span class="w">    </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">post_</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span><span class="w"> </span><span class="n">output_names</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">outputs</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">pre_</span><span class="p">;</span><span class="w">    </span><span class="c1">///&lt; Preprocessing node pointer for image preprocessing</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">infer_</span><span class="p">;</span><span class="w">  </span><span class="c1">///&lt; Inference node pointer for model inference</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">post_</span><span class="p">;</span><span class="w">   </span><span class="c1">///&lt; Postprocessing node pointer for result processing</span>
+<span class="p">};</span>
+
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace classification</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace nndeploy</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI算法推理部署加速 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C++ API Reference" href="../cpp_api/doxygen.html" />
+    <link rel="prev" title="Building Ascend Environment" href="ascend_env.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AI算法推理部署加速</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">功能层面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">模型层面优化</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">模型图优化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">模型量化</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">性能优化</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">前后处理算子优化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">内存优化技术</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">并行优化手段</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">推理框架深度优化</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">兼容性</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">跨平台支持</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">开发语言支持</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">将算法部署在内部推理框架上的工作内容（可选项）</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">AI算法推理部署加速</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ai">
+<h1>AI算法推理部署加速<a class="headerlink" href="#ai" title="Permalink to this heading">¶</a></h1>
+<p>随着AI算法的快速发展，单个算法的推理部署呈现出定制化的特点。针对大模型和AIGC领域，有vLLM、sglang、xDit等专业化推理框架；而在小模型部署方面，也有mnn-llm、llama.cpp、chineseocr_lite、YOLOv5_NCNN、TensorRT-YOLO等优秀的解决方案。每个算法的生产落地都有优化空间和技术挑战。</p>
+<p>本文将从功能扩展、模型优化、性能提升、兼容性保障、推理框架五个方面，讨论AI算法推理部署加速的技术要点。</p>
+<p>如果您对某个AI算法领域有兴趣，并希望与nndeploy框架结合，开发特定领域的算法推理部署加速开源项目，我们可以为你提供技术支持（nndeploy可以提供：可视化工作流、有向无环图、多端推理部署、通用性能优化、异构设备管理、丰富基础组件等等）</p>
+<section id="id1">
+<h2>功能层面<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>支持该领域更多的算法，提供更全面的解决方案。</p></li>
+<li><p>多种场景的工作流搭建</p>
+<ul>
+<li><p>简单的端到端推理流程</p></li>
+<li><p>结合具体场景的组合</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h2>模型层面优化<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3>模型图优化<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>调用onnxslim、onnxoptimizer、onnxsim等优化工具，或手动实现以下优化：</p>
+<ul class="simple">
+<li><p><strong>算子融合</strong>：将多个连续算子合并为单个高效算子</p></li>
+<li><p><strong>常量折叠</strong>：编译时计算常量表达式，减少运行时开销</p></li>
+<li><p><strong>死代码消除</strong>：移除不影响输出的冗余计算节点</p></li>
+<li><p>…</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>模型量化<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>基于torch、推理框架原生工具或开源量化框架（如PPQ等）实现：</p>
+<ul class="simple">
+<li><p><strong>INT8量化</strong>：将FP32模型转换为INT8，显著减少内存占用和计算量</p></li>
+<li><p><strong>混合精度</strong>：在不同层使用不同精度，优化性能和精度的平衡</p></li>
+<li><p><strong>动态量化</strong>：运行时动态确定量化参数，平衡精度和性能</p></li>
+<li><p><strong>校准数据集</strong>：提供多样化的校准数据，确保量化后的模型精度</p></li>
+<li><p>…</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2>性能优化<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<section id="id6">
+<h3>前后处理算子优化<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>CUDA算子</strong>：针对NVIDIA GPU的高性能CUDA kernel实现</p></li>
+<li><p><strong>ARM NEON</strong>：利用ARM处理器的SIMD指令集加速</p></li>
+<li><p><strong>x86 AVX</strong>：充分利用Intel/AMD处理器的向量化指令</p></li>
+<li><p><strong>OpenCL算子</strong>：跨平台的并行计算实现</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>内存优化技术<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>零拷贝优化</strong>：减少不必要的数据拷贝操作，提升数据传输效率（尤其在推理的输入输出做零拷贝，可以带来较大的性能收益）</p></li>
+<li><p><strong>内存预分配</strong>：预先分配内存池，避免运行时的频繁内存分配</p></li>
+<li><p><strong>内存复用</strong>：复用中间结果的内存空间</p></li>
+<li><p><strong>显存管理</strong>：GPU显存的高效分配和回收策略</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>并行优化手段<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>框架提供了任务并行、流水线并行等手段，但还可以有更多的优化手段：</p>
+<ul class="simple">
+<li><p><strong>复杂工作流优化</strong>：针对特定工作流的定制化并行策略</p></li>
+<li><p><strong>基于torch部署的并行优化</strong>：利用PyTorch生态的各种并行优化技术</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>推理框架深度优化<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>TensorRT集成</strong>：</p>
+<ul>
+<li><p>自定义Plugin开发，补充缺失算子</p></li>
+<li><p>多模型共享内存，减少显存占用</p></li>
+<li><p>Dynamic Shape优化，适应变长输入</p></li>
+</ul>
+</li>
+<li><p><strong>OpenVINO适配</strong>：</p>
+<ul>
+<li><p>硬件特定优化</p></li>
+<li><p>精度配置和性能调优</p></li>
+</ul>
+</li>
+<li><p>…</p></li>
+</ul>
+</section>
+</section>
+<section id="id10">
+<h2>兼容性<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<section id="id11">
+<h3>跨平台支持<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>操作系统</strong>：Windows、Linux、macOS、Android、iOS</p></li>
+<li><p><strong>硬件架构</strong>：x86、x86_64、ARM、ARM64</p></li>
+<li><p><strong>计算设备</strong>：CPU、GPU、NPU、DSP等异构计算设备</p></li>
+<li><p><strong>推理引擎</strong>：TensorRT、ONNXRuntime、OpenVINO、TNN等</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>开发语言支持<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>C++ API</strong>：高性能的原生接口，适合生产环境部署</p></li>
+<li><p><strong>Python API</strong>：便于快速原型开发和算法验证</p></li>
+<li><p><strong>跨语言调用</strong>：支持其他语言通过FFI调用核心功能</p></li>
+</ul>
+</section>
+</section>
+<section id="id13">
+<h2>将算法部署在内部推理框架上的工作内容（可选项）<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>IR（中间表示）</strong>：补充缺失算子的IR定义</p></li>
+<li><p><strong>模型解释器</strong>：实现ONNX IR到内部IR的转换</p></li>
+<li><p><strong>手动构图</strong>：当无法导出为ONNX时，需要实现手动构图功能</p></li>
+<li><p><strong>缺失算子的实现</strong>：开发框架中尚未支持的算子</p></li>
+<li><p><strong>针对该模型的图优化</strong>：实现模型特定的图优化策略</p></li>
+<li><p><strong>计算图优化</strong>：适配该类模型的网络优化</p></li>
+<li><p><strong>基于图的内存优化</strong>：适配该类模型的内存管理模块优化</p></li>
+<li><p><strong>量化模型支持</strong>：适配该类模型的量化优化</p></li>
+<li><p><strong>多精度混合</strong>：适配该类模型的多精度优化策略</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ascend_env.html" class="btn btn-neutral float-left" title="Building Ascend Environment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cpp_api/doxygen.html" class="btn btn-neutral float-right" title="C++ API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

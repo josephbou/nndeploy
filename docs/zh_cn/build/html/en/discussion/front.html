@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TODO &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">TODO</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="todo">
+<h1>TODO<a class="headerlink" href="#todo" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>操作指南<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="id2">
+<h2>第二期<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p>界面</p>
+<ul class="simple">
+<li><p>感叹号检测：目前修改正确，不应该出现感叹号 (ok)</p></li>
+<li><p>节点方块长度，修改位好看的长度 (ok)</p></li>
+<li><p>移除节点收缩 (ok)</p></li>
+<li><p>有一个默认workflow（后端会返回给前端一个默认的业务json，前端把该业务json可视化）(ok)</p></li>
+<li><p>节点的二级目录</p></li>
+<li><p>配置参数从字符串改为下拉框(ok)</p></li>
+<li><p>两侧的侧边栏支持拖拉 (ok)</p></li>
+<li><p>当字符串长度过长时，支持自动换行</p></li>
+<li><p>当param为空时，前端界面不显示(ok)</p></li>
+</ul>
+</li>
+<li><p>操作逻辑bug</p>
+<ul class="simple">
+<li><p>新增workflow页面，之前的workflow页面消失 (ok)</p></li>
+<li><p>workflow保存逻辑（save-&gt;页面改名-&gt;侧边栏出现一个json）(ok)</p></li>
+<li><p>resource (ok)</p></li>
+</ul>
+</li>
+<li><p><strong>节点可视化</strong></p>
+<ul class="simple">
+<li><p>图片/视频等节点可视化</p></li>
+<li><p>文字节点可视化（显示文本的节点支持（llm））</p></li>
+</ul>
+</li>
+<li><p><strong>图的配置参数</strong></p></li>
+<li><p>业务json的数据结构优化</p>
+<ul class="simple">
+<li><p>除非有node_repository_，否则不存储</p></li>
+</ul>
+</li>
+<li><p><strong>代码优化，提高稳定性和可读性</strong></p></li>
+<li><p>图不用组显示，图还是用节点显示，内部会递归的暂时node_repository_ (ok)</p></li>
+</ol>
+<section id="id3">
+<h3>第三期<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<ol class="simple">
+<li><p>界面</p>
+<ul class="simple">
+<li><p>切换workflow之后导致的连线消失问题（详细描述下该问题：现象，如何使用的api，我们做了那些修改，我们的初步猜测）（ok）</p></li>
+<li><p>运行时信息</p>
+<ul>
+<li><p>节点耗时（运行完成后，后端会返回结果给前端）</p></li>
+<li><p>每个节点运行的运行状态（空闲，运行中，已经运行，等待运行，保持一个固定的链接，后端会定时返回结果）</p></li>
+</ul>
+</li>
+<li><p>后端机器信息展示（后端会提供一个完全的字符串给前端，前端展示即可）</p></li>
+<li><p>前端屏蔽节点的以下几个参数：node_type_、is_graph、is_inner，…(ok)</p></li>
+<li><p>增加bilibili点击跳转按钮</p></li>
+<li><p>不主动修改节点排布方式，不去做主动的auto layout（ok）</p></li>
+<li><p><strong>保存json是否要保存原始的位置信息呢？</strong></p></li>
+<li><p>支持运行任务队列显示</p></li>
+</ul>
+</li>
+<li><p>功能</p>
+<ul class="simple">
+<li><p>workflow增加上传按钮</p></li>
+<li><p>images/videos/models的下载功能</p></li>
+<li><p>连线验证</p></li>
+<li><p>选中部分节点导出为json</p></li>
+<li><p>增加注册、登录机制</p></li>
+<li><p>创建子目录，支持上传整个目录下的文件</p></li>
+</ul>
+</li>
+<li><p>子图（有思路就去做，不做强制要求）</p></li>
+<li><p>代码优化</p></li>
+<li><p>出错处理</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>重排优先级<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<section id="id5">
+<h4>1. 前端界面细节<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>增加bilibili点击跳转按钮</p></li>
+<li><p>nndeploy目前还是叫demo-free-layout，得把这个demo_free_layout改成nndeploy</p></li>
+<li><p>infer节点输入输出端口重叠，加上Desc的描述后又正常</p></li>
+<li><p>鼠标放到左侧侧边栏的节点上时，出现该节点的desc描述</p></li>
+<li><p>节点的Desc不允许更改</p></li>
+<li><p>节点的宽度调整</p></li>
+<li><p>一个画布中节点重名问题</p>
+<ul>
+<li><p>前端增加节点，没有考虑重名的问题</p>
+<ul>
+<li><p>情况1 ：在一个已有的页面上，增加节点，是从0开始编号的</p></li>
+<li><p>情况2 : 在一个已有的页面上，增删节点后，新增节点可能会与之前重名</p></li>
+</ul>
+</li>
+<li><p>拷贝节点，整个节点都拷贝，没有考虑名字重名问题</p></li>
+<li><p>最简单的解决办法：不管增加删除，始终维护一个最大的index，按照这个最大的index来给节点加后缀，从nndeploy json变成节点前，先找到这个图中最大  得数字</p></li>
+</ul>
+</li>
+<li><p>连接线之间的 加+ 删掉</p></li>
+<li><p>连线验证</p>
+<ul>
+<li><p>输入端口只接受一条连线</p></li>
+<li><p>节点type字段一致，后续会有可以连线map，目前map是空的</p></li>
+</ul>
+</li>
+<li><p>json优化，nndeploy的底层json中不保存id信息，支持以下两种情况</p>
+<ul>
+<li><p>从前端存储的json，保存节点的排布信息</p></li>
+<li><p>假如没有节点排布信息，是从nndeploy底层原生json中加载的信息，就采用当前的方式</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h4>2. 前后端联调<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>图的配置参数，在底部栏增加 Config 按钮</p></li>
+<li><p>Node的二级目录，能否支持动态多级目录呢？</p></li>
+<li><p>选中部分节点导出为json，看是否可以通过原生的Group功能实现</p></li>
+<li><p>workflow增加 上传、下载、删除 按钮</p></li>
+<li><p>images/videos/models的 上传、下载、删除 功能</p></li>
+<li><p>nodes 增加 上传、下载、删除 功能（<strong>下载删除</strong>暂时不做）</p></li>
+<li><p><strong>节点可视化</strong></p>
+<ul>
+<li><p>图片/视频等节点可视化</p></li>
+<li><p>文字节点可视化（显示文本的节点支持（llm））</p></li>
+</ul>
+</li>
+<li><p>运行时信息 === 增加进度条</p>
+<ul>
+<li><p>节点耗时（运行完成后，后端会返回结果给前端）</p></li>
+<li><p>每个节点运行的运行状态（空闲，运行中，已经运行，等待运行，保持一个固定的链接，后端会定时返回结果）</p></li>
+</ul>
+</li>
+<li><p>后端机器信息展示（后端会提供一个完全的字符串给前端，前端展示即可） - 暂时不做</p></li>
+<li><p>支持运行任务队列显示 - 暂时不做</p></li>
+<li><p>增加注册、登录机制 - 暂时不做</p></li>
+</ul>
+</section>
+<section id="id7">
+<h4>3. 子图（有思路就去做，不做强制要求）<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+</section>
+<section id="id8">
+<h4>4. 代码优化<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
+</section>
+<section id="id9">
+<h4>5. 杂项<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>前端编译打包</p></li>
+<li><p>运行文档 (安装环境、安装、运行、注意事项)</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id10">
+<h2>20250723<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<section id="id11">
+<h3>细节优化<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>显示运行时间的单位信息，加ms信息</p></li>
+<li><p>前端自带的字母，都为大写字母开头（主要是为了与底部的Config、Save、Run）</p></li>
+<li><p>鼠标移到节点上，出现Desc信息</p></li>
+<li><p>移除结尾的 http://localhost:3001/design 中的 design</p></li>
+<li><p>检查discord == https://discord.gg/9rUwfAaMbr</p></li>
+<li><p>移除run success</p></li>
+<li><p>Config的配置</p></li>
+<li><p>运行的时候，没有IDLE的信息展示</p></li>
+<li><p>保存json名字带json时，整个命名会略微混乱 – 重点关注</p></li>
+<li><p>节点上的id还是会在前端显示，去一个特殊名字，然后屏蔽它</p></li>
+<li><p>视频节点一直在加载播放，除非点击，否则不播放，只要打开页面时，视频就会一直播放</p></li>
+<li><p>Group</p>
+<ul>
+<li><p>Group功能的Expand和Collapse功能不显示在前端，要不就要把该功能实现</p></li>
+<li><p>保存的json没有输入输出的信息（节点和图都没有）</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h3>功能<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>支持对任意目录下的文件展示</p></li>
+<li><p>Log的获取</p>
+<ul>
+<li><p>run status有更丰富的状态，比如失败</p></li>
+<li><p>运行报错信息一定要返回，在graphrunner这个类的返回值，用户需要拿到，复用之前run sucess的弹窗</p></li>
+<li><p>需要获取正在初始化的状态</p></li>
+</ul>
+</li>
+<li><p>保存Group的信息</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3>代码优化<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="id14">
+<h3>2025.07.24<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>只要代码运行起来了，他会一直向后端请求数据，这个逻辑应该是结果节点，假如没有运行完成，不会向后端发起数据请求</p></li>
+<li><p>加一个INIT的标志</p></li>
+<li><p>大批量名字不会修改</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3>2025.08.09<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>保存子图，输入名字重复</p></li>
+<li><p>错误之后，没有标志，前端还是转圈</p>
+<ul>
+<li><p>节点点出现报警感叹号 &amp;&amp; 节点运行信息标志</p></li>
+<li><p>log标志标红，用户可以知道怎么回事，点击log后能看到错误信息</p></li>
+</ul>
+</li>
+<li><p>鼠标移到节点上</p>
+<ul>
+<li><p>desc：node</p></li>
+<li><p>input：input_0</p></li>
+<li><p>output：output_0</p></li>
+</ul>
+</li>
+<li><p>鼠标放到workflow上</p>
+<ul>
+<li><p>desc：Graph</p></li>
+</ul>
+</li>
+<li><p>鼠标放到port上</p>
+<ul>
+<li><p>type：Tensor</p></li>
+<li><p>desc：input_0</p></li>
+</ul>
+</li>
+<li><p>将Workflow更改成Workspace</p>
+<ul>
+<li><p>对应后端需要修改</p></li>
+</ul>
+</li>
+<li><p>对于节点而言</p>
+<ul>
+<li><p>developer_是隐藏的</p></li>
+<li><p>source_也是隐藏的</p></li>
+</ul>
+</li>
+<li><p>所有参数都不是必填的，把必填参数去掉</p></li>
+<li><p>图片资源有时候显示不出来</p></li>
+<li><p>路径有时候是全路径、有时候是相对路径、有时候只有名字</p></li>
+<li><p>list的前端无法正确序列化</p></li>
+<li><p>map&lt;str, str&gt; 也无法正确序列化</p></li>
+<li><p>添加的了Group之后，无法把节点拉到界面上来</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

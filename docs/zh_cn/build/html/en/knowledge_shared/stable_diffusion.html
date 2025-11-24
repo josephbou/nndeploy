@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>stable diffusion &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">stable diffusion</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stable-diffusion">
+<h1>stable diffusion<a class="headerlink" href="#stable-diffusion" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1 Goal<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>1.1. Deploy stable diffusion series models based on DAG to form products similar to comfyui. (Can form products, directly for CV AIGC users)</p>
+<p>1.2. Understand and implement stable diffusion from the bottom up (algorithm-&gt;framework-&gt;algorithm), forming products similar to ggml, llama.cpp, stable_diffusion.cpp</p>
+</section>
+<section id="why">
+<h2>2 Why<a class="headerlink" href="#why" title="Permalink to this heading">¶</a></h2>
+<p>Mainly from the following three aspects</p>
+<section id="id2">
+<h3>2.1 Learning aspect<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>2.1.1. From the perspective of inference deployment, understand the stable diffusion series models</p>
+<p>2.1.2. Based on stable diffusion, understand and implement the inference submodule from 0 to 1</p>
+<p>2.1.3. High-performance op development (mainly cuda)</p>
+</section>
+<section id="id3">
+<h3>2.2 Research aspect<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>Understand and implement stable diffusion from the perspectives of algorithm, deployment, and inference, which can be used for some research, for example</p>
+<p>2.2.1. High-performance operators - similar to flash attention operators, based on triton development</p>
+<p>2.2.2. Inference submodule - efficient memory management, graph optimization, etc.</p>
+<p>2.2.3. Quantization of stable diffusion models</p>
+</section>
+<section id="id4">
+<h3>2.3 Product aspect<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>2.3.1. Provide users with products similar to comfyui</p>
+<p>2.3.2. For stable diffusion model deployment, provide another option</p>
+<p>Summary: Through this open-source framework, understand and implement stable diffusion from the bottom up (algorithm-&gt;framework-&gt;algorithm).</p>
+</section>
+</section>
+<section id="how">
+<h2>3 How<a class="headerlink" href="#how" title="Permalink to this heading">¶</a></h2>
+<section id="id5">
+<h3>3.1 Algorithm side<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<section id="id6">
+<h4>3.1.1 Research phase<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
+<ol class="simple">
+<li><p>Detailed analysis of classic stable diffusion models</p>
+<ol class="simple">
+<li><p>Algorithm principles - reaching a qualified level</p></li>
+<li><p>Training principles (dataset, loss) - reaching a qualified level</p></li>
+<li><p>Detailed analysis of model structure - reaching a good level</p>
+<ol class="simple">
+<li><p>There are several models</p></li>
+<li><p>How models are concatenated</p></li>
+<li><p>Pre and post-processing of models</p></li>
+<li><p>Pre and post-processing of models, inference parameters</p></li>
+<li><p>Structure of each model</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id7">
+<h4>3.1.2 Development phase (optional)<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+<ol class="simple">
+<li><p>Based on mainstream frameworks, run stable diffusion inference</p>
+<ol class="simple">
+<li><p>pytorch</p></li>
+<li><p>hugging face</p></li>
+<li><p>stable_diffusion.cpp</p></li>
+<li><p>stable fast</p></li>
+<li><p>confyui</p></li>
+<li><p>sd webui</p></li>
+<li><p>…</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id8">
+<h4>3.1.3 Advanced phase (optional)<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
+<ol class="simple">
+<li><p>Can roughly understand the basic principles of mainstream framework implementations</p></li>
+</ol>
+</section>
+</section>
+<section id="id9">
+<h3>3.2 Inference submodule (This part I am more familiar with, hence written more)<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<p>Through our understanding of algorithm principles, implement stable diffusion in a vertical manner. The complete inference framework includes the following submodules, we will omit most modules, focusing on the parts we consider most indispensable - implementing model inference by manually building computation graphs (comprehensive ggml+stable_diffusion.cpp+tensorrt api+mnn+tnn)</p>
+<ul class="simple">
+<li><p>Model conversion (convert training framework model files into weight files)</p>
+<ul>
+<li><p>Brief: Convert training framework model files into custom model files for inference framework</p></li>
+<li><p>Input: Training framework model files</p></li>
+<li><p>Output: Custom model files</p></li>
+</ul>
+</li>
+<li><p>Model interpretation (optional)</p>
+<ul>
+<li><p>Brief: Read model files and interpret them into intermediate representations</p></li>
+<li><p>Input: Custom model files</p></li>
+<li><p>Output: Intermediate representation IR (to do)</p></li>
+</ul>
+</li>
+<li><p>Manually build computation graph (to do)</p>
+<ul>
+<li><p>Brief: Similar to ggml and tensorrt api, manually build computation graphs</p></li>
+<li><p>Input:</p>
+<ul>
+<li><p>Understanding of the model’s network structure</p></li>
+<li><p>Weight files</p></li>
+</ul>
+</li>
+<li><p>Output</p>
+<ul>
+<li><p>Computation graph</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Model inference initialization (to do)</p>
+<ul>
+<li><p>Brief: Prepare everything for model inference</p>
+<ul>
+<li><p>The most core part of the entire inference framework, model inference depends on this part, model offline quantization also depends on this part</p></li>
+</ul>
+</li>
+<li><p>Input:</p>
+<ul>
+<li><p>Computation graph or intermediate representation IR (Option)</p></li>
+<li><p>Inference hyperparameters</p></li>
+</ul>
+</li>
+<li><p>Output</p>
+<ul>
+<li><p>An executable inference computation graph</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Model inference (to do)</p>
+<ul>
+<li><p>Brief: Write input, get output</p></li>
+<li><p>Input: Input tensor</p></li>
+<li><p>Output: Inferred tensor</p></li>
+</ul>
+</li>
+<li><p>Model post-training quantization (optional)</p>
+<ul>
+<li><p>Brief: Quantize model files to make them smaller, expecting models to run faster</p></li>
+<li><p>Input: fp32 model files</p></li>
+<li><p>Output: int8 model files</p></li>
+</ul>
+</li>
+<li><p>Model training (not for now, optional)</p>
+<ul>
+<li><p>Brief: Can implement model training</p></li>
+<li><p>Input:</p>
+<ul>
+<li><p>Build model files through operator expressions</p></li>
+<li><p>Hyperparameters</p></li>
+</ul>
+</li>
+<li><p>Output: Trainable model online</p></li>
+</ul>
+</li>
+</ul>
+<section id="id10">
+<h4>3.2.1 Research phase<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h4>
+<ol class="simple">
+<li><p>Understand the implementation of inference frameworks</p>
+<ol class="simple">
+<li><p>ggml+stable_diffusion.cpp (preliminary understanding)</p></li>
+<li><p>tensorrt api (preliminary understanding)</p></li>
+<li><p>mnn (preliminary understanding)</p></li>
+<li><p>tnn (preliminary understanding)</p></li>
+<li><p>stable fast (optional)</p></li>
+<li><p>…</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id11">
+<h4>3.2.2 Development phase<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h4>
+<ol class="simple">
+<li><p>Basic data structures - data_type\data_format\pricision etc. (nndeploy has completed)</p></li>
+<li><p>Data container - already have an initial version of tensor definition, next step planned</p>
+<ol class="simple">
+<li><p>Merge mat and tensor, redesign</p>
+<ol class="simple">
+<li><p>The previous reason for considering separation was:</p></li>
+<li><p>Tensor mainly serves the input/output of the model, intermediate variables. That is, it focuses on aspects like shape, data_format, will focus on extensibility (such as service and quantization Tensor, distributed Tensor, etc., based on model’s memory pool allocation, etc.); Tensor’s properties basically do not consider shallow copy, deep copy, etc.</p></li>
+<li><p>Mat is mainly a structure proposed to replace opencv’s op in the future, will focus on operational simplicity, such as shallow copy, deep copy, etc., and there is no requirement for data_format.</p></li>
+<li><p>Now considering merging because:</p>
+<ol class="simple">
+<li><p>CV class operators can be added to the inference submodule to build graphs together;</p></li>
+<li><p>Using the inference submodule, CV class operators themselves can also build graphs.</p></li>
+<li><p>Slightly understanding CUDA, the data structure inside it is Tensor</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Consider the serialization of tensor’s protobuf (optional)</p></li>
+<li><p>Consider pipeline parallel (optional)</p></li>
+<li><p>Consider distribution (optional)</p></li>
+</ol>
+</li>
+<li><p>Design of IR</p>
+<ol class="simple">
+<li><p>Refer to ONNX which has preliminarily implemented a version</p></li>
+<li><p>Refer to MindIr for further optimization</p></li>
+<li><p>Consider multiple weight model files (optional)</p></li>
+<li><p>Consider protobuf serialization</p></li>
+</ol>
+</li>
+<li><p>Manual graph construction</p>
+<ol class="simple">
+<li><p>Form of interface</p>
+<ol class="simple">
+<li><p>OP</p></li>
+<li><p>Forward</p></li>
+</ol>
+</li>
+<li><p>Consider manual graph construction (based on reasoning understanding, refer to existing DAG implementation)</p></li>
+<li><p>Consider automatic graph construction from IR later (optional)</p></li>
+</ol>
+</li>
+<li><p>Model reasoning initialization</p>
+<ol class="simple">
+<li><p>Delegate to executor</p></li>
+<li><p>Memory pre-allocation</p></li>
+<li><p>Graph optimization (optional)</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id12">
+<h4>3.2.3 Advanced stage (optional)<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h4>
+<ol class="simple">
+<li><p>Distribution</p></li>
+<li><p>Automatic graph construction</p></li>
+</ol>
+</section>
+</section>
+<section id="id13">
+<h3>3.3 High-performance operators<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<section id="id14">
+<h4>Supported platforms<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>CUDA</p></li>
+<li><p>OpenCL</p></li>
+<li><p>CPU</p></li>
+</ul>
+</section>
+<section id="id15">
+<h4>Four requirements<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Automatic graph construction (ready to use after encapsulation)</p></li>
+<li><p>Manual graph construction (ready to use after encapsulation)</p></li>
+<li><p>Can be exported as interfaces similar to BLAS or OpenCV for calling (ready to use after encapsulation)</p></li>
+<li><p>How to test alignment</p></li>
+</ul>
+</section>
+<section id="id16">
+<h4>Implementation method<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Library call</p>
+<ul>
+<li><p>cuDNN</p></li>
+<li><p>oneAPI</p></li>
+<li><p>QNNPACK</p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+<li><p>Implementation based on Triton</p></li>
+<li><p>Handwritten</p></li>
+</ul>
+</section>
+<section id="id17">
+<h4>Method of testing operators<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Compare with whom</p></li>
+<li><p>How to compare</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
