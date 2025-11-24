@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C++自定义节点开发手册 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python自定义节点开发手册" href="plugin_python.html" />
+    <link rel="prev" title="最佳实践" href="deploy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">最佳实践</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C++自定义节点开发手册</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1"><strong>自定义节点参考代码</strong>：</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">自定义节点开发简介</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dag">什么是DAG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">自定义节点在流水线中的位置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">自定义节点编写基础</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1. 定义节点类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2. 注册节点类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">3. 节点中的输入输出访问</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">4. 设置参数（可选）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">5. 将自定义节点添加到计算图中</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">高级用法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">创建子图</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">构图函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">自定义参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">打印子图</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">复合节点</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id16">自定义复合节点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">实际开发案例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">目标检测</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id19">配置参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">构建DAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">设置并行类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">初始化DAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">运行DAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">输出结果</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">反初始化DAG</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">文生图</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">配置参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">构建 DAG 图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">图初始化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">输入设置与推理执行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">图资源释放</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">C++自定义节点开发手册</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="c">
+<h1>C++自定义节点开发手册<a class="headerlink" href="#c" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><strong>自定义节点参考代码</strong>：<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p><a class="reference external" href="https://github.com/nndeploy/nndeploy/blob/main/template/cpp/template.h">template/cpp/template.h</a></p></li>
+<li><p>前端工作流加载自定义节点：</p>
+<ul>
+<li><p>命令行加载</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nndeploy-app<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--plugin<span class="w"> </span>path/to/libnndeploy_plugin_template.so
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h2>自定义节点开发简介<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>在nndeploy框架中，自定义节点是一种可以组合调用的功能模块，通常表现为继承自<code class="docutils literal notranslate"><span class="pre">dag::Node</span></code>的自定义节点。自定义节点通过DAG进行组织和调用，用于执行开发者自定义的前/后处理逻辑、推理操作等等。</p>
+<p>自定义节点设计的目的是：</p>
+<ul class="simple">
+<li><p>模块化：将特定的逻辑封装为节点，易于组合和替换；</p></li>
+<li><p>解耦性：将自定义节点与调度模块进行解耦；</p></li>
+<li><p>可扩展性：开发者可以轻松接入新的调度算法和数据处理流程；</p></li>
+</ul>
+<section id="dag">
+<h3>什么是DAG<a class="headerlink" href="#dag" title="Permalink to this heading">¶</a></h3>
+<p>nndeploy的执行核心是有向无环图（DAG），图由以下两个基本组件组成：</p>
+<ul class="simple">
+<li><p>节点（node）:代表基本的计算或功能单元，可以是推理、调度、前后处理等等；</p></li>
+<li><p>边（edge）:节点之间的连接通道，用于传递张量等数据对象；</p></li>
+</ul>
+<p>图在运行时根据节点输入输出边判断节点的执行顺序，自动调度各个节点执行。</p>
+</section>
+<section id="id3">
+<h3>自定义节点在流水线中的位置<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>以stable diffusion 1.5为例，推理流程大致如下：</p>
+<p><img alt="stable-diffusion-1.5-dag" src="../_images/sd-1.5-dag.png" /></p>
+<p>其中：</p>
+<ul class="simple">
+<li><p>tokenizer表示嵌入节点；</p></li>
+<li><p>cvt_token_ids_2_tensor表示数据转换节点；</p></li>
+<li><p>clip_infer表示clip模型的推理节点；</p></li>
+<li><p>concat_node表示数据concat节点；</p></li>
+<li><p>init_latents表示数据初始化节点；</p></li>
+<li><p>denoise表示stable-diffusion模型运行过程中的去噪节点；</p></li>
+<li><p>vae_infer表示vae decoder的执行节点；</p></li>
+<li><p>save_node表示数据存储为图片的节点；</p></li>
+<li><p>prompt、token_ids、prompt_ids等表示用于传递数据的边；</p></li>
+</ul>
+<p>通过这些自定义节点的组合，我们可以构建一个完整的文生图执行流程。</p>
+</section>
+</section>
+<section id="id4">
+<h2>自定义节点编写基础<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>nndeploy中的自定义节点本质上是自定义的DAG节点，继承自<code class="docutils literal notranslate"><span class="pre">dag::Node</span></code>，要实现一个自定义节点，一般需要完成以下步骤：</p>
+<section id="id5">
+<h3>1. 定义节点类<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyCustomNode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">MyCustomNode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span>
+<span class="w">               </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">inputs</span><span class="p">,</span>
+<span class="w">               </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">outputs</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">inputs</span><span class="p">,</span><span class="w"> </span><span class="n">outputs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 设置节点key，与注册的节点类型名一致，必须要设置  </span>
+<span class="w">        </span><span class="n">key_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nndeploy::example::MyCustomNode&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// 节点参数，继承自base::Param，如果该节点需要参数，则必须要设置  </span>
+<span class="w">        </span><span class="n">param_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">MyParam</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 设置输入类型，继承自base::TypeInfo，如果该节点有输入，则必须要设置</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">setInputTypeInfo</span><span class="o">&lt;</span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 设置输出类型，继承自base::TypeInfo，如果该节点有输出，则必须要设置</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">setOutputTypeInfo</span><span class="o">&lt;</span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MyCustomNode</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">run</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 自定义节点逻辑写在这里</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>2. 注册节点类型<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>为了将节点注册到框架中，需要使用注册宏：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">REGISTER_NODE</span><span class="p">(</span><span class="s">&quot;nndeploy::example::MyCustomNode&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MyCustomNode</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>3. 节点中的输入输出访问<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<p>可以通过以下方式获取输入边中的张量：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="o">*</span><span class="n">input_tensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getInput</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">getTensor</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>在节点的输出边中创建输出张量（输出张量的内存需要在节点中分配，输入张量的内存由上一个节点分配）：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="o">*</span><span class="n">output_tensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getOutput</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">tensor_desc</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3>4. 设置参数（可选）<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>你可以为自定义节点定义参数类（继承 base::Param），并通过 setParam() 接口设置：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyParam</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Param</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">some_value</span><span class="p">;</span>
+<span class="w">  </span><span class="n">PARAM_COPY</span><span class="p">(</span><span class="n">MyParam</span><span class="p">);</span>
+<span class="w">  </span><span class="n">PARAM_COPY_TO</span><span class="p">(</span><span class="n">MyParam</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">auto</span><span class="w"> </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">MyParam</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">param</span><span class="o">-&gt;</span><span class="n">some_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span>
+<span class="n">my_node</span><span class="o">-&gt;</span><span class="n">setParam</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>在节点内部可通过 param_ 成员访问：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">MyParam</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">MyParam</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">param_</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>5. 将自定义节点添加到计算图中<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<p>在nndeploy中，有两种方式将自定义节点添加到图中：</p>
+<p><strong>方式一：直接创建节点对象</strong></p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="s">&quot;my_graph&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">input_edge</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="n">output_edge</span><span class="p">});</span>
+<span class="n">MyCustomNode</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">MyCustomNode</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">MyCustomNode</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;my_node&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">input_edge</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="n">output_edge</span><span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>方式二：通过NodeDesc创建</strong></p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">dag</span><span class="o">::</span><span class="n">NodeDesc</span><span class="w"> </span><span class="n">desc</span><span class="p">(</span><span class="s">&quot;nndeploy::example::MyCustomNode&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;my_node&quot;</span><span class="p">,</span>
+<span class="w">                   </span><span class="p">{</span><span class="n">input_edge</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">()},</span><span class="w"> </span><span class="p">{</span><span class="n">output_edge</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">()});</span>
+<span class="n">MyCustomNode</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">MyCustomNode</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="p">(</span><span class="n">desc</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;nndeploy::example::MyCustomNode&quot;</span></code>为node的key，序列化时使用。</p>
+</section>
+</section>
+<section id="id10">
+<h2>高级用法<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<section id="id11">
+<h3>创建子图<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<p>当自定义节点涉及更复杂的功能逻辑时，例如模型推理、多输入合并策略等，开发者可以通过创建子图（继承 dag::Graph）来组织多个节点为一个整体流程模块：</p>
+<ul class="simple">
+<li><p>子图类继承自<code class="docutils literal notranslate"><span class="pre">dag::Graph</span></code>；</p></li>
+<li><p>为子图添加自定义构图函数，如<code class="docutils literal notranslate"><span class="pre">make()</span></code>，封装边与节点创建流程；</p></li>
+<li><p>添加自定义参数接口，开发者可以为<code class="docutils literal notranslate"><span class="pre">Node</span></code>提供自定义参数，并在子图类中提供对应的接口；</p></li>
+</ul>
+<section id="id12">
+<h4>构图函数<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h4>
+<p>以stable-diffusion-1.5模型的embedding过程为例，需要经历三个部分，首先对提示词进行tokenize，再将分词向量转换成适合clip模型执行的tensor格式，最后将向量输入到clip模型中，进行文本到图像语义空间的转换。在sd的例子中，这三个部分被封装成了三个<code class="docutils literal notranslate"><span class="pre">Node</span></code>，同时封装成了一个<code class="docutils literal notranslate"><span class="pre">Embedding</span></code>子图。子图的构图函数如下：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">make</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">InferenceType</span><span class="w"> </span><span class="n">inference_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">prompt_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getInput</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prompt_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;prompt is nullptr</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeErrorInvalidParam</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">token_ids_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">createEdge</span><span class="p">(</span><span class="s">&quot;token_ids_&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">tokenizer_node_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tokenizer</span><span class="o">::</span><span class="n">TokenizerEncodeCpp</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="k">this</span>
+<span class="w">                          </span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">tokenizer</span><span class="o">::</span><span class="n">TokenizerEncodeCpp</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">                              </span><span class="s">&quot;tokenizer&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">prompt_</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="n">token_ids_</span><span class="p">});</span>
+
+<span class="w">    </span><span class="n">infer_ids_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">createEdge</span><span class="p">(</span><span class="s">&quot;infer_ids&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cvt_node_</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="p">(</span><span class="n">CvtTokenIds2TensorNode</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">CvtTokenIds2TensorNode</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;cvt_token_ids_2_tensor&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">token_ids_</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="n">infer_ids_</span><span class="p">});</span>
+
+<span class="w">    </span><span class="n">embedding_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getOutput</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">embedding_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;embedding is nullptr</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeErrorInvalidParam</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">clip_infer_node_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;clip_infer&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inference_type</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">infer_ids_</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="n">embedding_</span><span class="p">});</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>实现完自定义子图后，开发者可以通过如下的方法将子图添加到更大的图中：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">EmbeddingGraph</span><span class="w"> </span><span class="o">*</span><span class="n">embedding_graph</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="p">(</span><span class="n">EmbeddingGraph</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">EmbeddingGraph</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">          </span><span class="s">&quot;embedding_subgraph&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">prompt</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="n">prompt_ids</span><span class="p">}));</span>
+<span class="n">embedding_graph</span><span class="o">-&gt;</span><span class="n">make</span><span class="p">(</span><span class="n">inference_type</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>子图会经过框架的调用，自动实现流水线并行。</p>
+</section>
+<section id="id13">
+<h4>自定义参数<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h4>
+<p>在<code class="docutils literal notranslate"><span class="pre">tokenizer</span></code>和<code class="docutils literal notranslate"><span class="pre">infer</span></code>过程中，执行时需要传入一些参数，例如分词器的类型、模型文件的路径等等，这些参数可以通过在自定义子图中添加接口进行传入：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">setTokenizerParam</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">::</span><span class="n">TokenizerPraram</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">tokenizer_node_</span><span class="o">-&gt;</span><span class="n">setParam</span><span class="p">(</span><span class="n">param</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">setInferParam</span><span class="p">(</span><span class="n">inference</span><span class="o">::</span><span class="n">InferenceParam</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">clip_infer_node_</span><span class="o">-&gt;</span><span class="n">setParam</span><span class="p">(</span><span class="n">param</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>然后在构建完子图后传入：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">embedding_graph</span><span class="o">-&gt;</span><span class="n">make</span><span class="p">(</span><span class="n">inference_type</span><span class="p">);</span>
+
+<span class="n">tokenizer</span><span class="o">::</span><span class="n">TokenizerPraram</span><span class="w"> </span><span class="o">*</span><span class="n">tokenizer_param</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">tokenizer</span><span class="o">::</span><span class="n">TokenizerPraram</span><span class="p">();</span>
+<span class="n">tokenizer_param</span><span class="o">-&gt;</span><span class="n">tokenizer_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tokenizer</span><span class="o">::</span><span class="n">TokenizerType</span><span class="o">::</span><span class="n">kTokenizerTypeHF</span><span class="p">;</span>
+<span class="n">tokenizer_param</span><span class="o">-&gt;</span><span class="n">is_path_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">tokenizer_param</span><span class="o">-&gt;</span><span class="n">json_blob_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text2image_param</span><span class="o">-&gt;</span><span class="n">model_value_</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">embedding_graph</span><span class="o">-&gt;</span><span class="n">setTokenizerParam</span><span class="p">(</span><span class="n">tokenizer_param</span><span class="p">);</span>
+
+<span class="n">inference</span><span class="o">::</span><span class="n">InferenceParam</span><span class="w"> </span><span class="o">*</span><span class="n">infer_param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">inference</span><span class="o">::</span><span class="n">InferenceParam</span><span class="p">();</span>
+<span class="n">infer_param</span><span class="o">-&gt;</span><span class="n">device_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text2image_param</span><span class="o">-&gt;</span><span class="n">device_type_</span><span class="p">;</span>
+<span class="n">infer_param</span><span class="o">-&gt;</span><span class="n">model_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text2image_param</span><span class="o">-&gt;</span><span class="n">model_type_</span><span class="p">;</span>
+<span class="n">infer_param</span><span class="o">-&gt;</span><span class="n">is_path_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text2image_param</span><span class="o">-&gt;</span><span class="n">is_path_</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onnx_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">text2image_param</span><span class="o">-&gt;</span><span class="n">model_value_</span><span class="p">[</span><span class="mi">1</span><span class="p">]};</span>
+<span class="n">infer_param</span><span class="o">-&gt;</span><span class="n">model_value_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onnx_path</span><span class="p">;</span>
+<span class="n">embedding_graph</span><span class="o">-&gt;</span><span class="n">setInferParam</span><span class="p">(</span><span class="n">infer_param</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h4>打印子图<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h4>
+<p>子图继承自<code class="docutils literal notranslate"><span class="pre">dag::Node</span></code>，同样可以调用<code class="docutils literal notranslate"><span class="pre">dump()</span></code>接口进行图结构的打印：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">embedding_graph</span><span class="o">-&gt;</span><span class="n">dump</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>使用<a class="reference external" href="https://dreampuf.github.io/GraphvizOnline">graphviz</a>进行可视化之后，结果图如下：</p>
+<p><img alt="sd-embedding-sub-graph" src="../_images/sd-embedding-subgraph.png" /></p>
+</section>
+</section>
+<section id="id15">
+<h3>复合节点<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<p>在有些情况下，开发者希望向某个<code class="docutils literal notranslate"><span class="pre">Node</span></code>中添加一些自定义的操作，例如，在<code class="docutils literal notranslate"><span class="pre">infer</span></code>节点之前添加一些格式转换的操作，但是不希望开发<code class="docutils literal notranslate"><span class="pre">Node</span></code>，此时可以通过创建复合节点（Composite Node）来实现所需的功能。</p>
+<p>在DAG结构中，为了实现可扩展性，复合节点提供了一种机制：</p>
+<ul class="simple">
+<li><p>将多个节点组合在一起，形成一个新的节点，从而实现更复杂的功能；</p></li>
+<li><p>对外表现为一个标准的<code class="docutils literal notranslate"><span class="pre">Node</span></code>，可接收输入、提供输出；</p></li>
+</ul>
+<p>开发者可以通过<code class="docutils literal notranslate"><span class="pre">createNode</span></code>或者<code class="docutils literal notranslate"><span class="pre">createInfer</span></code>接口向复合节点中添加节点，复合节点会自动管理节点以及边的创建和销毁。</p>
+<section id="id16">
+<h4>自定义复合节点<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h4>
+<p>定义一个复合节点类，继承自<code class="docutils literal notranslate"><span class="pre">dag::CompositeNode</span></code>：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DenoiseNode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">CompositeNode</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">DenoiseNode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">inputs</span><span class="p">,</span>
+<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">outputs</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">CompositeNode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">inputs</span><span class="p">,</span><span class="w"> </span><span class="n">outputs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">key_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nndeploy::stable_diffusion::DenoiseNode&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">param_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">DenoiseParam</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">setInputTypeInfo</span><span class="o">&lt;</span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">setInputTypeInfo</span><span class="o">&lt;</span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">setOutputTypeInfo</span><span class="o">&lt;</span><span class="n">device</span><span class="o">::</span><span class="n">Tensor</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">scheduler_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createScheduler</span><span class="p">(...);</span><span class="w">  </span><span class="c1">// 自定义的调度器</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>实现make函数，构建子图结构，添加子节点及其输入输出边：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">make</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">NodeDesc</span><span class="w"> </span><span class="n">infer_desc</span><span class="p">(</span><span class="s">&quot;nndeploy::infer::Infer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;infer&quot;</span><span class="p">,</span>
+<span class="w">                      </span><span class="p">{</span><span class="s">&quot;text_embeddings&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfg_latents&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;timestep&quot;</span><span class="p">},</span>
+<span class="w">                      </span><span class="p">{</span><span class="s">&quot;unet_output&quot;</span><span class="p">});</span>
+<span class="w">  </span><span class="n">infer_node_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">createInfer</span><span class="o">&lt;</span><span class="n">infer</span><span class="o">::</span><span class="n">Infer</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="n">infer_desc</span><span class="p">,</span><span class="w"> </span><span class="n">text2image_param_</span><span class="o">-&gt;</span><span class="n">inference_type_</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">NodeDesc</span><span class="w"> </span><span class="n">schedule_desc</span><span class="p">(</span><span class="s">&quot;nndeploy::stable_diffusion::DDIMScheduleNode&quot;</span><span class="p">,</span>
+<span class="w">                         </span><span class="s">&quot;schedule&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;unet_output&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;prev_latents&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;timestep&quot;</span><span class="p">},</span>
+<span class="w">                         </span><span class="p">{</span><span class="s">&quot;latents&quot;</span><span class="p">});</span>
+<span class="w">  </span><span class="n">schedule_node_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DDIMScheduleNode</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="p">(</span><span class="n">schedule_desc</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在上面的例子中，向复合节点中添加了两个子节点，分别是<code class="docutils literal notranslate"><span class="pre">infer</span></code>节点和<code class="docutils literal notranslate"><span class="pre">schedule</span></code>节点。</p>
+<p>实现<code class="docutils literal notranslate"><span class="pre">init</span></code>函数，分配中间张量，设置子节点参数：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// 分配cfg_latents张量</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">cfg_latents_edge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getEdge</span><span class="p">(</span><span class="s">&quot;cfg_latents&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cfg_latents_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cfg_latents_edge</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">(</span><span class="n">device_</span><span class="p">,</span><span class="w"> </span><span class="n">desc</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 设置 infer 子节点的推理参数</span>
+<span class="w">  </span><span class="n">infer</span><span class="o">::</span><span class="n">InferenceParam</span><span class="w"> </span><span class="o">*</span><span class="n">infer_param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InferenceParam</span><span class="p">();</span>
+<span class="w">  </span><span class="n">infer_param</span><span class="o">-&gt;</span><span class="n">device_type_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="w">  </span><span class="n">infer_param</span><span class="o">-&gt;</span><span class="n">model_value_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...};</span>
+<span class="w">  </span><span class="n">infer_node_</span><span class="o">-&gt;</span><span class="n">setParam</span><span class="p">(</span><span class="n">infer_param</span><span class="p">);</span>
+<span class="w">  </span><span class="n">infer_node_</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// 设置调度器节点</span>
+<span class="w">  </span><span class="n">schedule_node_</span><span class="o">-&gt;</span><span class="n">setSchedulerParam</span><span class="p">(...);</span>
+<span class="w">  </span><span class="n">schedule_node_</span><span class="o">-&gt;</span><span class="n">setScheduler</span><span class="p">(...);</span>
+<span class="w">  </span><span class="n">schedule_node_</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>目前仅支持通过名字来获取<code class="docutils literal notranslate"><span class="pre">Edge</span></code>，<code class="docutils literal notranslate"><span class="pre">Edge</span></code>的名字需要保证在整个图中唯一。</p>
+<p>实现<code class="docutils literal notranslate"><span class="pre">run</span></code>函数，即复合节点的执行逻辑，这里和普通的<code class="docutils literal notranslate"><span class="pre">node</span></code>实现是类似的，唯一需要注意的是由于复合节点中的子节点作为节点中单独的执行逻辑，没有加入到<code class="docutils literal notranslate"><span class="pre">graph</span></code>中，因此使用到复合节点<code class="docutils literal notranslate"><span class="pre">Edge</span></code>的子节点
+在执行<code class="docutils literal notranslate"><span class="pre">run</span></code>函数前，需要手动执行<code class="docutils literal notranslate"><span class="pre">updateInput()</span></code>函数：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">timesteps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scheduler_</span><span class="o">-&gt;</span><span class="n">getTimesteps</span><span class="p">();</span>
+<span class="w">  </span><span class="n">infer_node_</span><span class="o">-&gt;</span><span class="n">updateInput</span><span class="p">();</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">val</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">timesteps</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 构造 cfg_latents</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">do_classifier_free_guidance_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">op</span><span class="o">::</span><span class="n">concat</span><span class="p">({</span><span class="n">prev_latents</span><span class="p">,</span><span class="w"> </span><span class="n">prev_latents</span><span class="p">},</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">cfg_latents_</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">prev_latents</span><span class="o">-&gt;</span><span class="n">copyTo</span><span class="p">(</span><span class="n">cfg_latents_</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">timestep_</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">((</span><span class="kt">float</span><span class="p">)</span><span class="n">val</span><span class="p">);</span>
+<span class="w">    </span><span class="n">infer_node_</span><span class="o">-&gt;</span><span class="n">run</span><span class="p">();</span>
+<span class="w">    </span><span class="n">schedule_node_</span><span class="o">-&gt;</span><span class="n">run</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">latents</span><span class="o">-&gt;</span><span class="n">copyTo</span><span class="p">(</span><span class="n">prev_latents</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">latents</span><span class="o">-&gt;</span><span class="n">copyTo</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getOutput</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">notifyWritten</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里<code class="docutils literal notranslate"><span class="pre">infer_node_</span></code>使用了复合节点的输入边<code class="docutils literal notranslate"><span class="pre">text_embeddings</span></code>，因此需要手动执行<code class="docutils literal notranslate"><span class="pre">infer_node_-&gt;updateInput()</span></code>获取输入数据。</p>
+<p>创建复合节点并加入到图中：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">dag</span><span class="o">::</span><span class="n">NodeDesc</span><span class="w"> </span><span class="n">denoise_desc</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;nndeploy::stable_diffusion::DenoiseNode&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;denoise&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span><span class="n">init_latents</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">(),</span><span class="w"> </span><span class="n">text_embeddings</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">()},</span>
+<span class="w">    </span><span class="p">{</span><span class="n">latents</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">()});</span>
+<span class="n">DenoiseNode</span><span class="w"> </span><span class="o">*</span><span class="n">denoise_node</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="p">(</span><span class="n">DenoiseNode</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">denoise_graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="p">(</span><span class="n">denoise_desc</span><span class="p">);</span>
+<span class="n">denoise_node</span><span class="o">-&gt;</span><span class="n">setParam</span><span class="p">(</span><span class="n">denoise_param</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+<span class="n">denoise_node</span><span class="o">-&gt;</span><span class="n">make</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>在复合节点中使用到的节点，需要注册到框架中，才能被复合节点创建：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">REGISTER_NODE</span><span class="p">(</span><span class="s">&quot;nndeploy::stable_diffusion::DDIMScheduleNode&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DDIMScheduleNode</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>通过<code class="docutils literal notranslate"><span class="pre">REGISTER_NODE</span></code>接口来实现。</p>
+</section>
+</section>
+</section>
+<section id="id17">
+<h2>实际开发案例<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h2>
+<p>接下来我们通过两个实际的部署案例来更加深入地学习一下自定义节点的应用流程。</p>
+<section id="id18">
+<h3>目标检测<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h3>
+<p>实际的<a class="reference external" href="../../../demo/detect/demo.cc">目标检测应用</a>以及<a class="reference external" href="../../../plugin/source/nndeploy/detect/yolo/yolo.cc">自定义节点</a>在nndeploy的demo以及plugin目录下，感兴趣的开发者可以自行查看，这里对开发和应用流程进行介绍。</p>
+<p><img alt="detect-graph" src="../_images/detect_graph.png" /></p>
+<p>目标检测使用到的全部plugin如上图所示：</p>
+<ul class="simple">
+<li><p>decode_node: 用于对输入图片进行解码，转换成张量；</p></li>
+<li><p>preprocess_node: 用于对输入图片进行预处理，包括resize、normalize、transpose等操作；</p></li>
+<li><p>infer_node: 用于对输入图片进行推理，得到检测结果；</p></li>
+<li><p>postprocess_node: 用于对检测结果进行后处理，包括非极大值抑制、置信度阈值过滤等操作；</p></li>
+<li><p>draw_node: 用于将检测结果绘制到输入图片上；</p></li>
+<li><p>encode_node: 用于将检测结果保存为图片。</p></li>
+</ul>
+<p>在该部署案例中，使用nndeploy完成了目标检测推理的图构建与运行，其流程大致如下：</p>
+<section id="id19">
+<h4>配置参数<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h4>
+<p>通过 demo 模块从命令行或配置中读取参数，包括：</p>
+<ul class="simple">
+<li><p>推理类型（ONNXRuntime、AscendCL 等）</p></li>
+<li><p>设备类型（X86、CUDA、Ascend 等）</p></li>
+<li><p>模型路径与类型（ONNX、MNN 等）</p></li>
+<li><p>输入输出名称、图像路径、并行模式等</p></li>
+</ul>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1">// 检测模型的有向无环图graph名称，例如:</span>
+<span class="w">  </span><span class="c1">// NNDEPLOY_YOLOV5/NNDEPLOY_YOLOV6/NNDEPLOY_YOLOV8</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getName</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// 推理后端类型，例如:</span>
+<span class="w">  </span><span class="c1">// kInferenceTypeOpenVino / kInferenceTypeAscendCL / kInferenceTypeTensorRt /</span>
+<span class="w">  </span><span class="c1">// kInferenceTypeOnnxRuntime</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">InferenceType</span><span class="w"> </span><span class="n">inference_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getInferenceType</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// 推理设备类型，例如:</span>
+<span class="w">  </span><span class="c1">// kDeviceTypeCodeAscendCL:0/kDeviceTypeCodeX86:0/kDeviceTypeCodeCuda:0/...</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">DeviceType</span><span class="w"> </span><span class="n">device_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getDeviceType</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// 模型类型，例如:</span>
+<span class="w">  </span><span class="c1">// kModelTypeOnnx/kModelTypeMnn/...</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">ModelType</span><span class="w"> </span><span class="n">model_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getModelType</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// 模型是否是路径</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">isPath</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// 模型路径或者模型字符串</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">model_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getModelValue</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// input path</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">input_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getInputPath</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// codec flag</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">CodecFlag</span><span class="w"> </span><span class="n">codec_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getCodecFlag</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// output path</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">ouput_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getOutputPath</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// base::kParallelTypePipeline / base::kParallelTypeSequential</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">ParallelType</span><span class="w"> </span><span class="n">pt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getParallelType</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getVersion</span><span class="p">();</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">model_inputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getModelInputs</span><span class="p">();</span>
+<span class="w">  </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;model_inputs = %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">model_inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">model_outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demo</span><span class="o">::</span><span class="n">getModelOutputs</span><span class="p">();</span>
+<span class="w">  </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;model_outputs = %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">model_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">c_str</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h4>构建DAG<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h4>
+<p>通过如下方式构建整体推理图：</p>
+<ul class="simple">
+<li><p>创建 dag::Graph 作为顶层图容器</p></li>
+<li><p>创建 YOLO 子图 detect::YoloGraph，并通过 make() 构建内部结构</p></li>
+<li><p>设置推理参数 setInferParam() 与模型版本 setVersion()</p></li>
+<li><p>添加解码节点 decode_node，输出图像原始数据</p></li>
+<li><p>添加画框节点 DrawBox，可根据 YOLO 类型区分输出结构</p></li>
+<li><p>添加编码节点 encode_node，输出保存图像或编码结果</p></li>
+</ul>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// 有向无环图graph的输入边packert</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="n">input</span><span class="p">(</span><span class="s">&quot;detect_in&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// 有向无环图graph的输出边packert</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="n">output</span><span class="p">(</span><span class="s">&quot;detect_out&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// graph</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="s">&quot;demo&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="p">{</span><span class="o">&amp;</span><span class="n">output</span><span class="p">});</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">graph</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;graph is nullptr&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// 创建检测模型有向无环图graph</span>
+<span class="w">  </span><span class="n">detect</span><span class="o">::</span><span class="n">YoloGraph</span><span class="w"> </span><span class="o">*</span><span class="n">detect_graph</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="k">new</span><span class="w"> </span><span class="n">detect</span><span class="o">::</span><span class="n">YoloGraph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="o">&amp;</span><span class="n">input</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="o">&amp;</span><span class="n">output</span><span class="p">});</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">NodeDesc</span><span class="w"> </span><span class="n">pre_desc</span><span class="p">(</span><span class="s">&quot;preprocess&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;detect_in&quot;</span><span class="p">},</span><span class="w"> </span><span class="n">model_inputs</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">NodeDesc</span><span class="w"> </span><span class="n">infer_desc</span><span class="p">(</span><span class="s">&quot;infer&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">model_inputs</span><span class="p">,</span><span class="w"> </span><span class="n">model_outputs</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">NodeDesc</span><span class="w"> </span><span class="n">post_desc</span><span class="p">(</span><span class="s">&quot;postprocess&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">model_outputs</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;detect_out&quot;</span><span class="p">});</span>
+<span class="w">  </span><span class="n">detect_graph</span><span class="o">-&gt;</span><span class="n">make</span><span class="p">(</span><span class="n">pre_desc</span><span class="p">,</span><span class="w"> </span><span class="n">infer_desc</span><span class="p">,</span><span class="w"> </span><span class="n">inference_type</span><span class="p">,</span><span class="w"> </span><span class="n">post_desc</span><span class="p">);</span>
+<span class="w">  </span><span class="n">detect_graph</span><span class="o">-&gt;</span><span class="n">setInferParam</span><span class="p">(</span><span class="n">device_type</span><span class="p">,</span><span class="w"> </span><span class="n">model_type</span><span class="p">,</span><span class="w"> </span><span class="n">is_path</span><span class="p">,</span><span class="w"> </span><span class="n">model_value</span><span class="p">);</span>
+<span class="w">  </span><span class="n">detect_graph</span><span class="o">-&gt;</span><span class="n">setVersion</span><span class="p">(</span><span class="n">version</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// detect_graph-&gt;setTimeProfileFlag(true);</span>
+<span class="w">  </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addNode</span><span class="p">(</span><span class="n">detect_graph</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 解码节点</span>
+<span class="w">  </span><span class="n">codec</span><span class="o">::</span><span class="n">Decode</span><span class="w"> </span><span class="o">*</span><span class="n">decode_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">createDecode</span><span class="p">(</span>
+<span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">kCodecTypeOpenCV</span><span class="p">,</span><span class="w"> </span><span class="n">codec_flag</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;decode_node&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">input</span><span class="p">);</span>
+<span class="w">  </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addNode</span><span class="p">(</span><span class="n">decode_node</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// draw box</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Edge</span><span class="w"> </span><span class="o">*</span><span class="n">draw_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createEdge</span><span class="p">(</span><span class="s">&quot;draw_output&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dag</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">draw_box_node</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;nndeploy::detect::YoloMultiConvOutputGraph&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">draw_box_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">detect</span><span class="o">::</span><span class="n">YoloMultiConvDrawBox</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;DrawBox&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="o">&amp;</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">output</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="n">draw_output</span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">draw_box_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">createNode</span><span class="o">&lt;</span><span class="n">detect</span><span class="o">::</span><span class="n">DrawBox</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;DrawBox&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="o">&amp;</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">output</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="n">draw_output</span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 编码节点</span>
+<span class="w">  </span><span class="n">codec</span><span class="o">::</span><span class="n">Encode</span><span class="w"> </span><span class="o">*</span><span class="n">encode_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">createEncode</span><span class="p">(</span>
+<span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">kCodecTypeOpenCV</span><span class="p">,</span><span class="w"> </span><span class="n">codec_flag</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;encode_node&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">draw_output</span><span class="p">);</span>
+<span class="w">  </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addNode</span><span class="p">(</span><span class="n">encode_node</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h4>设置并行类型<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h4>
+<p>设置DAG的执行模式，如串行或流水线模式<code class="docutils literal notranslate"><span class="pre">setParallelType()</span></code></p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// 设置pipeline并行</span>
+<span class="n">base</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">setParallelType</span><span class="p">(</span><span class="n">pt</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;graph setParallelType failed&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h4>初始化DAG<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h4>
+<p>调用 graph-&gt;init() 执行初始化，包括节点构建、模型加载等;</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// 初始化有向无环图graph</span>
+<span class="w">  </span><span class="n">NNDEPLOY_TIME_POINT_START</span><span class="p">(</span><span class="s">&quot;graph-&gt;init()&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;graph init failed&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">NNDEPLOY_TIME_POINT_END</span><span class="p">(</span><span class="s">&quot;graph-&gt;init()&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h4>运行DAG<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h4>
+<p>解码节点设置输入路径，编码节点设置输出路径后，循环运行 graph-&gt;run()，每次执行完整的decode → preprocess → infer → postprocess → draw → encode流程。支持设置推理循环次数或迭代大小。</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">NNDEPLOY_TIME_POINT_START</span><span class="p">(</span><span class="s">&quot;graph-&gt;run&quot;</span><span class="p">);</span>
+<span class="n">decode_node</span><span class="o">-&gt;</span><span class="n">setPath</span><span class="p">(</span><span class="n">input_path</span><span class="p">);</span>
+<span class="n">encode_node</span><span class="o">-&gt;</span><span class="n">setRefPath</span><span class="p">(</span><span class="n">input_path</span><span class="p">);</span>
+<span class="n">encode_node</span><span class="o">-&gt;</span><span class="n">setPath</span><span class="p">(</span><span class="n">ouput_path</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decode_node</span><span class="o">-&gt;</span><span class="n">getSize</span><span class="p">();</span>
+<span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="n">decode_node</span><span class="o">-&gt;</span><span class="n">setSize</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">run</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;graph deinit failed&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kParallelTypePipeline</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">detect</span><span class="o">::</span><span class="n">DetectResult</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="p">(</span><span class="n">detect</span><span class="o">::</span><span class="n">DetectResult</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">output</span><span class="p">.</span><span class="n">getGraphOutputParam</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;result is nullptr&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h4>输出结果<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h4>
+<p>可从输出边 detect_out 获取检测结果结构体 DetectResult，其中包含检测框、类别等信息;</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pt</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kParallelTypePipeline</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;size = %d.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">detect</span><span class="o">::</span><span class="n">DetectResult</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="p">(</span><span class="n">detect</span><span class="o">::</span><span class="n">DetectResult</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">output</span><span class="p">.</span><span class="n">getGraphOutputParam</span><span class="p">();</span>
+<span class="w">    </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;%d %p.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;result is nullptr&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">NNDEPLOY_TIME_POINT_END</span><span class="p">(</span><span class="s">&quot;graph-&gt;run&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h4>反初始化DAG<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h4>
+<p>在推理结束后，调用graph-&gt;deinit()进行资源释放;</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// 有向无环图graph反初始化</span>
+<span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">deinit</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">kStatusCodeOk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s">&quot;graph deinit failed&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id26">
+<h3>文生图<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h3>
+<p>Stable Diffusion 是一种基于扩散模型的文本生成图像的算法，其推理过程较长，涉及多个阶段模块，nndeploy将其拆分成多个自定义节点并组合为图结构，对自定义节点的详细实现感兴趣的同学可以查看<a class="reference external" href="../../../plugin/source/nndeploy/stable_diffusion/text2image.cc">plugin</a>目录下的实现。</p>
+<p><img alt="stable-diffusion-1.5-dag" src="../_images/sd-1.5-dag.png" /></p>
+<p>自定义节点解析：</p>
+<ul class="simple">
+<li><p>prompt / negative_prompt：用户输入的正向与反向文本提示词；</p></li>
+<li><p>clip（子图）：文本编码器模块，将文字转换为 latent 空间中的 embedding 表达；</p></li>
+<li><p>embedding_subgraph：正向文本编码；</p></li>
+<li><p>negative_embedding_subgraph：负向文本编码；</p></li>
+<li><p>tokenizer → tensor → clip_infer：完成编码；</p></li>
+<li><p>concat_node：将正负 embedding 拼接用于classifier-free guidance；</p></li>
+<li><p>denoise_ddim（子图）：主循环去噪模块；</p></li>
+<li><p>init_latents：初始化随机 latent 图像；</p></li>
+<li><p>denoise：执行 DDIM 多步预测与调度（循环）；</p></li>
+<li><p>vae（子图）：图像解码模块；</p></li>
+<li><p>scale_latents：数值范围转换；</p></li>
+<li><p>vae_infer：vae decoder解码，生成 RGB 图像；</p></li>
+<li><p>save_node：图像保存自定义节点，将结果输出为图像文件。</p></li>
+</ul>
+<section id="id27">
+<h4>配置参数<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h4>
+<p>通过命令行或配置设置以下关键参数：</p>
+<ul class="simple">
+<li><p>InferenceType：如 ONNX Runtime，用于设置后端推理框架</p></li>
+<li><p>DeviceType：如 CUDA、X86 等推理执行设备</p></li>
+<li><p>ModelType：如 ONNX</p></li>
+<li><p>ModelValue：CLIP、UNet、VAE 等模型路径</p></li>
+<li><p>Prompt 与 NegativePrompt：用户输入文本</p></li>
+<li><p>ParallelType：图执行模式（串行/流水线）</p></li>
+<li><p>OutputPath：输出图像保存路径</p></li>
+</ul>
+<p>此外，还构造了两个重要的参数对象：</p>
+<p>Text2ImageParam：文本到图像的配置项，包括模型结构、路径、并行方式等；</p>
+<p>DDIMSchedulerParam：调度器参数，控制推理步数、guidance scale、图像大小、beta schedule 等。</p>
+</section>
+<section id="id28">
+<h4>构建 DAG 图<a class="headerlink" href="#id28" title="Permalink to this heading">¶</a></h4>
+<p>通过 createStableDiffusionText2ImageGraph() 接口构建整图，内部流程包含：</p>
+<ul class="simple">
+<li><p>文本输入编码（CLIP 子图）；</p></li>
+<li><p>latent 初始化与DDIM多步去噪（denoise 子图）；</p></li>
+<li><p>图像重建与缩放（VAE 子图）；</p></li>
+<li><p>图像保存（SaveImageNode）。</p></li>
+</ul>
+<p>同时设置图结构的执行模式：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">setParallelType</span><span class="p">(</span><span class="n">pt</span><span class="p">);</span>
+<span class="n">graph</span><span class="o">-&gt;</span><span class="n">setTimeProfileFlag</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id29">
+<h4>图初始化<a class="headerlink" href="#id29" title="Permalink to this heading">¶</a></h4>
+<p>调用 graph-&gt;init() 完成图构建，包括模型加载、边张量初始化等。</p>
+</section>
+<section id="id30">
+<h4>输入设置与推理执行<a class="headerlink" href="#id30" title="Permalink to this heading">¶</a></h4>
+<p>为输入边prompt和negative_prompt设置对应的TokenizerText对象，执行图：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">(</span><span class="n">prompt_text</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="n">negative_prompt</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">(</span><span class="n">negative_prompt_text</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="n">graph</span><span class="o">-&gt;</span><span class="n">run</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>迭代一次即完成一个图像生成任务。</p>
+</section>
+<section id="id31">
+<h4>图资源释放<a class="headerlink" href="#id31" title="Permalink to this heading">¶</a></h4>
+<p>执行完毕后调用<code class="docutils literal notranslate"><span class="pre">graph-&gt;deinit()</span></code>释放所有资源，并销毁输入对象和图对象。</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="deploy.html" class="btn btn-neutral float-left" title="最佳实践" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plugin_python.html" class="btn btn-neutral float-right" title="Python自定义节点开发手册" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

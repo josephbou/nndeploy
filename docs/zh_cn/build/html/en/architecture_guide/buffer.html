@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buffer &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Buffer</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="buffer">
+<h1>Buffer<a class="headerlink" href="#buffer" title="Permalink to this heading">¶</a></h1>
+<p>Let’s take a look at the design implementation of Buffer. The directory where Buffer is located is in framework/include/nndeploy/device/buffer.h, and the source file is in the corresponding source directory.</p>
+<p>Continuing with our principle, first look at the member variables, then the member functions.</p>
+<p>First, look at the most important member variable data_, which is the specific data held, such as data allocated by malloc, data allocated by new, this specific data. If it’s a CPU device, then it’s CPU data; if it’s a GPU device, then it’s GPU data.</p>
+<p>How to indicate what device this data is for? Here, the device_ member variable is used to specify. For example, data allocated through Huawei Ascend NPU is identified by the device_ variable.</p>
+<p>If CPU memory pool, NPU memory pool are configured, then the data allocated from this memory pool is identified by the memory_pool_ member variable.</p>
+<p>Then there’s describing the information of this memory, such as how large the memory space is? The buffer_desc_ member variable describes this.</p>
+<p>This Buffer’s data pointer can also be externally passed in. For example, if I now have a Buffer, I can pass an external pointer to this Buffer for use, just like OpenCV’s Mat can pass an external data pointer.</p>
+<p>Then this memory has types, such as externally passed, internally allocated, for OpenCL there are also memory mapping, shared memory, etc., which are identified by the memory_type_ member variable.</p>
+<p>Buffer also supports copy constructor and assignment constructor. Similarly, it also needs a reference count ref_count_. For example, two Buffers share the same data. When its reference count equals 0, this data can be released.</p>
+<p>Then we jump in to see how BufferDesc describes a Buffer.</p>
+<p>Buffer has a size, size_ indicates how large it is, it’s a SizeVector type. Why is it a Vector? For example, the memory allocated by malloc is one-dimensional in size, but for some heterogeneous devices, like OpenCL, there’s a memory object called CL_image_2D, this object has height and width, and the number of channels, so it needs multiple dimensions to describe its size, size represents its logical size.</p>
+<p>There’s also a real_size_, which is the actual size allocated, this real_size never changes.</p>
+<p>BUFFER needs to support Tensor’s reshape operation, Tensor truly holds data by Buffer. For example, if this Tensor is initially 1×1024×1024, then reshaped to 1×512×512, its logical size must have changed, but the actual size does not change.</p>
+<p>Then there’s config_, which is some special requirements for memory, such as when allocating memory through CUDA’s cudaMalloc there are some special parameters. For example, in CUDA we might need to allocate pinned memory (PINNED MEMORY), this kind of memory is not paged by the operating system, allowing more efficient data transfer between host and device. We can set the corresponding flags in config_ to specify this type of memory, so the memory object has specific properties and requirements.</p>
+<p>Alright, after looking at BufferDesc, let’s look at buffer.</p>
+<!-- 首先 Buffer 可以传入一个大小来构造，因为 Tensor 会经常用到 Buffer，所以 BufferDesc 是一个常用的数据结构。Buffer 类有一大堆方便的构造函数，包括拷贝构造函数。
+
+我们还提供了一些帮助函数，比如返回大小（getSize），返回整个 size vector（getSizeVector），返回真实的大小（getRealSize），然后判断内存属性是否相同（isSameMemoryType），判断维度是否相同（isSameDims），判断是否为空（empty）等等。
+
+有时候我们需要比较两个 Buffer 的内存大小，所以有一些比较函数。在开发过程中，我们可能需要调试 Buffer，因为它存放着实际数据，在编写算子或前后处理过程中需要查看 Buffer 内容，所以我们提供了打印函数（print）。
+
+当 Tensor reshape 之后，对应的 Buffer size 也要发生变化，所以我们有 resize 函数，可以仅仅修改逻辑大小而不改变真实大小。 --><p>Let’s look at Tensor’s member functions.</p>
+<p>The Buffer class provides rich member functions to support various memory operation and management needs.</p>
+<section id="id1">
+<h2>Constructor<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>The Buffer class provides multiple construction methods to adapt to different memory allocation and management scenarios: device-based construction, construction using external pointers, construction specifying memory type, memory pool-based construction, copy and move construction.</p>
+<!-- 1. **基于设备的构造**：
+   - `Buffer(Device *device, size_t size)`：从指定设备分配指定大小的内存
+   - `Buffer(Device *device, const BufferDesc &desc)`：根据BufferDesc描述从设备分配内存
+
+2. **使用外部指针的构造**：
+   - `Buffer(Device *device, size_t size, void *ptr)`：使用外部提供的指针，关联到指定设备
+   - `Buffer(Device *device, const BufferDesc &desc, void *ptr)`：使用外部指针，并按BufferDesc描述关联到设备
+
+3. **指定内存类型的构造**：
+   - `Buffer(Device *device, size_t size, void *ptr, base::MemoryType memory_type)`：使用外部指针，并指定内存类型
+   - `Buffer(Device *device, const BufferDesc &desc, void *ptr, base::MemoryType memory_type)`：使用外部指针，按BufferDesc描述并指定内存类型
+
+4. **基于内存池的构造**：
+   - `Buffer(MemoryPool *memory_pool, size_t size)`：从内存池分配指定大小的内存
+   - `Buffer(MemoryPool *memory_pool, const BufferDesc &desc)`：根据BufferDesc从内存池分配内存
+
+5. **拷贝和移动构造**：
+   - 拷贝构造函数`Buffer(const Buffer &buffer)`：创建一个Buffer的浅拷贝，共享底层数据
+   - 赋值操作符`Buffer &operator=(const Buffer &buffer)`：赋值操作，实现浅拷贝
+   - 移动构造函数`Buffer(Buffer &&buffer) noexcept`：移动构造，转移资源所有权
+   - 移动赋值操作符`Buffer &operator=(Buffer &&buffer) noexcept`：移动赋值，转移资源所有权 --><p>These constructor functions allow Buffer to flexibly adapt to various memory allocation and management scenarios, whether directly allocating memory from the device, using pre-allocated memory, or obtaining memory from a memory pool.</p>
+</section>
+<section id="set">
+<h2>set function<a class="headerlink" href="#set" title="Permalink to this heading">¶</a></h2>
+<p>The Buffer class provides a template function set<T>(T value), used to set all elements in the Buffer to the specified value.</p>
+<!-- 这个函数的实现考虑了不同设备类型的特性： --><!-- 1. 首先检查Buffer是否为空，如果为空则返回错误
+2. 对于主机设备（如CPU），直接操作内存
+3. 对于非主机设备（如GPU），先在主机上分配临时内存，设置值后再上传到设备内存
+4. 根据元素类型T和Buffer大小计算元素数量，然后设置每个元素的值
+5. 对于非主机设备，完成操作后释放临时内存
+
+这个函数在初始化Buffer内容时非常有用，例如将权重初始化为零或特定值。 --></section>
+<section id="id2">
+<h2>Clone and copy functions<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>Buffer provides two important data copy functions:</p>
+<ol class="simple">
+<li><p>clone(): Creates a completely independent copy of the Buffer, including copying the underlying data. This is a deep copy operation, the new Buffer is completely independent of the original Buffer.</p></li>
+<li><p>copyTo(Buffer *dst): Copies the current Buffer’s data to the target Buffer. This function handles data transfer between different devices, such as copying from CPU to GPU or from one GPU to another GPU.</p></li>
+</ol>
+<p>These functions are very useful when data backup or data transfer between different devices is needed.</p>
+</section>
+<section id="id3">
+<h2>Serialization functions<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>Buffer supports serialization and deserialization operations, thereby supporting the serialization and deserialization of model weights:</p>
+<!-- 1. **serialize(std::string &bin_str)**：将Buffer的内容序列化到输出流。这个函数会保存Buffer的描述信息和实际数据。
+
+2. **serialize(const std::string &bin_str)**：从输入流反序列化数据到Buffer。这个函数会根据流中的信息重建Buffer。
+
+3. **serializeToSafetensors**：当启用SAFETENSORS_CPP支持时，Buffer可以序列化为safetensors格式，这是一种更安全、更高效的张量存储格式。
+
+这些序列化功能使得Buffer能够方便地保存到文件或从文件加载，支持模型的持久化存储和分发。 --></section>
+<section id="id4">
+<h2>Print function<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>Buffer provides the print(std::ostream &amp;stream) function, used to output Buffer’s information to the specified stream (default is standard output). This function will output:</p>
+<ol class="simple">
+<li><p>Basic information of Buffer, such as size, device type, memory type, etc.</p></li>
+<li><p>For smaller Buffers, it might also output the actual data content.</p></li>
+</ol>
+<p>This function is very useful during the debugging process, helping developers to check the state and content of the Buffer.</p>
+</section>
+<section id="id5">
+<h2>Helper functions<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>The Buffer class provides a series of helper functions, such as information description acquisition, data methods, printing, etc., making the operation and query of the Buffer more convenient:</p>
+<!-- 1. **内存管理函数**：
+   - `justModify(const size_t &size)`：仅修改逻辑大小，不改变实际分配的内存
+   - `justModify(const base::SizeVector &size)`：使用向量指定新的逻辑大小
+   - `justModify(const BufferDesc &desc)`：使用新的BufferDesc更新Buffer描述
+
+2. **状态查询函数**：
+   - `empty()`：检查Buffer是否为空
+   - `getDeviceType()`：获取设备类型
+   - `getDevice()`：获取关联的设备
+   - `getMemoryPool()`：获取关联的内存池
+   - `isMemoryPool()`：检查是否使用内存池
+
+3. **描述信息获取**：
+   - `getDesc()`：获取BufferDesc
+   - `getSize()`：获取逻辑大小
+   - `getSizeVector()`：获取逻辑大小向量
+   - `getRealSize()`：获取实际分配的大小
+   - `getRealSizeVector()`：获取实际大小向量
+   - `getConfig()`：获取配置信息
+
+4. **数据访问**：
+   - `getData()`：获取数据指针
+   - `getMemoryType()`：获取内存类型
+
+5. **引用计数管理**：
+   - `addRef()`：增加引用计数
+   - `subRef()`：减少引用计数 --><p>These helper functions make the use of the Buffer more flexible and convenient, able to meet various needs of memory management and data operations.</p>
+<p>Alright, regarding the implementation of our buffer, we’ll stop here for now.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

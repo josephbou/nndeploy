@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.base.similarity &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nndeploy.basic" href="nndeploy.basic.html" />
+    <link rel="prev" title="nndeploy.base.logger" href="nndeploy.base.logger.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nndeploy.html">nndeploy</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_version"><code class="docutils literal notranslate"><span class="pre">get_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_init"><code class="docutils literal notranslate"><span class="pre">framework_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_deinit"><code class="docutils literal notranslate"><span class="pre">framework_deinit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_type_enum_json"><code class="docutils literal notranslate"><span class="pre">get_type_enum_json()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_aigc.html">nndeploy.api_aigc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_llm.html">nndeploy.api_llm</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nndeploy.base.html">nndeploy.base</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.base.common.html">nndeploy.base.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.base.logger.html">nndeploy.base.logger</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nndeploy.base.similarity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.basic.html">nndeploy.basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.classification.html">nndeploy.classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.codec.html">nndeploy.codec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.dag.html">nndeploy.dag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.detect.html">nndeploy.detect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.device.html">nndeploy.device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.diffusion.html">nndeploy.diffusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.face.html">nndeploy.face</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.gan.html">nndeploy.gan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.image.html">nndeploy.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.infer.html">nndeploy.infer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.inference.html">nndeploy.inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ir.html">nndeploy.ir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.llm.html">nndeploy.llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.matting.html">nndeploy.matting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.net.html">nndeploy.net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.nndeploy.html">nndeploy.nndeploy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ocr.html">nndeploy.ocr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.op.html">nndeploy.op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.preprocess.html">nndeploy.preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.segment.html">nndeploy.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.server.html">nndeploy.server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.tokenizer.html">nndeploy.tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.track.html">nndeploy.track</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Python API Reference</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.html">nndeploy</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.base.html">nndeploy.base</a></li>
+      <li class="breadcrumb-item active">nndeploy.base.similarity</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nndeploy.base.similarity">
+<span id="nndeploy-base-similarity"></span><h1>nndeploy.base.similarity<a class="headerlink" href="#module-nndeploy.base.similarity" title="Permalink to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.base.similarity.cosine_similarity" title="nndeploy.base.similarity.cosine_similarity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cosine_similarity</span></code></a>(array1, array2)</p></td>
+<td><p>计算两个numpy数组的余弦相似度</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.base.similarity.euclidean_similarity" title="nndeploy.base.similarity.euclidean_similarity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">euclidean_similarity</span></code></a>(array1, array2)</p></td>
+<td><p>计算两个numpy数组的欧式距离相似度</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.base.similarity.histogram_data_distribution" title="nndeploy.base.similarity.histogram_data_distribution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">histogram_data_distribution</span></code></a>(data[, num_bins])</p></td>
+<td><p>统计数据分布并放入指定数量的箱子中</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.base.similarity.mse_similarity" title="nndeploy.base.similarity.mse_similarity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mse_similarity</span></code></a>(array1, array2)</p></td>
+<td><p>计算两个numpy数组的均方误差(MSE)相似度</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.base.similarity.histogram_data_distribution">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.base.similarity.</span></span><span class="sig-name descname"><span class="pre">histogram_data_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2048</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../../_modules/nndeploy/base/similarity.html#histogram_data_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.base.similarity.histogram_data_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>统计数据分布并放入指定数量的箱子中</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – 输入的numpy数组，表示需要统计的数据</p></li>
+<li><p><strong>num_bins</strong> – 箱子的数量，默认为2048</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>每个箱子的频数</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.base.similarity.cosine_similarity">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.base.similarity.</span></span><span class="sig-name descname"><span class="pre">cosine_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../_modules/nndeploy/base/similarity.html#cosine_similarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.base.similarity.cosine_similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算两个numpy数组的余弦相似度</p>
+<p>余弦相似度用于衡量两个向量的相似程度，通过计算向量间夹角的余弦值得到。
+结果范围在[-1,1]之间:
+1: 表示两个向量方向完全相同，即最相似
+0: 表示两个向量正交，即没有相似性
+-1: 表示两个向量方向完全相反，即最不相似</p>
+<p>计算公式为: cos(θ) = (A·B)/(||A||·||B||)
+其中A·B为向量点积, ||A||和||B||分别为向量的模长</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array1</strong> – 第一个numpy数组</p></li>
+<li><p><strong>array2</strong> – 第二个numpy数组</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>余弦相似度值,范围在[-1,1]之间</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.base.similarity.mse_similarity">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.base.similarity.</span></span><span class="sig-name descname"><span class="pre">mse_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../_modules/nndeploy/base/similarity.html#mse_similarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.base.similarity.mse_similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算两个numpy数组的均方误差(MSE)相似度</p>
+<p>均方误差用于衡量两个数组之间的差异程度。
+MSE值越小表示两个数组越相似。
+为了与余弦相似度保持一致的相似度表示:
+- 使用exp(-MSE)将结果映射到(0,1]区间
+- 1表示完全相同(MSE=0)
+- 接近0表示差异很大(MSE很大)</p>
+<p>计算公式为: MSE = mean((A-B)^2)
+相似度 = exp(-MSE)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array1</strong> – 第一个numpy数组</p></li>
+<li><p><strong>array2</strong> – 第二个numpy数组</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MSE相似度值,范围在(0,1]之间</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.base.similarity.euclidean_similarity">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.base.similarity.</span></span><span class="sig-name descname"><span class="pre">euclidean_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../_modules/nndeploy/base/similarity.html#euclidean_similarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.base.similarity.euclidean_similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算两个numpy数组的欧式距离相似度</p>
+<p>欧式距离用于衡量两个数组在欧几里得空间中的距离。
+为了与其他相似度保持一致:
+- 使用exp(-distance)将结果映射到(0,1]区间
+- 1表示完全相同(距离为0)
+- 接近0表示差异很大(距离很大)</p>
+<p>计算公式为: distance = sqrt(sum((A-B)^2))
+相似度 = exp(-distance)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array1</strong> – 第一个numpy数组</p></li>
+<li><p><strong>array2</strong> – 第二个numpy数组</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>欧式距离相似度值,范围在(0,1]之间</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nndeploy.base.logger.html" class="btn btn-neutral float-left" title="nndeploy.base.logger" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nndeploy.basic.html" class="btn btn-neutral float-right" title="nndeploy.basic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

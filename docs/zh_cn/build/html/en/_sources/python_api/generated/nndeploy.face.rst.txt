@@ -1,0 +1,32 @@
+nndeploy.face
+=============
+
+.. automodule:: nndeploy.face
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   nndeploy.face.deep_live_cam
+   nndeploy.face.insightface
+

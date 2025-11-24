@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.op.functional &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nndeploy.op.op" href="nndeploy.op.op.html" />
+    <link rel="prev" title="nndeploy.op.expr" href="nndeploy.op.expr.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nndeploy.html">nndeploy</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_version"><code class="docutils literal notranslate"><span class="pre">get_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_init"><code class="docutils literal notranslate"><span class="pre">framework_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_deinit"><code class="docutils literal notranslate"><span class="pre">framework_deinit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_type_enum_json"><code class="docutils literal notranslate"><span class="pre">get_type_enum_json()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_aigc.html">nndeploy.api_aigc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_llm.html">nndeploy.api_llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.base.html">nndeploy.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.basic.html">nndeploy.basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.classification.html">nndeploy.classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.codec.html">nndeploy.codec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.dag.html">nndeploy.dag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.detect.html">nndeploy.detect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.device.html">nndeploy.device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.diffusion.html">nndeploy.diffusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.face.html">nndeploy.face</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.gan.html">nndeploy.gan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.image.html">nndeploy.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.infer.html">nndeploy.infer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.inference.html">nndeploy.inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ir.html">nndeploy.ir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.llm.html">nndeploy.llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.matting.html">nndeploy.matting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.net.html">nndeploy.net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.nndeploy.html">nndeploy.nndeploy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ocr.html">nndeploy.ocr</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nndeploy.op.html">nndeploy.op</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.op.expr.html">nndeploy.op.expr</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nndeploy.op.functional</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.op.op.html">nndeploy.op.op</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.preprocess.html">nndeploy.preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.segment.html">nndeploy.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.server.html">nndeploy.server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.tokenizer.html">nndeploy.tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.track.html">nndeploy.track</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Python API Reference</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.html">nndeploy</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.op.html">nndeploy.op</a></li>
+      <li class="breadcrumb-item active">nndeploy.op.functional</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nndeploy.op.functional">
+<span id="nndeploy-op-functional"></span><h1>nndeploy.op.functional<a class="headerlink" href="#module-nndeploy.op.functional" title="Permalink to this heading">¶</a></h1>
+<p>函数形式Op</p>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.abs" title="nndeploy.op.functional.abs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abs</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.acos" title="nndeploy.op.functional.acos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">acos</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.add" title="nndeploy.op.functional.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(input1, input2)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.asin" title="nndeploy.op.functional.asin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asin</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.atan" title="nndeploy.op.functional.atan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">atan</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.batch_norm" title="nndeploy.op.functional.batch_norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">batch_norm</span></code></a>(input, scale, bias, mean, var[, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.ceil" title="nndeploy.op.functional.ceil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ceil</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.concat" title="nndeploy.op.functional.concat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">concat</span></code></a>(input1, input2[, axis])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.conv" title="nndeploy.op.functional.conv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conv</span></code></a>(input, weight[, bias, stride, padding, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.cos" title="nndeploy.op.functional.cos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cos</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.cosh" title="nndeploy.op.functional.cosh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cosh</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.dequantize_linear" title="nndeploy.op.functional.dequantize_linear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dequantize_linear</span></code></a>(input, scale, zero_point)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.erf" title="nndeploy.op.functional.erf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">erf</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.exp" title="nndeploy.op.functional.exp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exp</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.flatten" title="nndeploy.op.functional.flatten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flatten</span></code></a>(input[, axis])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.floor" title="nndeploy.op.functional.floor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">floor</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.gather" title="nndeploy.op.functional.gather"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gather</span></code></a>(input, index[, axis])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.gemm" title="nndeploy.op.functional.gemm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gemm</span></code></a>(input_a, input_b[, input_c, alpha, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.global_averagepool" title="nndeploy.op.functional.global_averagepool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global_averagepool</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.hardsigmoid" title="nndeploy.op.functional.hardsigmoid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hardsigmoid</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.log" title="nndeploy.op.functional.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.mat_mul" title="nndeploy.op.functional.mat_mul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mat_mul</span></code></a>(input1, input2[, bias, transposeA, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.maxpool" title="nndeploy.op.functional.maxpool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maxpool</span></code></a>(input, kernel_size[, stride, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.mul" title="nndeploy.op.functional.mul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mul</span></code></a>(input1, input2)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.qlinear_conv" title="nndeploy.op.functional.qlinear_conv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qlinear_conv</span></code></a>(x, x_scale, x_zero_point, w, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.quantize_linear" title="nndeploy.op.functional.quantize_linear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantize_linear</span></code></a>(input, scale, zero_point[, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.reciprocal" title="nndeploy.op.functional.reciprocal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reciprocal</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.relu" title="nndeploy.op.functional.relu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">relu</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.reshape" title="nndeploy.op.functional.reshape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reshape</span></code></a>(input, shape[, allowzero])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.rms_norm" title="nndeploy.op.functional.rms_norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rms_norm</span></code></a>(input, weight[, epsilon])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.round" title="nndeploy.op.functional.round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.selu" title="nndeploy.op.functional.selu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">selu</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.sigmoid" title="nndeploy.op.functional.sigmoid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sigmoid</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.sign" title="nndeploy.op.functional.sign"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sign</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.sin" title="nndeploy.op.functional.sin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sin</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.sinh" title="nndeploy.op.functional.sinh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sinh</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.slice" title="nndeploy.op.functional.slice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">slice</span></code></a>(input, starts, ends, axes, steps)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.softmax" title="nndeploy.op.functional.softmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">softmax</span></code></a>(input[, axis])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.split" title="nndeploy.op.functional.split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split</span></code></a>(input[, section, num_outputs, axis])</p></td>
+<td><p>Python 封装的 Split 接口 支持两种互斥模式：   1) num_outputs：等分或最后一块变小   2) section：list/tuple/int 指定每段长度（自动转为 1-D int64 Tensor） ;具有更高优先级</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.sqrt" title="nndeploy.op.functional.sqrt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sqrt</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.tan" title="nndeploy.op.functional.tan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tan</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.tanh" title="nndeploy.op.functional.tanh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tanh</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.op.functional.transpose" title="nndeploy.op.functional.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>(input, perm_axis)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.op.functional.where" title="nndeploy.op.functional.where"><code class="xref py py-obj docutils literal notranslate"><span class="pre">where</span></code></a>(input1, input2, condition)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.conv">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">conv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#conv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.conv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.concat">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">concat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#concat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.concat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.batch_norm">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">batch_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#batch_norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.batch_norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.relu">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">relu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#relu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.relu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.hardsigmoid">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">hardsigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#hardsigmoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.hardsigmoid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.selu">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">selu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#selu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.selu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.tanh">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#tanh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.tanh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.abs">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">abs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#abs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.abs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.acos">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">acos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#acos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.acos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.asin">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">asin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#asin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.asin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.atan">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">atan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#atan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.atan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.ceil">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">ceil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#ceil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.ceil" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.cos">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#cos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.cos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.cosh">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">cosh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#cosh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.cosh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.erf">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">erf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#erf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.erf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.exp">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#exp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.exp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.floor">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">floor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#floor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.floor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.log">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.reciprocal">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">reciprocal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#reciprocal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.reciprocal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.round">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.round" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.sign">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#sign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.sign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.sin">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#sin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.sin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.sinh">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">sinh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#sinh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.sinh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.sqrt">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#sqrt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.sqrt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.tan">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#tan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.tan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.add">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.flatten">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#flatten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.flatten" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.gather">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">gather</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#gather"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.gather" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.gemm">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">gemm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trans_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trans_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#gemm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.gemm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.global_averagepool">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">global_averagepool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#global_averagepool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.global_averagepool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.maxpool">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">maxpool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ceil_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#maxpool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.maxpool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.mat_mul">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">mat_mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transposeA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transposeB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#mat_mul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.mat_mul" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.mul">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#mul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.mul" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.rms_norm">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">rms_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#rms_norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.rms_norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.reshape">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">reshape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowzero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#reshape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.reshape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.softmax">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">softmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#softmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.softmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.slice">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ends</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#slice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.slice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.sigmoid">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#sigmoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.sigmoid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.quantize_linear">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">quantize_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saturate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#quantize_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.quantize_linear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.dequantize_linear">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">dequantize_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#dequantize_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.dequantize_linear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.qlinear_conv">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">qlinear_conv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_zero_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_zero_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_zero_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#qlinear_conv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.qlinear_conv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.where">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">where</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#where"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.where" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.transpose">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">transpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perm_axis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#transpose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.transpose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.op.functional.split">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.op.functional.</span></span><span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/op/functional.html#split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.op.functional.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python 封装的 Split 接口
+支持两种互斥模式：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>num_outputs：等分或最后一块变小</p></li>
+<li><p>section：list/tuple/int 指定每段长度（自动转为 1-D int64 Tensor） ;具有更高优先级</p></li>
+</ol>
+</div></blockquote>
+<p>返回值：tuple[Tensor, …]</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nndeploy.op.expr.html" class="btn btn-neutral float-left" title="nndeploy.op.expr" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nndeploy.op.op.html" class="btn btn-neutral float-right" title="nndeploy.op.op" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

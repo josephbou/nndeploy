@@ -1,0 +1,6 @@
+nndeploy.base.logger
+====================
+
+.. currentmodule:: nndeploy.base
+
+.. autodata:: logger

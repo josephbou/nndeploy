@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>最新动态 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="常见问题" href="../faq/faq.html" />
+    <link rel="prev" title="Device Management Module" href="../architecture_guide/device.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id5">Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1. 功能丰富</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">2. 简单易用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">3. 高性能</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">最新动态</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>English | Simplified Chinese</p>
+<hr class="docutils" />
+<section id="id1">
+<h1>最新动态<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>[2025/05/29] 🔥 与昇腾联合推出 AI 推理框架免费课程<a class="reference external" href="https://www.hiascend.com/developer/courses/detail/1923211251905150977">昇腾官方</a> | <a class="reference external" href="https://space.bilibili.com/435543077?spm_id_from=333.788.0.0">B 站</a>！ 从零手搓推理框架，课程基于nndeploy内部推理子模块开发。</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h1>Introduction<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h1>
+<p>框架内部开发的推理子模块，作为缺省推理框架，当用户环境未编译链接其他推理框架时可使用此框架，<strong>在实际应用场景中，推荐用户使用对应平台下，芯片厂商提供的推理框架</strong>。</p>
+<p>目前主要支持华为昇腾NPU算子后端和纯CPU算子后端，计划扩展至X86、CUDA、ARM、OpenCL等异构计算平台。</p>
+<p>在模型支持方面，已适配主流视觉模型，包括图像分类（ResNet50等）、目标检测（YOLOv11等）和图像分割（RMBG1.4等）。未来将拓展支持大语言模型（LLM）和文本图像多模态模型（Dit等）。</p>
+</section>
+<section id="id3">
+<h1>Architecture<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h1>
+<p><img alt="inference_framework_arch" src="../_images/inference_framework_arch.png" /></p>
+</section>
+<section id="id4">
+<h1>Why implement an inference framework internally<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h1>
+<ul>
+<li><p>From a model deployment perspective, an inference framework needs to support more functionalities to meet practical application requirements: We summarized the key functionalities an inference framework needs to support:</p>
+<p><img alt="inference_need_support" src="../_images/inference_need_support.png" /></p>
+</li>
+<li><p><strong>nndeploy已具备大量推理相关基础组件</strong>：nndeploy在模型部署方面有许多优秀特性。nndeploy背后有大量精心设计和开发工作，为用户提供功能强大、易用、高性能且兼容主流框架的模型推理和部署体验。nndeploy已具备大量推理相关基础组件，因此我们选择先基于华为昇腾生态，开发一个内部推理框架。该框架将从部署角度出发，提供全面、易用的功能。</p></li>
+<li><p>Keeping up with the development of AI infrastructure in the era of large models: Large models demonstrate powerful capabilities across various fields but also impose higher demands on AI infrastructure, such as more efficient memory management, stronger distributed inference capabilities, deeper operator optimization, etc. Developing this internal inference framework will enable us to keep pace with the steps of the large model era.</p></li>
+<li><p><strong>提供一个缺省的推理框架</strong>：nndeploy内部推理框架将作为nndeploy的缺省推理框架，当用户没有编译链接推理框架时，可以使用该缺省推理框架，在实际应用场景下，推荐用户使用对应平台芯片公司提供的推理框架。</p></li>
+</ul>
+</section>
+<section id="id5">
+<h1>Features<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h1>
+<section id="id6">
+<h2>1. 功能丰富<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Support manual graph construction: When graph optimization methods lag, manually combining fragmented operators into a large operator through manual graph construction can improve inference performance.</p></li>
+<li><p>Support loading and optimizing quantized intermediate format QDQ models: The inference framework can support loading and optimizing QDQ models, where model quantization can be completed at the training framework or ONNX level, and the inference framework is responsible for loading the quantized intermediate format QDQ models, completing subsequent model graph optimization work. This can decouple quantization from the inference framework.</p></li>
+<li><p>Support shared context and shared streams: Breaking through the application and inference, achieving zero-copy of inputs and outputs between application and model inference as well as overlapping execution, enhancing the performance of the entire process.</p></li>
+<li><p>Support dynamic shape input: Adapt to more application scenarios, support more models’ high-performance deployment, support dynamic batch size, dynamic sequence length, dynamic image size.</p></li>
+<li><p>Support multi-device backend operators: Currently, the backend operators support CPU and Huawei Ascend NPU, with future plans to gradually expand support for CUDA, ARM, OpenCL, and other heterogeneous computing platforms.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>2. 简单易用<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Support direct reading of ONNX models: Simplify the process, helping engineers quickly verify the model’s accuracy and performance.</p></li>
+<li><p>Support direct reading of safetensors format model weight files: Simplify the process, helping engineers quickly verify the model’s accuracy and performance.</p></li>
+<li><p>Provide multi-level APIs: Allow developers to get started easily, providing simple and easy-to-use high-level APIs, enabling experienced engineers to perform more detailed performance tuning, offering flexible low-level APIs.</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>3. 高性能<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Memory reuse: High-efficiency memory reuse management mechanism based on computational graphs.</p></li>
+<li><p>Multi-model inference instances share memory: Through multi-model shared activation value memory technology, multiple models share memory at different times, increasing the number of models that can be deployed on a single machine, achieving “multiple models, single memory copy”.</p></li>
+<li><p>Graph optimization: Through a series of optimizations on IR/computational graphs, such as operator fusion, constant folding, elimination of common subexpressions, etc., to improve model inference performance.</p></li>
+<li><p>Operator optimization: For different hardware platforms, such as CPU, Huawei Ascend NPU, etc., deeply optimize operators, fully utilizing hardware characteristics to achieve high-efficiency computation.</p></li>
+</ul>
+</section>
+</section>
+<section id="id9">
+<h1>Key submodules<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Model Intermediate Representation (IR): A set of carefully designed data structures used to describe the structure and weight information of a model. It is the core data structure connecting model interpretation, graph optimization, computational graph construction, and other key submodules of the inference framework. As the unified model representation inside the inference framework, IR simplifies the framework design while facilitating interaction between modules.</p></li>
+<li><p>Model Interpreter: A module that converts training framework model files into custom model files for the inference framework. Currently, it supports converting onnx model files into custom model files (model structure file JSON, model weight file safetensors), and also supports mutual conversion between custom model files and custom IR. Through the model interpreter module, different format models can achieve unified representation inside the inference framework, simplifying the design of the inference framework.</p></li>
+<li><p>Computational Graph (DAG): A directed acyclic graph with execution attributes composed of operators and tensors, constructed through IR and configuration parameters.</p></li>
+<li><p>Runtime: Responsible for executing the computational graph, supporting two modes: model inference and single operator execution. Based on the directed acyclic graph with execution attributes, it allocates required resources for the computational graph, writes inputs, executes the computational graph, and finally obtains the inference results.</p></li>
+<li><p>Ascend Operator Library: A rich operator library based on the Huawei Ascend platform, including various types of high-performance operators such as NN, BLAS, AIPP, DVPP. Operators are closely related to the computational graph, forming the core component of the inference framework.</p></li>
+<li><p>Graph Optimization: Optimizes IR or computational graphs at various stages of model inference to improve model inference performance. It includes multiple optimization techniques such as operator fusion, constant folding, elimination of common subexpressions, transpose elimination, identity elimination, and combines hardware characteristics and specific model features to select appropriate optimization strategies.</p></li>
+<li><p>Memory Optimization: By analyzing the lifecycle of Tensors in the computation graph, Tensors with non-overlapping lifecycles are reused in memory to reduce memory usage.</p></li>
+<li><p>Parallel Optimization: Enhances model inference performance by leveraging hardware resources’ parallel capabilities, including data parallelism, pipeline parallelism, tensor parallelism, and other parallel models.</p></li>
+<li><p>Ascend C Operator Development: A custom operator development language based on Huawei’s Ascend platform, allowing users to customize and optimize operator implementations according to actual needs.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../architecture_guide/device.html" class="btn btn-neutral float-left" title="Device Management Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../faq/faq.html" class="btn btn-neutral float-right" title="常见问题" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

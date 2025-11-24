@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Translation Script &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Translation Script</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Translation Script<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<p>This document lists the available translation script options in the nndeploy project, helping developers configure and build the program according to their requirements.</p>
+<section id="id2">
+<h2>1. 编译宏编辑规则<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>For most translation options, only ON/OFF is used.</p>
+<p>However, for external dependencies, there are three methods to enable and link to external third-party libraries.</p>
+<ul class="simple">
+<li><p>Method one: Path, the header file and library’s root directory path, which must be modified to</p>
+<ul>
+<li><p>Header file: path/include</p></li>
+<li><p>Library: path/lib</p></li>
+<li><p>Windows dll: path/bin</p></li>
+<li><p>Corresponding libraries: ONNXRuntime, OpenVINO, TNN, MNN, Windows already translated OpenCV libraries</p></li>
+</ul>
+</li>
+<li><p>Method two: Turn ON, if you have installed the library, and can find the library through find_package, you can use this method.</p>
+<ul>
+<li><p>Corresponding libraries: CUDA, CUDNN, TensorRT, OpenCV under Linux platform</p></li>
+</ul>
+</li>
+<li><p>Method three: Source code ON, use source code translation for this library, for libraries under the third_party directory, you can use this method.</p>
+<ul>
+<li><p>Corresponding libraries: tokenizer-cpp, rapidjson, gflags, ONNX</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2>2.基础构建选项（建议采用默认值）<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>宏</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_NNDEPLOY_BUILD_SHARED</code></td>
+<td>ON</td>
+<td>构建为共享库而非静态库</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_SYMBOL_HIDE</code></td>
+<td>OFF</td>
+<td>隐藏库中的符号以减小二进制大小</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_COVERAGE</code></td>
+<td>OFF</td>
+<td>启用代码覆盖率分析</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_CXX11_ABI</code></td>
+<td>OFF</td>
+<td>使用C++11 ABI</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_CXX14_ABI</code></td>
+<td>OFF</td>
+<td>使用C++14 ABI</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_CXX17_ABI</code></td>
+<td>ON</td>
+<td>使用C++17 ABI（推荐）</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_CXX20_ABI</code></td>
+<td>OFF</td>
+<td>使用C++20 ABI</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_OPENMP</code></td>
+<td>OFF</td>
+<td>启用OpenMP进行并行计算</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_ADDRESS_SANTIZER</code></td>
+<td>OFF</td>
+<td>启用地址消毒器进行内存错误检测</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DOCS</code></td>
+<td>OFF</td>
+<td>构建文档</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_TIME_PROFILER</code></td>
+<td>ON</td>
+<td>启用时间分析器进行性能分析</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_RAPIDJSON</code></td>
+<td>ON</td>
+<td>启用RapidJSON进行JSON解析，基于path/to/nndeploy/third_party/rapidjson源码编译</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id4">
+<h2>3. 核心模块选项（建议采用默认值）<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>宏</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_NNDEPLOY_BASE</code></td>
+<td>ON</td>
+<td>启用包含基础工具的基础模块</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_THREAD_POOL</code></td>
+<td>ON</td>
+<td>启用线程池进行并行任务执行</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_CRYPTION</code></td>
+<td>OFF</td>
+<td>启用加密模块进行模型加密/解密（尚未实现）</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE</code></td>
+<td>ON</td>
+<td>启用设备模块</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_IR</code></td>
+<td>ON</td>
+<td>启用中间表示（IR）模块</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_IR_ONNX</code></td>
+<td>OFF</td>
+<td>在IR模块中启用ONNX格式支持，默认关闭</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_OP</code></td>
+<td>ON</td>
+<td>启用算子模块</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_OP_ASCEND_C</code></td>
+<td>OFF</td>
+<td>启用Ascend C算子</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_NET</code></td>
+<td>ON</td>
+<td>启用神经网络图表示</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE</code></td>
+<td>ON</td>
+<td>启用推理模块</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_DEFAULT</code></td>
+<td>ON</td>
+<td>启用默认推理后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DAG</code></td>
+<td>ON</td>
+<td>启用有向无环图用于模型流水线</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN</code></td>
+<td>ON</td>
+<td>启用算法插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_TEST</code></td>
+<td>ON</td>
+<td>构建测试用例</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEMO</code></td>
+<td>ON</td>
+<td>构建执行程序</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PYTHON</code></td>
+<td>ON</td>
+<td>构建Python绑定</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id5">
+<h2>4. 设备后端选项（可选项，默认全部关闭，可以不依赖任何设备后端）<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>宏</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_CUDA</code></td>
+<td>OFF</td>
+<td>启用NVIDIA CUDA GPU支持，启用后，也必须打开ENABLE_NNDEPLOY_DEVICE_CUDNN</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_ROCM</code></td>
+<td>OFF</td>
+<td>启用AMD ROCm GPU支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_SYCL</code></td>
+<td>OFF</td>
+<td>启用SYCL跨平台加速</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_OPENCL</code></td>
+<td>OFF</td>
+<td>启用OpenCL加速</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_OPENGL</code></td>
+<td>OFF</td>
+<td>启用OpenGL计算支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_METAL</code></td>
+<td>OFF</td>
+<td>启用Apple Metal GPU加速</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_VULKAN</code></td>
+<td>OFF</td>
+<td>启用Vulkan计算支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_HEXAGON</code></td>
+<td>OFF</td>
+<td>启用高通Hexagon DSP支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_MTK_VPU</code></td>
+<td>OFF</td>
+<td>启用联发科VPU支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_ASCEND_CL</code></td>
+<td>OFF</td>
+<td>启用华为Ascend计算语言支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_APPLE_NPU</code></td>
+<td>OFF</td>
+<td>启用Apple神经引擎支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_QUALCOMM_NPU</code></td>
+<td>OFF</td>
+<td>启用高通NPU支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_MTK_NPU</code></td>
+<td>OFF</td>
+<td>启用联发科NPU支持</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_SOPHON_NPU</code></td>
+<td>OFF</td>
+<td>启用算丰NPU支持</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id6">
+<h2>5. 算子后端选项（可选项，默认关闭，可以不依赖任何算子后端）<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>宏</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_CUDNN</code></td>
+<td>OFF</td>
+<td>启用NVIDIA cuDNN加速库</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_X86_ONEDNN</code></td>
+<td>OFF</td>
+<td>启用X86 ONEDNN加速库</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_ARM_XNNPACK</code></td>
+<td>OFF</td>
+<td>启用ARM XNNPACK加速库</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_DEVICE_ARM_QNNPACK</code></td>
+<td>OFF</td>
+<td>启用ARM QNNPACK加速库</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id7">
+<h2>6. 推理后端选项（可选项，默认关闭，可以不依赖任何推理后端）<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>宏</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_TENSORRT</code></td>
+<td>OFF</td>
+<td>启用NVIDIA TensorRT后端，必须打开ENABLE_NNDEPLOY_DEVICE_CUDNN，ENABLE_NNDEPLOY_DEVICE_CUDA</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_OPENVINO</code></td>
+<td>OFF</td>
+<td>启用Intel OpenVINO后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_COREML</code></td>
+<td>OFF</td>
+<td>启用Apple Core ML后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_TFLITE</code></td>
+<td>OFF</td>
+<td>启用TensorFlow Lite后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_ONNXRUNTIME</code></td>
+<td>OFF</td>
+<td>启用ONNX Runtime后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_NCNN</code></td>
+<td>OFF</td>
+<td>启用腾讯NCNN后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_TNN</code></td>
+<td>OFF</td>
+<td>启用腾讯TNN后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_MNN</code></td>
+<td>OFF</td>
+<td>启用阿里巴巴MNN后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_TVM</code></td>
+<td>OFF</td>
+<td>启用Apache TVM后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_PADDLELITE</code></td>
+<td>OFF</td>
+<td>启用百度PaddleLite后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_RKNN_TOOLKIT_1</code></td>
+<td>OFF</td>
+<td>启用瑞芯微RKNN Toolkit 1.x后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_RKNN_TOOLKIT_2</code></td>
+<td>OFF</td>
+<td>启用瑞芯微RKNN Toolkit 2.x后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_ASCEND_CL</code></td>
+<td>OFF</td>
+<td>启用华为Ascend CL后端，必须打开ENABLE_NNDEPLOY_DEVICE_ASCEND_CL</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_SNPE</code></td>
+<td>OFF</td>
+<td>启用高通SNPE后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_QNN</code></td>
+<td>OFF</td>
+<td>启用高通Neural Network后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_SOPHON</code></td>
+<td>OFF</td>
+<td>启用算丰后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_TORCH</code></td>
+<td>OFF</td>
+<td>启用PyTorch/LibTorch后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_TENSORFLOW</code></td>
+<td>OFF</td>
+<td>启用TensorFlow后端</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_INFERENCE_NEUROPILOT</code></td>
+<td>OFF</td>
+<td>启用联发科NeuroPilot后端</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id8">
+<h2>7. 算法插件选项<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>宏</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_NNDEPLOY_OPENCV</code></td>
+<td>ON or <code>path</code></td>
+<td>启用OpenCV支持（多个算法部署插件需要，强依赖OpenCV）</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_PREPROCESS</code></td>
+<td>ON</td>
+<td>启用预处理插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_INFER</code></td>
+<td>ON</td>
+<td>启用推理插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_CODEC</code></td>
+<td>ON</td>
+<td>启用编解码插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_TOKENIZER</code></td>
+<td>ON</td>
+<td>启用分词器插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_TOKENIZER_CPP</code></td>
+<td>OFF</td>
+<td>启用C++分词器插件, 依赖<code>tokenizer-cpp</code>，基于path/to/nndeploy/third_party/tokenizer-cpp源码编译</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_CLASSIFICATION</code></td>
+<td>ON</td>
+<td>启用分类插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_LLM</code></td>
+<td>OFF</td>
+<td>启用大型语言模型插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_DETECT</code></td>
+<td>ON</td>
+<td>启用检测插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_DETECT_DETR</code></td>
+<td>ON</td>
+<td>启用DETR检测插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_DETECT_YOLO</code></td>
+<td>ON</td>
+<td>启用YOLO检测插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_SEGMENT</code></td>
+<td>ON</td>
+<td>启用分割插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_SEGMENT_SEGMENT_ANYTHING</code></td>
+<td>ON</td>
+<td>启用Segment Anything分割插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_SEGMENT_RMBG</code></td>
+<td>ON</td>
+<td>启用背景移除分割插件</td>
+</tr>
+<tr>
+<td><code>ENABLE_NNDEPLOY_PLUGIN_STABLE_DIFFUSION</code></td>
+<td>OFF</td>
+<td>启用Stable Diffusion插件</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id9">
+<h2>8. 编译选项举例说明<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>nndeploy connects to the inference backend ONNXRuntime through the path. set(ENABLE_NNDEPLOY_INFERENCE_ONNXRUNTIME “path/to/onnxruntime”), if you want to enable and connect to other inference backends (OpenVINO, MNN, TNN …), you can do the same processing</p></li>
+<li><p>nndeploy connects to the inference backend TensorRT through the find_package method. set(ENABLE_NNDEPLOY_INFERENCE_TENSORRT ON), for other libraries that can be found through find_package, you can do the same processing</p></li>
+<li><p>nndeploy connects to the third-party library tokenizer-cpp through the source code. set(ENABLE_NNDEPLOY_PLUGIN_TOKENIZER_CPP ON), for other libraries that can be translated through source code, you can do the same processing (all libraries in third_party are currently translated through source code)</p></li>
+<li><p>Translation algorithm plugin. First, set the model type set(ENABLE_NNDEPLOY_PLUGIN_XXX ON), then set the specific model set(ENABLE_NNDEPLOY_PLUGIN_XXX_YYY ON)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

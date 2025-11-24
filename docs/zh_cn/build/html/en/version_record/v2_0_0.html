@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>v2.0.0 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">v2.0.0</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="v2-0-0">
+<h1>v2.0.0<a class="headerlink" href="#v2-0-0" title="Permalink to this heading">¶</a></h1>
+<p>历时七个月，15位开发者，245次commit，nndeploy迎来了稳定的v2.0.0版本。该版本完善了架构，增加了新功能，构建了用例，攥写了文档。当前版本更契合我们的目标——一款支持多平台、高性能、简单易用的机器学习部署框架。</p>
+<p>我们希望v2.0.0版本能够在更多实际场景下应用，产生业务价值。欢迎体验新版本，期待您的反馈，更期待您的加入：https://github.com/nndeploy/nndeploy 。</p>
+<p>nndeploy v2.0.0 主要包含以下新增功能、亮点和优化：</p>
+<section id="id1">
+<h2>1. 优化后的全新架构<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><img alt="Architecture" src="../_images/architecture1.jpg" /></p>
+</section>
+<section id="id2">
+<h2>2. 新增模型支持<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>我们新增对分割模型SAM（segment anything）的支持，下图为SAM分割示例结果:</p>
+<p><img alt="sam" src="../_images/sam.png" /></p>
+</section>
+<section id="id3">
+<h2>3. 新增多种并行模式<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p><strong>串行</strong>：按照模型部署的有向无环图的拓扑排序，依次执行每个节点。</p></li>
+<li><p><strong>任务并行</strong>：在多模型以及多硬件设备的的复杂场景下，基于有向无环图的模型部署方式，可充分挖掘模型部署中的并行性，缩短单次算法全流程运行耗时。</p></li>
+<li><p><strong>流水线并行</strong>：在处理多帧的场景下，基于有向无环图的模型部署方式，可将前处理 Node、推理 Node、后处理 Node绑定三个不同的线程，每个线程又可绑定不同的硬件设备下，从而三个Node可流水线并行处理。在多模型以及多硬件设备的的复杂场景下，更加可以发挥流水线并行的优势，从而可显著提高整体吞吐量。</p></li>
+<li><p><strong>上述模式的组合并行</strong>：在多模型、多硬件设备以及处理多帧的复杂场景下，nndeploy的有向无环图支持图中嵌入图灵活且强大的功能，每个图都可以有独立的并行模式，故用户可以任意组合您复杂场景下的模型部署任务的并行模式，具备强大的表达能力且充分发挥硬件性能。</p></li>
+<li><p><strong>YOLOv8n串行vs流水线并行性能结果比对</strong></p>
+<p>YOLOv8n处理24图片的串行vs流水线并行性能对比结果如下表所展示</p>
+</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>模型</th>
+<th>推理引擎</th>
+<th>运行方式</th>
+<th>耗时（ms）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YOLOv8n</td>
+<td>onnxruntime</td>
+<td>串行</td>
+<td>936.359</td>
+</tr>
+<tr>
+<td>YOLOv8n</td>
+<td>onnxruntime</td>
+<td>流水线并行</td>
+<td>796.763</td>
+</tr>
+<tr>
+<td>YOLOv8n</td>
+<td>TensorRT</td>
+<td>串行</td>
+<td>327.416</td>
+</tr>
+<tr>
+<td>YOLOv8n</td>
+<td>TensorRT</td>
+<td>流水线并行</td>
+<td>120.463</td>
+</tr>
+</tbody>
+</table><ul>
+<li><p><strong>串行vs任务级并行</strong></p>
+<p>由于当前模型的推理流程内部并行度很小，不足以体现出任务级并行，我们构造了一个虚拟图；当每个节点耗时设置为10ms时，通过任务级并行可以将串行的90ms减少到50ms。</p>
+<p><img alt="sam" src="../_images/task.png" /></p>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h2>4. 新增线程池<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/nndeploy/nndeploy/tree/main/include/nndeploy/thread_pool">线程池</a>在nndeploy中扮演着至关重要的角色。它支撑nndeploy并行的需求，为任务级并行和流水线并行提供了稳定的基础。线程池的实现让框架能够更高效地管理并发任务，有效利用计算资源，并提升框架整体的性能表现。</p>
+<p><img alt="线程池" src="../_images/thread_pool1.png" /></p>
+</section>
+<section id="id5">
+<h2>5. 有向无环图的优化与重构<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Node重构与优化</strong>：Node是有向无环图中的节点，代表进行某项运算或操作。前处理、推理、后处理、编解码都是节点，整个有向无环图也可以看做一个节点。节点本身不持有任何数据，数据从输入边流入，经过计算后，流出到输出边中。</p></li>
+<li><p><strong>Edge的重构与优化</strong>：Edge是有向无环图中的边，代表数据流动的方向，每个节点的输出边负责管理内存。Edge中可能持有Mat、Tensor、Buffer等数据。Edge分为固定边和流水线边，在串行、任务级并行中仅使用固定边；在流水线并行中仅使用流水线边。</p></li>
+<li><p><strong>Graph的重构与优化</strong>：Graph是有向无环图。由一系列Node、Edge及其拓扑关系组成，Graph中也可以嵌入Graph。</p></li>
+<li><p><strong>Loop Graph</strong>：继承Graph，新增Loop Graph，增强有向无环图的表达能力，提高复杂多模型部署场景下的开发效率。</p></li>
+<li><p><strong>Condition Graph</strong>：继承Graph，新增Loop Graph，增强有向无环图的表达能力，提高复杂多模型部署场景下的开发效率，在处理多帧以及多设备部署单模型场景下，通过与流水线并行的组合，可充分发挥所有硬件的性能，可显著提高整体吞吐量。</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>6. 推理模板的重构<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>对推理模板进行重构，基于多端推理模块 <code class="docutils literal notranslate"><span class="pre">Inference</span></code> + 有向无环图节点 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 重新设计功能强大的<strong>推理模板Infer</strong>，Infer推理模板可以帮您在内部处理不同的模型带来差异，例如<strong>单输入、多输出、静态形状输入、动态形状输入、静态形状输出、动态形状输出、是否可操作推理框架内部分配输入输出</strong>等等一系列不同，面对不同的模型带来差异，通常需要具备丰富模型部署经验的工程师才能快速且高性能解决。</p>
+</section>
+<section id="id7">
+<h2>7. 新增编解码节点化<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>对于已部署好的模型，需要编写demo展示效果，而demo需要处理多种格式的输入，例如<strong>图片输入输出、文件夹中多张图片的输入输出、视频的输入输出</strong>等，通过将上述编解码节点化，可以更通用以及更高效的完成demo的编写，达到快速展示效果的目的。</p>
+</section>
+<section id="id8">
+<h2>8.多端推理子模块<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<p>当前版本新增如下推理框架的支持：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">Inference/OS</th>
+<th style="text-align: center;">Linux</th>
+<th style="text-align: center;">Windows</th>
+<th style="text-align: center;">Android</th>
+<th style="text-align: center;">MacOS</th>
+<th style="text-align: center;">IOS</th>
+<th style="text-align: left;">developer</th>
+<th style="text-align: center;">remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/Tencent/ncnn">ncnn</a></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/Alwaysssssss">Always</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/apple/coremltools">coreML</a></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/JoDio-zd">JoDio-zd</a>、<a href="https://github.com/jaywlinux">jaywlinux</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://github.com/PaddlePaddle/Paddle-Lite">paddle-lite</a></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/qixuxiang">qixuxiang</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.hiascend.com/zh/">AscendCL</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/CYYAI">CYYAI</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.rock-chips.com/a/cn/downloadcenter/BriefDatasheet/index.html">RKNN</a></td>
+<td style="text-align: center;">√</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><a href="https://github.com/100312dog">100312dog</a></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></section>
+<section id="id9">
+<h2>9. 设备管理模块<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<p>当前版本新增如下华为昇腾设备管理模块的支持：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">Device Manager</th>
+<th style="text-align: left;">developer</th>
+<th style="text-align: center;">remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://www.hiascend.com/zh/">AscendCL</a></td>
+<td style="text-align: left;"><a href="https://github.com/CYYAI">CYYAI</a></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></section>
+<section id="id10">
+<h2>10. 文档<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<p>构建了友好、全面的<a class="reference external" href="https://nndeploy-zh.readthedocs.io/zh/latest/introduction/README.html">文档</a>，文档不以讲解API接口的用法为目的，而是侧重于探讨框架背后的设计理念和工作原理，用户可以更加全面地了解框架的运作方式，从而更好地发挥nndeploy在模型部署上的开发效率以及高性能的优势。</p>
+<p>本次文档包含概述、开发者指南、架构指南等模块的部分内容，在未来的更新中，我们将继续完善文档内容，致力于为用户提供清晰、易懂的文档说明。</p>
+</section>
+<section id="id11">
+<h2>下一步规划<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>推理后端</p>
+<ul>
+<li><p>完善已接入的推理框架coreml</p></li>
+<li><p>完善已接入的推理框架paddle-lite</p></li>
+<li><p>接入新的推理框架TFLite</p></li>
+</ul>
+</li>
+<li><p>设备管理模块</p>
+<ul>
+<li><p>新增OpenCL的设备管理模块</p></li>
+<li><p>新增ROCM的设备管理模块</p></li>
+<li><p>新增OpenGL的设备管理模块</p></li>
+</ul>
+</li>
+<li><p>内存优化</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">主从内存拷贝优化</span></code>：针对统一内存的架构，通过主从内存映射、主从内存地址共享等方式替代主从内存拷贝</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">内存池</span></code>：针对nndeploy的内部的数据容器Buffer、Mat、Tensor，建立异构设备的内存池，实现高性能的内存分配与释放</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">多节点共享内存机制</span></code>：针对多模型串联场景下，基于模型部署的有向无环图，在串行执行的模式下，支持多推理节点共享内存机制</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">边的环形队列内存复用机制</span></code>：基于模型部署的有向无环图，在流水线并行执行的模式下，支持边的环形队列共享内存机制</p></li>
+</ul>
+</li>
+<li><p>stable diffusion model</p>
+<ul>
+<li><p>类似<a class="reference external" href="https://github.com/comfyanonymous/ComfyUI">comfyui</a>的产品</p></li>
+<li><p>部署stable diffusion model</p></li>
+<li><p>针对stable diffusion model搭建stable_diffusion.cpp（推理子模块，手动构建计算图的方式）</p></li>
+<li><p>高性能op</p></li>
+<li><p>分布式</p>
+<ul>
+<li><p>在多模型共同完成一个任务的场景里，将多个模型调度到多个机器上分布式执行</p></li>
+<li><p>在大模型的场景下，通过切割大模型为多个子模型的方式，将多个子模型调度到多个机器上分布式执行</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>开源运营</p>
+<ul>
+<li><p><strong>推广</strong></p></li>
+<li><p><strong>吸引开发者</strong></p></li>
+<li><p><strong>平衡 自己的时间 和 培养开发者</strong>：</p></li>
+<li><p><strong>技术深度 or 产品</strong></p></li>
+<li><p><strong>公司落地</strong></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h2>贡献者<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
+<p>感谢以下贡献者：</p>
+<p>&#64;<a class="reference external" href="https://github.com/Alwaysssssss">Alwaysssssss</a>，&#64;<a class="reference external" href="https://github.com/youxiudeshouyeren">youxiudeshouyeren</a>，&#64;<a class="reference external" href="https://github.com/02200059Z">02200059Z</a>，&#64;<a class="reference external" href="https://github.com/JoDio-zd">JoDio-zd</a>，&#64;<a class="reference external" href="https://github.com/qixuxiang">qixuxiang</a>，&#64;<a class="reference external" href="https://github.com/100312dog">100312dog</a>，&#64;<a class="reference external" href="https://github.com/CYYAI">CYYAI</a>，&#64;<a class="reference external" href="https://github.com/PeterH0323">PeterH0323</a>，&#64;<a class="reference external" href="https://github.com/zjhellofss">zjhellofss</a>，&#64;<a class="reference external" href="https://github.com/zhouhao03">zhouhao03</a>，&#64;<a class="reference external" href="https://github.com/jaywlinux">jaywlinux</a>，&#64;<a class="reference external" href="https://github.com/ChunelFeng">ChunelFeng</a>，&#64;<a class="reference external" href="https://github.com/acheerfulish">acheerfulish</a>，&#64;<a class="reference external" href="https://github.com/wangzhaode">wangzhaode</a>，&#64;<a class="reference external" href="https://github.com/wenxin-zhao">wenxin-zhao</a></p>
+</section>
+<section id="id13">
+<h2>加入我们<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>nndeploy是由一群志同道合的网友共同开发以及维护，我们不定时讨论技术，分享行业见解。当前nndeploy正处于发展阶段，如果您热爱开源、喜欢折腾，不论是出于学习目的，抑或是有更好的想法，欢迎加入我们。</p></li>
+<li><p>微信：Always031856 (可加我微信进nndeploy交流群，备注：nndeploy+姓名)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

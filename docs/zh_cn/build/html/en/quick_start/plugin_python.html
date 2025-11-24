@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python自定义节点开发手册 &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building Ascend Environment" href="ascend_env.html" />
+    <link rel="prev" title="C++自定义节点开发手册" href="plugin.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python自定义节点开发手册</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1"><strong>自定义节点参考代码</strong>：</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">自定义节点开发简介</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dag">什么是DAG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">自定义节点在流水线中的位置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">Python自定义节点编写基础</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1. 定义节点类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2. 创建节点创建器和注册</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">细节一：节点中的输入输出访问</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">获取多个输入数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">设置输出数据</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">细节二：参数管理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id11">前端展示参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">必需参数管理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">实际开发案例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">案例一：图像灰度化节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gfpgan">案例二：GFPGAN人脸修复节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">案例三：复杂的人脸分析节点</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">高级用法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">创建子图</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">最佳实践</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id19">1. 命名规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">2. 类型安全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">3. 资源管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">4. 调试支持</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">自定义节点部署和使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id24">1. 文件组织</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">2. 模块导入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">3. 在应用中使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Python自定义节点开发手册</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<h1>Python自定义节点开发手册<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><strong>自定义节点参考代码</strong>：<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p><a class="reference external" href="https://github.com/nndeploy/nndeploy/blob/main/template/python/template.py">template/python/template.py</a></p></li>
+<li><p>前端工作流加载自定义节点：</p>
+<ul>
+<li><p>命令行加载</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nndeploy-app<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--plugin<span class="w"> </span>path/to/template/python/template.py
+</pre></div>
+</div>
+</li>
+<li><p>代码启动</p>
+<p>参考代码：[template/python/app.py][https://github.com/nndeploy/nndeploy/blob/main/template/python/app.py]</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nndeploy.server.app</span> <span class="k">as</span> <span class="nn">app</span>
+
+<span class="kn">from</span> <span class="nn">template</span> <span class="kn">import</span> <span class="n">TemplatePy</span> <span class="c1"># 导入用户自定以节点</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>template/python/
+python<span class="w"> </span>app.py<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h2>自定义节点开发简介<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>在nndeploy框架中，自定义节点是一种可以组合调用的功能模块，通过Python实现的自定义节点继承自<code class="docutils literal notranslate"><span class="pre">nndeploy.dag.Node</span></code>基类。自定义节点通过DAG（有向无环图）进行组织和调用，用于执行开发者自定义的前/后处理逻辑、推理等等。</p>
+<p>自定义节点设计的目的是：</p>
+<ul class="simple">
+<li><p><strong>模块化</strong>：将特定的逻辑封装为节点，易于组合和替换</p></li>
+<li><p><strong>解耦性</strong>：将自定义节点与调度模块进行解耦</p></li>
+<li><p><strong>可扩展性</strong>：开发者可以轻松接入新的算法和数据处理流程</p></li>
+<li><p><strong>跨语言互操作</strong>：Python自定义节点可与C++自定义节点无缝集成</p></li>
+</ul>
+<section id="dag">
+<h3>什么是DAG<a class="headerlink" href="#dag" title="Permalink to this heading">¶</a></h3>
+<p>nndeploy的执行核心是有向无环图（DAG），图由以下两个基本组件组成：</p>
+<ul class="simple">
+<li><p><strong>节点（Node）</strong>：代表基本的计算或功能单元，可以是推理、调度、前后处理等等</p></li>
+<li><p><strong>边（Edge）</strong>：节点之间的连接通道，用于传递张量、图像、文本等数据对象</p></li>
+</ul>
+<p>图在运行时根据节点输入输出边判断节点的执行顺序，自动调度各个节点执行。</p>
+</section>
+<section id="id3">
+<h3>自定义节点在流水线中的位置<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>以GFPGAN人脸修复为例，推理流程大致如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>输入图像 → GFPGAN节点 → 修复后图像
+</pre></div>
+</div>
+<p>以目标检测为例，推理流程包含：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>输入图像 → 预处理节点 → 推理节点 → 后处理节点 → 检测结果
+</pre></div>
+</div>
+<p>通过这些自定义节点的组合，我们可以构建完整的AI算法部署流程。</p>
+</section>
+</section>
+<section id="id4">
+<h2>Python自定义节点编写基础<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>nndeploy中的Python自定义节点本质上是自定义的DAG节点，继承自<code class="docutils literal notranslate"><span class="pre">nndeploy.dag.Node</span></code>。要实现一个Python自定义节点，一般需要完成以下步骤：</p>
+<section id="id5">
+<h3>1. 定义节点类<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">nndeploy.dag</span>
+<span class="kn">import</span> <span class="nn">nndeploy.base</span>
+
+<span class="k">class</span> <span class="nc">MyCustomNode</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="c1"># 设置节点key，与注册的节点类型名一致，必须要设置</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;nndeploy.example.MyCustomNode&quot;</span><span class="p">)</span>
+        <span class="c1"># 设置节点描述</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_desc</span><span class="p">(</span><span class="s2">&quot;自定义节点示例&quot;</span><span class="p">)</span>
+        <span class="c1"># 设置输入类型，如果该节点有输入，则必须要设置。如果有多个输入就依次调用self.set_input_type(Xxx)函数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_input_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="c1"># 设置输出类型，如果该节点有输出，则必须要设置。如果有多个输出就依次调用self.set_output_type(Xxx)函数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        
+        <span class="c1"># 节点参数定义</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_param</span> <span class="o">=</span> <span class="mf">1.0</span>
+        
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;节点初始化方法，在图初始化时调用&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 步骤一：获取输入数据</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># 步骤二：执行计算逻辑</span>
+        <span class="n">output_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_data</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+        
+        <span class="c1"># 步骤三：设置输出数据</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_data</span><span class="p">(</span><span class="n">output_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">):</span>
+        <span class="c1"># 在这里实现具体的算法逻辑</span>
+        <span class="k">return</span> <span class="n">input_data</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">my_param</span>
+        
+    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;序列化节点参数，用于保存和加载配置&quot;&quot;&quot;</span>
+        <span class="n">json_str</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;my_param&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">my_param</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;反序列化节点参数&quot;&quot;&quot;</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_param</span> <span class="o">=</span> <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;my_param&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>2. 创建节点创建器和注册<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCustomNodeCreator</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">NodeCreator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">],</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;创建节点实例&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">MyCustomNode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span>
+
+<span class="c1"># 创建节点创建器实例</span>
+<span class="n">my_custom_node_creator</span> <span class="o">=</span> <span class="n">MyCustomNodeCreator</span><span class="p">()</span>
+<span class="c1"># 注册节点，第一个参数是节点的唯一标识符，需要与节点类中set_key()设置的标识符保持一致</span>
+<span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="s2">&quot;nndeploy.example.MyCustomNode&quot;</span><span class="p">,</span> <span class="n">my_custom_node_creator</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>通过上述两个个步骤，在前端就会产生一个可拖拽的节点。</strong></p>
+</section>
+<section id="id7">
+<h3>细节一：节点中的输入输出访问<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<section id="id8">
+<h4>获取多个输入数据<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">input_data_0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">input_data_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h4>设置输出数据<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># 处理后的输出数据</span>
+    <span class="n">output_data_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_data</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+    
+    <span class="c1"># 获取输出边并设置数据</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">set_output_data</span><span class="p">(</span><span class="n">output_data_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">set_output_data</span><span class="p">(</span><span class="n">output_data_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id10">
+<h3>细节二：参数管理<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<section id="id11">
+<h4>前端展示参数<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCustomNode</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="c1"># ... 其他初始化代码 ...</span>
+        
+        <span class="c1"># 前端需要展示的参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># float类型参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enable_flag</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># bool类型参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;model.onnx&quot;</span>  <span class="c1"># 字符串类型参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;person&quot;</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;bike&quot;</span><span class="p">]</span>  <span class="c1"># list类型参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">640</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">640</span><span class="p">}</span>  <span class="c1"># dict类型参数</span>
+        
+    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;序列化前端参数&quot;&quot;&quot;</span>
+        <span class="n">json_str</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;threshold&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;enable_flag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_flag</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;model_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_path</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;class_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;反序列化前端参数&quot;&quot;&quot;</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;threshold&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enable_flag</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;enable_flag&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_path</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model_path&quot;</span><span class="p">,</span> <span class="s2">&quot;model.onnx&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;class_names&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;config&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h4>必需参数管理<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># 添加必需参数，前端会进行验证，并添加必须设置的标志*</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_required_param</span><span class="p">(</span><span class="s2">&quot;model_path&quot;</span><span class="p">)</span>
+    <span class="n">json_str</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+    <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+    <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;model_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_path</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id13">
+<h2>实际开发案例<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h2>
+<section id="id14">
+<h3>案例一：图像灰度化节点<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">nndeploy.dag</span>
+<span class="kn">import</span> <span class="nn">nndeploy.base</span>
+
+<span class="k">class</span> <span class="nc">GrayScaleNode</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;nndeploy.image.GrayScale&quot;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_desc</span><span class="p">(</span><span class="s2">&quot;将彩色图像转换为灰度图像&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_input_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        
+        <span class="c1"># 灰度化权重参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.114</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">,</span> <span class="mf">0.299</span><span class="p">]</span>  <span class="c1"># BGR权重</span>
+        
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">input_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># BGR转灰度</span>
+        <span class="n">gray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">input_image</span><span class="p">[</span><span class="o">...</span><span class="p">,:</span><span class="mi">3</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+        <span class="n">gray</span> <span class="o">=</span> <span class="n">gray</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_data</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">json_str</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;weights&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.114</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">,</span> <span class="mf">0.299</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+<span class="c1"># 创建器和注册</span>
+<span class="k">class</span> <span class="nc">GrayScaleNodeCreator</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">NodeCreator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">],</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">GrayScaleNode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span> <span class="c1"># 必须这样写</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span>
+
+<span class="n">grayscale_node_creator</span> <span class="o">=</span> <span class="n">GrayScaleNodeCreator</span><span class="p">()</span>
+<span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="s2">&quot;nndeploy.image.GrayScale&quot;</span><span class="p">,</span> <span class="n">grayscale_node_creator</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="gfpgan">
+<h3>案例二：GFPGAN人脸修复节点<a class="headerlink" href="#gfpgan" title="Permalink to this heading">¶</a></h3>
+<p>基于实际的GFPGAN实现：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gfpgan</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">nndeploy.base</span>
+<span class="kn">import</span> <span class="nn">nndeploy.device</span>
+<span class="kn">import</span> <span class="nn">nndeploy.dag</span>
+
+<span class="k">class</span> <span class="nc">GFPGAN</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;nndeploy.gan.GFPGAN&quot;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_desc</span><span class="p">(</span><span class="s2">&quot;GFPGAN: Make faces clearer&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_input_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        
+        <span class="c1"># 模型参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_path_</span> <span class="o">=</span> <span class="s2">&quot;GFPGANv1.4.pth&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upscale_</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">get_available_device</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;初始化GFPGAN模型&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gfpgan</span> <span class="o">=</span> <span class="n">gfpgan</span><span class="o">.</span><span class="n">GFPGANer</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_path_</span><span class="p">,</span> 
+            <span class="n">upscale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">upscale_</span><span class="p">,</span> 
+            <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device_</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;执行人脸修复&quot;&quot;&quot;</span>
+        <span class="n">input_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># 执行人脸修复</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">enhanced_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gfpgan</span><span class="o">.</span><span class="n">enhance</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">paste_back</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="c1"># 输出结果</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_data</span><span class="p">(</span><span class="n">enhanced_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;序列化参数&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_param</span><span class="p">(</span><span class="s2">&quot;model_path_&quot;</span><span class="p">)</span>
+        <span class="n">json_str</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;model_path_&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_path_</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;upscale_&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">upscale_</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;反序列化参数&quot;&quot;&quot;</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_path_</span> <span class="o">=</span> <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;model_path_&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upscale_</span> <span class="o">=</span> <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;upscale_&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+<span class="c1"># 创建器和注册</span>
+<span class="k">class</span> <span class="nc">GFPGANCreator</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">NodeCreator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">],</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">GFPGAN</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span>
+    
+<span class="n">gfpgan_node_creator</span> <span class="o">=</span> <span class="n">GFPGANCreator</span><span class="p">()</span>
+<span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="s2">&quot;nndeploy.gan.GFPGAN&quot;</span><span class="p">,</span> <span class="n">gfpgan_node_creator</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h3>案例三：复杂的人脸分析节点<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<p>基于InsightFace的人脸分析实现：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">insightface</span>
+<span class="kn">import</span> <span class="nn">nndeploy.base</span>
+<span class="kn">import</span> <span class="nn">nndeploy.dag</span>
+
+<span class="k">class</span> <span class="nc">InsightFaceAnalysis</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;nndeploy.face.InsightFaceAnalysis&quot;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_desc</span><span class="p">(</span><span class="s2">&quot;InsightFace Analysis: get face analysis from image&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_input_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_type</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">insightface</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">Face</span><span class="p">])</span>
+        
+        <span class="c1"># 分析参数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insightface_name_</span> <span class="o">=</span> <span class="s2">&quot;buffalo_l&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">providers_</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CPUExecutionProvider&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_one_face_</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ctx_id</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">det_size_</span> <span class="o">=</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">640</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">det_thresh_</span> <span class="o">=</span> <span class="mf">0.5</span>
+        
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;初始化人脸分析模型&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span> <span class="o">=</span> <span class="n">insightface</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">FaceAnalysis</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">insightface_name_</span><span class="p">,</span> 
+            <span class="n">providers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">providers_</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span>
+            <span class="n">ctx_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx_id</span><span class="p">,</span> 
+            <span class="n">det_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">det_size_</span><span class="p">,</span> 
+            <span class="n">det_thresh</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">det_thresh_</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;执行人脸分析&quot;&quot;&quot;</span>
+        <span class="n">input_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">input_image</span><span class="p">)</span>
+        
+        <span class="c1"># 按照从左到右的顺序排列，基于bbox的x坐标进行排序</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">faces</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">faces</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No face detected&quot;</span><span class="p">)</span>
+            <span class="n">result_faces</span> <span class="o">=</span> <span class="n">faces</span>  <span class="c1"># 返回空列表</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_one_face_</span><span class="p">:</span>
+                <span class="c1"># 选择最左边的人脸</span>
+                <span class="n">selected_face</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">faces</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">result_faces</span> <span class="o">=</span> <span class="p">[</span><span class="n">selected_face</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result_faces</span> <span class="o">=</span> <span class="n">faces</span>  <span class="c1"># 返回所有人脸</span>
+                
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_data</span><span class="p">(</span><span class="n">result_faces</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;序列化参数&quot;&quot;&quot;</span>
+        <span class="n">json_str</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;insightface_name_&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">insightface_name_</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;providers_&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">providers_</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;is_one_face_&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_one_face_</span>
+        <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;ctx_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx_id</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;反序列化参数&quot;&quot;&quot;</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insightface_name_</span> <span class="o">=</span> <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;insightface_name_&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">providers_</span> <span class="o">=</span> <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;providers_&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_one_face_</span> <span class="o">=</span> <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;is_one_face_&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ctx_id</span> <span class="o">=</span> <span class="n">json_obj</span><span class="p">[</span><span class="s2">&quot;ctx_id&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+<span class="c1"># 创建器和注册</span>
+<span class="k">class</span> <span class="nc">InsightFaceAnalysisCreator</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">NodeCreator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">],</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">InsightFaceAnalysis</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span>
+
+<span class="n">insightface_analysis_creator</span> <span class="o">=</span> <span class="n">InsightFaceAnalysisCreator</span><span class="p">()</span>
+<span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="s2">&quot;nndeploy.face.InsightFaceAnalysis&quot;</span><span class="p">,</span> <span class="n">insightface_analysis_creator</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id16">
+<h2>高级用法<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h2>
+<section id="id17">
+<h3>创建子图<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
+<p>当自定义节点涉及更复杂的功能逻辑时，可以通过创建子图（继承<code class="docutils literal notranslate"><span class="pre">nndeploy.dag.Graph</span></code>）来组织多个节点：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nndeploy.dag</span>
+<span class="kn">import</span> <span class="nn">nndeploy.base</span>
+
+<span class="k">class</span> <span class="nc">YoloPyGraph</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">outputs</span><span class="p">:</span> <span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_input_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_type</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">DetectResult</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="s2">&quot;nndeploy::preprocess::CvtResizeNormTrans&quot;</span><span class="p">,</span> <span class="s2">&quot;pre&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">infer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="s2">&quot;nndeploy::infer::Infer&quot;</span><span class="p">,</span> <span class="s2">&quot;infer&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="s2">&quot;nndeploy::detect::YoloPostProcess&quot;</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 动态图方式    </span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]):</span>
+        <span class="n">pre_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">infer_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">pre_outputs</span><span class="p">)</span>
+        <span class="n">post_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">infer_outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">post_outputs</span>
+    
+    <span class="c1"># 静态图方式</span>
+    <span class="k">def</span> <span class="nf">make</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre_desc</span><span class="p">,</span> <span class="n">infer_desc</span><span class="p">,</span> <span class="n">post_desc</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_node_desc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pre</span><span class="p">,</span> <span class="n">pre_desc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_node_desc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">infer</span><span class="p">,</span> <span class="n">infer_desc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_node_desc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="n">post_desc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+        
+    <span class="k">def</span> <span class="nf">default_param</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pre_param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">pre_param</span><span class="o">.</span><span class="n">src_pixel_type_</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">PixelType</span><span class="o">.</span><span class="n">BGR</span>
+        <span class="n">pre_param</span><span class="o">.</span><span class="n">dst_pixel_type_</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">PixelType</span><span class="o">.</span><span class="n">RGB</span>
+        <span class="n">pre_param</span><span class="o">.</span><span class="n">interp_type_</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">InterpType</span><span class="o">.</span><span class="n">Linear</span>
+        <span class="n">pre_param</span><span class="o">.</span><span class="n">h_</span> <span class="o">=</span> <span class="mi">640</span>
+        <span class="n">pre_param</span><span class="o">.</span><span class="n">w_</span> <span class="o">=</span> <span class="mi">640</span>
+
+        <span class="n">post_param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">post_param</span><span class="o">.</span><span class="n">score_threshold_</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="n">post_param</span><span class="o">.</span><span class="n">nms_threshold_</span> <span class="o">=</span> <span class="mf">0.45</span>
+        <span class="n">post_param</span><span class="o">.</span><span class="n">num_classes_</span> <span class="o">=</span> <span class="mi">80</span>
+        <span class="n">post_param</span><span class="o">.</span><span class="n">model_h_</span> <span class="o">=</span> <span class="mi">640</span>
+        <span class="n">post_param</span><span class="o">.</span><span class="n">model_w_</span> <span class="o">=</span> <span class="mi">640</span>
+        <span class="n">post_param</span><span class="o">.</span><span class="n">version_</span> <span class="o">=</span> <span class="mi">11</span>
+
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+    
+    <span class="k">def</span> <span class="nf">set_inference_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inference_type</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">set_inference_type</span><span class="p">(</span><span class="n">inference_type</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">set_infer_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_type</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">is_path</span><span class="p">,</span> <span class="n">model_value</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">device_type_</span> <span class="o">=</span> <span class="n">device_type</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">model_type_</span> <span class="o">=</span> <span class="n">model_type</span> 
+        <span class="n">param</span><span class="o">.</span><span class="n">is_path_</span> <span class="o">=</span> <span class="n">is_path</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">model_value_</span> <span class="o">=</span> <span class="n">model_value</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+
+    <span class="k">def</span> <span class="nf">set_src_pixel_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pixel_type</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">src_pixel_type_</span> <span class="o">=</span> <span class="n">pixel_type</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+
+    <span class="k">def</span> <span class="nf">set_score_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score_threshold</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">score_threshold_</span> <span class="o">=</span> <span class="n">score_threshold</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+
+    <span class="k">def</span> <span class="nf">set_nms_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nms_threshold</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">nms_threshold_</span> <span class="o">=</span> <span class="n">nms_threshold</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+
+    <span class="k">def</span> <span class="nf">set_num_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">num_classes_</span> <span class="o">=</span> <span class="n">num_classes</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+
+    <span class="k">def</span> <span class="nf">set_model_hw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_h</span><span class="p">,</span> <span class="n">model_w</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">model_h_</span> <span class="o">=</span> <span class="n">model_h</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">model_w_</span> <span class="o">=</span> <span class="n">model_w</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+
+    <span class="k">def</span> <span class="nf">set_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">version_</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span>
+        
+
+<span class="k">class</span> <span class="nc">YoloPyGraphCreator</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">NodeCreator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">],</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">YoloPyGraph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span>
+    
+
+<span class="n">yolo_py_graph_creator</span> <span class="o">=</span> <span class="n">YoloPyGraphCreator</span><span class="p">()</span>
+<span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="s2">&quot;nndeploy.detect.YoloPyGraph&quot;</span><span class="p">,</span> <span class="n">yolo_py_graph_creator</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id18">
+<h2>最佳实践<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h2>
+<section id="id19">
+<h3>1. 命名规范<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>节点key使用层次化命名：<code class="docutils literal notranslate"><span class="pre">nndeploy.模块.功能</span></code></p></li>
+<li><p>类名使用驼峰命名法：<code class="docutils literal notranslate"><span class="pre">MyCustomNode</span></code></p></li>
+<li><p>参数使用下划线命名：<code class="docutils literal notranslate"><span class="pre">model_path_</span></code></p></li>
+</ul>
+</section>
+<section id="id20">
+<h3>2. 类型安全<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在构造函数时，明确指定输入输出类型</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">set_input_type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">set_output_type</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+
+<span class="c1"># 在运行时进行类型检查</span>
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input type error: expected np.ndarray&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">error</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h3>3. 资源管理<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;在init中初始化资源&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_path_</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+    
+<span class="k">def</span> <span class="nf">deinit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;在deinit中清理资源&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">deinit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h3>4. 调试支持<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_debug_flag</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> is running&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input shape: </span><span class="si">{</span><span class="n">input_data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="c1"># 执行逻辑</span>
+    <span class="n">output_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_data</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_debug_flag</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output shape: </span><span class="si">{</span><span class="n">output_data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="bp">self</span><span class="o">.</span><span class="n">set_output_data</span><span class="p">(</span><span class="n">output_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id23">
+<h2>自定义节点部署和使用<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h2>
+<section id="id24">
+<h3>1. 文件组织<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_plugin/
+├── __init__.py
+├── my_node.py
+└── README.md
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h3>2. 模块导入<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># __init__.py</span>
+<span class="kn">from</span> <span class="nn">.yolo</span> <span class="kn">import</span> <span class="n">YoloPyGraph</span>
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h3>3. 在应用中使用<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">nndeploy.dag</span>
+<span class="kn">import</span> <span class="nn">nndeploy.detect</span>
+<span class="k">class</span> <span class="nc">YoloDemo</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">outputs</span><span class="p">:</span> <span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="s2">&quot;YoloDemo&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_type</span><span class="p">(</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">DetectResult</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decodec</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">codec</span><span class="o">.</span><span class="n">OpenCvImageDecode</span><span class="p">(</span><span class="s2">&quot;decodec&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yolo</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">YoloPyGraph</span><span class="p">(</span><span class="s2">&quot;yolo&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drawbox</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">DrawBox</span><span class="p">(</span><span class="s2">&quot;drawbox&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encodec</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">codec</span><span class="o">.</span><span class="n">OpenCvImageEncode</span><span class="p">(</span><span class="s2">&quot;encodec&quot;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">[</span><span class="n">nndeploy</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]):</span>
+        <span class="n">decodec_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decodec</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">yolo_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">yolo</span><span class="p">(</span><span class="n">decodec_outputs</span><span class="p">)</span>
+        <span class="n">drawbox_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drawbox</span><span class="p">([</span><span class="n">decodec_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yolo_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encodec</span><span class="p">(</span><span class="n">drawbox_outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">yolo_outputs</span>
+       
+    <span class="k">def</span> <span class="nf">get_yolo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">yolo</span>
+    
+    <span class="k">def</span> <span class="nf">set_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decodec</span><span class="o">.</span><span class="n">set_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">set_input_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decodec</span><span class="o">.</span><span class="n">set_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">set_output_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encodec</span><span class="o">.</span><span class="n">set_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plugin.html" class="btn btn-neutral float-left" title="C++自定义节点开发手册" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ascend_env.html" class="btn btn-neutral float-right" title="Building Ascend Environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

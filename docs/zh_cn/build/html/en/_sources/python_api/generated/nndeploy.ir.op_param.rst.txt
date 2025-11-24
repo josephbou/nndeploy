@@ -1,0 +1,40 @@
+nndeploy.ir.op\_param
+=====================
+
+.. automodule:: nndeploy.ir.op_param
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      create_op_param
+      op_type_to_string
+      register_op_param_creator
+      string_to_op_type
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      OpParam
+      OpParamCreator
+      OpType
+   
+   
+
+   
+   
+   
+
+
+

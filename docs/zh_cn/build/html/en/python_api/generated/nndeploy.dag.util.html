@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.dag.util &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nndeploy.detect" href="nndeploy.detect.html" />
+    <link rel="prev" title="nndeploy.dag.running_condition" href="nndeploy.dag.running_condition.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nndeploy.html">nndeploy</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_version"><code class="docutils literal notranslate"><span class="pre">get_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_init"><code class="docutils literal notranslate"><span class="pre">framework_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_deinit"><code class="docutils literal notranslate"><span class="pre">framework_deinit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_type_enum_json"><code class="docutils literal notranslate"><span class="pre">get_type_enum_json()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_aigc.html">nndeploy.api_aigc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_llm.html">nndeploy.api_llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.base.html">nndeploy.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.basic.html">nndeploy.basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.classification.html">nndeploy.classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.codec.html">nndeploy.codec</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nndeploy.dag.html">nndeploy.dag</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.base.html">nndeploy.dag.base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.composite_node.html">nndeploy.dag.composite_node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.condition.html">nndeploy.dag.condition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.const_node.html">nndeploy.dag.const_node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.edge.html">nndeploy.dag.edge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.graph.html">nndeploy.dag.graph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.graph_runner.html">nndeploy.dag.graph_runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.loop.html">nndeploy.dag.loop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.node.html">nndeploy.dag.node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.run_json.html">nndeploy.dag.run_json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nndeploy.dag.running_condition.html">nndeploy.dag.running_condition</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nndeploy.dag.util</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.detect.html">nndeploy.detect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.device.html">nndeploy.device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.diffusion.html">nndeploy.diffusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.face.html">nndeploy.face</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.gan.html">nndeploy.gan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.image.html">nndeploy.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.infer.html">nndeploy.infer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.inference.html">nndeploy.inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ir.html">nndeploy.ir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.llm.html">nndeploy.llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.matting.html">nndeploy.matting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.net.html">nndeploy.net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.nndeploy.html">nndeploy.nndeploy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ocr.html">nndeploy.ocr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.op.html">nndeploy.op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.preprocess.html">nndeploy.preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.segment.html">nndeploy.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.server.html">nndeploy.server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.tokenizer.html">nndeploy.tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.track.html">nndeploy.track</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Python API Reference</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.html">nndeploy</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.dag.html">nndeploy.dag</a></li>
+      <li class="breadcrumb-item active">nndeploy.dag.util</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nndeploy.dag.util">
+<span id="nndeploy-dag-util"></span><h1>nndeploy.dag.util<a class="headerlink" href="#module-nndeploy.dag.util" title="Permalink to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.check_edge" title="nndeploy.dag.util.check_edge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_edge</span></code></a>(src_edges, dst_edges)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.check_unuse_edge" title="nndeploy.dag.util.check_unuse_edge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_unuse_edge</span></code></a>(node_repository, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.check_unuse_node" title="nndeploy.dag.util.check_unuse_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_unuse_node</span></code></a>(node_repository)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.dump_dag" title="nndeploy.dag.util.dump_dag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump_dag</span></code></a>(edge_repository, node_repository, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.find_edge_wrapper" title="nndeploy.dag.util.find_edge_wrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_edge_wrapper</span></code></a>(edge_repository, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.find_end_edges" title="nndeploy.dag.util.find_end_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_end_edges</span></code></a>(edge_repository)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.find_end_nodes" title="nndeploy.dag.util.find_end_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_end_nodes</span></code></a>(node_repository)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.find_node_wrapper" title="nndeploy.dag.util.find_node_wrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_node_wrapper</span></code></a>(node_repository, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.find_start_edges" title="nndeploy.dag.util.find_start_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_start_edges</span></code></a>(edge_repository)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.find_start_nodes" title="nndeploy.dag.util.find_start_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_start_nodes</span></code></a>(node_repository)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.get_edge" title="nndeploy.dag.util.get_edge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_edge</span></code></a>(edge_repository, edge_name)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.get_node" title="nndeploy.dag.util.get_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_node</span></code></a>(node_repository, node_name)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.set_color" title="nndeploy.dag.util.set_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_color</span></code></a>(node_repository, color)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.topo_sort" title="nndeploy.dag.util.topo_sort"><code class="xref py py-obj docutils literal notranslate"><span class="pre">topo_sort</span></code></a>(node_repository, topo_sort_type, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.topo_sort_bfs" title="nndeploy.dag.util.topo_sort_bfs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">topo_sort_bfs</span></code></a>(node_repository, topo_sort_node)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.topo_sort_dfs" title="nndeploy.dag.util.topo_sort_dfs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">topo_sort_dfs</span></code></a>(node_repository, topo_sort_node)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EdgeWrapper</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeWrapper</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">NodeWrapper</span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#NodeWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NodeWrapper</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.NodeWrapper</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#NodeWrapper.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.is_external">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_external</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.is_external" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.node">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nndeploy.dag.node.html#nndeploy.dag.node.Node" title="nndeploy.dag.node.Node"><span class="pre">Node</span></a></em><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.predecessors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">predecessors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.predecessors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.successors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">successors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.successors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.color">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.NodeColorType" title="nndeploy.base.common.NodeColorType"><span class="pre">NodeColorType</span></a></em><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.color_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color_</span></span><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.color_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.is_external_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_external_</span></span><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.is_external_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.name_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name_</span></span><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.name_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.node_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">node_</span></span><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.node_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.predecessors_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">predecessors_</span></span><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.predecessors_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.NodeWrapper.successors_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">successors_</span></span><a class="headerlink" href="#nndeploy.dag.util.NodeWrapper.successors_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">EdgeWrapper</span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#EdgeWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">EdgeWrapper</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.EdgeWrapper</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#EdgeWrapper.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.is_external">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_external</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.is_external" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.edge">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">edge</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">Edge</span></a></em><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.edge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.producers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">producers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.producers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.consumers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">consumers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.consumers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.consumers_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">consumers_</span></span><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.consumers_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.edge_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">edge_</span></span><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.edge_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.is_external_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_external_</span></span><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.is_external_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.name_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name_</span></span><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.name_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nndeploy.dag.util.EdgeWrapper.producers_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">producers_</span></span><a class="headerlink" href="#nndeploy.dag.util.EdgeWrapper.producers_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.get_edge">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">get_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">Edge</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#get_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.get_edge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.find_edge_wrapper">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">find_edge_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_name_or_edge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#find_edge_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.find_edge_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.find_start_edges">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">find_start_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#find_start_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.find_start_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.find_end_edges">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">find_end_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#find_end_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.find_end_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.get_node">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">get_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.dag.node.html#nndeploy.dag.node.Node" title="nndeploy.dag.node.Node"><span class="pre">Node</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#get_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.get_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.find_node_wrapper">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">find_node_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_name_or_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="nndeploy.dag.node.html#nndeploy.dag.node.Node" title="nndeploy.dag.node.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#find_node_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.find_node_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.find_start_nodes">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">find_start_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#find_start_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.find_start_nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.find_end_nodes">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">find_end_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#find_end_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.find_end_nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.set_color">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">set_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.NodeColorType" title="nndeploy.base.common.NodeColorType"><span class="pre">NodeColorType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.Status" title="nndeploy.base.common.Status"><span class="pre">Status</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#set_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.set_color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.dump_dag">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">dump_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_outputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oss</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.Status" title="nndeploy.base.common.Status"><span class="pre">Status</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#dump_dag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.dump_dag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.check_unuse_node">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">check_unuse_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#check_unuse_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.check_unuse_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.check_unuse_edge">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">check_unuse_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.EdgeWrapper" title="nndeploy.dag.util.EdgeWrapper"><span class="pre">EdgeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#check_unuse_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.check_unuse_edge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.topo_sort_bfs">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">topo_sort_bfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topo_sort_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.Status" title="nndeploy.base.common.Status"><span class="pre">Status</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#topo_sort_bfs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.topo_sort_bfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.topo_sort_dfs">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">topo_sort_dfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topo_sort_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.Status" title="nndeploy.base.common.Status"><span class="pre">Status</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#topo_sort_dfs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.topo_sort_dfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.topo_sort">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">topo_sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topo_sort_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.TopoSortType" title="nndeploy.base.common.TopoSortType"><span class="pre">TopoSortType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">topo_sort_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nndeploy.dag.util.NodeWrapper" title="nndeploy.dag.util.NodeWrapper"><span class="pre">NodeWrapper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.Status" title="nndeploy.base.common.Status"><span class="pre">Status</span></a></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#topo_sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.topo_sort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nndeploy.dag.util.check_edge">
+<span class="sig-prename descclassname"><span class="pre">nndeploy.dag.util.</span></span><span class="sig-name descname"><span class="pre">check_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nndeploy/dag/util.html#check_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.dag.util.check_edge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nndeploy.dag.running_condition.html" class="btn btn-neutral float-left" title="nndeploy.dag.running_condition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nndeploy.detect.html" class="btn btn-neutral float-right" title="nndeploy.detect" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.op.expr &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.op.expr</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.op.expr</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">nndeploy.ir</span> <span class="kn">import</span> <span class="n">ModelDesc</span>
+<span class="kn">import</span> <span class="nn">nndeploy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nndeploy._nndeploy_internal</span> <span class="k">as</span> <span class="nn">_C</span>
+<span class="kn">from</span> <span class="nn">nndeploy.base</span> <span class="kn">import</span> <span class="n">name_to_device_type_code</span>
+
+<span class="kn">from</span> <span class="nn">nndeploy.device</span> <span class="kn">import</span> <span class="n">Tensor</span>
+<span class="kn">from</span> <span class="nn">nndeploy.net.module</span> <span class="kn">import</span> <span class="n">Module</span>
+<span class="kn">import</span> <span class="nn">nndeploy.op.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="n">Expr</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">Expr</span>
+
+
+<div class="viewcode-block" id="Conv"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Conv">[docs]</a><span class="k">class</span> <span class="nc">Conv</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="Conv.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Conv.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">in_channels</span><span class="p">,</span>
+        <span class="n">out_channels</span><span class="p">,</span>
+        <span class="n">kernel_size</span><span class="p">,</span>
+        <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">dilation</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">groups</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">weight_name</span><span class="o">=</span><span class="s2">&quot;conv.weight&quot;</span><span class="p">,</span>
+        <span class="n">bias_name</span><span class="o">=</span><span class="s2">&quot;conv.bias&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">ConvParam</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">kernel_shape_</span> <span class="o">=</span> <span class="p">[</span><span class="n">kernel_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernel_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">group_</span> <span class="o">=</span> <span class="n">groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">dilations_</span> <span class="o">=</span> <span class="n">dilation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">pads_</span> <span class="o">=</span> <span class="p">[</span><span class="n">padding</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">strides_</span> <span class="o">=</span> <span class="p">[</span><span class="n">stride</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight_name</span> <span class="o">=</span> <span class="n">weight_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span> <span class="o">=</span> <span class="n">bias_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">weight_name</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bias_name</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="Conv.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Conv.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span>
+            <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span>
+                <span class="n">data</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">weight_name</span><span class="p">],</span>
+                <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Conv.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Conv.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeConv</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Relu"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Relu">[docs]</a><span class="k">class</span> <span class="nc">Relu</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="Relu.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Relu.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Relu.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Relu.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">data</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Relu.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Relu.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeRelu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Add"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Add">[docs]</a><span class="k">class</span> <span class="nc">Add</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="Add.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Add.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Add.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Add.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Add.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Add.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeAdd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="BatchNorm"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.BatchNorm">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="BatchNorm.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.BatchNorm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">scale_name</span><span class="p">,</span> <span class="n">bias_name</span><span class="p">,</span> <span class="n">mean_name</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">BatchNormalizationParam</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">epsilon_</span> <span class="o">=</span> <span class="n">eps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">momentum_</span> <span class="o">=</span> <span class="n">momentum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_name</span> <span class="o">=</span> <span class="n">scale_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span> <span class="o">=</span> <span class="n">bias_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean_name</span> <span class="o">=</span> <span class="n">mean_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_name</span> <span class="o">=</span> <span class="n">var_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">scale_name</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">bias_name</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">mean_name</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">var_name</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="BatchNorm.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.BatchNorm.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span>
+            <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">batch_norm</span><span class="p">(</span>
+                <span class="n">data</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_name</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_name</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">var_name</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="BatchNorm.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.BatchNorm.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeBatchNorm</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale_name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mean_name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var_name</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Softmax"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Softmax">[docs]</a><span class="k">class</span> <span class="nc">Softmax</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="Softmax.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Softmax.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">SoftmaxParam</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span></div>
+
+<div class="viewcode-block" id="Softmax.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Softmax.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Softmax.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Softmax.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeSoftmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Sigmoid"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Sigmoid">[docs]</a><span class="k">class</span> <span class="nc">Sigmoid</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="Sigmoid.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Sigmoid.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Sigmoid.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Sigmoid.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">data</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sigmoid.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Sigmoid.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeSigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Gemm"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Gemm">[docs]</a><span class="k">class</span> <span class="nc">Gemm</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="Gemm.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Gemm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">weight_name</span><span class="p">,</span> <span class="n">bias_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">trans_a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">trans_b</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">GemmParam</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">alpha_</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">beta_</span> <span class="o">=</span> <span class="n">beta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">trans_a_</span> <span class="o">=</span> <span class="n">trans_a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">trans_b_</span> <span class="o">=</span> <span class="n">trans_b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight_name</span> <span class="o">=</span> <span class="n">weight_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span> <span class="o">=</span> <span class="n">bias_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">weight_name</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">bias_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="n">bias_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Gemm.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Gemm.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">bias</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span>
+            <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">gemm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">weight_name</span><span class="p">],</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gemm.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Gemm.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeGemm</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias_name</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Flatten"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Flatten">[docs]</a><span class="k">class</span> <span class="nc">Flatten</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="Flatten.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Flatten.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">FlattenParam</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">axis_</span> <span class="o">=</span> <span class="n">axis</span></div>
+
+<div class="viewcode-block" id="Flatten.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Flatten.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Flatten.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.Flatten.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeFlatten</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MaxPool"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.MaxPool">[docs]</a><span class="k">class</span> <span class="nc">MaxPool</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="MaxPool.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.MaxPool.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">MaxPoolParam</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">kernel_shape_</span> <span class="o">=</span> <span class="p">[</span><span class="n">kernel_size</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">strides_</span> <span class="o">=</span> <span class="p">[</span><span class="n">stride</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">pads_</span> <span class="o">=</span> <span class="p">[</span><span class="n">padding</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">dilations_</span> <span class="o">=</span> <span class="p">[</span><span class="n">dilation</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">ceil_mode_</span> <span class="o">=</span> <span class="n">ceil_mode</span></div>
+
+<div class="viewcode-block" id="MaxPool.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.MaxPool.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="MaxPool.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.MaxPool.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeMaxPool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="GlobalAveragePool"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.GlobalAveragePool">[docs]</a><span class="k">class</span> <span class="nc">GlobalAveragePool</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="GlobalAveragePool.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.GlobalAveragePool.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GlobalAveragePool.forward"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.GlobalAveragePool.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">global_averagepool</span><span class="p">(</span><span class="n">data</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="GlobalAveragePool.makeExpr"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.op.expr.html#nndeploy.op.expr.GlobalAveragePool.makeExpr">[docs]</a>    <span class="k">def</span> <span class="nf">makeExpr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">makeGlobalAveragePool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_desc</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

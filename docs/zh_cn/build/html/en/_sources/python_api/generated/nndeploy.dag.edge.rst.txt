@@ -1,0 +1,38 @@
+nndeploy.dag.edge
+=================
+
+.. automodule:: nndeploy.dag.edge
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      add_accepted_edge_type_map
+      get_accepted_edge_type_json
+      get_accepted_edge_type_map
+      sub_accepted_edge_type_map
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Edge
+   
+   
+
+   
+   
+   
+
+
+

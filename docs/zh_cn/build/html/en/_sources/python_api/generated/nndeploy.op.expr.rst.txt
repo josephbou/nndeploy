@@ -1,0 +1,38 @@
+nndeploy.op.expr
+================
+
+.. automodule:: nndeploy.op.expr
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Add
+      BatchNorm
+      Conv
+      Flatten
+      Gemm
+      GlobalAveragePool
+      MaxPool
+      Relu
+      Sigmoid
+      Softmax
+   
+   
+
+   
+   
+   
+
+
+

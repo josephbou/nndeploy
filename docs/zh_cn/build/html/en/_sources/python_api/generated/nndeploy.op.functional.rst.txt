@@ -1,0 +1,72 @@
+nndeploy.op.functional
+======================
+
+.. automodule:: nndeploy.op.functional
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      abs
+      acos
+      add
+      asin
+      atan
+      batch_norm
+      ceil
+      concat
+      conv
+      cos
+      cosh
+      dequantize_linear
+      erf
+      exp
+      flatten
+      floor
+      gather
+      gemm
+      global_averagepool
+      hardsigmoid
+      log
+      mat_mul
+      maxpool
+      mul
+      qlinear_conv
+      quantize_linear
+      reciprocal
+      relu
+      reshape
+      rms_norm
+      round
+      selu
+      sigmoid
+      sign
+      sin
+      sinh
+      slice
+      softmax
+      split
+      sqrt
+      tan
+      tanh
+      transpose
+      where
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

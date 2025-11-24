@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Development Debugging Issue Records &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Development Debugging Issue Records</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Development Debugging Issue Records<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h2>
+<p>Python binding related, move to python/README.md</p>
+</section>
+<section id="safetensors">
+<h2>Error report when modifying weights loaded using safetensors<a class="headerlink" href="#safetensors" title="Permalink to this heading">¶</a></h2>
+<p>Weights loaded in safetensors mode are directly mmapped to the file, opened in read-only mode, and cannot be modified. To modify the weights, clone a Tensor, modify it, and replace.</p>
+</section>
+<section id="ascend">
+<h2>Ascend development environment<a class="headerlink" href="#ascend" title="Permalink to this heading">¶</a></h2>
+<section id="undefined-reference">
+<h3>Compilation error, linking error, undefined reference<a class="headerlink" href="#undefined-reference" title="Permalink to this heading">¶</a></h3>
+<p>Compilation requires root privileges</p>
+</section>
+<section id="vscode">
+<h3>Vscode terminal lacks path prompts, some common command errors, inability to input, etc.<a class="headerlink" href="#vscode" title="Permalink to this heading">¶</a></h3>
+<p>The terminal opened by default in Vscode is incomplete, requiring manual creation of a new terminal, selecting Bash</p>
+</section>
+<section id="cmake">
+<h3>cmake method<a class="headerlink" href="#cmake" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>Specific steps</p>
+<ul>
+<li><p>Create a build directory in the root directory, copy cmake/config.cmake to this directory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">build</span>
+<span class="n">cp</span> <span class="n">cmake</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">cmake</span> <span class="n">build</span>
+<span class="n">cd</span> <span class="n">build</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit build/config.cmake to customize compilation options (the author’s custom compilation options: path/cmake/config_ascendcl.cmake)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">../</span> <span class="o">-</span><span class="n">DCMAKE_CXX_COMPILER</span><span class="o">=</span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">DCMAKE_SKIP_RPATH</span><span class="o">=</span><span class="n">TRUE</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="home-resource">
+<h3>On the development server, models and third-party library resources are placed in /home/resource, all colleagues who can log in to this server have permission to access this directory<a class="headerlink" href="#home-resource" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>Model resources: /home/resource/model_zoo</p></li>
+<li><p>Third-party library resources: /home/resource/third_party</p>
+<ul class="simple">
+<li><p>Local terminal activation:</p>
+<ul>
+<li><p>export LD_LIBRARY_PATH=/home/ascenduserdg01/github/nndeploy/build:$LD_LIBRARY_PATH</p></li>
+<li><p>export LD_LIBRARY_PATH=/home/resource/third_party/onnxruntime-linux-aarch64-1.20.1/lib:$LD_LIBRARY_PATH</p></li>
+</ul>
+</li>
+<li><p>Always effective</p>
+<ul>
+<li><p>echo ‘export LD_LIBRARY_PATH=/home/ascenduserdg01/github/nndeploy/build:$LD_LIBRARY_PATH’ &gt;&gt; ~/.bashrc</p></li>
+<li><p>echo ‘export LD_LIBRARY_PATH=/home/resource/third_party/onnxruntime-linux-aarch64-1.20.1/lib:$LD_LIBRARY_PATH’ &gt;&gt; ~/.bashrc</p></li>
+<li><p>source ~/.bashrc</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Image resources: /home/resource/data_set</p></li>
+<li><p>Under this development server, all developers have permission to this directory, specific execution commands are as follows:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>:nndeploy<span class="w"> </span>/home/resource/
+sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span>g+rwx<span class="w"> </span>/home/resource/
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="tokenizer-protobuf">
+<h3>About the protobuf conflict issue caused by third-party tokenizer during compilation<a class="headerlink" href="#tokenizer-protobuf" title="Permalink to this heading">¶</a></h3>
+<section id="id2">
+<h4>Problem description<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<p>After direct compilation, executing the relevant demo’s executable file will cause a segment fault, gdb inspection results are as follows</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>raymond@ascenduserdg01:~/workspace/nndeploy/build$<span class="w"> </span>gdb<span class="w"> </span>./nndeploy_demo_dag
+...
+Thread<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s2">&quot;nndeploy_demo_d&quot;</span><span class="w"> </span>received<span class="w"> </span>signal<span class="w"> </span>SIGSEGV,<span class="w"> </span>Segmentation<span class="w"> </span>fault.
+0x0000ffffecb9c744<span class="w"> </span><span class="k">in</span><span class="w"> </span>google::protobuf::Arena::AllocateAlignedNoHook<span class="o">(</span>unsigned<span class="w"> </span>long<span class="o">)</span><span class="w"> </span><span class="o">()</span><span class="w"> </span>from<span class="w"> </span>/lib/aarch64-linux-gnu/libprotobuf.so.23
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>bt
+<span class="c1">#0  0x0000ffffecb9c744 in google::protobuf::Arena::AllocateAlignedNoHook(unsigned long) () from /lib/aarch64-linux-gnu/libprotobuf.so.23</span>
+<span class="c1">#1  0x0000ffffecc50d08 in google::protobuf::FileDescriptorProto* google::protobuf::Arena::CreateMaybeMessage&lt;google::protobuf::FileDescriptorProto&gt;(google::protobuf::Arena*) ()</span>
+<span class="w">   </span>from<span class="w"> </span>/lib/aarch64-linux-gnu/libprotobuf.so.23
+<span class="c1">#2  0x0000ffffecc25d70 in google::protobuf::EncodedDescriptorDatabase::Add(void const*, int) () from /lib/aarch64-linux-gnu/libprotobuf.so.23</span>
+<span class="c1">#3  0x0000ffffecbf8ac8 in google::protobuf::DescriptorPool::InternalAddGeneratedFile(void const*, int) () from /lib/aarch64-linux-gnu/libprotobuf.so.23</span>
+<span class="c1">#4  0x0000ffffecc6aaa0 in google::protobuf::internal::AddDescriptors(google::protobuf::internal::DescriptorTable const*) () from /lib/aarch64-linux-gnu/libprotobuf.so.23</span>
+<span class="c1">#5  0x0000ffffecb8e478 in ?? () from /lib/aarch64-linux-gnu/libprotobuf.so.23</span>
+<span class="c1">#6  0x0000fffff7fc7624 in call_init (env=0xfffffffff338, argv=0xfffffffff328, argc=1, l=&lt;optimized out&gt;) at ./elf/dl-init.c:70</span>
+<span class="c1">#7  call_init (l=&lt;optimized out&gt;, argc=1, argv=0xfffffffff328, env=0xfffffffff338) at ./elf/dl-init.c:26</span>
+<span class="c1">#8  0x0000fffff7fc772c in _dl_init (main_map=0xfffff7fff370, argc=1, argv=0xfffffffff328, env=0xfffffffff338) at ./elf/dl-init.c:117</span>
+<span class="c1">#9  0x0000fffff7fd9cc8 in _dl_start_user () from /lib/ld-linux-aarch64.so.1</span>
+Backtrace<span class="w"> </span>stopped:<span class="w"> </span>previous<span class="w"> </span>frame<span class="w"> </span>identical<span class="w"> </span>to<span class="w"> </span>this<span class="w"> </span>frame<span class="w"> </span><span class="o">(</span>corrupt<span class="w"> </span>stack?<span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>Root cause analysis<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<p>The issue occurs in /lib/aarch64-linux-gnu/libprotobuf.so.23, so inspect the dynamic links and symbol table of nndeploy_demo_dag</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>raymond@ascenduserdg01:~/workspace/nndeploy/build$<span class="w"> </span>ldd<span class="w"> </span>nndeploy_demo_dag<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>proto
+<span class="w">	</span>libprotobuf.so.23<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>/lib/aarch64-linux-gnu/libprotobuf.so.23<span class="w"> </span><span class="o">(</span>0x0000ffffa5990000<span class="o">)</span>
+raymond@ascenduserdg01:~/workspace/nndeploy/build$<span class="w"> </span>nm<span class="w"> </span>nndeploy_demo_dag<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>protobuf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39; T &#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+0000000000135bb0<span class="w"> </span>T<span class="w"> </span>_ZN2pb11CppFeaturesC1EPN6google8protobuf5ArenaE
+0000000000135bd0<span class="w"> </span>T<span class="w"> </span>_ZN2pb11CppFeaturesC1EPN6google8protobuf5ArenaERKS0_
+0000000000135bb0<span class="w"> </span>T<span class="w"> </span>_ZN2pb11CppFeaturesC2EPN6google8protobuf5ArenaE
+0000000000135bd0<span class="w"> </span>T<span class="w"> </span>_ZN2pb11CppFeaturesC2EPN6google8protobuf5ArenaERKS0_
+000000000003ea60<span class="w"> </span>T<span class="w"> </span>_ZN6google8protobuf10DescriptorC1Ev
+</pre></div>
+</div>
+<p>It was found that the demo not only links to the dynamic library of protobuf, but because some symbol definitions already exist in protobuf, it should also link to the static library of protobuf; but the previously built results ran without any issues, the segment fault occurred after adding the third-party’s tokenizer in the build, and the tokenizer links to the static library of sentencepiece</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">tokenizers_cpp</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">tokenizers_c</span><span class="w"> </span><span class="s">sentencepiece-static</span><span class="w"> </span><span class="o">${</span><span class="nv">TOKENIZERS_CPP_LINK_LIBS</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>sentencepiece uses protobuf-lite during compilation, so the third-party’s tokenizer library contains protobuf-lite, leading to a conflict between protobuf-lite and protobuf</p>
+</section>
+<section id="id4">
+<h4>Temporary solutions<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>First method: The system needs to install libprotobuf, directly skip the compilation of protobuf in third_party, the demo’s executable file only links to the dynamic library of protobuf</p></li>
+<li><p>Only modify protobuf.cmake as follows:</p></li>
+</ul>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="s">ExternalProject</span><span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span><span class="s">cmake/util.cmake</span><span class="p">)</span>
+
+<span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">ENABLE_NNDEPLOY_PROTOBUF</span><span class="w"> </span><span class="s">STREQUAL</span><span class="w"> </span><span class="s2">&quot;OFF&quot;</span><span class="p">)</span>
+<span class="nb">elseif</span><span class="w"> </span><span class="p">(</span><span class="s">ENABLE_NNDEPLOY_PROTOBUF</span><span class="w"> </span><span class="s">STREQUAL</span><span class="w"> </span><span class="s2">&quot;ON&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">option</span><span class="p">(</span><span class="s">protobuf_BUILD_TESTS</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="s">OFF</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">option</span><span class="p">(</span><span class="s">protobuf_MSVC_STATIC_RUNTIME</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">${</span><span class="nv">ONNX_USE_MSVC_STATIC_RUNTIME</span><span class="o">}</span><span class="p">)</span>
+
+<span class="w">  </span><span class="nb">find_package</span><span class="p">(</span><span class="s">PkgConfig</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">pkg_check_modules</span><span class="p">(</span><span class="s">PROTOBUF</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">protobuf</span><span class="p">)</span>
+
+<span class="w">  </span><span class="nb">find_package</span><span class="p">(</span><span class="s">Protobuf</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">if</span><span class="p">(</span><span class="s">Protobuf_FOUND</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">Protobuf_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">set</span><span class="p">(</span><span class="s">NNDEPLOY_THIRD_PARTY_LIBRARY</span><span class="w"> </span><span class="o">${</span><span class="nv">NNDEPLOY_THIRD_PARTY_LIBRARY</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">Protobuf_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">else</span><span class="p">()</span>
+<span class="w">    </span><span class="nb">set</span><span class="p">(</span><span class="s">LIBS</span><span class="w"> </span><span class="s">libprotobuf</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">add_subdirectory_if_no_target</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/third_party/protobuf</span><span class="w"> </span><span class="o">${</span><span class="nv">LIBS</span><span class="o">}</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">PROBUF_ROOT</span><span class="o">}</span><span class="s">/src</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">set</span><span class="p">(</span><span class="s">NNDEPLOY_THIRD_PARTY_LIBRARY</span><span class="w"> </span><span class="o">${</span><span class="nv">NNDEPLOY_THIRD_PARTY_LIBRARY</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">LIBS</span><span class="o">}</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">endif</span><span class="p">()</span>
+<span class="nb">else</span><span class="p">()</span>
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Second method: The system installs libprotobuf-lite, when compiling the tokenizer, link to libprotobuf-lite.so, the demo’s executable file links to both the dynamic library of protobuf and the dynamic library of protobuf-lite</p></li>
+<li><p>Only modify tokenizer_cpp.cmake as follows:</p></li>
+</ul>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="s">ExternalProject</span><span class="p">)</span>
+
+<span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">ENABLE_NNDEPLOY_PLUGIN_TOKENIZER_CPP</span><span class="w"> </span><span class="s">STREQUAL</span><span class="w"> </span><span class="s2">&quot;OFF&quot;</span><span class="p">)</span>
+<span class="nb">elseif</span><span class="w"> </span><span class="p">(</span><span class="s">ENABLE_NNDEPLOY_PLUGIN_TOKENIZER_CPP</span><span class="w"> </span><span class="s">STREQUAL</span><span class="w"> </span><span class="s2">&quot;ON&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">set</span><span class="p">(</span><span class="s">TOKENZIER_CPP_PATH</span><span class="w"> </span><span class="s">third_party/tokenizers-cpp</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">add_subdirectory</span><span class="p">(</span><span class="o">${</span><span class="nv">TOKENZIER_CPP_PATH</span><span class="o">}</span><span class="w"> </span><span class="s">tokenizers</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">TOKENZIER_CPP_PATH</span><span class="o">}</span><span class="s">/include</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">set</span><span class="p">(</span><span class="s">NNDEPLOY_THIRD_PARTY_LIBRARY</span><span class="w"> </span><span class="o">${</span><span class="nv">NNDEPLOY_THIRD_PARTY_LIBRARY</span><span class="o">}</span><span class="w"> </span><span class="s">tokenizers_cpp</span><span class="p">)</span><span class="w">   </span>
+
+<span class="w">  </span><span class="nb">find_library</span><span class="p">(</span><span class="s">PROTOBUF_LITE_LIB</span><span class="w"> </span><span class="s">protobuf-lite</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">PROTOBUF_LITE_LIB</span><span class="p">)</span>
+<span class="w">      </span><span class="nb">message</span><span class="p">(</span><span class="s">STATUS</span><span class="w"> </span><span class="s2">&quot;Found protobuf-lite: ${PROTOBUF_LITE_LIB}&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="nb">set</span><span class="p">(</span><span class="s">NNDEPLOY_THIRD_PARTY_LIBRARY</span><span class="w"> </span><span class="o">${</span><span class="nv">NNDEPLOY_THIRD_PARTY_LIBRARY</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">PROTOBUF_LITE_LIB</span><span class="o">}</span><span class="p">)</span><span class="w">   </span>
+<span class="w">  </span><span class="nb">else</span><span class="p">()</span>
+<span class="w">      </span><span class="nb">message</span><span class="p">(</span><span class="s">FATAL_ERROR</span><span class="w"> </span><span class="s2">&quot;protobuf-lite not found! Please install&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">endif</span><span class="p">()</span>
+
+<span class="nb">else</span><span class="p">()</span>
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h4>Explanation<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Both solutions are workarounds, requiring the installation of the relevant protobuf on the system</p></li>
+<li><p>For the first method, the third-party’s protobuf is directly skipped during compilation, so the third-party’s protobuf seems meaningless</p></li>
+<li><p>For the second method, there is a risk, in the case where both dynamic and static libraries are linked, the dynamic library will be preferred, but it’s still uncertain whether conflicts will occur, especially when the versions of the dynamic and static libraries are inconsistent</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="github">
+<h2>Proxy failure, github connection issues, etc.<a class="headerlink" href="#github" title="Permalink to this heading">¶</a></h2>
+<section id="id6">
+<h3>Unstable github connection issues<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>When setting up the development environment on the Ascend server, we encounter issues like repository cloning from github.com or other behaviors being particularly slow. For this phenomenon, there are currently two methods to handle:</p>
+<ol class="simple">
+<li><p>Clone the repository using SSH connection.</p></li>
+<li><p>By mounting a proxy on the server, make HTTPS services more convenient.</p></li>
+</ol>
+<p>Currently, I can only temporarily use the first method to access the service, the second method seems to have encountered some restrictions waiting for someone to solve.</p>
+<p>For the first method, you can mainly refer to GitHub’s article titled ‘connecting-to-github-with-ssh’. Then, after going through the process, you will find that you still cannot use SSH to connect to GitHub, ‘ssh -T git&#64;github.com’ cannot get the expected result; due to this reason, the author found that the default port 20 is restricted, and port 443 needs to be used. You need to add code in the root directory $HOME/.ssh/config, then you can proceed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Host<span class="w"> </span>github.com
+<span class="w">    </span>Hostname<span class="w"> </span>ssh.github.com
+<span class="w">    </span>Port<span class="w"> </span><span class="m">443</span>
+<span class="w">    </span>User<span class="w"> </span>git
+</pre></div>
+</div>
+<p>In addition, you also need to add the following code in $HOME/.gitconfig to let the subsequent submodules execute according to SSH.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>url<span class="w"> </span><span class="s2">&quot;ssh://git@github.com/&quot;</span><span class="o">]</span>
+<span class="w">	</span><span class="nv">insteadOf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>https://github.com/
+</pre></div>
+</div>
+<p>Using the SSH solution alone can solve the latency issue.</p>
+<p>For the second method, you can configure the proxy on your own server in two ways:</p>
+<ol class="simple">
+<li><p>According to the article’s method, download the specified package (for Accend, download this ARM version of clash). Proceed as described in the article, but you may encounter the issue of missing MMDB files, which needs to be solved by yourself. The way I solved it was to copy the Country.MMDB file from the second method (the MMDB file contains common website to IP key-value pairs).</p></li>
+<li><p>Download the clash-for-linux repository and start the proxy according to the README; Note: These two are the methods the author used during testing, using Linux’s clash method, you need to purchase a subscription yourself. So far, the author has gone through the process, but seems to have encountered some constraints (this method has been verified on multiple servers): alt text</p></li>
+</ol>
+<p>The author suspects whether the server only has port 443 and some necessary ports available, other ports are not, because if the proxy uses port 52984, while in the first method, SSH uses the default port 20. The author has also tried most methods online to get a result, including but not limited to manually compiling git, etc…</p>
+</section>
+<section id="shellsh">
+<h3>Enter the system’s default shell as a solution to sh:<a class="headerlink" href="#shellsh" title="Permalink to this heading">¶</a></h3>
+<p>Temporary method: Enter the server’s default bash: sudo vim /etc/passwd Change the end of your user to /usr/bin/bash</p>
+<ul>
+<li><p>编译ONNX时，absl库版本需要与onnx版本一致，否则会出现链接错误，解决办法如下：</p>
+<ul>
+<li><p>最简单的解决方案是更新 Abseil 库到最新版本，因为这可能是一个已知并修复的问题</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">abseil</span><span class="o">/</span><span class="n">abseil</span><span class="o">-</span><span class="n">cpp</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">abseil</span><span class="o">-</span><span class="n">cpp</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">latest</span>
+<span class="n">cmake</span> <span class="o">-</span><span class="n">DCMAKE_POSITION_INDEPENDENT_CODE</span><span class="o">=</span><span class="n">ON</span> <span class="o">-</span><span class="n">DCMAKE_INSTALL_PREFIX</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span> <span class="o">.</span>
+<span class="n">make</span>
+<span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>本地无protobuf或者protobuf版本不匹配，编译安装nndeploy/third_party/protobuf</p>
+<p>下面是在 Linux 系统上编译安装最新版本 Protobuf 的详细步骤：</p>
+<ol>
+<li><p>准备环境</p>
+<p>首先，确保系统已安装必要的开发工具：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>build-essential<span class="w"> </span>autoconf<span class="w"> </span>automake<span class="w"> </span>libtool<span class="w"> </span>curl<span class="w"> </span>make<span class="w"> </span>g++<span class="w"> </span>unzip<span class="w"> </span>git<span class="w"> </span>cmake
+</pre></div>
+</div>
+</li>
+<li><p>移除现有的 Protobuf 安装</p>
+<p>为避免冲突，先移除系统中已有的 Protobuf：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 移除通过包管理器安装的版本</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>-y<span class="w"> </span>protobuf-compiler<span class="w"> </span>libprotobuf-dev
+
+<span class="c1"># 如果之前手动安装过，可能需要删除这些文件</span>
+sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/include/google/protobuf
+sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/bin/protoc*
+sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/lib/libprotobuf*
+sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/lib/libprotoc*
+sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/lib/pkgconfig/protobuf*
+</pre></div>
+</div>
+</li>
+<li><p>使用 CMake 构建和安装</p>
+<p>推荐使用 CMake 构建，这是 Protobuf 现在推荐的方式：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 进入protobuf目录</span>
+<span class="nb">cd</span><span class="w"> </span>path/nndeploy/third_party/protobuf
+
+<span class="c1"># 创建并进入构建目录</span>
+mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+
+<span class="c1"># 配置 CMake</span>
+cmake<span class="w"> </span>..<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-DCMAKE_POSITION_INDEPENDENT_CODE<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr/local<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-Dprotobuf_BUILD_TESTS<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-Dprotobuf_BUILD_SHARED_LIBS<span class="o">=</span>ON
+
+<span class="c1"># 编译</span>
+make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+
+<span class="c1"># 安装</span>
+sudo<span class="w"> </span>make<span class="w"> </span>install
+
+<span class="c1"># 更新动态链接库缓存</span>
+sudo<span class="w"> </span>ldconfig
+</pre></div>
+</div>
+</li>
+<li><p>验证安装</p>
+<p>安装完成后，验证 Protobuf 是否正确安装：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 检查 protoc 版本</span>
+protoc<span class="w"> </span>--version
+
+<span class="c1"># 检查库文件是否存在</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/usr/local/lib/libprotobuf*
+
+<span class="c1"># 检查头文件是否存在</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/usr/local/include/google/protobuf/
+</pre></div>
+</div>
+</li>
+<li><p>配置 pkg-config</p>
+<p>确保 pkg-config 能正确找到 Protobuf：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 检查 pkg-config 是否能找到 protobuf</span>
+pkg-config<span class="w"> </span>--cflags<span class="w"> </span>--libs<span class="w"> </span>protobuf
+
+<span class="c1"># 如果找不到，可能需要设置 PKG_CONFIG_PATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span>/usr/local/lib/pkgconfig:<span class="nv">$PKG_CONFIG_PATH</span>
+</pre></div>
+</div>
+</li>
+<li><p>可能的问题和解决方案</p>
+<p>如果遇到链接错误，可能需要确保链接器能找到库：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 将 /usr/local/lib 添加到链接器配置</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;/usr/local/lib&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/ld.so.conf.d/protobuf.conf
+sudo<span class="w"> </span>ldconfig
+</pre></div>
+</div>
+</li>
+<li><p>重新编译nndeploy</p>
+<p>清空build目录，重新编译nndeploy</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/nndeploy/build
+make<span class="w"> </span>clean
+cmake<span class="w"> </span>..
+make<span class="w"> </span>-j
+make<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id7">
+<h1>你的分析很准确！这确实是一个<strong>动态库加载和符号管理</strong>的问题。让我详细分析一下原因：<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h1>
+<section id="id8">
+<h2>问题分析<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<section id="dllnodefactory">
+<h3>1. <strong>多DLL的NodeFactory单例问题</strong><a class="headerlink" href="#dllnodefactory" title="Permalink to this heading">¶</a></h3>
+<p>从日志可以看出：</p>
+<ul class="simple">
+<li><p><strong>注册阶段</strong>：大量节点成功注册（来自不同的DLL）</p></li>
+<li><p><strong>查找阶段</strong>：只能找到少数几个节点类型</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// 注册时：大量节点被注册</span>
+<span class="n">I</span><span class="o">/</span><span class="n">nndeploy_default_str</span><span class="o">:</span><span class="w"> </span><span class="n">nndeploy</span><span class="o">::</span><span class="n">dag</span><span class="o">::</span><span class="n">NodeFactory</span><span class="o">::</span><span class="n">registerNode</span><span class="w"> </span><span class="p">[</span><span class="n">File</span><span class="w"> </span><span class="n">xxx</span><span class="p">]</span><span class="w"> </span><span class="k">register</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">success</span><span class="o">:</span><span class="w"> </span><span class="n">nndeploy</span><span class="o">::</span><span class="n">preprocess</span><span class="o">::</span><span class="n">BatchPreprocess</span>
+<span class="c1">// ... 很多其他节点</span>
+
+<span class="c1">// 查找时：只找到很少的节点</span>
+<span class="n">I</span><span class="o">/</span><span class="n">nndeploy_default_str</span><span class="o">:</span><span class="w"> </span><span class="n">nndeploy</span><span class="o">::</span><span class="n">dag</span><span class="o">::</span><span class="n">NodeFactory</span><span class="o">::</span><span class="n">getCreator</span><span class="w"> </span><span class="p">[</span><span class="n">File</span><span class="w"> </span><span class="n">xxx</span><span class="p">]</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">key</span><span class="o">:</span><span class="w"> </span><span class="n">nndeploy</span><span class="o">::</span><span class="n">dag</span><span class="o">::</span><span class="n">Graph</span>
+<span class="n">I</span><span class="o">/</span><span class="n">nndeploy_default_str</span><span class="o">:</span><span class="w"> </span><span class="n">nndeploy</span><span class="o">::</span><span class="n">dag</span><span class="o">::</span><span class="n">NodeFactory</span><span class="o">::</span><span class="n">getCreator</span><span class="w"> </span><span class="p">[</span><span class="n">File</span><span class="w"> </span><span class="n">xxx</span><span class="p">]</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">key</span><span class="o">:</span><span class="w"> </span><span class="n">nndeploy</span><span class="o">::</span><span class="n">dag</span><span class="o">::</span><span class="n">RunningCondition</span>
+</pre></div>
+</div>
+<p>Search files…</p>
+</section>
+<section id="windows-dll">
+<h3>2. <strong>Windows DLL的符号隔离问题</strong><a class="headerlink" href="#windows-dll" title="Permalink to this heading">¶</a></h3>
+<p>Windows DLL有严格的符号边界，不同DLL中的静态变量（包括单例）是<strong>相互独立</strong>的。这是问题的核心原因：</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">NodeFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">NodeFactory</span><span class="w"> </span><span class="o">*</span><span class="n">getInstance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">NodeFactory</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w">  </span><span class="c1">// 每个DLL都有自己的instance！</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="n">instance</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeCreator</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">creators_</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>3. <strong>问题详细说明</strong><a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<ol>
+<li><p><strong>多个NodeFactory实例</strong>：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nndeploy_framework.dll</span></code> 有一个 NodeFactory 实例</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nndeploy_plugin.dll</span></code> 有另一个 NodeFactory 实例</p></li>
+<li><p>Python扩展模块有第三个 NodeFactory 实例</p></li>
+</ul>
+</li>
+<li><p><strong>注册和查找分离</strong>：</p>
+<ul class="simple">
+<li><p>各种节点在<strong>模块加载时</strong>注册到了各自DLL的NodeFactory实例</p></li>
+<li><p>Python调用时使用的是<strong>Python扩展模块</strong>的NodeFactory实例</p></li>
+<li><p>导致查找时找不到其他DLL注册的节点</p></li>
+</ul>
+</li>
+<li><p><strong>日志证据</strong>：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 注册时：显示所有节点都注册成功</span>
+register<span class="w"> </span>node<span class="w"> </span>success:<span class="w"> </span>nndeploy::preprocess::BatchPreprocess
+register<span class="w"> </span>node<span class="w"> </span>success:<span class="w"> </span>nndeploy::codec::OpenCvImageDecode
+<span class="c1"># ... 等等</span>
+
+<span class="c1"># 查找时：只能看到很少的节点</span>
+node<span class="w"> </span>key:<span class="w"> </span>nndeploy::dag::Graph
+node<span class="w"> </span>key:<span class="w"> </span>nndeploy::dag::RunningCondition
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="id10">
+<h2>解决方案<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<section id="nodefactory">
+<h3>方案1：<strong>显式导出NodeFactory符号</strong><a class="headerlink" href="#nodefactory" title="Permalink to this heading">¶</a></h3>
+<p>在主DLL中导出NodeFactory，确保所有模块使用同一个实例：</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// 在主DLL的头文件中</span>
+<span class="n">NNDEPLOY_CC_API</span><span class="w"> </span><span class="n">NodeFactory</span><span class="o">*</span><span class="w"> </span><span class="n">GetGlobalNodeFactory</span><span class="p">();</span>
+
+<span class="c1">// 在主DLL的实现中  </span>
+<span class="n">NNDEPLOY_CC_API</span><span class="w"> </span><span class="n">NodeFactory</span><span class="o">*</span><span class="w"> </span><span class="n">GetGlobalNodeFactory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">NodeFactory</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3>方案2：<strong>使用共享内存映射</strong><a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<p>将NodeFactory的creators_存储在共享内存中。</p>
+</section>
+<section id="id12">
+<h3>方案3：<strong>在Python模块初始化时重新注册</strong><a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<p>在Python模块加载时，从各个DLL中获取节点信息并重新注册：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ensure_all_nodes_registered</span><span class="p">():</span>
+    <span class="c1"># 强制加载所有包含节点的DLL</span>
+    <span class="kn">import</span> <span class="nn">ctypes</span>
+    <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="s2">&quot;./nndeploy_plugin.dll&quot;</span><span class="p">)</span>  <span class="c1"># 强制加载</span>
+    <span class="c1"># 或者调用各模块的初始化函数</span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h3>方案4：<strong>修改编译配置</strong><a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">/WHOLEARCHIVE</span></code> 链接选项，确保所有静态初始化代码都被执行。</p>
+</section>
+<section id="id14">
+<h3>方案5：<strong>集中式节点注册</strong><a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
+<p>创建一个专门的节点注册中心，所有节点在运行时显式注册。</p>
+<p><strong>推荐使用方案1和方案3的组合</strong>，这样可以确保所有节点都注册到同一个NodeFactory实例中。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.api_aigc.openai_plugin &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nndeploy.api_llm" href="nndeploy.api_llm.html" />
+    <link rel="prev" title="nndeploy.api_aigc" href="nndeploy.api_aigc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nndeploy.html">nndeploy</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_version"><code class="docutils literal notranslate"><span class="pre">get_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_init"><code class="docutils literal notranslate"><span class="pre">framework_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.framework_deinit"><code class="docutils literal notranslate"><span class="pre">framework_deinit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.html#nndeploy.get_type_enum_json"><code class="docutils literal notranslate"><span class="pre">get_type_enum_json()</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nndeploy.api_aigc.html">nndeploy.api_aigc</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nndeploy.api_aigc.openai_plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.api_llm.html">nndeploy.api_llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.base.html">nndeploy.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.basic.html">nndeploy.basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.classification.html">nndeploy.classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.codec.html">nndeploy.codec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.dag.html">nndeploy.dag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.detect.html">nndeploy.detect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.device.html">nndeploy.device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.diffusion.html">nndeploy.diffusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.face.html">nndeploy.face</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.gan.html">nndeploy.gan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.image.html">nndeploy.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.infer.html">nndeploy.infer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.inference.html">nndeploy.inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ir.html">nndeploy.ir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.llm.html">nndeploy.llm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.matting.html">nndeploy.matting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.net.html">nndeploy.net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.nndeploy.html">nndeploy.nndeploy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.ocr.html">nndeploy.ocr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.op.html">nndeploy.op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.preprocess.html">nndeploy.preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.segment.html">nndeploy.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.server.html">nndeploy.server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.tokenizer.html">nndeploy.tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nndeploy.track.html">nndeploy.track</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Python API Reference</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.html">nndeploy</a></li>
+          <li class="breadcrumb-item"><a href="nndeploy.api_aigc.html">nndeploy.api_aigc</a></li>
+      <li class="breadcrumb-item active">nndeploy.api_aigc.openai_plugin</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nndeploy.api_aigc.openai_plugin">
+<span id="nndeploy-api-aigc-openai-plugin"></span><h1>nndeploy.api_aigc.openai_plugin<a class="headerlink" href="#module-nndeploy.api_aigc.openai_plugin" title="Permalink to this heading">¶</a></h1>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode" title="nndeploy.api_aigc.openai_plugin.OpenAIImageNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIImageNode</span></code></a>(name[, inputs, outputs])</p></td>
+<td><p>OpenAI图像生成节点（仅保留此节点）</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator" title="nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIImageNodeCreator</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.api_aigc.openai_plugin.</span></span><span class="sig-name descname"><span class="pre">OpenAIImageNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">nndeploy.dag.edge.Edge</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">nndeploy.dag.edge.Edge</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/api_aigc/openai_plugin.html#OpenAIImageNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nndeploy.dag.node.html#nndeploy.dag.node.Node" title="nndeploy.dag.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></p>
+<p>OpenAI图像生成节点（仅保留此节点）</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">nndeploy.dag.edge.Edge</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">nndeploy.dag.edge.Edge</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/api_aigc/openai_plugin.html#OpenAIImageNode.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name of the node</p></li>
+<li><p><strong>inputs</strong> – List of input edges or None</p></li>
+<li><p><strong>outputs</strong> – List of output edges or None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/api_aigc/openai_plugin.html#OpenAIImageNode.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the node’s main computation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/api_aigc/openai_plugin.html#OpenAIImageNode.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize the node to a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/api_aigc/openai_plugin.html#OpenAIImageNode.deserialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize the node from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_dropdown_param">
+<span class="sig-name descname"><span class="pre">add_dropdown_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dropdown_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropdown_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_dropdown_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a dropdown parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_io_param">
+<span class="sig-name descname"><span class="pre">add_io_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">io_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_io_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an IO parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_required_param">
+<span class="sig-name descname"><span class="pre">add_required_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">required_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_required_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a required parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_resource_with_state">
+<span class="sig-name descname"><span class="pre">add_resource_with_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Edge</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_resource_with_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add stateful resources using key and edge.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_resource_without_state">
+<span class="sig-name descname"><span class="pre">add_resource_without_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_resource_without_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add stateless resources using key-value pairs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_ui_param">
+<span class="sig-name descname"><span class="pre">add_ui_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.add_ui_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a UI parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.check_inputs">
+<span class="sig-name descname"><span class="pre">check_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.check_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the input data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.check_outputs">
+<span class="sig-name descname"><span class="pre">check_outputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputs_name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.check_outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the output names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.clear_dropdown_params">
+<span class="sig-name descname"><span class="pre">clear_dropdown_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.clear_dropdown_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the list of dropdown parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.clear_io_params">
+<span class="sig-name descname"><span class="pre">clear_io_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.clear_io_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the list of IO parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.clear_required_params">
+<span class="sig-name descname"><span class="pre">clear_required_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.clear_required_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the list of required parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.clear_ui_params">
+<span class="sig-name descname"><span class="pre">clear_ui_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.clear_ui_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the list of UI parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.create_internal_output_edge">
+<span class="sig-name descname"><span class="pre">create_internal_output_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy::dag::Edge</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.create_internal_output_edge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.create_resource_with_state">
+<span class="sig-name descname"><span class="pre">create_resource_with_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Edge</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.create_resource_with_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create stateful resources and return an edge pointer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.default_param">
+<span class="sig-name descname"><span class="pre">default_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.default_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.deinit">
+<span class="sig-name descname"><span class="pre">deinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.deinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deinitialize the node and clean up resources.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>forward(self: nndeploy._nndeploy_internal.dag.Node, inputs: list[nndeploy::dag::Edge]) -&gt; list[nndeploy::dag::Edge]</p></li>
+<li><p>forward(self: nndeploy._nndeploy_internal.dag.Node) -&gt; list[nndeploy::dag::Edge]</p></li>
+<li><p>forward(self: nndeploy._nndeploy_internal.dag.Node, input: nndeploy::dag::Edge) -&gt; list[nndeploy::dag::Edge]</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_all_input">
+<span class="sig-name descname"><span class="pre">get_all_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_all_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all inputs of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_all_output">
+<span class="sig-name descname"><span class="pre">get_all_output</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_all_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all outputs of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_completed_size">
+<span class="sig-name descname"><span class="pre">get_completed_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_completed_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the completed size of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_composite_node">
+<span class="sig-name descname"><span class="pre">get_composite_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy::dag::CompositeNode</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_composite_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_constructed">
+<span class="sig-name descname"><span class="pre">get_constructed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_constructed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the node has been constructed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_debug_flag">
+<span class="sig-name descname"><span class="pre">get_debug_flag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_debug_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if debug mode is enabled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_desc">
+<span class="sig-name descname"><span class="pre">get_desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the description of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_developer">
+<span class="sig-name descname"><span class="pre">get_developer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_developer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the developer information of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_device_type">
+<span class="sig-name descname"><span class="pre">get_device_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DeviceType" title="nndeploy.base.common.DeviceType"><span class="pre">DeviceType</span></a></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_device_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the device type of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_dropdown_params">
+<span class="sig-name descname"><span class="pre">get_dropdown_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_dropdown_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_external_param">
+<span class="sig-name descname"><span class="pre">get_external_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_external_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get external parameters by key.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_graph">
+<span class="sig-name descname"><span class="pre">get_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parent graph of this node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_graph_flag">
+<span class="sig-name descname"><span class="pre">get_graph_flag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_graph_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the graph flag is set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_initialized">
+<span class="sig-name descname"><span class="pre">get_initialized</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_initialized" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the node has been initialized.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input">
+<span class="sig-name descname"><span class="pre">get_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get input at the specified index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_count">
+<span class="sig-name descname"><span class="pre">get_input_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_data">
+<span class="sig-name descname"><span class="pre">get_input_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get input data at the specified index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_index">
+<span class="sig-name descname"><span class="pre">get_input_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_name">
+<span class="sig-name descname"><span class="pre">get_input_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_names">
+<span class="sig-name descname"><span class="pre">get_input_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_type_info">
+<span class="sig-name descname"><span class="pre">get_input_type_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.dag.base.html#nndeploy.dag.base.EdgeTypeInfo" title="nndeploy.dag.base.EdgeTypeInfo"><span class="pre">EdgeTypeInfo</span></a></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_input_type_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the input type information of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_io_params">
+<span class="sig-name descname"><span class="pre">get_io_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_io_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of IO parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_io_type">
+<span class="sig-name descname"><span class="pre">get_io_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_io_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the I/O type of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_key">
+<span class="sig-name descname"><span class="pre">get_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the unique key of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_loop_count">
+<span class="sig-name descname"><span class="pre">get_loop_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_loop_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the loop count of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_memory_size">
+<span class="sig-name descname"><span class="pre">get_memory_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_memory_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the memory size required by the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the name of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_node_type">
+<span class="sig-name descname"><span class="pre">get_node_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_node_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the node type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output">
+<span class="sig-name descname"><span class="pre">get_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get output at the specified index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_count">
+<span class="sig-name descname"><span class="pre">get_output_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_index">
+<span class="sig-name descname"><span class="pre">get_output_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_name">
+<span class="sig-name descname"><span class="pre">get_output_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_names">
+<span class="sig-name descname"><span class="pre">get_output_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_type_info">
+<span class="sig-name descname"><span class="pre">get_output_type_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.dag.base.html#nndeploy.dag.base.EdgeTypeInfo" title="nndeploy.dag.base.EdgeTypeInfo"><span class="pre">EdgeTypeInfo</span></a></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_output_type_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the output type information of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_parallel_type">
+<span class="sig-name descname"><span class="pre">get_parallel_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.ParallelType" title="nndeploy.base.common.ParallelType"><span class="pre">ParallelType</span></a></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_parallel_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parallel execution type of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_param">
+<span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parameters of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_real_outputs_name">
+<span class="sig-name descname"><span class="pre">get_real_outputs_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_real_outputs_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the actual output names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_required_params">
+<span class="sig-name descname"><span class="pre">get_required_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_required_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of required parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_resource_with_state">
+<span class="sig-name descname"><span class="pre">get_resource_with_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Edge</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_resource_with_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get stateful resource edge by key.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_resource_without_state">
+<span class="sig-name descname"><span class="pre">get_resource_without_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_resource_without_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get stateless resources by key.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_run_size">
+<span class="sig-name descname"><span class="pre">get_run_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_run_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the run size of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_run_status">
+<span class="sig-name descname"><span class="pre">get_run_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RunStatus</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_run_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the run status of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_source">
+<span class="sig-name descname"><span class="pre">get_source</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the source code repository information of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_stream">
+<span class="sig-name descname"><span class="pre">get_stream</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the execution stream of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_time_profile_flag">
+<span class="sig-name descname"><span class="pre">get_time_profile_flag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_time_profile_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if time profiling is enabled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_trace_flag">
+<span class="sig-name descname"><span class="pre">get_trace_flag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_trace_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if tracing is enabled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_ui_params">
+<span class="sig-name descname"><span class="pre">get_ui_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_ui_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of UI parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_version">
+<span class="sig-name descname"><span class="pre">get_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the version of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.is_dynamic_input">
+<span class="sig-name descname"><span class="pre">is_dynamic_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.is_dynamic_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.is_dynamic_output">
+<span class="sig-name descname"><span class="pre">is_dynamic_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.is_dynamic_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.is_inputs_changed">
+<span class="sig-name descname"><span class="pre">is_inputs_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.dag.Node,</span> <span class="pre">inputs:</span> <span class="pre">list[nndeploy::dag::Edge]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.is_inputs_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.is_running">
+<span class="sig-name descname"><span class="pre">is_running</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the node is currently running.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.load_file">
+<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.load_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the node configuration from a file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.remove_dropdown_param">
+<span class="sig-name descname"><span class="pre">remove_dropdown_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dropdown_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.remove_dropdown_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a dropdown parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.remove_io_param">
+<span class="sig-name descname"><span class="pre">remove_io_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">io_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.remove_io_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove an IO parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.remove_required_param">
+<span class="sig-name descname"><span class="pre">remove_required_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">required_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.remove_required_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a required parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.remove_ui_param">
+<span class="sig-name descname"><span class="pre">remove_ui_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.remove_ui_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a UI parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.save_file">
+<span class="sig-name descname"><span class="pre">save_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.save_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the node configuration to a file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_composite_node">
+<span class="sig-name descname"><span class="pre">set_composite_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composite_node:</span> <span class="pre">nndeploy::dag::CompositeNode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_composite_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_debug_flag">
+<span class="sig-name descname"><span class="pre">set_debug_flag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_debug_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable debug mode for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_desc">
+<span class="sig-name descname"><span class="pre">set_desc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the description of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_developer">
+<span class="sig-name descname"><span class="pre">set_developer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">developer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_developer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the developer information for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_device_type">
+<span class="sig-name descname"><span class="pre">set_device_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.DeviceType" title="nndeploy.base.common.DeviceType"><span class="pre">DeviceType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_device_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the device type for node execution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_dropdown_params">
+<span class="sig-name descname"><span class="pre">set_dropdown_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dropdown_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_dropdown_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the list of dropdown parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_dynamic_input">
+<span class="sig-name descname"><span class="pre">set_dynamic_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dynamic_input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_dynamic_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_dynamic_output">
+<span class="sig-name descname"><span class="pre">set_dynamic_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dynamic_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_dynamic_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_external_param">
+<span class="sig-name descname"><span class="pre">set_external_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external_param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_external_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set external parameters using key-value pairs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_graph">
+<span class="sig-name descname"><span class="pre">set_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parent graph for this node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_graph_flag">
+<span class="sig-name descname"><span class="pre">set_graph_flag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_graph_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the graph flag for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_initialized_flag">
+<span class="sig-name descname"><span class="pre">set_initialized_flag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_initialized_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initialization flag for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_inner_flag">
+<span class="sig-name descname"><span class="pre">set_inner_flag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_inner_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the inner flag for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input">
+<span class="sig-name descname"><span class="pre">set_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set input at the specified index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_name">
+<span class="sig-name descname"><span class="pre">set_input_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_names">
+<span class="sig-name descname"><span class="pre">set_input_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_shared_ptr">
+<span class="sig-name descname"><span class="pre">set_input_shared_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input:</span> <span class="pre">nndeploy::dag::Edge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">-1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_shared_ptr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_type">
+<span class="sig-name descname"><span class="pre">set_input_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the input type for the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_type</strong> – The input type</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Status code</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_type_info">
+<span class="sig-name descname"><span class="pre">set_input_type_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_type_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.dag.base.html#nndeploy.dag.base.EdgeTypeInfo" title="nndeploy.dag.base.EdgeTypeInfo"><span class="pre">EdgeTypeInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_input_type_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the input type information for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_inputs">
+<span class="sig-name descname"><span class="pre">set_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set all inputs for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_inputs_shared_ptr">
+<span class="sig-name descname"><span class="pre">set_inputs_shared_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.dag.Node,</span> <span class="pre">inputs:</span> <span class="pre">list[nndeploy::dag::Edge]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_inputs_shared_ptr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_io_params">
+<span class="sig-name descname"><span class="pre">set_io_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">io_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_io_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the list of IO parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_io_type">
+<span class="sig-name descname"><span class="pre">set_io_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">io_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_io_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the I/O type for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_iter_input">
+<span class="sig-name descname"><span class="pre">set_iter_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_iter_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set iterative input at the specified index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_key">
+<span class="sig-name descname"><span class="pre">set_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the unique key for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_loop_count">
+<span class="sig-name descname"><span class="pre">set_loop_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loop_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_loop_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the loop count for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_memory">
+<span class="sig-name descname"><span class="pre">set_memory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.device.buffer.html#nndeploy.device.buffer.Buffer" title="nndeploy.device.buffer.Buffer"><span class="pre">Buffer</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_memory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the memory buffer for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the name of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_node_type">
+<span class="sig-name descname"><span class="pre">set_node_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_node_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the node type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output">
+<span class="sig-name descname"><span class="pre">set_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set output at the specified index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_data">
+<span class="sig-name descname"><span class="pre">set_output_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_external</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set output data at the specified index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_name">
+<span class="sig-name descname"><span class="pre">set_output_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_names">
+<span class="sig-name descname"><span class="pre">set_output_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_shared_ptr">
+<span class="sig-name descname"><span class="pre">set_output_shared_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output:</span> <span class="pre">nndeploy::dag::Edge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">-1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_shared_ptr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_type">
+<span class="sig-name descname"><span class="pre">set_output_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the output type for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_type_info">
+<span class="sig-name descname"><span class="pre">set_output_type_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_type_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.dag.base.html#nndeploy.dag.base.EdgeTypeInfo" title="nndeploy.dag.base.EdgeTypeInfo"><span class="pre">EdgeTypeInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_output_type_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the output type information for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_outputs">
+<span class="sig-name descname"><span class="pre">set_outputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set all outputs for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_outputs_shared_ptr">
+<span class="sig-name descname"><span class="pre">set_outputs_shared_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.dag.Node,</span> <span class="pre">outputs:</span> <span class="pre">list[nndeploy::dag::Edge]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_outputs_shared_ptr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_parallel_type">
+<span class="sig-name descname"><span class="pre">set_parallel_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parallel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nndeploy.base.common.html#nndeploy.base.common.ParallelType" title="nndeploy.base.common.ParallelType"><span class="pre">ParallelType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_parallel_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parallel execution type for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_param">
+<span class="sig-name descname"><span class="pre">set_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_required_params">
+<span class="sig-name descname"><span class="pre">set_required_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">required_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_required_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the list of required parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_running_flag">
+<span class="sig-name descname"><span class="pre">set_running_flag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_running_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the running flag for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_source">
+<span class="sig-name descname"><span class="pre">set_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the source code repository information for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_stream">
+<span class="sig-name descname"><span class="pre">set_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the execution stream for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_time_profile_flag">
+<span class="sig-name descname"><span class="pre">set_time_profile_flag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_time_profile_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable time profiling for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_trace_flag">
+<span class="sig-name descname"><span class="pre">set_trace_flag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_trace_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable tracing for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_ui_params">
+<span class="sig-name descname"><span class="pre">set_ui_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_ui_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the list of UI parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_version">
+<span class="sig-name descname"><span class="pre">set_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.set_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the version of the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.synchronize">
+<span class="sig-name descname"><span class="pre">synchronize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.synchronize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronize the node execution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.to_static_graph">
+<span class="sig-name descname"><span class="pre">to_static_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.base.Status</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.to_static_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNode.update_input">
+<span class="sig-name descname"><span class="pre">update_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNode.update_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the input data for the node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nndeploy.api_aigc.openai_plugin.</span></span><span class="sig-name descname"><span class="pre">OpenAIImageNodeCreator</span></span><a class="reference internal" href="../../_modules/nndeploy/api_aigc/openai_plugin.html#OpenAIImageNodeCreator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nndeploy.dag.node.html#nndeploy.dag.node.NodeCreator" title="nndeploy.dag.node.NodeCreator"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeCreator</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nndeploy._nndeploy_internal.dag.NodeCreator</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nndeploy/api_aigc/openai_plugin.html#OpenAIImageNodeCreator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator.create_node">
+<span class="sig-name descname"><span class="pre">create_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">nndeploy.dag.edge.Edge</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nndeploy.dag.edge.html#nndeploy.dag.edge.Edge" title="nndeploy.dag.edge.Edge"><span class="pre">nndeploy.dag.edge.Edge</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nndeploy/api_aigc/openai_plugin.html#OpenAIImageNodeCreator.create_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator.create_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new node instance.</p>
+<p>This method must be implemented by subclasses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name of the node</p></li>
+<li><p><strong>inputs</strong> – List of input edges</p></li>
+<li><p><strong>outputs</strong> – List of output edges</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created node instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator.create_node_shared_ptr">
+<span class="sig-name descname"><span class="pre">create_node_shared_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">nndeploy._nndeploy_internal.dag.NodeCreator,</span> <span class="pre">arg0:</span> <span class="pre">str,</span> <span class="pre">arg1:</span> <span class="pre">list[nndeploy::dag::Edge],</span> <span class="pre">arg2:</span> <span class="pre">list[nndeploy::dag::Edge]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nndeploy._nndeploy_internal.dag.Node</span></span></span><a class="headerlink" href="#nndeploy.api_aigc.openai_plugin.OpenAIImageNodeCreator.create_node_shared_ptr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nndeploy.api_aigc.html" class="btn btn-neutral float-left" title="nndeploy.api_aigc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nndeploy.api_llm.html" class="btn btn-neutral float-right" title="nndeploy.api_llm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

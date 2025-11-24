@@ -1,0 +1,37 @@
+nndeploy.server.app
+===================
+
+.. automodule:: nndeploy.server.app
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      cli
+      configure_root_logger
+      load_existing_plugins
+      main
+      monitor_worker
+      start_finisher
+      start_progress_listener
+      start_scheduler
+      start_worker
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

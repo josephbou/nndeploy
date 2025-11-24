@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.ir.op_param &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.ir.op_param</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.ir.op_param</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">nndeploy._nndeploy_internal</span> <span class="k">as</span> <span class="nn">_C</span>
+
+
+<span class="n">name_to_op_type</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Net&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Net</span><span class="p">,</span>
+    <span class="s2">&quot;Abs&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Abs</span><span class="p">,</span>
+    <span class="s2">&quot;Add&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Add</span><span class="p">,</span>
+    <span class="s2">&quot;Acos&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Acos</span><span class="p">,</span>
+    <span class="s2">&quot;Adam&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Adam</span><span class="p">,</span>
+    <span class="s2">&quot;And&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">And</span><span class="p">,</span>
+    <span class="s2">&quot;ArgMax&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ArgMax</span><span class="p">,</span>
+    <span class="s2">&quot;ArgMin&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ArgMin</span><span class="p">,</span>
+    <span class="s2">&quot;Asin&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Asin</span><span class="p">,</span>
+    <span class="s2">&quot;Atan&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Atan</span><span class="p">,</span>
+    <span class="s2">&quot;AveragePool&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">AveragePool</span><span class="p">,</span>
+    <span class="s2">&quot;BatchNormalization&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">BatchNormalization</span><span class="p">,</span>
+    <span class="s2">&quot;Cast&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Cast</span><span class="p">,</span>
+    <span class="s2">&quot;Ceil&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Ceil</span><span class="p">,</span>
+    <span class="s2">&quot;Clip&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Clip</span><span class="p">,</span>
+    <span class="s2">&quot;Concat&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Concat</span><span class="p">,</span>
+    <span class="s2">&quot;Constant&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Constant</span><span class="p">,</span>
+    <span class="s2">&quot;Conv&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Conv</span><span class="p">,</span>
+    <span class="s2">&quot;Cos&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Cos</span><span class="p">,</span>
+    <span class="s2">&quot;Cosh&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Cosh</span><span class="p">,</span>
+    <span class="s2">&quot;DepthToSpace&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">DepthToSpace</span><span class="p">,</span>
+    <span class="s2">&quot;DequantizeLinear&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">DequantizeLinear</span><span class="p">,</span>
+    <span class="s2">&quot;Det&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Det</span><span class="p">,</span>
+    <span class="s2">&quot;Div&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Div</span><span class="p">,</span>
+    <span class="s2">&quot;Dropout&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Dropout</span><span class="p">,</span>
+    <span class="s2">&quot;Einsum&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Einsum</span><span class="p">,</span>
+    <span class="s2">&quot;Elu&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Elu</span><span class="p">,</span>
+    <span class="s2">&quot;Equal&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Equal</span><span class="p">,</span>
+    <span class="s2">&quot;Erf&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Erf</span><span class="p">,</span>
+    <span class="s2">&quot;Exp&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Exp</span><span class="p">,</span>
+    <span class="s2">&quot;Flatten&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Flatten</span><span class="p">,</span>
+    <span class="s2">&quot;Floor&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Floor</span><span class="p">,</span>
+    <span class="s2">&quot;Gather&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Gather</span><span class="p">,</span>
+    <span class="s2">&quot;Gemm&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Gemm</span><span class="p">,</span>
+    <span class="s2">&quot;GlobalAveragePool&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">GlobalAveragePool</span><span class="p">,</span>
+    <span class="s2">&quot;GlobalLpPool&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">GlobalLpPool</span><span class="p">,</span>
+    <span class="s2">&quot;GlobalMaxPool&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">GlobalMaxPool</span><span class="p">,</span>
+    <span class="s2">&quot;Greater&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Greater</span><span class="p">,</span>
+    <span class="s2">&quot;HardSigmoid&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">HardSigmoid</span><span class="p">,</span>
+    <span class="s2">&quot;Identity&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Identity</span><span class="p">,</span>
+    <span class="s2">&quot;If&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">If</span><span class="p">,</span>
+    <span class="s2">&quot;ImageScaler&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ImageScaler</span><span class="p">,</span>
+    <span class="s2">&quot;InstanceNormalization&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">InstanceNormalization</span><span class="p">,</span>
+    <span class="s2">&quot;IsInf&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">IsInf</span><span class="p">,</span>
+    <span class="s2">&quot;IsNaN&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">IsNaN</span><span class="p">,</span>
+    <span class="s2">&quot;LRN&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LRN</span><span class="p">,</span>
+    <span class="s2">&quot;LSTM&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LSTM</span><span class="p">,</span>
+    <span class="s2">&quot;LeakyRelu&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LeakyRelu</span><span class="p">,</span>
+    <span class="s2">&quot;Less&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Less</span><span class="p">,</span>
+    <span class="s2">&quot;Log&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Log</span><span class="p">,</span>
+    <span class="s2">&quot;LogSoftmax&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LogSoftmax</span><span class="p">,</span>
+    <span class="s2">&quot;Loop&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Loop</span><span class="p">,</span>
+    <span class="s2">&quot;LpNormalization&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LpNormalization</span><span class="p">,</span>
+    <span class="s2">&quot;LpPool&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LpPool</span><span class="p">,</span>
+    <span class="s2">&quot;MatMul&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MatMul</span><span class="p">,</span>
+    <span class="s2">&quot;MatMulInteger&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MatMulInteger</span><span class="p">,</span>
+    <span class="s2">&quot;Max&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Max</span><span class="p">,</span>
+    <span class="s2">&quot;MaxPool&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MaxPool</span><span class="p">,</span>
+    <span class="s2">&quot;MaxRoiPool&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MaxRoiPool</span><span class="p">,</span>
+    <span class="s2">&quot;MaxUnpool&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MaxUnpool</span><span class="p">,</span>
+    <span class="s2">&quot;Mean&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Mean</span><span class="p">,</span>
+    <span class="s2">&quot;Min&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Min</span><span class="p">,</span>
+    <span class="s2">&quot;Mod&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Mod</span><span class="p">,</span>
+    <span class="s2">&quot;Momentum&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Momentum</span><span class="p">,</span>
+    <span class="s2">&quot;Mul&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Mul</span><span class="p">,</span>
+    <span class="s2">&quot;Multinomial&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Multinomial</span><span class="p">,</span>
+    <span class="s2">&quot;Neg&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Neg</span><span class="p">,</span>
+    <span class="s2">&quot;NegLogSoftmax&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">NegLogSoftmax</span><span class="p">,</span>
+    <span class="s2">&quot;NonMaxSuppression&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">NonMaxSuppression</span><span class="p">,</span>
+    <span class="s2">&quot;NonZero&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">NonZero</span><span class="p">,</span>
+    <span class="s2">&quot;Not&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Not</span><span class="p">,</span>
+    <span class="s2">&quot;OneHot&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">OneHot</span><span class="p">,</span>
+    <span class="s2">&quot;OnesLike&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">OnesLike</span><span class="p">,</span>
+    <span class="s2">&quot;Or&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Or</span><span class="p">,</span>
+    <span class="s2">&quot;Pad&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Pad</span><span class="p">,</span>
+    <span class="s2">&quot;Pow&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Pow</span><span class="p">,</span>
+    <span class="s2">&quot;PRelu&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">PRelu</span><span class="p">,</span>
+    <span class="s2">&quot;QLinearConv&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">QLinearConv</span><span class="p">,</span>
+    <span class="s2">&quot;QLinearMatMul&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">QLinearMatMul</span><span class="p">,</span>
+    <span class="s2">&quot;QuantizeLinear&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">QuantizeLinear</span><span class="p">,</span>
+    <span class="s2">&quot;RNN&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RNN</span><span class="p">,</span>
+    <span class="s2">&quot;RandomNormal&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RandomNormal</span><span class="p">,</span>
+    <span class="s2">&quot;RandomNormalLike&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RandomNormalLike</span><span class="p">,</span>
+    <span class="s2">&quot;RandomUniform&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RandomUniform</span><span class="p">,</span>
+    <span class="s2">&quot;RandomUniformLike&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RandomUniformLike</span><span class="p">,</span>
+    <span class="s2">&quot;Range&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Range</span><span class="p">,</span>
+    <span class="s2">&quot;Reciprocal&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Reciprocal</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceL1&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceL1</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceL2&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceL2</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceLogSum&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceLogSum</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceLogSumExp&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceLogSumExp</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceMax&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceMax</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceMean&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceMean</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceMin&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceMin</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceProd&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceProd</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceSum&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceSum</span><span class="p">,</span>
+    <span class="s2">&quot;ReduceSumSquare&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceSumSquare</span><span class="p">,</span>
+    <span class="s2">&quot;Relu&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Relu</span><span class="p">,</span>
+    <span class="s2">&quot;Reshape&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Reshape</span><span class="p">,</span>
+    <span class="s2">&quot;Resize&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Resize</span><span class="p">,</span>
+    <span class="s2">&quot;ReverseSequence&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReverseSequence</span><span class="p">,</span>
+    <span class="s2">&quot;RoiAlign&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RoiAlign</span><span class="p">,</span>
+    <span class="s2">&quot;Round&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Round</span><span class="p">,</span>
+    <span class="s2">&quot;Scale&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Scale</span><span class="p">,</span>
+    <span class="s2">&quot;Scan&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Scan</span><span class="p">,</span>
+    <span class="s2">&quot;Scatter&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Scatter</span><span class="p">,</span>
+    <span class="s2">&quot;Selu&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Selu</span><span class="p">,</span>
+    <span class="s2">&quot;SequenceAt&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceAt</span><span class="p">,</span>
+    <span class="s2">&quot;SequenceConstruct&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceConstruct</span><span class="p">,</span>
+    <span class="s2">&quot;SequenceEmpty&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceEmpty</span><span class="p">,</span>
+    <span class="s2">&quot;SequenceErase&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceErase</span><span class="p">,</span>
+    <span class="s2">&quot;SequenceInsert&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceInsert</span><span class="p">,</span>
+    <span class="s2">&quot;SequenceLength&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceLength</span><span class="p">,</span>
+    <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Shape</span><span class="p">,</span>
+    <span class="s2">&quot;Shrink&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Shrink</span><span class="p">,</span>
+    <span class="s2">&quot;Sigmoid&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span>
+    <span class="s2">&quot;Sign&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sign</span><span class="p">,</span>
+    <span class="s2">&quot;Sin&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sin</span><span class="p">,</span>
+    <span class="s2">&quot;Sinh&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sinh</span><span class="p">,</span>
+    <span class="s2">&quot;Size&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Size</span><span class="p">,</span>
+    <span class="s2">&quot;Slice&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Slice</span><span class="p">,</span>
+    <span class="s2">&quot;Softmax&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Softmax</span><span class="p">,</span>
+    <span class="s2">&quot;Softplus&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Softplus</span><span class="p">,</span>
+    <span class="s2">&quot;Softsign&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Softsign</span><span class="p">,</span>
+    <span class="s2">&quot;SpaceToDepth&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SpaceToDepth</span><span class="p">,</span>
+    <span class="s2">&quot;Split&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Split</span><span class="p">,</span>
+    <span class="s2">&quot;Sqrt&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sqrt</span><span class="p">,</span>
+    <span class="s2">&quot;Squeeze&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Squeeze</span><span class="p">,</span>
+    <span class="s2">&quot;Sub&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sub</span><span class="p">,</span>
+    <span class="s2">&quot;Sum&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sum</span><span class="p">,</span>
+    <span class="s2">&quot;Tan&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Tan</span><span class="p">,</span>
+    <span class="s2">&quot;Tanh&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Tanh</span><span class="p">,</span>
+    <span class="s2">&quot;TfIdf&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">TfIdf</span><span class="p">,</span>
+    <span class="s2">&quot;ThresholdedRelu&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ThresholdedRelu</span><span class="p">,</span>
+    <span class="s2">&quot;Tile&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Tile</span><span class="p">,</span>
+    <span class="s2">&quot;TopK&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">TopK</span><span class="p">,</span>
+    <span class="s2">&quot;Transpose&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Transpose</span><span class="p">,</span>
+    <span class="s2">&quot;Unsqueeze&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Unsqueeze</span><span class="p">,</span>
+    <span class="s2">&quot;Upsample&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Upsample</span><span class="p">,</span>
+    <span class="s2">&quot;Where&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Where</span><span class="p">,</span>
+    <span class="s2">&quot;Xor&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Xor</span><span class="p">,</span>
+    <span class="s2">&quot;RMSNorm&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RMSNorm</span><span class="p">,</span>
+    <span class="s2">&quot;Embedding&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Embedding</span><span class="p">,</span>
+    <span class="s2">&quot;None&quot;</span><span class="p">:</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">kOpTypeNone</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="n">op_type_to_name</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">name_to_op_type</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+
+<div class="viewcode-block" id="op_type_to_string"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.op_type_to_string">[docs]</a><span class="k">def</span> <span class="nf">op_type_to_string</span><span class="p">(</span><span class="n">op_type</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">op_type_to_name</span><span class="p">[</span><span class="n">op_type</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="string_to_op_type"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.string_to_op_type">[docs]</a><span class="k">def</span> <span class="nf">string_to_op_type</span><span class="p">(</span><span class="n">op_type_name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">name_to_op_type</span><span class="p">[</span><span class="n">op_type_name</span><span class="p">]</span></div>
+    
+
+<div class="viewcode-block" id="OpType"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.OpType">[docs]</a><span class="k">class</span> <span class="nc">OpType</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="p">):</span>
+    <span class="n">Net</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Net</span>
+    <span class="n">Abs</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Abs</span>
+    <span class="n">Add</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Add</span>
+    <span class="n">Acos</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Acos</span>
+    <span class="n">Adam</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Adam</span>
+    <span class="n">And</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">And</span>
+    <span class="n">ArgMax</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ArgMax</span>
+    <span class="n">ArgMin</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ArgMin</span>
+    <span class="n">Asin</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Asin</span>
+    <span class="n">Atan</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Atan</span>
+    <span class="n">AveragePool</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">AveragePool</span>
+    <span class="n">BatchNormalization</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">BatchNormalization</span>
+    <span class="n">Cast</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Cast</span>
+    <span class="n">Ceil</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Ceil</span>
+    <span class="n">Clip</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Clip</span>
+    <span class="n">Concat</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Concat</span>
+    <span class="n">Constant</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Constant</span>
+    <span class="n">Conv</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Conv</span>
+    <span class="n">Cos</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Cos</span>
+    <span class="n">Cosh</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Cosh</span>
+    <span class="n">DepthToSpace</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">DepthToSpace</span>
+    <span class="n">DequantizeLinear</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">DequantizeLinear</span>
+    <span class="n">Det</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Det</span>
+    <span class="n">Div</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Div</span>
+    <span class="n">Dropout</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Dropout</span>
+    <span class="n">Einsum</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Einsum</span>
+    <span class="n">Elu</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Elu</span>
+    <span class="n">Equal</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Equal</span>
+    <span class="n">Erf</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Erf</span>
+    <span class="n">Exp</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Exp</span>
+    <span class="n">Flatten</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Flatten</span>
+    <span class="n">Floor</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Floor</span>
+    <span class="n">Gather</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Gather</span>
+    <span class="n">Gemm</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Gemm</span>
+    <span class="n">GlobalAveragePool</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">GlobalAveragePool</span>
+    <span class="n">GlobalLpPool</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">GlobalLpPool</span>
+    <span class="n">GlobalMaxPool</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">GlobalMaxPool</span>
+    <span class="n">Greater</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Greater</span>
+    <span class="n">HardSigmoid</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">HardSigmoid</span>
+    <span class="n">Identity</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Identity</span>
+    <span class="n">If</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">If</span>
+    <span class="n">ImageScaler</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ImageScaler</span>
+    <span class="n">InstanceNormalization</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">InstanceNormalization</span>
+    <span class="n">IsInf</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">IsInf</span>
+    <span class="n">IsNaN</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">IsNaN</span>
+    <span class="n">LRN</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LRN</span>
+    <span class="n">LSTM</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LSTM</span>
+    <span class="n">LeakyRelu</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LeakyRelu</span>
+    <span class="n">Less</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Less</span>
+    <span class="n">Log</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Log</span>
+    <span class="n">LogSoftmax</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LogSoftmax</span>
+    <span class="n">Loop</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Loop</span>
+    <span class="n">LpNormalization</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LpNormalization</span>
+    <span class="n">LpPool</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">LpPool</span>
+    <span class="n">MatMul</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MatMul</span>
+    <span class="n">MatMulInteger</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MatMulInteger</span>
+    <span class="n">Max</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Max</span>
+    <span class="n">MaxPool</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MaxPool</span>
+    <span class="n">MaxRoiPool</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MaxRoiPool</span>
+    <span class="n">MaxUnpool</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">MaxUnpool</span>
+    <span class="n">Mean</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Mean</span>
+    <span class="n">Min</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Min</span>
+    <span class="n">Mod</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Mod</span>
+    <span class="n">Momentum</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Momentum</span>
+    <span class="n">Mul</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Mul</span>
+    <span class="n">Multinomial</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Multinomial</span>
+    <span class="n">Neg</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Neg</span>
+    <span class="n">NegLogSoftmax</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">NegLogSoftmax</span>
+    <span class="n">NonMaxSuppression</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">NonMaxSuppression</span>
+    <span class="n">NonZero</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">NonZero</span>
+    <span class="n">Not</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Not</span>
+    <span class="n">OneHot</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">OneHot</span>
+    <span class="n">OnesLike</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">OnesLike</span>
+    <span class="n">Or</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Or</span>
+    <span class="n">Pad</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Pad</span>
+    <span class="n">Pow</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Pow</span>
+    <span class="n">PRelu</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">PRelu</span>
+    <span class="n">QLinearConv</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">QLinearConv</span>
+    <span class="n">QLinearMatMul</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">QLinearMatMul</span>
+    <span class="n">QuantizeLinear</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">QuantizeLinear</span>
+    <span class="n">RNN</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RNN</span>
+    <span class="n">RandomNormal</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RandomNormal</span>
+    <span class="n">RandomNormalLike</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RandomNormalLike</span>
+    <span class="n">RandomUniform</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RandomUniform</span>
+    <span class="n">RandomUniformLike</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RandomUniformLike</span>
+    <span class="n">Range</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Range</span>
+    <span class="n">Reciprocal</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Reciprocal</span>
+    <span class="n">ReduceL1</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceL1</span>
+    <span class="n">ReduceL2</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceL2</span>
+    <span class="n">ReduceLogSum</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceLogSum</span>
+    <span class="n">ReduceLogSumExp</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceLogSumExp</span>
+    <span class="n">ReduceMax</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceMax</span>
+    <span class="n">ReduceMean</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceMean</span>
+    <span class="n">ReduceMin</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceMin</span>
+    <span class="n">ReduceProd</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceProd</span>
+    <span class="n">ReduceSum</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceSum</span>
+    <span class="n">ReduceSumSquare</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReduceSumSquare</span>
+    <span class="n">Relu</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Relu</span>
+    <span class="n">Reshape</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Reshape</span>
+    <span class="n">Resize</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Resize</span>
+    <span class="n">ReverseSequence</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ReverseSequence</span>
+    <span class="n">RoiAlign</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RoiAlign</span>
+    <span class="n">Round</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Round</span>
+    <span class="n">Scale</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Scale</span>
+    <span class="n">Scan</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Scan</span>
+    <span class="n">Scatter</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Scatter</span>
+    <span class="n">Selu</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Selu</span>
+    <span class="n">SequenceAt</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceAt</span>
+    <span class="n">SequenceConstruct</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceConstruct</span>
+    <span class="n">SequenceEmpty</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceEmpty</span>
+    <span class="n">SequenceErase</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceErase</span>
+    <span class="n">SequenceInsert</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceInsert</span>
+    <span class="n">SequenceLength</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SequenceLength</span>
+    <span class="n">Shape</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Shape</span>
+    <span class="n">Shrink</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Shrink</span>
+    <span class="n">Sigmoid</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sigmoid</span>
+    <span class="n">Sign</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sign</span>
+    <span class="n">Sin</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sin</span>
+    <span class="n">Sinh</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sinh</span>
+    <span class="n">Size</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Size</span>
+    <span class="n">Slice</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Slice</span>
+    <span class="n">Softmax</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Softmax</span>
+    <span class="n">Softplus</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Softplus</span>
+    <span class="n">Softsign</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Softsign</span>
+    <span class="n">SpaceToDepth</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">SpaceToDepth</span>
+    <span class="n">Split</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Split</span>
+    <span class="n">Sqrt</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sqrt</span>
+    <span class="n">Squeeze</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Squeeze</span>
+    <span class="n">Sub</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sub</span>
+    <span class="n">Sum</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Sum</span>
+    <span class="n">Tan</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Tan</span>
+    <span class="n">Tanh</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Tanh</span>
+    <span class="n">TfIdf</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">TfIdf</span>
+    <span class="n">ThresholdedRelu</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">ThresholdedRelu</span>
+    <span class="n">Tile</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Tile</span>
+    <span class="n">TopK</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">TopK</span>
+    <span class="n">Transpose</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Transpose</span>
+    <span class="n">Unsqueeze</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Unsqueeze</span>
+    <span class="n">Upsample</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Upsample</span>
+    <span class="n">Where</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Where</span>
+    <span class="n">Xor</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Xor</span>
+    <span class="n">RMSNorm</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">RMSNorm</span>
+    <span class="n">Embedding</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">Embedding</span>
+    <span class="n">kOpTypeNone</span> <span class="o">=</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpType</span><span class="o">.</span><span class="n">kOpTypeNone</span>
+    
+<div class="viewcode-block" id="OpType.from_name"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.OpType.from_name">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">op_type_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">op_type_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">name_to_op_type</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;not supported op type name: </span><span class="si">{</span><span class="n">op_type_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name_to_op_type</span><span class="p">[</span><span class="n">op_type_name</span><span class="p">])</span></div></div>
+
+
+<div class="viewcode-block" id="OpParamCreator"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.OpParamCreator">[docs]</a><span class="k">class</span> <span class="nc">OpParamCreator</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpParamCreator</span><span class="p">):</span>
+<div class="viewcode-block" id="OpParamCreator.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.OpParamCreator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="OpParamCreator.create_op_param"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.OpParamCreator.create_op_param">[docs]</a>    <span class="k">def</span> <span class="nf">create_op_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op_type</span><span class="p">:</span> <span class="n">OpType</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;base class OpParamCreator does not implement create_op_param method&quot;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="register_op_param_creator"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.register_op_param_creator">[docs]</a><span class="k">def</span> <span class="nf">register_op_param_creator</span><span class="p">(</span><span class="n">op_type</span><span class="p">:</span> <span class="n">OpType</span><span class="p">,</span> <span class="n">creator</span><span class="p">:</span> <span class="n">OpParamCreator</span><span class="p">):</span>
+    <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">register_op_param_creator</span><span class="p">(</span><span class="n">op_type</span><span class="p">,</span> <span class="n">creator</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_op_param"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.create_op_param">[docs]</a><span class="k">def</span> <span class="nf">create_op_param</span><span class="p">(</span><span class="n">op_type</span><span class="p">:</span> <span class="n">OpType</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">create_op_param</span><span class="p">(</span><span class="n">op_type</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="OpParam"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.OpParam">[docs]</a><span class="k">class</span> <span class="nc">OpParam</span><span class="p">(</span><span class="n">_C</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">OpParam</span><span class="p">):</span>
+<div class="viewcode-block" id="OpParam.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.ir.op_param.html#nndeploy.ir.op_param.OpParam.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

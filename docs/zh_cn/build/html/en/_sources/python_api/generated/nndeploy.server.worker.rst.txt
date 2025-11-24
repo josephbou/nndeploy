@@ -1,0 +1,34 @@
+nndeploy.server.worker
+======================
+
+.. automodule:: nndeploy.server.worker
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      configure_worker_logger
+      ensure_picklable
+      load_existing_plugins
+      malloc_trim
+      poll_plugin_updates
+      run
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

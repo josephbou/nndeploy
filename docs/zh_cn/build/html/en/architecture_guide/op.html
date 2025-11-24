@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operator &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="data container" href="data_container.html" />
+    <link rel="prev" title="Multi-endpoint Push Module" href="inference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Add new operator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Operator definition and declaration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Function form operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python interface export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Operator</li>
+      <li class="wy-breadcrumbs-aside">
+          <div class="social-icons">
+            <a href="https://github.com/nndeploy/nndeploy/" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub 仓库">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="https://www.zhihu.com/column/c_1690464325314240512" target="_blank" rel="noopener noreferrer" class="social-icon" title="知乎专栏">
+              <i class="fab fa-zhihu fa-3x"></i>
+            </a>
+          </div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Operator<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>Add new operator<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3>Operator definition and declaration<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>nndeploy operator is registered and used in a class-based manner. The implementation and backend binding of the operator are strongly tied, but operators of the same type from different backends can share some common functions, such as shape inference. In nndeploy, operators are divided into two levels, the first parent class level is in nndeploy/framework/include/nndeploy/op, defined in nndeploy/framework/source/nndeploy/op. For example, RMSNorm:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OpRMSNorm</span> <span class="p">:</span> <span class="n">public</span> <span class="n">Op</span> <span class="p">{</span>
+ <span class="n">public</span><span class="p">:</span>
+  <span class="n">OpRMSNorm</span><span class="p">()</span> <span class="p">:</span> <span class="n">Op</span><span class="p">()</span> <span class="p">{</span> <span class="n">is_inplace_</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">virtual</span> <span class="o">~</span><span class="n">OpRMSNorm</span><span class="p">()</span> <span class="p">{}</span>
+
+  <span class="n">virtual</span> <span class="n">base</span><span class="p">::</span><span class="n">Status</span> <span class="n">inferShape</span><span class="p">();</span>
+
+  <span class="n">virtual</span> <span class="n">base</span><span class="p">::</span><span class="n">Status</span> <span class="n">run</span><span class="p">();</span>
+<span class="p">};</span>
+
+</pre></div>
+</div>
+<p>In the parent class level, two key functions need to be implemented:</p>
+<ul class="simple">
+<li><p>inferShape: Infer the shape of the output Tensor, this process is based on the network’s forward propagation; when the network’s input size is determined, the shape of all Tensors along the network’s continuous propagation path is inferred. When the shape inference is completed, the subsequent internal memory request is made based on the shape and life cycle of the Tensor.</p></li>
+<li><p>run: The run function of the parent class implements a non-dependent on any specific instruction set, which can be executed on most CPUs as an unoptimized version for fast implementation.</p></li>
+</ul>
+<p>The implementation of specific backend’s operator subclass is under nndeploy/framework/source/nndeploy/op/xxx, xxx is the backend file folder. For example, if there are no special requirements to rewrite the parent class’s other virtual functions, only the implementation of run is used. In this layer, it is assumed that all inputs, outputs, shapes, value types are correct, only the implementation needs attention.</p>
+<p>All Ops must be registered into the factory model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">REGISTER_OP_IMPLEMENTION</span><span class="p">(</span><span class="n">base</span><span class="p">::</span><span class="n">DeviceTypeCode</span><span class="p">::</span><span class="n">kDeviceTypeCodeCpu</span><span class="p">,</span>
+                         <span class="n">ir</span><span class="p">::</span><span class="n">kOpTypeSoftmax</span><span class="p">,</span> <span class="n">OpSoftmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Function form operator<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>The above implementations are all in the form of class, sometimes it is expected to directly perform calculations on Tensor in the form of a function, hence the operator in the form of function is directly applied. The declaration and definition of this function interface are in the same file as the parent class Op. Each operator is basically in a fixed form, creating Op objects, setting inputs and outputs, initialization, and execution. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base</span><span class="p">::</span><span class="n">Status</span> <span class="n">rmsNorm</span><span class="p">(</span><span class="n">device</span><span class="p">::</span><span class="n">Tensor</span> <span class="o">*</span><span class="n">input1</span><span class="p">,</span> <span class="n">device</span><span class="p">::</span><span class="n">Tensor</span> <span class="o">*</span><span class="n">input2</span><span class="p">,</span>
+                     <span class="n">device</span><span class="p">::</span><span class="n">Tensor</span> <span class="o">*</span><span class="n">input3</span><span class="p">,</span> <span class="n">device</span><span class="p">::</span><span class="n">Tensor</span> <span class="o">*</span><span class="n">output</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">base</span><span class="p">::</span><span class="n">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">;</span>
+
+  <span class="n">Op</span> <span class="o">*</span><span class="n">op</span> <span class="o">=</span> <span class="n">createOp</span><span class="p">(</span><span class="n">input1</span><span class="o">-&gt;</span><span class="n">getDeviceType</span><span class="p">(),</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">ir</span><span class="p">::</span><span class="n">kOpTypeRMSNorm</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="n">nullptr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">NNDEPLOY_LOGE</span><span class="p">(</span><span class="s2">&quot;createOp failed&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeErrorNotImplement</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">setInput</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;setInput failed&quot;</span><span class="p">);</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">setInput</span><span class="p">(</span><span class="n">input2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;setInput failed&quot;</span><span class="p">);</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">setInput</span><span class="p">(</span><span class="n">input3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;setInput failed&quot;</span><span class="p">);</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">setOutput</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;setOutput failed&quot;</span><span class="p">);</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;init failed&quot;</span><span class="p">);</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">preRun</span><span class="p">();</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;preRun failed&quot;</span><span class="p">);</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">run</span><span class="p">();</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;run failed&quot;</span><span class="p">);</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">postRun</span><span class="p">();</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;postRun failed&quot;</span><span class="p">);</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">deinit</span><span class="p">();</span>
+  <span class="n">NNDEPLOY_RETURN_ON_NEQ</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">kStatusCodeOk</span><span class="p">,</span> <span class="s2">&quot;deinit failed&quot;</span><span class="p">);</span>
+
+  <span class="n">delete</span> <span class="n">op</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">status</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
+</section>
+<section id="python">
+<h3>Python interface export<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h3>
+<p>Exporting the operator in the form of function at the Python end, can be directly used by nndeploy.op.xxop(input). The export interface is located in nndeploy/python/src/op/op.cc, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NNDEPLOY_API_PYBIND11_MODULE</span><span class="p">(</span><span class="s2">&quot;op&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span> <span class="n">m</span><span class="o">.</span><span class="n">def</span><span class="p">(</span><span class="s2">&quot;rms_norm&quot;</span><span class="p">,</span> <span class="n">rmsNormFunc</span><span class="p">);</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Indicates exporting to the python op module, nndeploy.op.rms_norm will be directed to execute in the rmsNormFunc function. rmsNormFunc is a middleware between Python and Cpp, its implementation is in nndeploy/python/src/op/op_func.cc. In the Func layer, input legality checks are performed, if it is a non-inplace operator, it also needs to request output Tensor. But do not perform internal memory allocation for the output Tensor, because internal memory allocation depends on shape inference, which is performed inside the function operator.</p>
+</section>
+<section id="id5">
+<h3>Test<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>The operator’s test is located in nndeploy/python/nndeploy/tests/op, using the unittest framework for testing. Data construction can use numpy, and then converted to nndeploy’s Tensor. Standard result comparison can use numpy or PyTorch, converting nndeploy’s Tensor to numpy for comparison.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inference.html" class="btn btn-neutral float-left" title="Multi-endpoint Push Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_container.html" class="btn btn-neutral float-right" title="data container" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

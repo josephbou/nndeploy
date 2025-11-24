@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nndeploy.dag.graph_runner &mdash; nndeploy 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nndeploy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id6">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id7">文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id8">性能测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id9">下一步计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id10">联系我们</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id11">致谢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/README.html#id12">贡献者</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/build.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/python.html">Python 快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/workflow.html">Visual Workflow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/deploy.html">最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin.html">C++自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/plugin_python.html">Python自定义节点开发手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/model_list.html">已部署模型列表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ascend_env.html">Building Ascend Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/ai_deploy.html">AI算法推理部署加速</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/doxygen.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/index.html">Python API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_inference.html">Add a new inference framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide/how_to_support_new_device.html">Add a new device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/parallel.html">Parallel Mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/directed_acyclic_graph.html">Oriented without a circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/process_template.html">Processing Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/resourse_pool.html">Resource Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/inference.html">Multi-endpoint Push Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/op.html">Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/data_container.html">data container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture_guide/device.html">Device Management Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">自研推理框架</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html">最新动态</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id3">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id4">Why implement an inference framework internally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id5">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference/README_INFERENCE.html#id9">Key submodules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Issues</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Knowledge Sharing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../knowledge_shared/nndeploy_from_requirement_analysis_to_architecture_design.html">nndeploy - 一款模型端到端部署框架</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nndeploy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nndeploy.dag.graph_runner</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nndeploy.dag.graph_runner</h1><div class="highlight"><pre>
+<span></span><span class="c1"># graph_runner.py</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="kn">import</span> <span class="nn">nndeploy.base</span>
+<span class="kn">import</span> <span class="nn">nndeploy.device</span>
+<span class="kn">from</span> <span class="nn">.graph</span> <span class="kn">import</span> <span class="n">Graph</span>
+<span class="kn">from</span> <span class="nn">.node</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">add_global_import_lib</span><span class="p">,</span> <span class="n">import_global_import_lib</span>
+<span class="kn">from</span> <span class="nn">.edge</span> <span class="kn">import</span> <span class="n">Edge</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">EdgeTypeInfo</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">io_type_to_name</span>
+
+<div class="viewcode-block" id="NnDeployGraphRuntimeError"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.NnDeployGraphRuntimeError">[docs]</a><span class="k">class</span> <span class="nc">NnDeployGraphRuntimeError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+<div class="viewcode-block" id="NnDeployGraphRuntimeError.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.NnDeployGraphRuntimeError.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Graph run failed: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="GraphRunner"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.GraphRunner">[docs]</a><span class="k">class</span> <span class="nc">GraphRunner</span><span class="p">:</span>
+<div class="viewcode-block" id="GraphRunner.__init__"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.GraphRunner.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_cancel</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">_check_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">get_desc</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">NnDeployGraphRuntimeError</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_build_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_json_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">node_param</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">set_node_value</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">graph_json_str</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">status</span>
+    
+<div class="viewcode-block" id="GraphRunner.cancel_running"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.GraphRunner.cancel_running">[docs]</a>    <span class="k">def</span> <span class="nf">cancel_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">interrupt</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_cancel</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">flag</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;interrupt failed&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GraphRunner.get_run_status"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.GraphRunner.get_run_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_run_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+        <span class="n">run_status_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_nodes_run_status_recursive</span><span class="p">()</span>
+        <span class="c1"># print(f&quot;run_status_map: {run_status_map}&quot;)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">node_name</span><span class="p">,</span> <span class="n">run_status</span> <span class="ow">in</span> <span class="n">run_status_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">run_status</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;INITING&quot;</span><span class="p">:</span>
+                <span class="n">json_obj</span><span class="p">[</span><span class="n">node_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="n">status</span><span class="p">}</span>
+            <span class="k">elif</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;INITED&quot;</span><span class="p">:</span>
+                <span class="n">json_obj</span><span class="p">[</span><span class="n">node_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">run_status</span><span class="o">.</span><span class="n">init_time</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="n">status</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">json_obj</span><span class="p">[</span><span class="n">node_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">run_status</span><span class="o">.</span><span class="n">average_time</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="n">status</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">json_obj</span></div>
+
+<div class="viewcode-block" id="GraphRunner.release"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.GraphRunner.release">[docs]</a>    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="kn">import</span> <span class="nn">gc</span><span class="p">;</span> <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="GraphRunner.get_loop_count"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.GraphRunner.get_loop_count">[docs]</a>    <span class="k">def</span> <span class="nf">get_loop_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_loop_count</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+    
+<div class="viewcode-block" id="GraphRunner.get_parallel_type"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.GraphRunner.get_parallel_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_parallel_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_parallel_type</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">ParallelType</span><span class="o">.</span><span class="n">Pipeline</span></div>
+
+<div class="viewcode-block" id="GraphRunner.run"><a class="viewcode-back" href="../../../python_api/generated/nndeploy.dag.graph_runner.html#nndeploy.dag.graph_runner.GraphRunner.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_json_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">GraphRunnerArgs</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_cancel</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">did_deinit</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="k">try</span><span class="p">:</span>           
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_profiler_reset</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cancel</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;graph interrupted!&quot;</span><span class="p">)</span>
+
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_point_start</span><span class="p">(</span><span class="s2">&quot;deserialize_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_graph</span><span class="p">(</span><span class="n">graph_json_str</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_status</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_point_end</span><span class="p">(</span><span class="s2">&quot;deserialize_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">set_time_profile_flag</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">set_debug_flag</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># self.graph.set_parallel_type(nndeploy.base.ParallelType.Task)</span>
+            <span class="c1"># self.graph.set_parallel_type(nndeploy.base.ParallelType.Pipeline)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cancel</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;graph interrupted!&quot;</span><span class="p">)</span>
+
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_point_start</span><span class="p">(</span><span class="s2">&quot;init_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_status</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_point_end</span><span class="p">(</span><span class="s2">&quot;init_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+            <span class="n">parallel_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_parallel_type</span><span class="p">()</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="k">if</span> <span class="n">args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">dump</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">dump</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cancel</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;graph interrupted!&quot;</span><span class="p">)</span>
+
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_point_start</span><span class="p">(</span><span class="s2">&quot;sum_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_loop_count</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+                <span class="n">t0_0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_status</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+                <span class="n">t1_0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> times, time: </span><span class="si">{</span><span class="n">t1_0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0_0</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">parallel_type</span> <span class="o">!=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">ParallelType</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">:</span>
+                    <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_all_output</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">:</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">get_graph_output</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="c1"># 判断对象是否可以拷贝，如果可以拷贝，采用拷贝的方式</span>
+                            <span class="k">try</span><span class="p">:</span>
+                                <span class="n">copy_result</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                            <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">RecursionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                                <span class="c1"># 如果无法深拷贝，则直接使用原对象</span>
+                                <span class="n">copy_result</span> <span class="o">=</span> <span class="n">result</span>
+                            <span class="n">comsumers</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">get_consumers</span><span class="p">()</span>
+                            <span class="k">for</span> <span class="n">consumer</span> <span class="ow">in</span> <span class="n">comsumers</span><span class="p">:</span>
+                                <span class="n">consumer_name</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+                                <span class="n">io_type</span> <span class="o">=</span> <span class="n">io_type_to_name</span><span class="p">[</span><span class="n">consumer</span><span class="o">.</span><span class="n">get_io_type</span><span class="p">()]</span>
+                                <span class="k">if</span> <span class="n">consumer_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                                    <span class="n">results</span><span class="p">[</span><span class="n">consumer_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                                <span class="k">if</span> <span class="n">io_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="n">consumer_name</span><span class="p">]:</span>
+                                    <span class="n">results</span><span class="p">[</span><span class="n">consumer_name</span><span class="p">][</span><span class="n">io_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                                <span class="n">results</span><span class="p">[</span><span class="n">consumer_name</span><span class="p">][</span><span class="n">io_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copy_result</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">parallel_type</span> <span class="o">==</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">ParallelType</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+                    <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_all_output</span><span class="p">()</span>
+                    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">:</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">get_graph_output</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="c1"># 判断对象是否可以拷贝，如果可以拷贝，采用拷贝的方式</span>
+                            <span class="k">try</span><span class="p">:</span>
+                                <span class="n">copy_result</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                            <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">RecursionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                                <span class="c1"># 如果无法深拷贝，则直接使用原对象</span>
+                                <span class="n">copy_result</span> <span class="o">=</span> <span class="n">result</span>
+                            <span class="n">comsumers</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">get_consumers</span><span class="p">()</span>
+                            <span class="k">for</span> <span class="n">consumer</span> <span class="ow">in</span> <span class="n">comsumers</span><span class="p">:</span>
+                                <span class="n">consumer_name</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+                                <span class="n">io_type</span> <span class="o">=</span> <span class="n">io_type_to_name</span><span class="p">[</span><span class="n">consumer</span><span class="o">.</span><span class="n">get_io_type</span><span class="p">()]</span>
+                                <span class="k">if</span> <span class="n">consumer_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                                    <span class="n">results</span><span class="p">[</span><span class="n">consumer_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                                <span class="k">if</span> <span class="n">io_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="n">consumer_name</span><span class="p">]:</span>
+                                    <span class="n">results</span><span class="p">[</span><span class="n">consumer_name</span><span class="p">][</span><span class="n">io_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                                <span class="n">results</span><span class="p">[</span><span class="n">consumer_name</span><span class="p">][</span><span class="n">io_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copy_result</span><span class="p">)</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">flag</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;synchronize failed&quot;</span><span class="p">)</span>
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_point_end</span><span class="p">(</span><span class="s2">&quot;sum_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cancel</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;graph interrupted!&quot;</span><span class="p">)</span>
+
+            <span class="n">nodes_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_nodes_name_recursive</span><span class="p">()</span>
+            
+            <span class="c1"># print(time_profiler_map)</span>
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_profiler_print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>   
+                <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_profiler_print_remove_warmup</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+            <span class="c1"># 另一个线程启动的函数</span>
+            <span class="c1"># run_status_map = self.get_run_status()</span>
+            <span class="c1"># print(run_status_map)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cancel</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;graph interrupted!&quot;</span><span class="p">)</span>
+
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_point_start</span><span class="p">(</span><span class="s2">&quot;deinit_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">deinit</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_status</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="n">did_deinit</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="n">is_release_cuda_cache</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">is_release_cuda_cache</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="kn">import</span> <span class="nn">torch</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+            <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_point_end</span><span class="p">(</span><span class="s2">&quot;deinit_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+            <span class="c1"># run_status_map = self.get_run_status()</span>
+            <span class="c1"># print(run_status_map)</span>
+
+            <span class="c1"># time_profiler_map = {}</span>
+            <span class="c1"># for node_name in nodes_name:</span>
+            <span class="c1">#     time_profiler_map[node_name] = nndeploy.base.time_profiler_get_cost_time(node_name + &quot; run()&quot;)</span>
+            <span class="c1"># time_profiler_map[&quot;sum_&quot; + name] = nndeploy.base.time_profiler_get_cost_time(&quot;sum_&quot; + name)</span>
+            <span class="c1"># time_profiler_map[&quot;init_&quot; + name] = nndeploy.base.time_profiler_get_cost_time(&quot;init_&quot; + name)</span>
+            <span class="c1"># time_profiler_map[&quot;deserialize_&quot; + name] = nndeploy.base.time_profiler_get_cost_time(&quot;deserialize_&quot; + name)</span>
+
+            <span class="n">time_profiler_map</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">time_profiler_map</span><span class="p">[</span><span class="s2">&quot;init_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_profiler_get_cost_time</span><span class="p">(</span><span class="s2">&quot;init_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">time_profiler_map</span><span class="p">[</span><span class="s2">&quot;run_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nndeploy</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">time_profiler_get_cost_time</span><span class="p">(</span><span class="s2">&quot;sum_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+            <span class="c1"># print(results)</span>
+            <span class="k">return</span> <span class="n">time_profiler_map</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">get_desc</span><span class="p">()</span>
+        
+        <span class="k">except</span> <span class="n">NnDeployGraphRuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{},</span> <span class="p">{},</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">msg</span>
+
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">did_deinit</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">deinit</span><span class="p">()</span>
+                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                            <span class="k">pass</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="kn">import</span> <span class="nn">torch</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">pass</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="k">pass</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright nndeploy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
