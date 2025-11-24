@@ -57,4 +57,4 @@ msgstr "Knowledge Sharing"
 
 #: ../../index.rst:7 71ed362cbb4b44cf8cbdbdcb123d7e09
 msgid "欢迎来到 nndeploy 的中文文档！"
-msgstr "Welcome to the nndeploy Chinese documentation!"
+msgstr "Welcome to the nndeploy documentation!"
